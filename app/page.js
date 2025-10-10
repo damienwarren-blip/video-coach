@@ -11,7 +11,7 @@ export default function Home() {
           The Performance Edge
         </h1>
         <p className="text-lg sm:text-xl text-gray-700">
-          The VideoCoach — The next-generation coaching platform. It analyzes private video dialogue (like this one!) with sophisticated AI to provide quick, actionable insights on team health and engagement, driving measurable results.
+          The VideoCoach — The next-generation coaching platform. It analyzes private video dialogue with sophisticated AI to provide quick, actionable insights on team health and engagement, driving measurable results.
         </p>
         <button className="mt-4 px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-500 transition font-medium text-lg">
           Get Started

@@ -1,154 +1,136 @@
-// app/page.js
 import React from "react";
-import Head from "next/head";
-import Image from "next/image";
+import {
+  ChatBubbleBottomCenterTextIcon,
+  ChartBarIcon,
+  TrophyIcon,
+  PlayCircleIcon,
+  BuildingOffice2Icon,
+  UsersIcon,
+} from "@heroicons/react/24/outline";
 
-export default function Home() {
+export default function Page() {
   return (
-    <>
-      <Head>
-        <title>The Performance Edge — VideoCoach for team health & engagement</title>
-        <meta name="description" content="The Performance Edge: Next-gen VideoCoach. Analyze private video dialogue with AI to deliver actionable insights on team health, engagement and measurable performance." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col items-center justify-center px-6 py-12 space-y-20">
+      
+      {/* Hero Section */}
+      <section className="relative text-center max-w-4xl space-y-6 mx-auto">
+        {/* Decorative background shape */}
+        <div className="absolute inset-0 -z-10">
+          <svg
+            className="w-full h-full"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#bfdbfe" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#ffffff" stopOpacity="0.3" />
+              </linearGradient>
+            </defs>
+            <polygon points="0,0 100%,0 100%,100" fill="url(#grad)" />
+          </svg>
+        </div>
 
-        {/* Open Graph */}
-        <meta property="og:title" content="The Performance Edge — VideoCoach" />
-        <meta property="og:description" content="Next-gen VideoCoach: AI-driven analysis of private video dialogue for team health and measurable engagement." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://VIDEO_COACH_YOUR_DOMAIN" />
-        <meta property="og:image" content="https://VIDEO_COACH_YOUR_DOMAIN/og-image.jpg" />
+        <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 drop-shadow-md">
+          The Performance Edge
+        </h1>
 
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="The Performance Edge — VideoCoach" />
-        <meta name="twitter:description" content="AI-driven analysis of private video dialogue for team health and measurable engagement." />
+        <p className="text-lg sm:text-xl text-gray-700 drop-shadow-sm">
+          The VideoCoach — The next-generation coaching platform. It analyzes private video dialogue
+          (like this one!) with AI to provide quick, actionable insights on team health and engagement,
+          driving measurable results.
+        </p>
 
-        <link rel="canonical" href="https://VIDEO_COACH_YOUR_DOMAIN/" />
-        {/* Preconnect typical CDNs or analytics */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-      </Head>
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
+          <button className="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-500 transition font-medium text-lg">
+            Get Started
+          </button>
+          <button className="px-8 py-3 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-50 transition font-medium text-lg">
+            Learn More
+          </button>
+        </div>
 
-      <main className="min-h-screen bg-white">
-        {/* NAV */}
-        <header className="w-full bg-white/90 backdrop-blur-sm sticky top-0 z-40">
-          <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="text-xl font-bold text-slate-800">Performance Edge</div>
-              <div className="hidden sm:flex gap-6 text-sm text-slate-600">
-                <a href="#services" className="hover:underline">Services</a>
-                <a href="#cases" className="hover:underline">Case Studies</a>
-                <a href="#contact" className="hover:underline">Contact</a>
-              </div>
-            </div>
-            <div>
-              <a href="#contact" className="inline-block bg-slate-900 text-white px-4 py-2 rounded-full text-sm shadow">Get a demo</a>
-            </div>
+        {/* VideoAsk Embed */}
+        <div className="mt-12 flex justify-center w-full">
+          <div className="w-full max-w-md sm:max-w-2xl rounded-3xl shadow-xl overflow-hidden">
+            <iframe
+              src="https://www.videoask.com/fjtaofiub"
+              title="VideoAsk"
+              className="w-full h-[500px] sm:h-[600px] object-cover"
+              allow="camera; microphone; autoplay"
+            ></iframe>
           </div>
-        </header>
+        </div>
+      </section>
 
-        {/* HERO */}
-        <section className="py-16">
-          <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight">
-                The Performance Edge
-              </h1>
-              <p className="mt-4 text-lg text-slate-600 max-w-xl">
-                The VideoCoach — a next-generation coaching platform that analyzes private video dialogue with powerful AI to surface quick, actionable insights driving measurable team health and engagement improvements.
-              </p>
+      {/* Features Section */}
+      <section className="max-w-6xl w-full grid grid-cols-1 sm:grid-cols-3 gap-10 text-center mt-10">
+        <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
+          <ChatBubbleBottomCenterTextIcon className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+          <h3 className="text-xl font-semibold mb-2">Conversations @ Scale</h3>
+          <p className="text-gray-600">
+            Engage players, teams, or employees through asynchronous video dialogue.
+          </p>
+        </div>
 
-              <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                <a href="#contact" className="px-6 py-3 bg-blue-600 text-white rounded-full font-medium shadow hover:bg-blue-500">Book a demo</a>
-                <a href="#cases" className="px-6 py-3 border rounded-full text-slate-700 hover:bg-slate-50">See case studies</a>
-              </div>
+        <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
+          <ChartBarIcon className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+          <h3 className="text-xl font-semibold mb-2">Better Insights</h3>
+          <p className="text-gray-600">
+            Instant sentiment, trend, and theme summaries with actionable clarity.
+          </p>
+        </div>
 
-              <div className="mt-6 flex items-center gap-4 text-sm text-slate-500">
-                <span>Trusted by</span>
-                <div className="flex gap-4 items-center">
-                  <div className="h-6 w-16 bg-slate-100 rounded" />
-                  <div className="h-6 w-16 bg-slate-100 rounded" />
-                  <div className="h-6 w-16 bg-slate-100 rounded" />
-                </div>
-              </div>
-            </div>
+        <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
+          <TrophyIcon className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+          <h3 className="text-xl font-semibold mb-2">Better Results</h3>
+          <p className="text-gray-600">
+            Drive measurable performance impact across teams and organizations.
+          </p>
+        </div>
+      </section>
 
-            <div className="w-full flex justify-center">
-              {/* Taller pull-down video container */}
-              <div className="w-full max-w-lg md:max-w-xl h-[560px] md:h-[680px] rounded-xl shadow-lg overflow-hidden">
-                <iframe
-                  src="https://www.videoask.com/fjtaofiub"
-                  title="VideoAsk"
-                  className="w-full h-full"
-                  allow="camera; microphone; autoplay"
-                />
-              </div>
-            </div>
+      {/* Case Studies Section */}
+      <section className="max-w-6xl w-full mt-20">
+        <h2 className="text-3xl font-bold text-center mb-10 text-gray-900">
+          Case Studies
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+          <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
+            <PlayCircleIcon className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold mb-2">Sports Clubs</h3>
+            <p className="text-gray-600">
+              Building mentally resilient teams through feedback & dialogue.
+            </p>
           </div>
-        </section>
 
-        {/* Services */}
-        <section id="services" className="py-16 bg-slate-50">
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-2xl font-bold text-slate-900">What we do</h2>
-            <p className="mt-2 text-slate-600 max-w-2xl">End-to-end coaching, team diagnostics, and performance measurement.</p>
-
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <div className="p-6 bg-white rounded-xl shadow">
-                <h3 className="font-semibold">Conversations @ Scale</h3>
-                <p className="mt-2 text-slate-600 text-sm">Collect and analyze private video dialogues at scale.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow">
-                <h3 className="font-semibold">Better Insights</h3>
-                <p className="mt-2 text-slate-600 text-sm">Actionable analytics surfaced by AI models.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow">
-                <h3 className="font-semibold">Better Results</h3>
-                <p className="mt-2 text-slate-600 text-sm">Measureable improvements in team outcomes.</p>
-              </div>
-            </div>
+          <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
+            <BuildingOffice2Icon className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold mb-2">Businesses</h3>
+            <p className="text-gray-600">
+              Enabling authentic communication & engagement at every level.
+            </p>
           </div>
-        </section>
 
-        {/* Cases */}
-        <section id="cases" className="py-16">
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-2xl font-bold">Selected case studies</h2>
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 bg-white rounded-xl shadow">
-                <div className="h-40 w-full bg-slate-100 rounded mb-4" />
-                <h3 className="font-semibold">Case Study 1</h3>
-                <p className="mt-2 text-slate-600 text-sm">Short summary of outcome and ROI.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow">
-                <div className="h-40 w-full bg-slate-100 rounded mb-4" />
-                <h3 className="font-semibold">Case Study 2</h3>
-                <p className="mt-2 text-slate-600 text-sm">Short summary of outcome and ROI.</p>
-              </div>
-              <div className="p-6 bg-white rounded-xl shadow">
-                <div className="h-40 w-full bg-slate-100 rounded mb-4" />
-                <h3 className="font-semibold">Case Study 3</h3>
-                <p className="mt-2 text-slate-600 text-sm">Short summary of outcome and ROI.</p>
-              </div>
-            </div>
+          <div className="p-8 bg-white rounded-2xl shadow hover:shadow-lg transition">
+            <UsersIcon className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold mb-2">High-Performance Teams</h3>
+            <p className="text-gray-600">
+              Driving team alignment and sustained elite performance culture.
+            </p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Contact CTA */}
-        <section id="contact" className="py-16 bg-gradient-to-b from-white to-slate-50">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-2xl font-bold">Ready to see results?</h2>
-            <p className="mt-2 text-slate-600">Book a demo and see how VideoCoach can transform team performance.</p>
-            <div className="mt-6">
-              <a href="#contact" className="px-6 py-3 bg-blue-600 text-white rounded-full shadow">Book a demo</a>
-            </div>
-          </div>
-        </section>
-
-        <footer className="py-8 text-center text-sm text-slate-500">
-          © 2025 Performance Edge. All rights reserved.
-        </footer>
-      </main>
-    </>
+      {/* Footer */}
+      <footer className="text-gray-500 text-sm text-center space-y-2 mt-20">
+        <p>© 2025 Performance Edge. All rights reserved.</p>
+        <p>
+          <a href="#" className="underline hover:text-gray-700">Privacy Policy</a> |{" "}
+          <a href="#" className="underline hover:text-gray-700">Terms of Service</a>
+        </p>
+      </footer>
+    </main>
   );
 }

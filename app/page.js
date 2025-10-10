@@ -16,9 +16,9 @@ export default function Home() {
           Get Started
         </button>
 
-        {/* Centered VideoAsk Embed - Pull down vertically */}
+        {/* Centered VideoAsk Embed - Taller */}
         <div className="mt-8 flex justify-center w-full">
-          <div className="w-full max-w-md sm:max-w-lg md:max-w-2xl h-[360px] sm:h-[480px] md:h-[540px] shadow-lg rounded-xl overflow-hidden">
+          <div className="w-full max-w-md sm:max-w-lg md:max-w-2xl h-[480px] sm:h-[600px] md:h-[720px] shadow-lg rounded-xl overflow-hidden">
             <iframe
               src="https://www.videoask.com/fjtaofiub"
               title="VideoAsk"

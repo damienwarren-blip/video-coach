@@ -9,7 +9,6 @@ export default function Home() {
       <section className="text-center max-w-4xl space-y-6">
         <div className="flex flex-col items-center gap-4 sm:gap-6">
           <div className="flex items-center gap-3">
-            {/* Modern Play Icon with background */}
             <div className="p-2 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-full shadow-lg animate-pulse">
               <PlayCircleIcon className="h-8 w-8 text-white" />
             </div>
@@ -27,7 +26,7 @@ export default function Home() {
 
         {/* Video Section */}
         <div className="mt-10 flex justify-center w-full">
-          <div className="w-full max-w-4xl aspect-video rounded-3xl shadow-2xl overflow-hidden bg-black">
+          <div className="w-full max-w-4xl aspect-video sm:min-h-[450px] rounded-3xl shadow-2xl overflow-hidden bg-black">
             <iframe
               src="https://www.videoask.com/fjtaofiub"
               title="VideoAsk"
@@ -40,21 +39,24 @@ export default function Home() {
       </section>
 
       {/* Key Benefits Section */}
-      <section className="max-w-5xl w-full grid grid-cols-1 sm:grid-cols-3 gap-8 text-center mt-12">
-        <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-          <SparklesIcon className="h-10 w-10 text-yellow-400 mb-2" />
-          <h3 className="text-xl font-semibold mb-2">Engagement Boost</h3>
-          <p className="text-gray-600">Quickly understand team interactions.</p>
-        </div>
-        <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-          <ShieldCheckIcon className="h-10 w-10 text-green-400 mb-2" />
-          <h3 className="text-xl font-semibold mb-2">Data Security</h3>
-          <p className="text-gray-600">Private video analysis, fully secure.</p>
-        </div>
-        <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-          <AcademicCapIcon className="h-10 w-10 text-purple-400 mb-2" />
-          <h3 className="text-xl font-semibold mb-2">AI Insights</h3>
-          <p className="text-gray-600">Actionable recommendations instantly.</p>
+      <section className="max-w-5xl w-full mt-12">
+        <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Key Benefits</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+          <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+            <SparklesIcon className="h-10 w-10 text-yellow-400 mb-2" />
+            <h3 className="text-xl font-semibold mb-2">Engagement Boost</h3>
+            <p className="text-gray-600">Quickly understand team interactions.</p>
+          </div>
+          <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+            <ShieldCheckIcon className="h-10 w-10 text-green-400 mb-2" />
+            <h3 className="text-xl font-semibold mb-2">Data Security</h3>
+            <p className="text-gray-600">Private video analysis, fully secure.</p>
+          </div>
+          <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+            <AcademicCapIcon className="h-10 w-10 text-purple-400 mb-2" />
+            <h3 className="text-xl font-semibold mb-2">AI Insights</h3>
+            <p className="text-gray-600">Actionable recommendations instantly.</p>
+          </div>
         </div>
       </section>
 
@@ -84,21 +86,24 @@ export default function Home() {
       </section>
 
       {/* Case Studies Section */}
-      <section className="max-w-5xl w-full grid grid-cols-1 sm:grid-cols-3 gap-8 text-center mt-16">
-        <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-          <UsersIcon className="h-10 w-10 text-blue-400 mb-2" />
-          <h3 className="text-lg font-semibold mb-2">Sports Clubs</h3>
-          <p className="text-gray-500">Example placeholder</p>
-        </div>
-        <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-          <ChartBarIcon className="h-10 w-10 text-green-400 mb-2" />
-          <h3 className="text-lg font-semibold mb-2">Business</h3>
-          <p className="text-gray-500">Example placeholder</p>
-        </div>
-        <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-          <AcademicCapIcon className="h-10 w-10 text-purple-400 mb-2" />
-          <h3 className="text-lg font-semibold mb-2">High Performance Teams</h3>
-          <p className="text-gray-500">Example placeholder</p>
+      <section className="max-w-5xl w-full mt-16">
+        <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Case Studies</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+          <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+            <UsersIcon className="h-10 w-10 text-blue-400 mb-2" />
+            <h3 className="text-lg font-semibold mb-2">Sports Clubs</h3>
+            <p className="text-gray-500">Example placeholder</p>
+          </div>
+          <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+            <ChartBarIcon className="h-10 w-10 text-green-400 mb-2" />
+            <h3 className="text-lg font-semibold mb-2">Business</h3>
+            <p className="text-gray-500">Example placeholder</p>
+          </div>
+          <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+            <AcademicCapIcon className="h-10 w-10 text-purple-400 mb-2" />
+            <h3 className="text-lg font-semibold mb-2">High Performance Teams</h3>
+            <p className="text-gray-500">Example placeholder</p>
+          </div>
         </div>
       </section>
 

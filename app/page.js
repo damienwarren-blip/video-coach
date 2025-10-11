@@ -1,5 +1,5 @@
 import React from "react";
-import { AcademicCapIcon, UsersIcon, ChartBarIcon, PlayCircleIcon, SparklesIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
+import { UsersIcon, ChartBarIcon, AcademicCapIcon, PlayCircleIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
   return (
@@ -26,7 +26,7 @@ export default function Home() {
 
         {/* Video Section */}
         <div className="mt-10 flex justify-center w-full">
-          <div className="w-full max-w-4xl aspect-video sm:min-h-[450px] rounded-3xl shadow-2xl overflow-hidden bg-black">
+          <div className="w-full max-w-4xl h-[200px] sm:h-[450px] rounded-3xl shadow-2xl overflow-hidden bg-black">
             <iframe
               src="https://www.videoask.com/fjtaofiub"
               title="VideoAsk"
@@ -43,45 +43,20 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Key Benefits</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-            <SparklesIcon className="h-10 w-10 text-yellow-400 mb-2" />
-            <h3 className="text-xl font-semibold mb-2">Engagement Boost</h3>
-            <p className="text-gray-600">Quickly understand team interactions.</p>
+            <UsersIcon className="h-10 w-10 text-blue-400 mb-2" />
+            <h3 className="text-xl font-semibold mb-2">Better Data</h3>
+            <p className="text-gray-600">Accurate insights from private video analysis.</p>
           </div>
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-            <ShieldCheckIcon className="h-10 w-10 text-green-400 mb-2" />
-            <h3 className="text-xl font-semibold mb-2">Data Security</h3>
-            <p className="text-gray-600">Private video analysis, fully secure.</p>
+            <ChartBarIcon className="h-10 w-10 text-green-400 mb-2" />
+            <h3 className="text-xl font-semibold mb-2">Better Insights</h3>
+            <p className="text-gray-600">Measurable, actionable results instantly.</p>
           </div>
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
             <AcademicCapIcon className="h-10 w-10 text-purple-400 mb-2" />
-            <h3 className="text-xl font-semibold mb-2">AI Insights</h3>
-            <p className="text-gray-600">Actionable recommendations instantly.</p>
+            <h3 className="text-xl font-semibold mb-2">Better Results</h3>
+            <p className="text-gray-600">Real performance impact for your team.</p>
           </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="max-w-5xl w-full grid grid-cols-1 sm:grid-cols-3 gap-8 text-center mt-12">
-        <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-          <div className="bg-blue-100 p-2 rounded-full mb-2">
-            <UsersIcon className="h-10 w-10 text-blue-600" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Conversations @ Scale</h3>
-          <p className="text-gray-600">Employees, Customers, Team</p>
-        </div>
-        <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-          <div className="bg-green-100 p-2 rounded-full mb-2">
-            <ChartBarIcon className="h-10 w-10 text-green-600" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Better Insights</h3>
-          <p className="text-gray-600">Measurable, Actionable Insights</p>
-        </div>
-        <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-          <div className="bg-purple-100 p-2 rounded-full mb-2">
-            <AcademicCapIcon className="h-10 w-10 text-purple-600" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Better Results</h3>
-          <p className="text-gray-600">Real Performance Impact</p>
         </div>
       </section>
 

@@ -17,25 +17,23 @@ export default function Home() {
             </h1>
           </div>
           <p className="text-lg sm:text-xl text-gray-700 max-w-2xl">
-            The VideoCoach — The next-generation coaching platform. It analyzes private video dialogue with sophisticated AI to provide quick, actionable insights on team health and engagement, driving measurable results.
+            The VideoCoach — The next-generation coaching platform. It analyzes private video dialogue (like this one!) with sophisticated AI to provide quick, actionable insights on team health and engagement, driving measurable results.
           </p>
           <button className="mt-4 px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-500 transition font-medium text-lg">
-            Press Play To Get Started
+            Get Started
           </button>
         </div>
 
-        {/* Video Section */}
-        <div className="mt-24 sm:mt-20 flex justify-center w-full"> {/* <- pushed down for mobile */}
-          <div className="w-full max-w-4xl">
-            <div className="relative w-full pb-[56.25%] rounded-3xl shadow-2xl overflow-hidden bg-black">
-              <iframe
-                src="https://www.videoask.com/fjtaofiub"
-                title="VideoAsk"
-                className="absolute top-0 left-0 w-full h-full border-0"
-                allow="camera; microphone; autoplay; fullscreen"
-                allowFullScreen
-              />
-            </div>
+        {/* Centered VideoAsk Embed - Taller */}
+        <div className="mt-8 flex justify-center w-full">
+          <div className="w-full max-w-md sm:max-w-lg md:max-w-2xl h-[480px] sm:h-[600px] md:h-[720px] shadow-lg rounded-xl overflow-hidden">
+            <iframe
+              src="https://www.videoask.com/fjtaofiub"
+              title="VideoAsk"
+              className="w-full h-full rounded-xl object-cover"
+              allow="camera; microphone; autoplay"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>
@@ -47,17 +45,17 @@ export default function Home() {
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
             <UsersIcon className="h-10 w-10 text-blue-400 mb-2" />
             <h3 className="text-xl font-semibold mb-2">Better Data</h3>
-            <p className="text-gray-600">Employess, Customers, Teams.</p>
+            <p className="text-gray-600">Accurate insights from private video analysis.</p>
           </div>
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
             <ChartBarIcon className="h-10 w-10 text-green-400 mb-2" />
             <h3 className="text-xl font-semibold mb-2">Better Insights</h3>
-            <p className="text-gray-600">Measurable, actionable insight.</p>
+            <p className="text-gray-600">Measurable, actionable results instantly.</p>
           </div>
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
             <AcademicCapIcon className="h-10 w-10 text-purple-400 mb-2" />
             <h3 className="text-xl font-semibold mb-2">Better Results</h3>
-            <p className="text-gray-600">Real impact on key metrics.</p>
+            <p className="text-gray-600">Real performance impact for your team.</p>
           </div>
         </div>
       </section>

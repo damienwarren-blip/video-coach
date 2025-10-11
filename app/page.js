@@ -47,17 +47,17 @@ export default function Home() {
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
             <UsersIcon className="h-10 w-10 text-blue-400 mb-2" />
             <h3 className="text-xl font-semibold mb-2">Better Data</h3>
-            <p className="text-gray-600">Accurate insights from private video analysis.</p>
+            <p className="text-gray-600">Employess, Customers, Teams.</p>
           </div>
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
             <ChartBarIcon className="h-10 w-10 text-green-400 mb-2" />
             <h3 className="text-xl font-semibold mb-2">Better Insights</h3>
-            <p className="text-gray-600">Measurable, actionable results instantly.</p>
+            <p className="text-gray-600">Measurable, actionable insight.</p>
           </div>
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
             <AcademicCapIcon className="h-10 w-10 text-purple-400 mb-2" />
             <h3 className="text-xl font-semibold mb-2">Better Results</h3>
-            <p className="text-gray-600">Real performance impact for your team.</p>
+            <p className="text-gray-600">Real impact on key metrics.</p>
           </div>
         </div>
       </section>

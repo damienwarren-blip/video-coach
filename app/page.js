@@ -25,7 +25,7 @@ export default function Home() {
         </div>
 
         {/* Video Section */}
-        <div className="mt-16 sm:mt-20 flex justify-center w-full"> {/* <-- increased top margin for mobile */}
+        <div className="mt-24 sm:mt-20 flex justify-center w-full"> {/* <- pushed down for mobile */}
           <div className="w-full max-w-4xl">
             <div className="relative w-full pb-[56.25%] rounded-3xl shadow-2xl overflow-hidden bg-black">
               <iframe

@@ -26,14 +26,16 @@ export default function Home() {
 
         {/* Video Section */}
         <div className="mt-10 flex justify-center w-full">
-          <div className="w-full max-w-4xl h-[200px] sm:h-[450px] rounded-3xl shadow-2xl overflow-hidden bg-black">
-            <iframe
-              src="https://www.videoask.com/fjtaofiub"
-              title="VideoAsk"
-              className="w-full h-full border-0"
-              allow="camera; microphone; autoplay; fullscreen"
-              allowFullScreen
-            />
+          <div className="w-full max-w-4xl">
+            <div className="relative w-full pb-[56.25%] rounded-3xl shadow-2xl overflow-hidden bg-black">
+              <iframe
+                src="https://www.videoask.com/fjtaofiub"
+                title="VideoAsk"
+                className="absolute top-0 left-0 w-full h-full border-0"
+                allow="camera; microphone; autoplay; fullscreen"
+                allowFullScreen
+              />
+            </div>
           </div>
         </div>
       </section>

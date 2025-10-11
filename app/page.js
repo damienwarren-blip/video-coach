@@ -17,7 +17,7 @@ export default function Home() {
             </h1>
           </div>
           <p className="text-lg sm:text-xl text-gray-700 max-w-2xl">
-          The Video Coach — The next-generation coaching platform - we deliver fast, affordable human data with 3× higher response rates that reveal what truly drives productivity, retention, and hiring success.
+          The Video Coach — The next-generation coaching platform - we deliver fast, affordable human data with 3× higher response rates that reveal what truly drives high performance teams.
           </p>
           <button className="mt-4 px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-500 transition font-medium text-lg">
             Press Play to Get Started

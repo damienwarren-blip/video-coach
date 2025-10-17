@@ -17,7 +17,8 @@ export default function Home() {
             </h1>
           </div>
           <p className="text-lg sm:text-xl text-gray-700 max-w-2xl">
-          Video Coach — The next-generation coaching platform. We deliver fast, affordable human insight with 3× higher response rates than traditional surveys that reveal what truly drives high-performance teams.
+          We reveal WHY your best people stay, perform, and thrive—with 3× higher response rates that uncover the real drivers of retention, performance, and culture.
+.
           </p>
           <button className="mt-4 px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-500 transition font-medium text-lg">
             Press Play to Get Started
@@ -45,17 +46,18 @@ export default function Home() {
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
             <UsersIcon className="h-10 w-10 text-blue-400 mb-2" />
             <h3 className="text-xl font-semibold mb-2">Better Data</h3>
-            <p className="text-gray-600">Employees, Customers, Teams.</p>
+            <p className="text-gray-600">Authentic human insight. 3× higher response rates because people actually want to be heard.</p>
           </div>
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
             <ChartBarIcon className="h-10 w-10 text-green-400 mb-2" />
             <h3 className="text-xl font-semibold mb-2">Better Insights</h3>
-            <p className="text-gray-600">Measurable, actionable insights instantly.</p>
+            <p className="text-gray-600">Understand root causes fast. Know why people are burned out, why they're leaving, why engagement is dropping.</p>
           </div>
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
             <AcademicCapIcon className="h-10 w-10 text-purple-400 mb-2" />
             <h3 className="text-xl font-semibold mb-2">Better Results</h3>
-            <p className="text-gray-600">Real performance impact on key metrics.</p>
+            <p className="text-gray-600">
+Fix retention, communication, and culture issues before they show up in your turnover numbers.</p>
           </div>
         </div>
       </section>

@@ -17,8 +17,7 @@ export default function Home() {
             </h1>
           </div>
           <p className="text-lg sm:text-xl text-gray-700 max-w-2xl">
-          We reveal WHY your best people stay, perform, and thrive—with 3× higher response rates that uncover the real drivers of retention, performance, and culture.
-.
+          3× higher response rates than traditional surveys reveal the real drivers of retention, engagement, and culture—giving leaders the why behind every people decision.
           </p>
           <button className="mt-4 px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-500 transition font-medium text-lg">
             Press Play to Get Started

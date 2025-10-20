@@ -29,10 +29,11 @@ export default function ClientRBK() {
             </h1>
 
             <p className="text-gray-700 mb-8 text-lg">
-              <strong className="text-blue-700">Your voice matters.</strong>{" "}
-              <strong>Your privacy is protected.</strong> We collect{" "}
-              <strong>team insights, not individual identities</strong> — so
-              real problems get <strong>fixed, fast.</strong>
+              <span className="font-semibold text-blue-700">
+                Your voice matters. Your privacy is protected.
+              </span>{" "}
+              Sharing your perspective ensures your team’s needs are seen and
+              acted on.
             </p>
 
             <div className="text-sm text-gray-700 text-left mb-8 bg-blue-50 rounded-xl p-5 space-y-1.5">

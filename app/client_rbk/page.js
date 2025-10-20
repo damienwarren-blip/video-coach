@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
 
 export default function ClientRBK() {
   const [consentGiven, setConsentGiven] = useState(false);
@@ -16,27 +15,16 @@ export default function ClientRBK() {
 
   return (
     <main
-      className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center text-gray-800"
+      className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center text-gray-800 px-4"
       style={{
         backgroundImage:
           "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80')",
       }}
     >
-      <div className="backdrop-blur-md bg-white/85 rounded-3xl shadow-lg p-10 max-w-2xl text-center leading-relaxed">
+      <div className="backdrop-blur-md bg-white/85 rounded-3xl shadow-lg p-8 sm:p-10 max-w-2xl w-full text-center leading-relaxed">
         {!showVideo ? (
           <>
-            {/* Logo */}
-            <div className="flex justify-center mb-4">
-              <Image
-                src="/logo-play-icon.png"
-                alt="Video Coach Logo"
-                width={60}
-                height={60}
-                className="opacity-90"
-              />
-            </div>
-
-            <h1 className="text-3xl font-semibold mb-2 text-blue-700">
+            <h1 className="text-3xl font-semibold mb-3 text-blue-700">
               Welcome to Video Coach
             </h1>
 
@@ -44,34 +32,29 @@ export default function ClientRBK() {
               We really want your voice to be heard.
             </p>
 
-            <p className="text-gray-700 mb-6">
+            <p className="text-gray-700 mb-8">
               Your voice matters. Your privacy is protected. We collect team
               insights, not individual identities — so real problems get fixed,
-              fast.
+              fast. This short exercise helps us test a new way for teams and
+              leaders to get better insights into performance and engagement.
             </p>
 
-            <p className="text-gray-700 mb-6">
-              We’re testing a new tool to help teams and leaders gain better
-              insights into performance and engagement. Your participation helps
-              us improve and refine this experience.
-            </p>
-
-            <div className="text-sm text-gray-700 text-left mb-6 bg-blue-50 rounded-xl p-5 space-y-2">
-              <p className="font-medium">Before you start:</p>
+            <div className="text-sm text-gray-700 text-left mb-8 bg-blue-50 rounded-xl p-5 space-y-1.5">
+              <p className="font-medium mb-1">Before you start:</p>
               <ul className="list-disc list-inside space-y-1">
-                <li>Your responses (video, text, Likert scales) are fully anonymous.</li>
-                <li>Please do not include names, emails, or other personal identifiers.</li>
-                <li>Responses may be processed by AI to generate aggregated reports.</li>
+                <li>Your responses are fully anonymous.</li>
+                <li>Please don’t include any names, emails, or personal details.</li>
                 <li>
-                  Data is stored securely and deleted automatically 30 days after
-                  report delivery.
+                  Responses may be processed by AI to generate aggregated reports.
                 </li>
-                <li>You can stop participating at any time.</li>
+                <li>
+                  Data is stored securely and deleted 30 days after report delivery.
+                </li>
               </ul>
             </div>
 
             <p className="text-sm text-gray-600 mb-8">
-              Questions? Contact us at{" "}
+              Questions? Contact{" "}
               <a
                 href="mailto:pilot@video-coach.com"
                 className="text-blue-600 underline hover:text-blue-700"

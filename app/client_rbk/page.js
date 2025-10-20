@@ -24,19 +24,17 @@ export default function ClientRBK() {
       <div className="backdrop-blur-md bg-white/85 rounded-3xl shadow-lg p-8 sm:p-10 max-w-2xl w-full text-center leading-relaxed">
         {!showVideo ? (
           <>
-            <h1 className="text-3xl font-semibold mb-3 text-blue-700">
+            <h1 className="text-3xl font-semibold mb-5 text-blue-700">
               Welcome to Video Coach
             </h1>
 
-            <p className="text-lg text-gray-700 mb-4 font-medium">
-              We really want your voice to be heard.
-            </p>
-
-            <p className="text-gray-700 mb-8">
-              Your voice matters. Your privacy is protected. We collect team
-              insights, not individual identities — so real problems get fixed,
-              fast. This short exercise helps us test a new way for teams and
-              leaders to get better insights into performance and engagement.
+            <p className="text-gray-700 mb-8 text-lg">
+              <strong className="text-blue-700">Your voice matters.</strong>{" "}
+              <strong>Your privacy is protected.</strong> We collect{" "}
+              <strong>team insights, not individual identities</strong> — so
+              real problems get fixed, fast. This short exercise helps us test a
+              new way for teams and leaders to get better insights into
+              performance and engagement.
             </p>
 
             <div className="text-sm text-gray-700 text-left mb-8 bg-blue-50 rounded-xl p-5 space-y-1.5">

@@ -14,29 +14,41 @@ export default function ClientRBK() {
   };
 
   return (
-    <main
-      className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center text-gray-800 px-4"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80')",
-      }}
-    >
-      <div className="backdrop-blur-md bg-white/85 rounded-3xl shadow-lg p-8 sm:p-10 max-w-2xl w-full text-center leading-relaxed">
+    <main className="relative flex flex-col items-center justify-center min-h-screen bg-gray-900 text-gray-100 px-4">
+      {/* Background Image with gradient overlay */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1950&q=80')",
+        }}
+      ></div>
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+      <div className="relative z-10 bg-white/90 text-gray-800 rounded-3xl shadow-xl p-8 sm:p-10 max-w-2xl w-full text-center leading-relaxed">
         {!showVideo ? (
           <>
             <h1 className="text-3xl font-semibold mb-5 text-blue-700">
               Welcome to Video Coach
             </h1>
 
-            <p className="text-gray-700 mb-8 text-lg">
+            <p className="text-gray-700 mb-6 text-lg">
               <span className="font-semibold text-blue-700">
-                Your voice matters. Your privacy is protected.
-              </span>{" "}
-              Sharing your perspective ensures your team’s needs are seen and
-              acted on.
+                We’re designing the next generation of employee surveys
+              </span>
+              —one that ensures your perspective is truly heard and acted upon.
             </p>
 
-            <div className="text-sm text-gray-700 text-left mb-8 bg-blue-50 rounded-xl p-5 space-y-1.5">
+            <p className="text-gray-700 mb-8 text-lg">
+              Here’s how it works:{" "}
+              <span className="font-semibold text-blue-700">
+                You say what you really think.
+              </span>{" "}
+              We keep it <span className="font-semibold">confidential.</span>{" "}
+              Always.
+            </p>
+
+            <div className="text-sm text-gray-700 text-left mb-8 bg-blue-50 rounded-xl p-5 space-y-1.5 shadow-inner">
               <p className="font-medium mb-1">Before you start:</p>
               <ul className="list-disc list-inside space-y-1">
                 <li>Your responses are fully anonymous.</li>
@@ -64,7 +76,7 @@ export default function ClientRBK() {
               <input
                 type="checkbox"
                 id="consent"
-                className="mr-2 h-4 w-4"
+                className="mr-2 h-4 w-4 accent-blue-600"
                 onChange={(e) => setConsentGiven(e.target.checked)}
               />
               <label htmlFor="consent" className="text-gray-700 text-sm">

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function ClientRBK() {
   const [consentGiven, setConsentGiven] = useState(false);
@@ -24,17 +25,35 @@ export default function ClientRBK() {
       <div className="backdrop-blur-md bg-white/85 rounded-3xl shadow-lg p-10 max-w-2xl text-center leading-relaxed">
         {!showVideo ? (
           <>
+            {/* Logo */}
+            <div className="flex justify-center mb-4">
+              <Image
+                src="/logo-play-icon.png"
+                alt="Video Coach Logo"
+                width={60}
+                height={60}
+                className="opacity-90"
+              />
+            </div>
+
             <h1 className="text-3xl font-semibold mb-2 text-blue-700">
               Welcome to Video Coach
             </h1>
-            <p className="text-lg text-gray-700 mb-6 font-medium">
+
+            <p className="text-lg text-gray-700 mb-4 font-medium">
               We really want your voice to be heard.
             </p>
 
             <p className="text-gray-700 mb-6">
-              We’re testing a new tool to help teams gain better insights into
-              performance and engagement. Your participation helps us improve
-              and refine this experience.
+              Your voice matters. Your privacy is protected. We collect team
+              insights, not individual identities — so real problems get fixed,
+              fast.
+            </p>
+
+            <p className="text-gray-700 mb-6">
+              We’re testing a new tool to help teams and leaders gain better
+              insights into performance and engagement. Your participation helps
+              us improve and refine this experience.
             </p>
 
             <div className="text-sm text-gray-700 text-left mb-6 bg-blue-50 rounded-xl p-5 space-y-2">
@@ -43,7 +62,10 @@ export default function ClientRBK() {
                 <li>Your responses (video, text, Likert scales) are fully anonymous.</li>
                 <li>Please do not include names, emails, or other personal identifiers.</li>
                 <li>Responses may be processed by AI to generate aggregated reports.</li>
-                <li>Data is stored securely and deleted automatically 30 days after report delivery.</li>
+                <li>
+                  Data is stored securely and deleted automatically 30 days after
+                  report delivery.
+                </li>
                 <li>You can stop participating at any time.</li>
               </ul>
             </div>

@@ -17,7 +17,7 @@ export default function Home() {
             </h1>
           </div>
           <p className="text-lg sm:text-xl text-gray-700 max-w-2xl">
-          3× higher response rates than traditional surveys reveal the real drivers of retention, engagement, and culture—giving leaders the WHY behind every people decision.
+         Achieve higher response rates than traditional surveys and uncover the real drivers of retention, engagement, and culture—giving leaders the WHY behind every people decision.
           </p>
           <button className="mt-4 px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-500 transition font-medium text-lg">
             Press Play to Get Started

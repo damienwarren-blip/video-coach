@@ -1,60 +1,62 @@
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
-export default function ClientConsentTest() {
+export default function ClientRBK() {
   const [consentGiven, setConsentGiven] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+
+  const handleStart = () => {
+    if (consentGiven) {
+      setShowVideo(true);
+    } else {
+      alert("Please agree to the consent before continuing.");
+    }
+  };
 
   return (
-    <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-      <h1>Video Coach Pilot – Client Test</h1>
-
-      {!consentGiven ? (
-        <div
-          style={{
-            marginTop: '2rem',
-            border: '1px solid #ccc',
-            padding: '1rem',
-            borderRadius: '8px',
-          }}
-        >
-          <p>
-            Welcome to the Video Coach pilot for Client Test. Participation is voluntary and fully anonymous.
-            Please do not include names, emails, or other personal identifiers. Data may be processed by AI and
-            will be deleted 30 days after report delivery.
+    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6 text-gray-800">
+      {!showVideo ? (
+        <div className="max-w-lg text-center bg-white rounded-2xl shadow-md p-8">
+          <h1 className="text-2xl font-semibold mb-4">Before You Start</h1>
+          <p className="text-gray-600 mb-6">
+            This short video exercise is completely anonymous. Please do not share
+            any personal information such as names or contact details in your answers.
+            Your responses will help us test and improve our model.
           </p>
-          <p>You can stop participating at any time. Questions? Contact pilot@video-coach.com</p>
 
-          <label style={{ display: 'block', marginTop: '1rem' }}>
+          <div className="flex items-center justify-center mb-6">
             <input
               type="checkbox"
+              id="consent"
+              className="mr-2 h-4 w-4"
               onChange={(e) => setConsentGiven(e.target.checked)}
-            />{' '}
-            I have read and consent to participate in this pilot
-          </label>
+            />
+            <label htmlFor="consent" className="text-gray-700 text-sm">
+              I understand and consent to take part anonymously.
+            </label>
+          </div>
 
           <button
-            onClick={() => setConsentGiven(true)}
-            disabled={!consentGiven}
-            style={{
-              marginTop: '1rem',
-              padding: '0.5rem 1rem',
-              cursor: consentGiven ? 'pointer' : 'not-allowed',
-            }}
+            onClick={handleStart}
+            className={`px-6 py-3 rounded-xl text-white font-medium transition ${
+              consentGiven
+                ? "bg-blue-600 hover:bg-blue-700"
+                : "bg-gray-400 cursor-not-allowed"
+            }`}
           >
-            Start Pilot
+            Start
           </button>
         </div>
       ) : (
-        <div style={{ marginTop: '2rem' }}>
-          <p>Thank you! Your pilot session will appear below:</p>
+        <div className="w-full h-screen flex items-center justify-center">
           <iframe
-            src="https://your-videoask-link" // <-- replace with Client Test VideoAsk URL
-            style={{ width: '100%', height: '600px', border: 'none', marginTop: '1rem' }}
-            title="Client Test Pilot"
-            allow="camera; microphone; autoplay"
+            src="https://www.videoask.com/fjtaofiub"
+            allow="camera; microphone; autoplay; encrypted-media;"
+            className="w-full h-full border-0"
+            allowFullScreen
           ></iframe>
         </div>
       )}
-    </div>
+    </main>
   );
 }

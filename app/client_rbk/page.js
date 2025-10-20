@@ -32,9 +32,7 @@ export default function ClientRBK() {
               <strong className="text-blue-700">Your voice matters.</strong>{" "}
               <strong>Your privacy is protected.</strong> We collect{" "}
               <strong>team insights, not individual identities</strong> — so
-              real problems get fixed, fast. This short exercise helps us test a
-              new way for teams and leaders to get better insights into
-              performance and engagement.
+              real problems get <strong>fixed, fast.</strong>
             </p>
 
             <div className="text-sm text-gray-700 text-left mb-8 bg-blue-50 rounded-xl p-5 space-y-1.5">

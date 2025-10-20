@@ -1,0 +1,62 @@
+'use client';
+import { useState } from 'react';
+
+export default function HomePage() {
+  const [consentGiven, setConsentGiven] = useState(false);
+
+  return (
+    <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
+      <h1>Welcome to the Video Coach MVP Pilot</h1>
+
+      {!consentGiven ? (
+        <div
+          style={{
+            marginTop: '2rem',
+            border: '1px solid #ccc',
+            padding: '1rem',
+            borderRadius: '8px',
+          }}
+        >
+          <p>
+            We are testing the Video Coach platform to improve team performance insights. Participation is
+            voluntary and fully anonymous. Do not include names, emails, or other personal identifiers. Data
+            may be processed by AI and will be deleted 30 days after report delivery.
+          </p>
+          <p>You can stop participating at any time. Questions? Contact pilot@video-coach.com</p>
+
+          <label style={{ display: 'block', marginTop: '1rem' }}>
+            <input
+              type="checkbox"
+              onChange={(e) => setConsentGiven(e.target.checked)}
+            />{' '}
+            I have read and consent to participate in this pilot
+          </label>
+
+          <button
+            onClick={() => {}}
+            disabled={!consentGiven}
+            style={{
+              marginTop: '1rem',
+              padding: '0.5rem 1rem',
+              cursor: consentGiven ? 'pointer' : 'not-allowed',
+            }}
+            onClick={() => setConsentGiven(true)}
+          >
+            Start Pilot
+          </button>
+        </div>
+      ) : (
+        <div style={{ marginTop: '2rem' }}>
+          <p>Thank you! Your pilot session will appear below:</p>
+          {/* VideoAsk Embed */}
+          <iframe
+            src="https://your-videoask-link"
+            style={{ width: '100%', height: '600px', border: 'none', marginTop: '1rem' }}
+            title="Video Coach Pilot"
+            allow="camera; microphone; autoplay"
+          ></iframe>
+        </div>
+      )}
+    </div>
+  );
+}

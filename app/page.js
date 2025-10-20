@@ -45,7 +45,7 @@ export default function Home() {
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
             <UsersIcon className="h-10 w-10 text-blue-400 mb-2" />
             <h3 className="text-xl font-semibold mb-2">Better Data</h3>
-            <p className="text-gray-600">Authentic human insight. 3× higher response rates because people actually want to be heard.</p>
+            <p className="text-gray-600">Authentic human insight. Achieve higher response rates because people actually want to be heard.</p>
           </div>
           <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
             <ChartBarIcon className="h-10 w-10 text-green-400 mb-2" />

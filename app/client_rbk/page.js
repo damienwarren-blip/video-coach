@@ -9,54 +9,90 @@ export default function ClientRBK() {
     if (consentGiven) {
       setShowVideo(true);
     } else {
-      alert("Please agree to the consent before continuing.");
+      alert("Please tick the consent box before starting.");
     }
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6 text-gray-800">
-      {!showVideo ? (
-        <div className="max-w-lg text-center bg-white rounded-2xl shadow-md p-8">
-          <h1 className="text-2xl font-semibold mb-4">Before You Start</h1>
-          <p className="text-gray-600 mb-6">
-            This short video exercise is completely anonymous. Please do not share
-            any personal information such as names or contact details in your answers.
-            Your responses will help us test and improve our model.
-          </p>
+    <main
+      className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center text-gray-800"
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80')",
+      }}
+    >
+      <div className="backdrop-blur-md bg-white/80 rounded-3xl shadow-lg p-8 max-w-lg text-center">
+        {!showVideo ? (
+          <>
+            <h1 className="text-3xl font-semibold mb-4 text-blue-700">
+              Welcome to the Video Coach Pilot
+            </h1>
+            <p className="text-gray-700 mb-4">
+              We’re testing a new tool to help teams gain better insights into
+              performance and engagement. Your participation helps us improve
+              and refine this experience.
+            </p>
 
-          <div className="flex items-center justify-center mb-6">
-            <input
-              type="checkbox"
-              id="consent"
-              className="mr-2 h-4 w-4"
-              onChange={(e) => setConsentGiven(e.target.checked)}
-            />
-            <label htmlFor="consent" className="text-gray-700 text-sm">
-              I understand and consent to take part anonymously.
-            </label>
+            <div className="text-sm text-gray-700 text-left mb-6 bg-blue-50 rounded-xl p-4">
+              <p className="mb-2">Before you start:</p>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Your responses (video, text, Likert scales) are fully anonymous.</li>
+                <li>Do not include names, emails, or other personal identifiers.</li>
+                <li>
+                  Responses may be processed by AI to generate aggregated reports.
+                </li>
+                <li>
+                  Data is stored securely and deleted automatically 30 days after
+                  report delivery.
+                </li>
+                <li>You can stop participating at any time.</li>
+              </ul>
+            </div>
+
+            <p className="text-sm text-gray-600 mb-6">
+              Questions? Contact us at{" "}
+              <a
+                href="mailto:pilot@video-coach.com"
+                className="text-blue-600 underline hover:text-blue-700"
+              >
+                pilot@video-coach.com
+              </a>
+            </p>
+
+            <div className="flex items-center justify-center mb-6">
+              <input
+                type="checkbox"
+                id="consent"
+                className="mr-2 h-4 w-4"
+                onChange={(e) => setConsentGiven(e.target.checked)}
+              />
+              <label htmlFor="consent" className="text-gray-700 text-sm">
+                I understand and consent to take part anonymously.
+              </label>
+            </div>
+
+            <button
+              onClick={handleStart}
+              className={`px-8 py-3 rounded-xl text-white font-medium shadow-md transition ${
+                consentGiven
+                  ? "bg-blue-600 hover:bg-blue-700"
+                  : "bg-gray-400 cursor-not-allowed"
+              }`}
+            >
+              Start
+            </button>
+          </>
+        ) : (
+          <div className="w-full h-[80vh] flex items-center justify-center">
+            <iframe
+              src="https://www.videoask.com/fjtaofiub"
+              allow="camera; microphone; autoplay; encrypted-media;"
+              className="w-full h-full border-0 rounded-2xl shadow-lg"
+              allowFullScreen
+            ></iframe>
           </div>
-
-          <button
-            onClick={handleStart}
-            className={`px-6 py-3 rounded-xl text-white font-medium transition ${
-              consentGiven
-                ? "bg-blue-600 hover:bg-blue-700"
-                : "bg-gray-400 cursor-not-allowed"
-            }`}
-          >
-            Start
-          </button>
-        </div>
-      ) : (
-        <div className="w-full h-screen flex items-center justify-center">
-          <iframe
-            src="https://www.videoask.com/fjtaofiub"
-            allow="camera; microphone; autoplay; encrypted-media;"
-            className="w-full h-full border-0"
-            allowFullScreen
-          ></iframe>
-        </div>
-      )}
+        )}
+      </div>
     </main>
   );
 }

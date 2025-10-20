@@ -21,35 +21,34 @@ export default function ClientRBK() {
           "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80')",
       }}
     >
-      <div className="backdrop-blur-md bg-white/80 rounded-3xl shadow-lg p-8 max-w-lg text-center">
+      <div className="backdrop-blur-md bg-white/85 rounded-3xl shadow-lg p-10 max-w-2xl text-center leading-relaxed">
         {!showVideo ? (
           <>
-            <h1 className="text-3xl font-semibold mb-4 text-blue-700">
-              Welcome to the Video Coach Pilot
+            <h1 className="text-3xl font-semibold mb-2 text-blue-700">
+              Welcome to Video Coach
             </h1>
-            <p className="text-gray-700 mb-4">
+            <p className="text-lg text-gray-700 mb-6 font-medium">
+              We really want your voice to be heard.
+            </p>
+
+            <p className="text-gray-700 mb-6">
               We’re testing a new tool to help teams gain better insights into
               performance and engagement. Your participation helps us improve
               and refine this experience.
             </p>
 
-            <div className="text-sm text-gray-700 text-left mb-6 bg-blue-50 rounded-xl p-4">
-              <p className="mb-2">Before you start:</p>
+            <div className="text-sm text-gray-700 text-left mb-6 bg-blue-50 rounded-xl p-5 space-y-2">
+              <p className="font-medium">Before you start:</p>
               <ul className="list-disc list-inside space-y-1">
                 <li>Your responses (video, text, Likert scales) are fully anonymous.</li>
-                <li>Do not include names, emails, or other personal identifiers.</li>
-                <li>
-                  Responses may be processed by AI to generate aggregated reports.
-                </li>
-                <li>
-                  Data is stored securely and deleted automatically 30 days after
-                  report delivery.
-                </li>
+                <li>Please do not include names, emails, or other personal identifiers.</li>
+                <li>Responses may be processed by AI to generate aggregated reports.</li>
+                <li>Data is stored securely and deleted automatically 30 days after report delivery.</li>
                 <li>You can stop participating at any time.</li>
               </ul>
             </div>
 
-            <p className="text-sm text-gray-600 mb-6">
+            <p className="text-sm text-gray-600 mb-8">
               Questions? Contact us at{" "}
               <a
                 href="mailto:pilot@video-coach.com"
@@ -73,7 +72,7 @@ export default function ClientRBK() {
 
             <button
               onClick={handleStart}
-              className={`px-8 py-3 rounded-xl text-white font-medium shadow-md transition ${
+              className={`px-10 py-3 rounded-xl text-white font-medium shadow-md transition ${
                 consentGiven
                   ? "bg-blue-600 hover:bg-blue-700"
                   : "bg-gray-400 cursor-not-allowed"

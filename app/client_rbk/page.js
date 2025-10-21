@@ -1,7 +1,7 @@
+"use client";
 import { useState, useEffect } from "react";
-import { Shield, MessageSquare, Lock, CheckCircle } from 'lucide-react';
 
-export default function VideoCoach() {
+export default function ClientRBK() {
   const [consentGiven, setConsentGiven] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
@@ -25,7 +25,9 @@ export default function VideoCoach() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-teal-500 rounded-lg flex items-center justify-center">
-              <MessageSquare className="w-6 h-6 text-white" />
+              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+              </svg>
             </div>
             <span className="text-xl font-semibold text-slate-900">Video Coach</span>
           </div>
@@ -97,25 +99,35 @@ export default function VideoCoach() {
               <div className="mb-8">
                 <div className="flex items-start gap-4 bg-purple-50 rounded-xl p-6">
                   <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-6 h-6 text-purple-600" />
+                    <svg className="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                    </svg>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-bold text-slate-900 mb-3">Before you start:</h3>
                     <ul className="space-y-2 text-slate-700">
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
+                        <svg className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
                         <span>Your responses are fully anonymous.</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
+                        <svg className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
                         <span>Please don't include names, emails, or personal identifiers.</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
+                        <svg className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
                         <span>Responses may be processed by AI to generate aggregated reports.</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
+                        <svg className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
                         <span>Data is stored securely and deleted 30 days after report delivery.</span>
                       </li>
                     </ul>
@@ -126,7 +138,7 @@ export default function VideoCoach() {
               {/* Contact */}
               <p className="text-sm text-center text-slate-600 mb-8">
                 Questions? Contact{" "}
-                <a
+                
                   href="mailto:pilot@video-coach.com"
                   className="text-purple-600 underline hover:text-teal-600 font-medium"
                 >
@@ -182,7 +194,9 @@ export default function VideoCoach() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-teal-500 rounded-lg flex items-center justify-center">
-                <MessageSquare className="w-5 h-5 text-white" />
+                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                </svg>
               </div>
               <span className="font-semibold text-slate-900">Video Coach</span>
             </div>

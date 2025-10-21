@@ -1,9 +1,15 @@
 "use client";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 
 export default function ClientRBK() {
   const [consentGiven, setConsentGiven] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
+  const [fadeIn, setFadeIn] = useState(false);
+
+  useEffect(() => {
+    setFadeIn(true);
+  }, []);
 
   const handleStart = () => {
     if (consentGiven) {
@@ -14,69 +20,86 @@ export default function ClientRBK() {
   };
 
   return (
-    <main className="relative flex flex-col items-center justify-center min-h-screen bg-gray-900 text-gray-100 px-4">
-      {/* Background Image with gradient overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1950&q=80')",
-        }}
-      ></div>
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+    <main className="relative flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden">
+      {/* Gradient background */}
+      <div className="absolute inset-0">
+        <div className="w-full h-full bg-gradient-to-br from-indigo-600 via-purple-600 to-teal-500 animate-gradient-x"></div>
+        <div className="absolute top-10 left-10 w-36 h-36 bg-indigo-300/20 rounded-full filter blur-3xl animate-bounce-slow"></div>
+        <div className="absolute bottom-20 right-16 w-56 h-56 bg-teal-300/20 rounded-full filter blur-2xl animate-bounce-slow"></div>
+      </div>
 
-      <div className="relative z-10 bg-white/90 text-gray-800 rounded-3xl shadow-xl p-8 sm:p-10 max-w-2xl w-full text-center leading-relaxed">
+      {/* Card */}
+      <div
+        className={`relative z-10 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-8 sm:p-10 max-w-2xl w-full text-center transition-opacity duration-700 ${
+          fadeIn ? "opacity-100" : "opacity-0"
+        }`}
+      >
         {!showVideo ? (
           <>
-            <h1 className="text-3xl font-semibold mb-5 text-blue-700">
-              Welcome to Video Coach
-            </h1>
+            {/* Header section */}
+            <div className="w-full flex flex-col items-center mb-6">
+              <div className="relative w-full max-w-md h-48 bg-gradient-to-br from-indigo-500 via-purple-500 to-teal-500 rounded-2xl shadow-xl overflow-hidden mb-6">
+                {/* Animated background elements */}
+                <div className="absolute inset-0 opacity-20">
+                  <div className="absolute top-4 left-4 w-20 h-20 bg-white rounded-full blur-2xl animate-pulse"></div>
+                  <div className="absolute bottom-4 right-4 w-32 h-32 bg-white rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+                </div>
+                
+                {/* Content */}
+                <div className="relative z-10 flex flex-col items-center justify-center h-full text-white p-6">
+                  <svg className="w-20 h-20 mb-3 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
+                  </svg>
+                  <h1 className="text-4xl font-bold mb-2 drop-shadow-md">Video Coach</h1>
+                  <p className="text-sm font-medium opacity-90">Your Voice. Your Impact.</p>
+                </div>
+              </div>
+            </div>
 
-            <p className="text-gray-700 mb-6 text-lg">
-              <span className="font-semibold text-blue-700">
-                We’re designing the next generation of employee surveys
+            {/* Intro */}
+            <p className="text-gray-800 mb-6 text-lg leading-relaxed">
+              We're designing the next generation of employee surveys — one that
+              ensures your perspective is truly heard and acted upon.
+            </p>
+
+            {/* How it works */}
+            <p className="text-gray-800 mb-6 text-lg leading-relaxed">
+              Here's how it works:
+              <br />
+              <span className="font-semibold text-purple-600">
+                Share your experience and ideas.
               </span>
-              —one that ensures your perspective is truly heard and acted upon.
+              <br />
+              <span className="font-semibold">We keep it confidential.</span>
+              <br />
+              <span className="font-semibold">Always.</span>
             </p>
 
-            <p className="text-gray-700 mb-8 text-lg">
-              Here’s how it works:{" "}
-              <span className="font-semibold text-blue-700">
-                You say what you really think.
-              </span>{" "}
-              We keep it <span className="font-semibold">confidential.</span>{" "}
-              Always.
-            </p>
-
-            <div className="text-sm text-gray-700 text-left mb-8 bg-blue-50 rounded-xl p-5 space-y-1.5 shadow-inner">
+            {/* Consent instructions */}
+            <div className="text-gray-700 text-left mb-8 bg-indigo-50/80 rounded-xl p-5 shadow-inner space-y-1.5">
               <p className="font-medium mb-1">Before you start:</p>
               <ul className="list-disc list-inside space-y-1">
                 <li>Your responses are fully anonymous.</li>
-                <li>Please don’t include any names, emails, or personal details.</li>
-                <li>
-                  Responses may be processed by AI to generate aggregated reports.
-                </li>
-                <li>
-                  Data is stored securely and deleted 30 days after report delivery.
-                </li>
+                <li>Please don't include names, emails, or personal identifiers.</li>
+                <li>Responses may be processed by AI to generate aggregated reports.</li>
+                <li>Data is stored securely and deleted 30 days after report delivery.</li>
               </ul>
             </div>
 
+            {/* Contact */}
             <p className="text-sm text-gray-600 mb-8">
               Questions? Contact{" "}
-              <a
-                href="mailto:pilot@video-coach.com"
-                className="text-blue-600 underline hover:text-blue-700"
-              >
+              <a href="mailto:pilot@video-coach.com" className="text-purple-600 underline hover:text-indigo-600">
                 pilot@video-coach.com
               </a>
             </p>
 
+            {/* Consent checkbox */}
             <div className="flex items-center justify-center mb-6">
               <input
                 type="checkbox"
                 id="consent"
-                className="mr-2 h-4 w-4 accent-blue-600"
+                className="mr-2 h-4 w-4 accent-purple-600"
                 onChange={(e) => setConsentGiven(e.target.checked)}
               />
               <label htmlFor="consent" className="text-gray-700 text-sm">
@@ -84,11 +107,12 @@ export default function ClientRBK() {
               </label>
             </div>
 
+            {/* Start button */}
             <button
               onClick={handleStart}
               className={`px-10 py-3 rounded-xl text-white font-medium shadow-md transition ${
                 consentGiven
-                  ? "bg-blue-600 hover:bg-blue-700"
+                  ? "bg-purple-600 hover:bg-indigo-600"
                   : "bg-gray-400 cursor-not-allowed"
               }`}
             >
@@ -96,16 +120,37 @@ export default function ClientRBK() {
             </button>
           </>
         ) : (
+          // Video iframe
           <div className="w-full h-[80vh] flex items-center justify-center">
             <iframe
               src="https://www.videoask.com/fjtaofiub"
               allow="camera; microphone; autoplay; encrypted-media;"
-              className="w-full h-full border-0 rounded-2xl shadow-lg"
+              className="w-full h-full border-0 rounded-3xl shadow-2xl"
               allowFullScreen
             ></iframe>
           </div>
         )}
       </div>
+
+      {/* Tailwind animations */}
+      <style jsx>{`
+        @keyframes gradient-x {
+          0%,
+          100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          animation: gradient-x 15s ease infinite;
+        }
+        .animate-bounce-slow {
+          animation: bounce 8s infinite alternate;
+        }
+      `}</style>
     </main>
   );
 }

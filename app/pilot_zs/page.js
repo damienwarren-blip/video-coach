@@ -32,13 +32,8 @@ export default function CustomerFeedback() {
           <>
             {/* Header */}
             <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 drop-shadow-md">
-              Let’s Chat — Your Feedback Matters
+              Let’s Chat
             </h1>
-
-            {/* Intro copy */}
-            <p className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed">
-              You're not just a customer — you're our partner in building something extraordinary. Your experience matters, and we're here to listen.
-            </p>
 
             {/* Feedback powers our evolution section */}
             <div className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed">
@@ -51,15 +46,15 @@ export default function CustomerFeedback() {
                 </span>
               </div>
               <ul className="space-y-1 text-gray-700">
-                <li>• Share your honest feedback and brilliant ideas</li>
+                <li>• Share your honest feedback</li>
                 <li>• Help us understand what you truly need</li>
-                <li>• Watch us transform your insights into action</li>
+                <li>• See us turn insights into action</li>
               </ul>
             </div>
 
             {/* Call to Action */}
             <p className="text-gray-800 mb-6 text-base sm:text-lg leading-relaxed">
-              <strong className="text-lg sm:text-xl">Ready to share your thoughts?</strong> Press the button below to start a conversation — it only takes a few minutes, and your insights will directly shape what we do next.
+              <strong className="text-lg sm:text-xl">Ready to share your thoughts?</strong> Press the button below to start a video conversation — it only takes a few minutes, and your insights will directly shape what we do next.
             </p>
 
             {/* Start button */}

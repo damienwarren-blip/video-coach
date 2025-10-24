@@ -58,7 +58,7 @@ export default function CustomerFeedback() {
                     />
                   </svg>
                   <h1 className="text-4xl font-bold mb-2 drop-shadow-md">
-                    We Want to Hear From You
+                 Let’s chat — about Zeus Scooters
                   </h1>
                   <p className="text-sm font-medium opacity-90">
                     Your Insights Shape Our Future

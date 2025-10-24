@@ -30,98 +30,31 @@ export default function CustomerFeedback() {
       >
         {!showVideo ? (
           <>
-            {/* Header section */}
-            <div className="w-full flex flex-col items-center mb-6">
-              <div className="relative w-full max-w-md h-48 bg-gradient-to-br from-violet-500 via-fuchsia-500 to-cyan-500 rounded-2xl shadow-xl overflow-hidden mb-6">
-                {/* Animated background elements */}
-                <div className="absolute inset-0 opacity-20">
-                  <div className="absolute top-4 left-4 w-20 h-20 bg-white rounded-full blur-2xl animate-pulse"></div>
-                  <div
-                    className="absolute bottom-4 right-4 w-32 h-32 bg-white rounded-full blur-3xl animate-pulse"
-                    style={{ animationDelay: "1s" }}
-                  ></div>
-                </div>
+            {/* Header */}
+            <h1 className="text-4xl font-bold mb-4 text-gray-900 drop-shadow-md">
+              Let’s Chat — Your Feedback Matters
+            </h1>
+            <p className="text-lg mb-6 text-gray-800 leading-relaxed">
+              Through short, authentic video conversations, we help you understand what people really think and feel.
+              <strong> We make gathering data more human.</strong>
+            </p>
 
-                {/* Content */}
-                <div className="relative z-10 flex flex-col items-center justify-center h-full text-white p-6">
-                  <svg
-                    className="w-20 h-20 mb-3 drop-shadow-lg"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"
-                    />
-                  </svg>
-                  <h1 className="text-4xl font-bold mb-2 drop-shadow-md">
-                 Let’s chat — about Zeus Scooters
-                  </h1>
-                  <p className="text-sm font-medium opacity-90">
-                    Your Insights Shape Our Future
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Intro */}
+            {/* Call to Action */}
             <p className="text-gray-800 mb-6 text-lg leading-relaxed">
-              You're not just a customer — you're our partner in building something extraordinary. 
-              Your experience matters, and we're here to listen.
+              Ready to share your thoughts? Press the button below to start a conversation — it only takes a few minutes, and your insights will directly shape what we do next.
             </p>
 
-            {/* How it works */}
-            <div className="text-gray-800 mb-6 text-lg leading-relaxed">
-              <div className="flex items-center justify-center gap-2 mb-3">
-                <svg className="w-6 h-6 text-fuchsia-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                </svg>
-                <span className="font-semibold text-fuchsia-600">
-                  Your feedback powers our evolution
-                </span>
-              </div>
-              <ul className="space-y-2 text-gray-700">
-                <li>• Share your honest feedback and brilliant ideas</li>
-                <li>• Help us understand what you truly need</li>
-                <li>• Watch us transform your insights into action</li>
-              </ul>
-            </div>
-
-            {/* Privacy notice */}
-            <div className="text-gray-700 text-center mb-8 bg-violet-50/80 rounded-xl p-5 shadow-inner">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <svg className="w-5 h-5 text-fuchsia-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                </svg>
-                <p className="font-medium text-fuchsia-600">Your Privacy Matters</p>
-              </div>
-              <p className="text-sm">
-                Your responses are anonymous and used solely to improve our service. 
-                We handle your feedback with care and never share it with third parties.
-              </p>
-            </div>
-
-            {/* Contact */}
-            <p className="text-sm text-gray-600 mb-8">
-              Questions? Reach out anytime at{" "}
-              <a
-                href="mailto:hello@video-coach.com"
-                className="text-fuchsia-600 underline hover:text-violet-600"
-              >
-                hello@video-coach.com
-              </a>
-            </p>
-
-            {/* Start button */}
             <button
               onClick={handleStart}
               className="px-12 py-4 rounded-xl text-white font-semibold shadow-lg transition bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 transform hover:scale-105"
             >
-              Share Your Thoughts
+              Start Conversation
             </button>
+
+            {/* Privacy notice */}
+            <p className="text-sm text-gray-600 mt-6">
+              Your responses are anonymous and used solely to improve our service. We handle your feedback with care and never share it with third parties.
+            </p>
           </>
         ) : (
           // Video iframe
@@ -139,13 +72,8 @@ export default function CustomerFeedback() {
       {/* Tailwind animations */}
       <style jsx>{`
         @keyframes gradient-x {
-          0%,
-          100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
         }
         .animate-gradient-x {
           background-size: 200% 200%;

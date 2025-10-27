@@ -17,9 +17,9 @@ export default function QuickChatAthlete() {
     <main className="relative flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden">
       {/* Gradient background */}
       <div className="absolute inset-0">
-        <div className="w-full h-full bg-gradient-to-br from-amber-500 via-rose-700 to-amber-700 animate-gradient-x"></div>
-        <div className="absolute top-10 left-10 w-36 h-36 bg-rose-300/20 rounded-full filter blur-3xl animate-bounce-slow"></div>
-        <div className="absolute bottom-20 right-16 w-56 h-56 bg-amber-300/20 rounded-full filter blur-2xl animate-bounce-slow"></div>
+        <div className="w-full h-full bg-gradient-to-br from-amber-500 via-rose-700 to-amber-700 animate-pulse"></div>
+        <div className="absolute top-10 left-10 w-36 h-36 bg-rose-300/20 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-20 right-16 w-56 h-56 bg-amber-300/20 rounded-full filter blur-2xl"></div>
       </div>
 
       {/* Card */}
@@ -49,9 +49,9 @@ export default function QuickChatAthlete() {
 
             {/* Subheader */}
             <p className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed relative z-10">
-              Every voice on the team matters — starters, subs, everyone.{" "}
+              Every athlete on the team matters — from beginners to high performers.{" "}
               <br />
-              This is your space to share what’s going well and what could be
+              This is your space to share what's going well and what could be
               better.
             </p>
 
@@ -76,9 +76,9 @@ export default function QuickChatAthlete() {
                 </span>
               </div>
               <ul className="space-y-1 text-gray-700">
-                <li>• Share how the team’s feeling and performing</li>
-                <li>• Say what helps you stay motivated and connected</li>
-                <li>• Help shape a stronger, more united squad</li>
+                <li>• Share how the team's feeling and performing</li>
+                <li>• Tell us what helps you grow and stay motivated</li>
+                <li>• Help create a high-support environment for everyone</li>
               </ul>
             </div>
 
@@ -88,7 +88,7 @@ export default function QuickChatAthlete() {
               <strong className="text-xl sm:text-2xl text-rose-700">
                 Quick Chat
               </strong>{" "}
-              — your feedback could make the difference this season.
+              — your feedback helps us support every athlete's journey.
             </p>
 
             {/* Start button */}
@@ -101,7 +101,7 @@ export default function QuickChatAthlete() {
 
             {/* Disclaimer */}
             <p className="text-sm text-gray-600 mt-4 relative z-10">
-              100% confidential — your feedback helps build better teams.
+              100% confidential — building a progressive and caring sports programme together.
             </p>
           </>
         ) : (
@@ -115,26 +115,6 @@ export default function QuickChatAthlete() {
           </div>
         )}
       </div>
-
-      {/* Tailwind animations */}
-      <style jsx>{`
-        @keyframes gradient-x {
-          0%,
-          100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-        .animate-gradient-x {
-          background-size: 200% 200%;
-          animation: gradient-x 15s ease infinite;
-        }
-        .animate-bounce-slow {
-          animation: bounce 8s infinite alternate;
-        }
-      `}</style>
     </main>
   );
 }

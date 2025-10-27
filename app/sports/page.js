@@ -30,7 +30,6 @@ export default function QuickChatAthlete() {
       >
         {/* Sports motif inside the card */}
         <div className="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center">
-          {/* Example: SVG player silhouette */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 64 64"
@@ -45,14 +44,13 @@ export default function QuickChatAthlete() {
           <>
             {/* Header */}
             <h1 className="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-900 drop-shadow-md relative z-10">
-              Stronger Teams Start with Trust
+              Building Stronger Teams
             </h1>
 
             {/* Subheader */}
             <p className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed relative z-10">
-              Your voice shapes the season — how the team performs, connects, and
-              grows. Quick Chat gives you a space to share how things really
-              feel, fast.
+              You know your squad — the talent, the personalities, the dynamics.
+              But what happens when motivation dips or communication breaks down?
             </p>
 
             {/* Key message */}
@@ -72,22 +70,22 @@ export default function QuickChatAthlete() {
                   />
                 </svg>
                 <span className="font-semibold text-rose-700 text-xl sm:text-2xl">
-                  Quick Chat
+                  Your insights matter
                 </span>
               </div>
               <ul className="space-y-1 text-gray-700">
-                <li>• Quick. Honest. Real.</li>
-                <li>• No filters — just your perspective.</li>
-                <li>• Helps coaches spot what matters early.</li>
+                <li>• Help us understand your team’s real challenges</li>
+                <li>• Share what’s working — and what’s not</li>
+                <li>• Shape tools designed for modern coaching demands</li>
               </ul>
             </div>
 
             {/* CTA */}
             <p className="text-gray-800 mb-6 text-base sm:text-lg leading-relaxed relative z-10">
               <strong className="text-xl sm:text-2xl text-rose-700">
-                Ready to talk?
+                Quick Chat
               </strong>{" "}
-              One quick chat could make all the difference.
+              — a fast, simple way to share what’s really going on.
             </p>
 
             {/* Start button */}
@@ -98,13 +96,12 @@ export default function QuickChatAthlete() {
               Start Quick Chat
             </button>
 
-            {/* Privacy note */}
+            {/* Disclaimer */}
             <p className="text-sm text-gray-600 mt-4 relative z-10">
               100% confidential — your feedback helps build better teams.
             </p>
           </>
         ) : (
-          // Videoask or feedback iframe
           <div className="w-full h-[70vh] flex items-center justify-center relative z-10">
             <iframe
               src="https://www.videoask.com/fqqlzbxwp"

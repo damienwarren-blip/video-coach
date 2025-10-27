@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-export default function AthleteFeedback() {
+export default function QuickChatAthlete() {
   const [showVideo, setShowVideo] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
 
@@ -15,57 +15,54 @@ export default function AthleteFeedback() {
 
   return (
     <main className="relative flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0">
-        <div className="w-full h-full bg-gradient-to-br from-amber-500 via-rose-700 to-amber-800 animate-gradient-x"></div>
-
-        {/* Decorative circles */}
-        <div className="absolute top-10 left-10 w-36 h-36 bg-rose-300/20 rounded-full filter blur-3xl animate-bounce-slow"></div>
-        <div className="absolute bottom-20 right-16 w-56 h-56 bg-amber-300/20 rounded-full filter blur-2xl animate-bounce-slow"></div>
-
-        {/* Sports icon overlay */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-10">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-4/5 max-w-2xl text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={1}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 6a3 3 0 11-3 3 3 3 0 013-3zm-2.25 9.75a4.5 4.5 0 019 0V21h-9z"
-            />
-          </svg>
-        </div>
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-500 via-rose-700 to-amber-800 animate-gradient-x">
+        {/* Energy motion lines (sports silhouette effect) */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute inset-0 w-full h-full opacity-10 text-white"
+          viewBox="0 0 1440 320"
+          preserveAspectRatio="none"
+        >
+          <path
+            fill="currentColor"
+            d="M0,192L80,213.3C160,235,320,277,480,266.7C640,256,800,192,960,170.7C1120,149,1280,171,1360,181.3L1440,192V320H1360C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320H0Z"
+          ></path>
+        </svg>
       </div>
 
-      {/* Card */}
+      {/* Floating card */}
       <div
-        className={`relative z-10 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full text-center transition-opacity duration-700 ${
-          fadeIn ? "opacity-100" : "opacity-0"
+        className={`relative z-10 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-10 max-w-lg w-full text-center transition-all duration-700 transform ${
+          fadeIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
         {!showVideo ? (
           <>
-            {/* Header */}
-            <h1 className="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-900 drop-shadow-md">
-              Let’s Talk Team
-            </h1>
+            {/* Quick Chat header */}
+            <div className="mb-6">
+              <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 drop-shadow-sm">
+                Quick Chat
+              </h1>
+              <p className="text-amber-700 font-medium text-lg sm:text-xl mt-1 tracking-wide">
+                Real voices. Real impact.
+              </p>
+            </div>
 
-            {/* Subheader */}
-            <p className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed">
-              Your perspective helps shape how we train, play, and perform.
-              We’re all part of the same team — and every voice counts.
+            {/* Intro copy */}
+            <p className="text-gray-800 mb-5 text-base sm:text-lg leading-relaxed">
+              Every team works best when everyone’s voice is heard.  
+              <span className="block mt-1">
+                This is your space to share what’s working — and what’s not —
+                so we can perform and grow together.
+              </span>
             </p>
 
-            {/* Trust-building section */}
-            <div className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed">
+            {/* Trust element */}
+            <div className="text-gray-800 mb-6 text-base sm:text-lg leading-relaxed">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <svg
-                  className="w-6 h-6 text-amber-700"
+                  className="w-6 h-6 text-rose-700"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -74,45 +71,46 @@ export default function AthleteFeedback() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M12 11c0-1.38 1.12-2.5 2.5-2.5S17 9.62 17 11v1.5a2.5 2.5 0 01-2.5 2.5H12v3l-4-4 4-4v3h2.5a.5.5 0 00.5-.5V11z"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <span className="font-semibold text-amber-700 text-xl sm:text-2xl">
-                  Be honest. Be heard.
+                <span className="font-semibold text-rose-700 text-xl sm:text-2xl">
+                  Be open. Be honest.
                 </span>
               </div>
               <ul className="space-y-1 text-gray-700">
-                <li>• How’s motivation in the group?</li>
-                <li>• What’s helping — or holding us back?</li>
-                <li>• What would make training or feedback better?</li>
+                <li>• How’s motivation across the group?</li>
+                <li>• What’s helping or holding you back?</li>
+                <li>• What could make training or feedback better?</li>
               </ul>
             </div>
 
-            {/* CTA */}
-            <p className="text-gray-800 mb-6 text-base sm:text-lg leading-relaxed">
-              <strong className="text-xl sm:text-2xl text-rose-700">
-                Ready to speak up?
-              </strong>{" "}
-              Share your thoughts in a short video — your input shapes how we
-              perform and grow together.
-            </p>
+            {/* CTA section */}
+            <div className="mt-6">
+              <p className="text-gray-800 mb-6 text-base sm:text-lg leading-relaxed">
+                <strong className="text-xl sm:text-2xl text-rose-700">
+                  Ready for a Quick Chat?
+                </strong>{" "}
+                It only takes a minute — and what you share could make a real
+                difference for the whole squad.
+              </p>
 
-            {/* Start button */}
-            <button
-              onClick={handleStart}
-              className="px-10 py-3 sm:px-12 sm:py-4 rounded-xl text-white font-semibold shadow-lg transition bg-gradient-to-r from-rose-700 to-amber-600 hover:from-rose-800 hover:to-amber-700 transform hover:scale-105"
-            >
-              Let’s Talk
-            </button>
+              <button
+                onClick={handleStart}
+                className="px-10 py-3 sm:px-12 sm:py-4 rounded-xl text-white font-semibold shadow-lg transition bg-gradient-to-r from-rose-700 to-amber-600 hover:from-rose-800 hover:to-amber-700 transform hover:scale-105"
+              >
+                Start Quick Chat
+              </button>
+            </div>
 
             {/* Privacy note */}
-            <p className="text-sm text-gray-600 mt-4">
-              Your responses are private and used only to help coaches and
-              teammates improve together.
+            <p className="text-sm text-gray-600 mt-5">
+              Your Quick Chat is private and helps the coaching team understand
+              how to support you better — no names, no pressure.
             </p>
           </>
         ) : (
-          // Videoask iframe
+          // Video view
           <div className="w-full h-[70vh] flex items-center justify-center">
             <iframe
               src="https://www.videoask.com/fqqlzbxwp"
@@ -124,7 +122,7 @@ export default function AthleteFeedback() {
         )}
       </div>
 
-      {/* Animations */}
+      {/* Subtle motion effects */}
       <style jsx>{`
         @keyframes gradient-x {
           0%,
@@ -138,9 +136,6 @@ export default function AthleteFeedback() {
         .animate-gradient-x {
           background-size: 200% 200%;
           animation: gradient-x 15s ease infinite;
-        }
-        .animate-bounce-slow {
-          animation: bounce 8s infinite alternate;
         }
       `}</style>
     </main>

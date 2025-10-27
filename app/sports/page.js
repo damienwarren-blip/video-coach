@@ -14,25 +14,7 @@ export default function QuickChatAthlete() {
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-rose-800 via-amber-600 to-rose-700 animate-gradient-x"></div>
 
-      {/* Subtle sports crest / logo in hero section */}
-      <div className="absolute top-16 w-32 h-32 opacity-10">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 64 64"
-          className="w-full h-full text-white"
-        >
-          <path
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M32 2l8 8 14 2-10 10 2 14-14-6-14 6 2-14-10-10 14-2 8-8z"
-          />
-        </svg>
-      </div>
-
-      {/* Energy wave lines */}
+      {/* Energy lines */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="absolute inset-0 w-full h-full opacity-15 text-white"
@@ -49,12 +31,33 @@ export default function QuickChatAthlete() {
 
       {/* Main card */}
       <div
-        className={`relative z-10 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full text-center transition-all duration-700 ${
+        className={`relative z-10 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full text-center overflow-hidden transition-all duration-700 ${
           fadeIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        {/* Subtle inner glow */}
-        <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_70%_30%,rgba(251,191,36,0.2),transparent_70%)]"></div>
+        {/* Inner background motif + glow */}
+        <div className="absolute inset-0 rounded-3xl">
+          {/* Radial glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(251,191,36,0.15),transparent_70%)]"></div>
+
+          {/* Sports crest motif (embossed look) */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-10">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 64 64"
+              className="w-40 h-40 text-rose-800"
+            >
+              <path
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M32 2l8 8 14 2-10 10 2 14-14-6-14 6 2-14-10-10 14-2 8-8z"
+              />
+            </svg>
+          </div>
+        </div>
 
         {!showVideo ? (
           <>
@@ -110,7 +113,7 @@ export default function QuickChatAthlete() {
             </p>
           </>
         ) : (
-          <div className="w-full h-[70vh] flex items-center justify-center">
+          <div className="w-full h-[70vh] flex items-center justify-center relative z-10">
             <iframe
               src="https://www.videoask.com/fqqlzbxwp"
               allow="camera; microphone; autoplay; encrypted-media;"

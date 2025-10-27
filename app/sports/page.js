@@ -49,7 +49,7 @@ export default function QuickChatAthlete() {
 
             {/* Subheader */}
             <p className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed relative z-10">
-              Every athlete on the team matters — from beginners to high performers.{" "}
+              Every athlete on the team matters.{" "}
               <br />
               This is your space to share what's going well and what could be
               better.

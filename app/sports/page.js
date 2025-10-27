@@ -14,7 +14,25 @@ export default function QuickChatAthlete() {
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-rose-800 via-amber-600 to-rose-700 animate-gradient-x"></div>
 
-      {/* Energy lines */}
+      {/* Subtle sports crest / logo in hero section */}
+      <div className="absolute top-16 w-32 h-32 opacity-10">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 64 64"
+          className="w-full h-full text-white"
+        >
+          <path
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M32 2l8 8 14 2-10 10 2 14-14-6-14 6 2-14-10-10 14-2 8-8z"
+          />
+        </svg>
+      </div>
+
+      {/* Energy wave lines */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="absolute inset-0 w-full h-full opacity-15 text-white"
@@ -35,13 +53,13 @@ export default function QuickChatAthlete() {
           fadeIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
-        {/* Faint internal sports mark (behind text) */}
+        {/* Subtle inner glow */}
         <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_70%_30%,rgba(251,191,36,0.2),transparent_70%)]"></div>
 
         {!showVideo ? (
           <>
-            {/* Title with sports icon */}
-            <div className="flex justify-center items-center gap-2 mb-4 relative z-10">
+            {/* Title + Icon */}
+            <div className="flex justify-center items-center gap-2 mb-3 relative z-10">
               <Activity className="w-7 h-7 text-rose-700" strokeWidth={2} />
               <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 drop-shadow-md">
                 Quick Chat
@@ -49,15 +67,13 @@ export default function QuickChatAthlete() {
             </div>
 
             <p className="text-amber-700 font-medium text-lg sm:text-xl mb-4 relative z-10">
-              Your voice. Your team. Your performance.
+              Real feedback. Real performance.
             </p>
 
-            <p className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed relative z-10">
-              Every strong team thrives on trust and open feedback.  
-              <span className="block mt-1">
-                Quick Chat helps you share how you’re feeling, performing, and
-                connecting — quickly and confidently.
-              </span>
+            <p className="text-gray-800 mb-5 text-base sm:text-lg leading-relaxed relative z-10">
+              Share how training and team energy feel this week — what’s going
+              well, what’s tough, and how your coaches can help you perform at
+              your best.
             </p>
 
             <div className="text-gray-800 mb-5 text-base sm:text-lg leading-relaxed relative z-10">
@@ -68,9 +84,9 @@ export default function QuickChatAthlete() {
                 </span>
               </div>
               <ul className="space-y-1 text-gray-700">
-                <li>• How’s training energy this week?</li>
-                <li>• What’s helping you perform?</li>
-                <li>• What can we do better as a team?</li>
+                <li>• How’s training intensity?</li>
+                <li>• What’s boosting your focus?</li>
+                <li>• What could make the squad stronger?</li>
               </ul>
             </div>
 
@@ -78,7 +94,7 @@ export default function QuickChatAthlete() {
               <strong className="text-xl sm:text-2xl text-rose-700">
                 Ready for a Quick Chat?
               </strong>{" "}
-              It’s private, simple, and helps your coach understand what you need to perform your best.
+              It’s short, private, and helps build a stronger, united team.
             </p>
 
             {/* CTA */}
@@ -90,7 +106,7 @@ export default function QuickChatAthlete() {
             </button>
 
             <p className="text-sm text-gray-600 mt-4 relative z-10">
-              Your Quick Chat is anonymous and helps strengthen team culture.
+              Feedback stays private — it’s about team growth, not blame.
             </p>
           </>
         ) : (

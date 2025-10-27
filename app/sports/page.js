@@ -15,51 +15,71 @@ export default function QuickChatAthlete() {
 
   return (
     <main className="relative flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-amber-500 via-rose-700 to-amber-800 animate-gradient-x">
-        {/* Energy motion lines (sports silhouette effect) */}
+      {/* Background gradient */}
+      <div className="absolute inset-0">
+        <div className="w-full h-full bg-gradient-to-br from-rose-800 via-amber-600 to-rose-700 animate-gradient-x"></div>
+
+        {/* Abstract energy lines */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute inset-0 w-full h-full opacity-10 text-white"
+          className="absolute inset-0 w-full h-full opacity-15 text-white"
           viewBox="0 0 1440 320"
           preserveAspectRatio="none"
         >
           <path
-            fill="currentColor"
-            d="M0,192L80,213.3C160,235,320,277,480,266.7C640,256,800,192,960,170.7C1120,149,1280,171,1360,181.3L1440,192V320H1360C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320H0Z"
-          ></path>
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="0.6"
+            d="M0,160 C180,220 420,100 640,160 C860,220 1100,140 1440,180"
+          />
         </svg>
+
+        {/* Sports silhouette */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-10">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-72 sm:w-96 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="1.2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 6a3 3 0 11-3 3 3 3 0 013-3zm-2 8l-4 5m6-5l4 5m-4-5v5"
+            />
+          </svg>
+        </div>
       </div>
 
-      {/* Floating card */}
+      {/* Card */}
       <div
-        className={`relative z-10 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-10 max-w-lg w-full text-center transition-all duration-700 transform ${
+        className={`relative z-10 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full text-center transition-all duration-700 ${
           fadeIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >
         {!showVideo ? (
           <>
-            {/* Quick Chat header */}
-            <div className="mb-6">
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 drop-shadow-sm">
-                Quick Chat
-              </h1>
-              <p className="text-amber-700 font-medium text-lg sm:text-xl mt-1 tracking-wide">
-                Real voices. Real impact.
-              </p>
-            </div>
+            {/* Header */}
+            <h1 className="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-900 drop-shadow-md">
+              Quick Chat
+            </h1>
+            <p className="text-amber-700 font-medium text-lg sm:text-xl mb-6">
+              Your voice. Your team. Your impact.
+            </p>
 
-            {/* Intro copy */}
-            <p className="text-gray-800 mb-5 text-base sm:text-lg leading-relaxed">
-              Every team works best when everyone’s voice is heard.  
+            {/* Intro */}
+            <p className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed">
+              Every strong team thrives on trust and communication.  
               <span className="block mt-1">
-                This is your space to share what’s working — and what’s not —
-                so we can perform and grow together.
+                Quick Chat gives you space to share what’s really happening —
+                how you’re feeling, performing, and connecting — in your own words.
               </span>
             </p>
 
-            {/* Trust element */}
-            <div className="text-gray-800 mb-6 text-base sm:text-lg leading-relaxed">
+            {/* Trust cues */}
+            <div className="text-gray-800 mb-5 text-base sm:text-lg leading-relaxed">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <svg
                   className="w-6 h-6 text-rose-700"
@@ -71,46 +91,44 @@ export default function QuickChatAthlete() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    d="M12 11c0-1.38 1.12-2.5 2.5-2.5S17 9.62 17 11v1.5a2.5 2.5 0 01-2.5 2.5H12v3l-4-4 4-4v3h2.5a.5.5 0 00.5-.5V11z"
                   />
                 </svg>
                 <span className="font-semibold text-rose-700 text-xl sm:text-2xl">
-                  Be open. Be honest.
+                  Be real. Be heard.
                 </span>
               </div>
               <ul className="space-y-1 text-gray-700">
-                <li>• How’s motivation across the group?</li>
-                <li>• What’s helping or holding you back?</li>
-                <li>• What could make training or feedback better?</li>
+                <li>• How’s the energy in training?</li>
+                <li>• What’s keeping you motivated?</li>
+                <li>• Anything we could do better as a team?</li>
               </ul>
             </div>
 
-            {/* CTA section */}
-            <div className="mt-6">
-              <p className="text-gray-800 mb-6 text-base sm:text-lg leading-relaxed">
-                <strong className="text-xl sm:text-2xl text-rose-700">
-                  Ready for a Quick Chat?
-                </strong>{" "}
-                It only takes a minute — and what you share could make a real
-                difference for the whole squad.
-              </p>
+            {/* CTA */}
+            <p className="text-gray-800 mb-6 text-base sm:text-lg leading-relaxed">
+              <strong className="text-xl sm:text-2xl text-rose-700">
+                Ready for a Quick Chat?
+              </strong>{" "}
+              It’s short, private, and helps your coaches understand how to help you perform at your best.
+            </p>
 
-              <button
-                onClick={handleStart}
-                className="px-10 py-3 sm:px-12 sm:py-4 rounded-xl text-white font-semibold shadow-lg transition bg-gradient-to-r from-rose-700 to-amber-600 hover:from-rose-800 hover:to-amber-700 transform hover:scale-105"
-              >
-                Start Quick Chat
-              </button>
-            </div>
+            {/* Start button */}
+            <button
+              onClick={handleStart}
+              className="px-10 py-3 sm:px-12 sm:py-4 rounded-xl text-white font-semibold shadow-lg transition bg-gradient-to-r from-rose-700 to-amber-600 hover:from-rose-800 hover:to-amber-700 transform hover:scale-105"
+            >
+              Start Quick Chat
+            </button>
 
-            {/* Privacy note */}
-            <p className="text-sm text-gray-600 mt-5">
-              Your Quick Chat is private and helps the coaching team understand
-              how to support you better — no names, no pressure.
+            {/* Privacy */}
+            <p className="text-sm text-gray-600 mt-4">
+              Your Quick Chat is anonymous and helps make the team environment
+              stronger for everyone.
             </p>
           </>
         ) : (
-          // Video view
+          // Video iframe
           <div className="w-full h-[70vh] flex items-center justify-center">
             <iframe
               src="https://www.videoask.com/fqqlzbxwp"
@@ -122,7 +140,7 @@ export default function QuickChatAthlete() {
         )}
       </div>
 
-      {/* Subtle motion effects */}
+      {/* Animation */}
       <style jsx>{`
         @keyframes gradient-x {
           0%,

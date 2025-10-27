@@ -44,13 +44,15 @@ export default function QuickChatAthlete() {
           <>
             {/* Header */}
             <h1 className="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-900 drop-shadow-md relative z-10">
-              Building Stronger Teams
+              Quick Chat
             </h1>
 
             {/* Subheader */}
             <p className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed relative z-10">
-              You know your squad — the talent, the personalities, the dynamics.
-              But what happens when motivation dips or communication breaks down?
+              Every voice on the team matters — starters, subs, everyone.{" "}
+              <br />
+              This is your space to share what’s going well and what could be
+              better.
             </p>
 
             {/* Key message */}
@@ -70,22 +72,23 @@ export default function QuickChatAthlete() {
                   />
                 </svg>
                 <span className="font-semibold text-rose-700 text-xl sm:text-2xl">
-                  Your insights matter
+                  Your honesty drives improvement
                 </span>
               </div>
               <ul className="space-y-1 text-gray-700">
-                <li>• Help us understand your team’s real challenges</li>
-                <li>• Share what’s working — and what’s not</li>
-                <li>• Shape tools designed for modern coaching demands</li>
+                <li>• Share how the team’s feeling and performing</li>
+                <li>• Say what helps you stay motivated and connected</li>
+                <li>• Help shape a stronger, more united squad</li>
               </ul>
             </div>
 
             {/* CTA */}
             <p className="text-gray-800 mb-6 text-base sm:text-lg leading-relaxed relative z-10">
+              It only takes a{" "}
               <strong className="text-xl sm:text-2xl text-rose-700">
                 Quick Chat
               </strong>{" "}
-              — a fast, simple way to share what’s really going on.
+              — your feedback could make the difference this season.
             </p>
 
             {/* Start button */}

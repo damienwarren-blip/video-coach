@@ -43,8 +43,10 @@ export default function QuickChatAthlete() {
         {!showVideo ? (
           <>
             {/* Header */}
-            <h1 className="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-900 drop-shadow-md relative z-10">
-              Quick Chat
+            <h1 className="text-5xl sm:text-6xl font-black mb-6 relative z-10 tracking-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 via-rose-600 to-amber-600 drop-shadow-2xl">
+                Quick Chat
+              </span>
             </h1>
 
             {/* Subheader */}
@@ -57,22 +59,9 @@ export default function QuickChatAthlete() {
 
             {/* Key message */}
             <div className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed relative z-10">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <svg
-                  className="w-6 h-6 text-rose-700"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span className="font-semibold text-rose-700 text-xl sm:text-2xl">
-                  Your honesty drives improvement
+              <div className="mb-3">
+                <span className="font-bold text-rose-700 text-2xl sm:text-3xl block mb-3">
+                  Be Real, Be Heard
                 </span>
               </div>
               <ul className="space-y-1 text-gray-700">

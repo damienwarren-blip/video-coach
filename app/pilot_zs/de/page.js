@@ -74,7 +74,7 @@ export default function CustomerFeedback() {
           // Video iframe
           <div className="w-full h-[70vh] flex items-center justify-center">
             <iframe
-              src="https://www.videoask.com/fqqlzbxwp"
+              src="https://www.videoask.com/fch6lstck"
               allow="camera; microphone; autoplay; encrypted-media;"
               className="w-full h-full border-0 rounded-3xl shadow-2xl"
               allowFullScreen

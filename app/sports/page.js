@@ -96,7 +96,7 @@ export default function QuickChatAthlete() {
         ) : (
           <div className="w-full h-[70vh] flex items-center justify-center relative z-10">
             <iframe
-              src="https://www.videoask.com/fqqlzbxwp"
+              src="https://www.videoask.com/fjtaofiub"
               allow="camera; microphone; autoplay; encrypted-media;"
               className="w-full h-full border-0 rounded-3xl shadow-2xl"
               allowFullScreen

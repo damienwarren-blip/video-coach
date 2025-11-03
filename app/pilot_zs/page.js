@@ -45,10 +45,10 @@ export default function CustomerFeedbackLanding() {
         </div>
 
         {/* Header */}
-        <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-fuchsia-600">
+        <h1 className="text-2xl sm:text-3xl font-extrabold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-fuchsia-600">
           We partnered with the latest capture tech.
         </h1>
-        <p className="text-gray-600 text-sm sm:text-base mb-6">
+        <p className="text-gray-600 text-sm sm:text-base mb-4">
           Quick, anonymous, and actioned.
         </p>
 
@@ -57,33 +57,30 @@ export default function CustomerFeedbackLanding() {
           <iframe
             src="https://www.videoask.com/fqqlzbxwp"
             allow="autoplay; encrypted-media"
-            className="w-full h-full border-0"
+            className={`w-full h-full border-0 transition-opacity duration-300 ${confirmed ? "opacity-100" : "opacity-90"}`}
             title="Feedback VideoAsk"
           />
 
-          {/* Consent Overlay */}
+          {/* Tiny Consent Overlay */}
           {!confirmed && (
-            <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-3 px-4 pointer-events-auto bg-black/30 rounded-2xl">
-              <p className="text-white font-semibold text-center text-lg">
-                Type "yes" to start
-              </p>
+            <div className="absolute bottom-4 right-4 z-50 flex items-center gap-2 px-3 py-2 bg-black/50 backdrop-blur-sm rounded-full">
               <input
                 value={consentInput}
                 onChange={(e) => setConsentInput(e.target.value)}
                 placeholder="yes"
-                className="px-3 py-2 border rounded-md border-gray-300 shadow-sm w-full max-w-xs text-center"
+                className="px-2 py-1 border rounded-md border-gray-300 shadow-sm text-center w-16 text-xs"
               />
               <button
                 onClick={handleConfirm}
-                className="px-6 py-2 bg-fuchsia-600 text-white rounded-lg font-semibold hover:bg-fuchsia-700"
+                className="px-3 py-1 bg-fuchsia-600 text-white rounded-md text-xs font-semibold hover:bg-fuchsia-700"
               >
-                Let’s go
+                Go
               </button>
             </div>
           )}
         </div>
 
-        <p className="text-xs text-gray-500 mt-4">
+        <p className="text-xs text-gray-500 mt-3">
           AI only groups themes and removes identifiers. Raw responses deleted in 90 days.
         </p>
       </div>

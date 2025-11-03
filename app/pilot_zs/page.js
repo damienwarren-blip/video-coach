@@ -73,15 +73,15 @@ export default function CustomerFeedbackLanding() {
             </header>
 
             {/* Body sections with icons */}
-            <section className="grid gap-4 sm:grid-cols-3 mb-6">
-              <div className="p-4 rounded-xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-violet-100 transform transition hover:scale-105">
+            <section className="grid gap-4 sm:grid-cols-2 mb-6">
+              <div className="p-4 rounded-xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-violet-100 transform transition hover:scale-105 sm:col-span-2">
                 <div className="w-10 h-10 rounded-full bg-violet-500 flex items-center justify-center mb-3">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-800">We're listening</h3>
-                <p className="text-sm text-gray-600 mt-1">Tell us what's working and what could be better. Your insights help shape what we build next.</p>
+                <h3 className="font-semibold text-gray-800 text-lg">We're listening</h3>
+                <p className="text-sm text-gray-600 mt-1">This is a <strong>video-style</strong> question format — you can reply with <strong>text or video</strong> (your choice). Tell us what's working and what could be better. Your insights help shape what we build next.</p>
               </div>
 
               <div className="p-4 rounded-xl bg-gradient-to-br from-cyan-50 to-blue-50 border border-cyan-100 transform transition hover:scale-105">
@@ -105,24 +105,7 @@ export default function CustomerFeedbackLanding() {
               </div>
             </section>
 
-            {/* Privacy & consent explanation */}
-            <div className="mb-6 p-4 rounded-xl bg-gradient-to-r from-violet-50/50 to-cyan-50/50 border border-violet-100">
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center flex-shrink-0 mt-1">
-                  <svg className="w-4 h-4 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                </div>
-                <div className="text-gray-700">
-                  <p className="text-sm">
-                    This is a <strong>video-style</strong> question format — you can reply with <strong>text or video</strong> (your choice). No recordings are saved and we do not collect personal information.
-                  </p>
-                  <p className="text-sm mt-2">
-                    We use AI only to remove potential identifiers and group themes. Only anonymized theme outputs are kept in a report; raw responses are deleted within <strong>90 days</strong>.
-                  </p>
-                </div>
-              </div>
-            </div>
+            {/* Privacy & consent explanation - REMOVED, moved to prompt */}
 
             {/* CTA & small consent prompt */}
             <div className="flex flex-col sm:flex-row items-center gap-3">
@@ -150,8 +133,8 @@ export default function CustomerFeedbackLanding() {
           // Show VideoAsk iframe once confirmed
           <div>
             <div className="mb-4 text-center">
-              <h2 className="text-2xl font-semibold">Thanks — we're ready to listen</h2>
-              <p className="text-sm text-gray-600 mt-1">Share your thoughts — it's anonymous and helps us improve.</p>
+              <h2 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-fuchsia-600">Hit play, speak your mind 🎤</h2>
+              <p className="text-sm text-gray-600 mt-1">100% anonymous — just you and your thoughts. We're all ears.</p>
             </div>
             <div className="w-full h-[65vh]">
               <iframe

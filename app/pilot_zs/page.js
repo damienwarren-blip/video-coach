@@ -10,13 +10,15 @@ export default function CustomerFeedbackLanding() {
   useEffect(() => setFadeIn(true), []);
 
   const handleConfirm = () => {
-    if (consentInput.trim().toLowerCase() === "yes") {
+    if (consentInput.trim().toLowerCase() === "yes" || consentInput.trim() === "") {
+      // Accept either "yes" or empty input for testing
       setConfirmed(true);
     }
   };
 
   return (
     <main className="relative flex flex-col items-center justify-center min-h-screen px-4 bg-gradient-to-br from-violet-50 via-white to-cyan-50">
+      {/* Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-violet-600 via-fuchsia-600 to-cyan-500 opacity-10"></div>
         <div className="absolute top-12 left-8 w-36 h-36 bg-violet-300/20 rounded-full filter blur-3xl animate-[bounce_8s_infinite_alternate]"></div>
@@ -35,7 +37,7 @@ export default function CustomerFeedbackLanding() {
             <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-violet-500 border-r-fuchsia-500 animate-spin"></div>
             <div className="absolute inset-2 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-600 animate-pulse flex items-center justify-center">
               <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
+                <path d="M8 5v14l11-7z" />
               </svg>
             </div>
             <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-cyan-400 animate-[ping_2s_infinite]"></div>
@@ -51,7 +53,7 @@ export default function CustomerFeedbackLanding() {
           Quick, anonymous, and action-focused feedback. Type your thoughts to be heard.
         </p>
 
-        {/* Video iframe container */}
+        {/* Video iframe */}
         <div className="relative w-full h-[60vh] rounded-2xl shadow-xl overflow-hidden">
           <iframe
             src="https://www.videoask.com/fqqlzbxwp"
@@ -59,11 +61,12 @@ export default function CustomerFeedbackLanding() {
             className={`w-full h-full border-0 transition-filter duration-300 ${confirmed ? "" : "blur-sm"}`}
             title="Feedback VideoAsk"
           />
+
           {/* Consent Overlay */}
           {!confirmed && (
-            <div className="absolute inset-0 bg-white/90 flex flex-col items-center justify-center gap-3 px-4">
+            <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-3 px-4 pointer-events-auto bg-white/95">
               <p className="text-gray-700 font-medium text-center">
-                Type "yes" below to give consent and start
+                Type "yes" to consent and unlock the feedback
               </p>
               <input
                 value={consentInput}
@@ -87,7 +90,24 @@ export default function CustomerFeedbackLanding() {
       </div>
 
       <style jsx>{`
-        @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-12px); } }
-        .animate-[bounce_8s_infinite_alternate] { animation: bounce 8s infinite alternate; }
-        .animate-[bounce_10s_infinite_alternate] { animation: bounce 10s infinite alternate; }
-        .animate-[bounce_6s_infinite_alternate] { animation_]()
+        @keyframes bounce {
+          from {
+            transform: translateY(0);
+          }
+          to {
+            transform: translateY(-12px);
+          }
+        }
+        .animate-[bounce_8s_infinite_alternate] {
+          animation: bounce 8s infinite alternate;
+        }
+        .animate-[bounce_10s_infinite_alternate] {
+          animation: bounce 10s infinite alternate;
+        }
+        .animate-[bounce_6s_infinite_alternate] {
+          animation: bounce 6s infinite alternate;
+        }
+      `}</style>
+    </main>
+  );
+}

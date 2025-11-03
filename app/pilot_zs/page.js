@@ -26,7 +26,7 @@ export default function CustomerFeedbackLanding() {
       </div>
 
       <div
-        className={`relative z-10 bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-8 max-w-2xl w-full text-center transition-opacity duration-700 ${
+        className={`relative z-10 rounded-3xl shadow-2xl p-6 sm:p-8 max-w-2xl w-full text-center transition-opacity duration-700 ${
           fadeIn ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -44,12 +44,12 @@ export default function CustomerFeedbackLanding() {
           </div>
         </div>
 
-        {/* One-liner */}
+        {/* Header */}
         <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-fuchsia-600">
-          This is different — a video-style, **text-only** prompt
+          We partnered with the latest capture tech.
         </h1>
         <p className="text-gray-600 text-sm sm:text-base mb-6">
-          Quick, anonymous, and action-focused feedback. Type your thoughts to be heard.
+          Quick, anonymous, and actioned.
         </p>
 
         {/* Video iframe */}
@@ -57,15 +57,15 @@ export default function CustomerFeedbackLanding() {
           <iframe
             src="https://www.videoask.com/fqqlzbxwp"
             allow="autoplay; encrypted-media"
-            className={`w-full h-full border-0 transition-filter duration-300 ${confirmed ? "" : "blur-sm"}`}
+            className="w-full h-full border-0"
             title="Feedback VideoAsk"
           />
 
           {/* Consent Overlay */}
           {!confirmed && (
-            <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-3 px-4 pointer-events-auto bg-white/60 backdrop-blur-sm rounded-2xl">
-              <p className="text-gray-800 font-semibold text-center text-lg">
-                Type "yes" to consent and unlock the feedback
+            <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-3 px-4 pointer-events-auto bg-black/30 rounded-2xl">
+              <p className="text-white font-semibold text-center text-lg">
+                Type "yes" to start
               </p>
               <input
                 value={consentInput}
@@ -77,7 +77,7 @@ export default function CustomerFeedbackLanding() {
                 onClick={handleConfirm}
                 className="px-6 py-2 bg-fuchsia-600 text-white rounded-lg font-semibold hover:bg-fuchsia-700"
               >
-                Confirm & Start
+                Let’s go
               </button>
             </div>
           )}

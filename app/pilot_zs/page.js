@@ -1,101 +1,216 @@
 "use client";
-import { useState, useEffect } from "react";
 
-export default function CustomerFeedback() {
-  const [showVideo, setShowVideo] = useState(false);
+import React, { useState, useEffect } from "react";
+
+// CustomerFeedbackLanding
+// - Tailwind-ready React component
+// - Landing copy and consent flow for a VideoAsk "video-style" feedback interaction
+// - Requires user confirmation (type "yes" or press Confirm) before opening VideoAsk iframe
+
+export default function CustomerFeedbackLanding() {
   const [fadeIn, setFadeIn] = useState(false);
+  const [showPrompt, setShowPrompt] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
+  const [consentInput, setConsentInput] = useState("");
 
-  useEffect(() => {
-    setFadeIn(true);
-  }, []);
+  useEffect(() => setFadeIn(true), []);
 
-  const handleStart = () => {
-    setShowVideo(true);
+  const handleOpen = () => setShowPrompt(true);
+
+  const handleConfirm = () => {
+    // simple confirmation: either typed "yes" (case-insensitive) or clicked confirm
+    if (consentInput.trim().toLowerCase() === "yes" || confirmed) {
+      setShowPrompt(false);
+      setConfirmed(true);
+    } else {
+      // mark confirmed regardless if user clicks confirm button
+      setConfirmed(true);
+      setShowPrompt(false);
+    }
   };
 
   return (
-    <main className="relative flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0">
-        <div className="w-full h-full bg-gradient-to-br from-violet-600 via-fuchsia-600 to-cyan-500 animate-gradient-x"></div>
-        <div className="absolute top-10 left-10 w-36 h-36 bg-violet-300/20 rounded-full filter blur-3xl animate-bounce-slow"></div>
-        <div className="absolute bottom-20 right-16 w-56 h-56 bg-cyan-300/20 rounded-full filter blur-2xl animate-bounce-slow"></div>
+    <main className="relative flex flex-col items-center justify-center min-h-screen px-4 bg-gradient-to-br from-violet-50 via-white to-cyan-50">
+      {/* Decorative background */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-600 via-fuchsia-600 to-cyan-500 opacity-10"></div>
+        <div className="absolute top-12 left-8 w-36 h-36 bg-violet-300/20 rounded-full filter blur-3xl animate-[bounce_8s_infinite_alternate]"></div>
+        <div className="absolute bottom-12 right-8 w-48 h-48 bg-fuchsia-300/20 rounded-full filter blur-3xl animate-[bounce_10s_infinite_alternate]"></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-cyan-300/20 rounded-full filter blur-2xl animate-[bounce_6s_infinite_alternate]"></div>
       </div>
 
-      {/* Card */}
       <div
-        className={`relative z-10 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full text-center transition-opacity duration-700 ${
+        className={`relative z-10 bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-8 max-w-2xl w-full text-left transition-opacity duration-700 ${
           fadeIn ? "opacity-100" : "opacity-0"
         }`}
       >
-        {!showVideo ? (
-          <>
-            {/* Header */}
-            <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 drop-shadow-md">
-              Let’s Chat
-            </h1>
-
-            {/* Feedback section */}
-            <div className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-fuchsia-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                </svg>
-                <span className="font-semibold text-fuchsia-600 text-xl sm:text-2xl">
-                  Your feedback matters
-                </span>
+        {!confirmed ? (
+          <div>
+            {/* Animated Logo */}
+            <div className="flex justify-center mb-6">
+              <div className="relative w-20 h-20">
+                {/* Outer rotating ring */}
+                <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-violet-500 border-r-fuchsia-500 animate-spin"></div>
+                
+                {/* Inner pulsing circle */}
+                <div className="absolute inset-2 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-600 animate-pulse flex items-center justify-center">
+                  {/* Video play icon */}
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+                
+                {/* Floating particles */}
+                <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-cyan-400 animate-[ping_2s_infinite]"></div>
+                <div className="absolute -bottom-1 -left-1 w-2 h-2 rounded-full bg-fuchsia-400 animate-[ping_3s_infinite]"></div>
               </div>
-              <ul className="space-y-1 text-gray-700">
-                <li>• Share your honest feedback</li>
-                <li>• Help us understand what you truly need</li>
-                <li>• See us turn insights into action</li>
-              </ul>
             </div>
 
-            {/* Call to Action */}
-            <p className="text-gray-800 mb-6 text-base sm:text-lg leading-relaxed">
-              <strong className="text-xl sm:text-2xl text-fuchsia-600">Ready to share your thoughts?</strong> Press the button below to start a video conversation — it only takes a few minutes, and your insights will directly shape what we do next.
-            </p>
+            {/* Header */}
+            <header className="text-center mb-6">
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-fuchsia-600">Your voice matters</h1>
+              <p className="mt-2 text-sm sm:text-base text-gray-600">A more human way to give feedback — quick, anonymous, and action-focused.</p>
+            </header>
 
-            {/* Start button */}
-            <button
-              onClick={handleStart}
-              className="px-10 py-3 sm:px-12 sm:py-4 rounded-xl text-white font-semibold shadow-lg transition bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 transform hover:scale-105"
-            >
-              Start Conversation
-            </button>
+            {/* Body sections with icons */}
+            <section className="grid gap-4 sm:grid-cols-3 mb-6">
+              <div className="p-4 rounded-xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-violet-100 transform transition hover:scale-105">
+                <div className="w-10 h-10 rounded-full bg-violet-500 flex items-center justify-center mb-3">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-gray-800">We're listening</h3>
+                <p className="text-sm text-gray-600 mt-1">Tell us what's working and what could be better. Your insights help shape what we build next.</p>
+              </div>
 
-            {/* Privacy notice */}
-            <p className="text-sm text-gray-600 mt-4">
-              Your responses are anonymous and used solely to improve our service. We handle your feedback with care and never share it with third parties.
-            </p>
-          </>
+              <div className="p-4 rounded-xl bg-gradient-to-br from-cyan-50 to-blue-50 border border-cyan-100 transform transition hover:scale-105">
+                <div className="w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center mb-3">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-gray-800">Safe & anonymous</h3>
+                <p className="text-sm text-gray-600 mt-1">No sign-in, no names. Please avoid personal details — focus on your experience.</p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-gradient-to-br from-fuchsia-50 to-pink-50 border border-fuchsia-100 transform transition hover:scale-105">
+                <div className="w-10 h-10 rounded-full bg-fuchsia-500 flex items-center justify-center mb-3">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-gray-800">We take action</h3>
+                <p className="text-sm text-gray-600 mt-1">We review every response and turn anonymized themes into real improvements.</p>
+              </div>
+            </section>
+
+            {/* Privacy & consent explanation */}
+            <div className="mb-6 p-4 rounded-xl bg-gradient-to-r from-violet-50/50 to-cyan-50/50 border border-violet-100">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg className="w-4 h-4 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <div className="text-gray-700">
+                  <p className="text-sm">
+                    This is a <strong>video-style</strong> question format — you can reply with <strong>text or video</strong> (your choice). No recordings are saved and we do not collect personal information.
+                  </p>
+                  <p className="text-sm mt-2">
+                    We use AI only to remove potential identifiers and group themes. Only anonymized theme outputs are kept in a report; raw responses are deleted within <strong>90 days</strong>.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA & small consent prompt */}
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <button
+                onClick={handleOpen}
+                className="px-8 py-3 rounded-xl text-white font-semibold shadow-lg transition bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 transform hover:scale-105"
+              >
+                Start feedback
+              </button>
+
+              <button
+                onClick={() => {
+                  // small inline explanation modal replaced by prompt below
+                  handleOpen();
+                }}
+                className="px-4 py-2 rounded-lg border border-gray-200 text-sm text-gray-700 hover:bg-gray-50"
+              >
+                How it works
+              </button>
+            </div>
+
+            <p className="text-xs text-gray-500 mt-4">Takes under a minute — speak or type. By continuing you confirm you will not include personal data.</p>
+          </div>
         ) : (
-          // Video iframe
-          <div className="w-full h-[70vh] flex items-center justify-center">
-            <iframe
-              src="https://www.videoask.com/fqqlzbxwp"
-              allow="camera; microphone; autoplay; encrypted-media;"
-              className="w-full h-full border-0 rounded-3xl shadow-2xl"
-              allowFullScreen
-            ></iframe>
+          // Show VideoAsk iframe once confirmed
+          <div>
+            <div className="mb-4 text-center">
+              <h2 className="text-2xl font-semibold">Thanks — we're ready to listen</h2>
+              <p className="text-sm text-gray-600 mt-1">Share your thoughts — it's anonymous and helps us improve.</p>
+            </div>
+            <div className="w-full h-[65vh]">
+              <iframe
+                src="https://www.videoask.com/fqqlzbxwp"
+                allow="camera; microphone; autoplay; encrypted-media"
+                className="w-full h-full border-0 rounded-2xl shadow-xl"
+                title="Feedback VideoAsk"
+              />
+            </div>
           </div>
         )}
       </div>
 
-      {/* Tailwind animations */}
+      {/* Consent prompt modal / panel */}
+      {showPrompt && !confirmed && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+          <div className="relative z-10 w-full max-w-xl bg-white rounded-2xl shadow-2xl p-6">
+            <h3 className="text-lg font-semibold">Quick confirmation</h3>
+            <p className="text-sm text-gray-600 mt-2">
+              This is a short <strong>video-style</strong> feedback prompt. You can answer by typing or recording a short video. Please don't include names or other personal details.
+            </p>
+
+            <div className="mt-4">
+              <label className="block text-xs font-medium text-gray-700">Type "yes" to confirm</label>
+              <input
+                value={consentInput}
+                onChange={(e) => setConsentInput(e.target.value)}
+                className="mt-1 block w-full rounded-md border-gray-200 shadow-sm p-2"
+                placeholder="yes"
+              />
+            </div>
+
+            <div className="mt-4 flex justify-end gap-2">
+              <button
+                onClick={() => setShowPrompt(false)}
+                className="px-4 py-2 rounded-lg text-sm border border-gray-200 bg-white"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirm}
+                className="px-6 py-2 rounded-lg text-sm font-semibold text-white bg-fuchsia-600 hover:bg-fuchsia-700"
+              >
+                Confirm & Start
+              </button>
+            </div>
+
+            <p className="text-xs text-gray-500 mt-3">We use AI only to remove potential identifiers and to group themes. Raw responses are deleted within 90 days.</p>
+          </div>
+        </div>
+      )}
+
+      {/* small styles for animation */}
       <style jsx>{`
-        @keyframes gradient-x {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        .animate-gradient-x {
-          background-size: 200% 200%;
-          animation: gradient-x 15s ease infinite;
-        }
-        .animate-bounce-slow {
-          animation: bounce 8s infinite alternate;
-        }
+        @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-12px); } }
+        .animate-\[bounce_8s_infinite_alternate\] { animation: bounce 8s infinite alternate; }
+        .animate-\[bounce_10s_infinite_alternate\] { animation: bounce 10s infinite alternate; }
+        .animate-\[bounce_6s_infinite_alternate\] { animation: bounce 6s infinite alternate; }
       `}</style>
     </main>
   );

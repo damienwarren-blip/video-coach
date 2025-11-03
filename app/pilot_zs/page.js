@@ -6,14 +6,12 @@ export default function CustomerFeedbackLanding() {
   const [fadeIn, setFadeIn] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [consentInput, setConsentInput] = useState("");
-  const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => setFadeIn(true), []);
 
   const handleConfirm = () => {
     if (consentInput.trim().toLowerCase() === "yes") {
       setConfirmed(true);
-      setShowPrompt(false);
     }
   };
 
@@ -45,7 +43,7 @@ export default function CustomerFeedbackLanding() {
           </div>
         </div>
 
-        {/* One-liner explaining the experience */}
+        {/* One-liner */}
         <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-fuchsia-600">
           This is different — a video-style, **text-only** prompt
         </h1>
@@ -53,22 +51,25 @@ export default function CustomerFeedbackLanding() {
           Quick, anonymous, and action-focused feedback. Type your thoughts to be heard.
         </p>
 
-        {/* Video iframe */}
-        <div className={`w-full h-[60vh] rounded-2xl shadow-xl overflow-hidden ${!confirmed ? "blur-sm" : ""}`}>
+        {/* Video iframe container */}
+        <div className="relative w-full h-[60vh] rounded-2xl shadow-xl overflow-hidden">
           <iframe
             src="https://www.videoask.com/fqqlzbxwp"
             allow="autoplay; encrypted-media"
-            className="w-full h-full border-0"
+            className={`w-full h-full border-0 transition-filter duration-300 ${confirmed ? "" : "blur-sm"}`}
             title="Feedback VideoAsk"
           />
+          {/* Consent Overlay */}
           {!confirmed && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/70">
-              <p className="mb-4 text-gray-700 font-medium">Type "yes" below to give consent and start</p>
+            <div className="absolute inset-0 bg-white/90 flex flex-col items-center justify-center gap-3 px-4">
+              <p className="text-gray-700 font-medium text-center">
+                Type "yes" below to give consent and start
+              </p>
               <input
                 value={consentInput}
                 onChange={(e) => setConsentInput(e.target.value)}
                 placeholder="yes"
-                className="px-3 py-2 border rounded-md border-gray-300 shadow-sm mb-3"
+                className="px-3 py-2 border rounded-md border-gray-300 shadow-sm w-full max-w-xs text-center"
               />
               <button
                 onClick={handleConfirm}
@@ -89,8 +90,4 @@ export default function CustomerFeedbackLanding() {
         @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-12px); } }
         .animate-[bounce_8s_infinite_alternate] { animation: bounce 8s infinite alternate; }
         .animate-[bounce_10s_infinite_alternate] { animation: bounce 10s infinite alternate; }
-        .animate-[bounce_6s_infinite_alternate] { animation: bounce 6s infinite alternate; }
-      `}</style>
-    </main>
-  );
-}
+        .animate-[bounce_6s_infinite_alternate] { animation_]()

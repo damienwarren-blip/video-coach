@@ -26,7 +26,7 @@ export default function CustomerFeedbackLanding() {
       </div>
 
       <div
-        className={`relative z-10 rounded-3xl shadow-2xl p-6 sm:p-8 max-w-2xl w-full text-center transition-opacity duration-700 ${
+        className={`relative z-10 max-w-2xl w-full transition-opacity duration-700 ${
           fadeIn ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -45,10 +45,10 @@ export default function CustomerFeedbackLanding() {
         </div>
 
         {/* Header */}
-        <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-fuchsia-600">
+        <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-fuchsia-600 text-center">
           We partnered with the latest capture tech.
         </h1>
-        <p className="text-gray-600 text-sm sm:text-base mb-6">
+        <p className="text-gray-100 text-sm sm:text-base mb-6 text-center">
           Quick, anonymous, and actioned.
         </p>
 
@@ -57,26 +57,26 @@ export default function CustomerFeedbackLanding() {
           <iframe
             src="https://www.videoask.com/fqqlzbxwp"
             allow="autoplay; encrypted-media"
-            className={`w-full h-full border-0 transition-opacity duration-300 ${confirmed ? "opacity-100" : "opacity-85"}`}
+            className={`w-full h-full border-0 transition-opacity duration-300 ${confirmed ? "opacity-100" : "opacity-90"}`}
             title="Feedback VideoAsk"
           />
 
           {/* Centered Consent Banner */}
           {!confirmed && (
             <div className="absolute inset-0 z-50 flex items-center justify-center">
-              <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center gap-3 max-w-sm w-full">
-                <p className="text-gray-800 font-semibold text-center text-lg">
+              <div className="bg-black/70 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center gap-3 max-w-sm w-full shadow-xl ring-1 ring-white/30">
+                <p className="text-white font-semibold text-center text-lg animate-pulse">
                   Type "yes" to consent and unlock the feedback
                 </p>
                 <input
                   value={consentInput}
                   onChange={(e) => setConsentInput(e.target.value)}
                   placeholder="yes"
-                  className="px-3 py-2 border rounded-md border-gray-300 shadow-sm w-full text-center text-white bg-black/30"
+                  className="px-3 py-2 border rounded-md border-gray-300 shadow-sm w-full text-center text-white bg-black/40 placeholder-white"
                 />
                 <button
                   onClick={handleConfirm}
-                  className="px-6 py-2 bg-fuchsia-600 text-white rounded-lg font-semibold hover:bg-fuchsia-700"
+                  className="px-6 py-2 bg-fuchsia-600 text-white rounded-lg font-semibold hover:bg-fuchsia-700 shadow-md"
                 >
                   Confirm & Start
                 </button>
@@ -85,7 +85,7 @@ export default function CustomerFeedbackLanding() {
           )}
         </div>
 
-        <p className="text-xs text-gray-500 mt-4">
+        <p className="text-xs text-gray-300 mt-4 text-center">
           AI only groups themes and removes identifiers. Raw responses deleted in 90 days.
         </p>
       </div>
@@ -102,4 +102,13 @@ export default function CustomerFeedbackLanding() {
         .animate-[bounce_8s_infinite_alternate] {
           animation: bounce 8s infinite alternate;
         }
-        .animate-[bounc]()
+        .animate-[bounce_10s_infinite_alternate] {
+          animation: bounce 10s infinite alternate;
+        }
+        .animate-[bounce_6s_infinite_alternate] {
+          animation: bounce 6s infinite alternate;
+        }
+      `}</style>
+    </main>
+  );
+}

@@ -57,28 +57,30 @@ export default function CustomerFeedbackLanding() {
           <iframe
             src="https://www.videoask.com/fqqlzbxwp"
             allow="autoplay; encrypted-media"
-            className={`w-full h-full border-0 transition-opacity duration-300 ${confirmed ? "opacity-100" : "opacity-80"}`}
+            className={`w-full h-full border-0 transition-opacity duration-300 ${confirmed ? "opacity-100" : "opacity-85"}`}
             title="Feedback VideoAsk"
           />
 
-          {/* Consent Overlay */}
+          {/* Centered Consent Banner */}
           {!confirmed && (
-            <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-3 px-4 pointer-events-auto bg-white/60 backdrop-blur-sm rounded-2xl">
-              <p className="text-gray-800 font-semibold text-center text-lg">
-                Type "yes" to consent and unlock the feedback
-              </p>
-              <input
-                value={consentInput}
-                onChange={(e) => setConsentInput(e.target.value)}
-                placeholder="yes"
-                className="px-3 py-2 border rounded-md border-gray-300 shadow-sm w-full max-w-xs text-center text-white bg-black/30"
-              />
-              <button
-                onClick={handleConfirm}
-                className="px-6 py-2 bg-fuchsia-600 text-white rounded-lg font-semibold hover:bg-fuchsia-700"
-              >
-                Confirm & Start
-              </button>
+            <div className="absolute inset-0 z-50 flex items-center justify-center">
+              <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center gap-3 max-w-sm w-full">
+                <p className="text-gray-800 font-semibold text-center text-lg">
+                  Type "yes" to consent and unlock the feedback
+                </p>
+                <input
+                  value={consentInput}
+                  onChange={(e) => setConsentInput(e.target.value)}
+                  placeholder="yes"
+                  className="px-3 py-2 border rounded-md border-gray-300 shadow-sm w-full text-center text-white bg-black/30"
+                />
+                <button
+                  onClick={handleConfirm}
+                  className="px-6 py-2 bg-fuchsia-600 text-white rounded-lg font-semibold hover:bg-fuchsia-700"
+                >
+                  Confirm & Start
+                </button>
+              </div>
             </div>
           )}
         </div>
@@ -100,13 +102,4 @@ export default function CustomerFeedbackLanding() {
         .animate-[bounce_8s_infinite_alternate] {
           animation: bounce 8s infinite alternate;
         }
-        .animate-[bounce_10s_infinite_alternate] {
-          animation: bounce 10s infinite alternate;
-        }
-        .animate-[bounce_6s_infinite_alternate] {
-          animation: bounce 6s infinite alternate;
-        }
-      `}</style>
-    </main>
-  );
-}
+        .animate-[bounc]()

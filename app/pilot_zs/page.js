@@ -10,15 +10,14 @@ export default function CustomerFeedbackLanding() {
   useEffect(() => setFadeIn(true), []);
 
   const handleConfirm = () => {
-    if (consentInput.trim().toLowerCase() === "yes" || consentInput.trim() === "") {
-      // Accept either "yes" or empty input for testing
+    if (consentInput.trim().toLowerCase() === "yes") {
       setConfirmed(true);
     }
   };
 
   return (
     <main className="relative flex flex-col items-center justify-center min-h-screen px-4 bg-gradient-to-br from-violet-50 via-white to-cyan-50">
-      {/* Background */}
+      {/* Background blobs */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-violet-600 via-fuchsia-600 to-cyan-500 opacity-10"></div>
         <div className="absolute top-12 left-8 w-36 h-36 bg-violet-300/20 rounded-full filter blur-3xl animate-[bounce_8s_infinite_alternate]"></div>
@@ -64,8 +63,8 @@ export default function CustomerFeedbackLanding() {
 
           {/* Consent Overlay */}
           {!confirmed && (
-            <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-3 px-4 pointer-events-auto bg-white/95">
-              <p className="text-gray-700 font-medium text-center">
+            <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-3 px-4 pointer-events-auto bg-white/60 backdrop-blur-sm rounded-2xl">
+              <p className="text-gray-800 font-semibold text-center text-lg">
                 Type "yes" to consent and unlock the feedback
               </p>
               <input

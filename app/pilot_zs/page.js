@@ -76,7 +76,7 @@ export default function CustomerFeedbackLanding() {
         {/* Header + Tagline */}
         <div className="text-center mb-6">
           <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800">
-            Zeus Scooters + Next-Gen Feedback
+            ZEUS Scooters Feedback
           </h1>
           <p className="text-gray-700 text-lg sm:text-xl mt-2">
             Anonymous. Quick. Heard.

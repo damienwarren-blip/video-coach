@@ -1,102 +1,134 @@
 "use client";
-import { useState, useEffect } from "react";
 
-export default function CustomerFeedback() {
-  const [showVideo, setShowVideo] = useState(false);
-  const [fadeIn, setFadeIn] = useState(false);
+import React, { useState, useEffect } from "react";
 
-  useEffect(() => {
-    setFadeIn(true);
-  }, []);
-
-  const handleStart = () => {
-    setShowVideo(true);
-  };
+function PrivacyModal({ open, onClose }) {
+  if (!open) return null;
 
   return (
-    <main className="relative flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0">
-        <div className="w-full h-full bg-gradient-to-br from-violet-600 via-fuchsia-600 to-cyan-500 animate-gradient-x"></div>
-        <div className="absolute top-10 left-10 w-36 h-36 bg-violet-300/20 rounded-full filter blur-3xl animate-bounce-slow"></div>
-        <div className="absolute bottom-20 right-16 w-56 h-56 bg-cyan-300/20 rounded-full filter blur-2xl animate-bounce-slow"></div>
+    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
+        <h2 className="text-xl font-bold text-gray-800">Datenschutz & Nutzung</h2>
+
+        <ul className="text-sm text-gray-700 space-y-1">
+          <li>✅ Anonyme Text- und Bewertungsantworten</li>
+          <li>✅ Keine Video- oder Audioaufnahmen gespeichert</li>
+          <li>✅ Keine persönlichen Identifikatoren</li>
+          <li>✅ KI gruppiert nur Themen</li>
+          <li>✅ Rohdaten werden innerhalb von <strong>90 Tagen</strong> gelöscht</li>
+          <li>🚫 Keine Profilierung oder Verkauf von Daten</li>
+        </ul>
+
+        <p className="text-sm text-gray-700">
+          <strong>Zweck:</strong> Verbesserung der Nutzererfahrung durch Verständnis von Themen —
+          individuelle Nachverfolgung findet nicht statt. Teilnahme freiwillig.
+        </p>
+
+        <div className="flex justify-end pt-3">
+          <button
+            onClick={onClose}
+            className="px-3 py-2 text-sm rounded-lg bg-gray-200 hover:bg-gray-300"
+          >
+            Schließen
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function CustomerFeedbackLandingDE() {
+  const [fadeIn, setFadeIn] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+
+  useEffect(() => setFadeIn(true), []);
+
+  return (
+    <main className="relative flex flex-col items-center justify-center min-h-screen px-4 bg-gradient-to-br from-violet-50 via-white to-cyan-50">
+      {/* Hintergrundblobs */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-600 via-fuchsia-600 to-cyan-500 opacity-10"></div>
+        <div className="absolute top-12 left-8 w-36 h-36 bg-violet-300/20 rounded-full filter blur-3xl animate-[bounce_8s_infinite_alternate]"></div>
+        <div className="absolute bottom-12 right-8 w-48 h-48 bg-fuchsia-300/20 rounded-full filter blur-3xl animate-[bounce_10s_infinite_alternate]"></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-cyan-300/20 rounded-full filter blur-2xl animate-[bounce_6s_infinite_alternate]"></div>
       </div>
 
-      {/* Card */}
       <div
-        className={`relative z-10 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full text-center transition-opacity duration-700 ${
+        className={`relative z-10 max-w-2xl w-full transition-opacity duration-700 ${
           fadeIn ? "opacity-100" : "opacity-0"
         }`}
       >
-        {!showVideo ? (
-          <>
-            {/* Header */}
-            <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 drop-shadow-md">
-              Lass uns reden
-            </h1>
-
-            {/* Feedback section */}
-            <div className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-fuchsia-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                </svg>
-                <span className="font-semibold text-fuchsia-600 text-xl sm:text-2xl">
-                  Dein Feedback zählt
-                </span>
-              </div>
-              <ul className="space-y-1 text-gray-700">
-                <li>• Teile dein ehrliches Feedback</li>
-                <li>• Hilf uns zu verstehen, was du wirklich brauchst</li>
-                <li>• Sieh, wie wir Insights direkt umsetzen</li>
-              </ul>
+        {/* Logo Spinner */}
+        <div className="flex justify-center mb-6">
+          <div className="relative w-20 h-20">
+            <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-violet-500 border-r-fuchsia-500 animate-spin"></div>
+            <div className="absolute inset-2 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-600 animate-pulse flex items-center justify-center">
+              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
             </div>
-
-            {/* Call to Action */}
-            <p className="text-gray-800 mb-6 text-base sm:text-lg leading-relaxed">
-              <strong className="text-xl sm:text-2xl text-fuchsia-600">Bereit, deine Meinung zu teilen?</strong> Drücke den Button unten, um ein kurzes Video-Gespräch zu starten — dauert nur ein paar Minuten und deine Insights formen direkt, was wir als Nächstes tun.
-            </p>
-
-            {/* Start button */}
-            <button
-              onClick={handleStart}
-              className="px-10 py-3 sm:px-12 sm:py-4 rounded-xl text-white font-semibold shadow-lg transition bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 transform hover:scale-105"
-            >
-              Video starten
-            </button>
-
-            {/* Privacy notice */}
-            <p className="text-sm text-gray-600 mt-4">
-              Alles anonym. Wir nutzen dein Feedback nur, um unseren Service besser zu machen. Keine Weitergabe an Dritte.
-            </p>
-          </>
-        ) : (
-          // Video iframe
-          <div className="w-full h-[70vh] flex items-center justify-center">
-            <iframe
-              src="https://www.videoask.com/fch6lstck"
-              allow="camera; microphone; autoplay; encrypted-media;"
-              className="w-full h-full border-0 rounded-3xl shadow-2xl"
-              allowFullScreen
-            ></iframe>
+            <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-cyan-400 animate-[ping_2s_infinite]"></div>
+            <div className="absolute -bottom-1 -left-1 w-2 h-2 rounded-full bg-fuchsia-400 animate-[ping_3s_infinite]"></div>
           </div>
-        )}
+        </div>
+
+        {/* Header + Tagline */}
+        <div className="text-center mb-6">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800">
+            Zeus Scooters + Next-Gen Feedback
+          </h1>
+          <p className="text-gray-700 text-lg sm:text-xl mt-2">
+            Anonym. Schnell. Gehört.
+          </p>
+        </div>
+
+        {/* Video + Consent */}
+        <div className="relative w-full h-[60vh] rounded-2xl shadow-xl overflow-hidden">
+          <iframe
+            src="https://www.videoask.com/fch6lstck"
+            allow="autoplay; encrypted-media"
+            className={`w-full h-full border-0 transition-opacity duration-300 ${
+              confirmed ? "opacity-100" : "opacity-90"
+            }`}
+            title="Feedback VideoAsk DE"
+          />
+
+          {/* Consent overlay */}
+          {!confirmed && (
+            <div className="absolute inset-0 z-50 flex flex-col items-center justify-center">
+              <div className="bg-black/70 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center gap-3 max-w-sm w-full shadow-xl ring-1 ring-white/30">
+                <button
+                  onClick={() => setConfirmed(true)}
+                  className="px-6 py-2 bg-fuchsia-600 text-white rounded-lg font-semibold hover:bg-fuchsia-700 shadow-md"
+                >
+                  Ich bin dabei — Los geht's!
+                </button>
+
+                <button
+                  onClick={() => setShowPrivacy(true)}
+                  className="text-xs text-gray-200 underline hover:text-white mt-2"
+                >
+                  Datenschutz & Nutzung
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Tailwind animations */}
       <style jsx>{`
-        @keyframes gradient-x {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
+        @keyframes bounce {
+          from { transform: translateY(0); }
+          to { transform: translateY(-12px); }
         }
-        .animate-gradient-x {
-          background-size: 200% 200%;
-          animation: gradient-x 15s ease infinite;
-        }
-        .animate-bounce-slow {
-          animation: bounce 8s infinite alternate;
-        }
+        .animate-[bounce_8s_infinite_alternate] { animation: bounce 8s infinite alternate; }
+        .animate-[bounce_10s_infinite_alternate] { animation: bounce 10s infinite alternate; }
+        .animate-[bounce_6s_infinite_alternate] { animation: bounce 6s infinite alternate; }
       `}</style>
+
+      {/* Privacy modal */}
+      <PrivacyModal open={showPrivacy} onClose={() => setShowPrivacy(false)} />
     </main>
   );
 }

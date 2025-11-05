@@ -1,46 +1,37 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowPathIcon, ChartBarIcon, LightBulbIcon } from '@heroicons/react/24/outline';
 
 export default function ReportPage() {
   const [report, setReport] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const analyze = async () => {
+  const fetchReport = async () => {
     setLoading(true);
     setError(null);
     
     try {
-      // You can either manually trigger analysis with sample data
-      // Or call your webhook endpoint if you have test data
-      const response = await fetch('/api/Webhook', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contact: {
-            answers: [
-              { input_text: "Test answer 1" },
-              { input_text: "Test answer 2" }
-            ]
-          }
-        })
-      });
-
+      const response = await fetch('/api/Webhook');
       const data = await response.json();
+      
       if (data.success) {
         setReport(data);
       } else {
-        setError(data.message || 'Analysis failed');
+        setError(data.message || 'No report available yet');
       }
     } catch (err) {
-      setError('Failed to analyze');
+      setError('Failed to load report');
       console.error(err);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchReport();
+  }, []);
 
   const formatAnalysis = (text) => {
     if (!text) return '';
@@ -53,35 +44,40 @@ export default function ReportPage() {
     <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-6">Survey Analysis Report</h1>
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-3xl font-bold text-gray-900">Survey Analysis Report</h1>
+            <button
+              onClick={fetchReport}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition"
+            >
+              <ArrowPathIcon className="h-5 w-5" />
+              Refresh
+            </button>
+          </div>
           
-          {!report && !loading && (
-            <div className="text-center py-12">
-              <ChartBarIcon className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600 mb-6">
-                Reports are generated automatically when VideoAsk forms are submitted.
-              </p>
-              <p className="text-sm text-gray-500">
-                Check your VideoAsk webhook logs or submit a new form to see the analysis.
-              </p>
-            </div>
-          )}
-
           {loading && (
             <div className="text-center py-12">
               <ArrowPathIcon className="h-12 w-12 text-blue-600 animate-spin mx-auto mb-4" />
-              <p className="text-gray-600">Analyzing...</p>
+              <p className="text-gray-600">Loading report...</p>
             </div>
           )}
 
-          {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-              <p className="text-red-800">{error}</p>
+          {error && !loading && (
+            <div className="text-center py-12">
+              <ChartBarIcon className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-600 mb-2">{error}</p>
+              <p className="text-sm text-gray-500">
+                Submit a VideoAsk form to generate a report.
+              </p>
             </div>
           )}
 
-          {report && (
+          {report && !loading && (
             <>
+              <div className="mb-6 text-sm text-gray-500">
+                Generated: {new Date(report.timestamp).toLocaleString()}
+              </div>
+
               <div className="mb-8">
                 <h2 className="text-xl font-semibold mb-4">Responses</h2>
                 <div className="space-y-2">

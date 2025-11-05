@@ -5,6 +5,9 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+// Simple in-memory storage (just the latest report)
+let latestReport = null;
+
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
@@ -41,17 +44,27 @@ Format your report as:
 
       const analysis = completion.data.choices[0].message.content;
 
-      // Return the analysis immediately
-      res.status(200).json({ 
+      // Store the latest report
+      latestReport = {
         success: true,
         answers: plainAnswers,
         analysis: analysis,
         timestamp: new Date().toISOString()
-      });
+      };
+
+      // Return the analysis immediately
+      res.status(200).json(latestReport);
 
     } catch (error) {
       console.error('Error:', error);
       res.status(500).json({ error: "Analysis failed", message: error.message });
+    }
+  } else if (req.method === 'GET') {
+    // Allow GET requests to retrieve the latest report
+    if (latestReport) {
+      res.status(200).json(latestReport);
+    } else {
+      res.status(404).json({ message: "No report available yet" });
     }
   } else {
     res.status(405).json({ message: "Method not allowed" });

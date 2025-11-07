@@ -1,109 +1,134 @@
 "use client";
-import { useState, useEffect } from "react";
 
-export default function QuickChatAthlete() {
-  const [showVideo, setShowVideo] = useState(false);
-  const [fadeIn, setFadeIn] = useState(false);
+import React, { useState, useEffect } from "react";
 
-  useEffect(() => {
-    setFadeIn(true);
-  }, []);
-
-  const handleStart = () => {
-    setShowVideo(true);
-  };
+function PrivacyModal({ open, onClose }) {
+  if (!open) return null;
 
   return (
-    <main className="relative flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0">
-        <div className="w-full h-full bg-gradient-to-br from-amber-500 via-rose-700 to-amber-700 animate-pulse"></div>
-        <div className="absolute top-10 left-10 w-36 h-36 bg-rose-300/20 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-20 right-16 w-56 h-56 bg-amber-300/20 rounded-full filter blur-2xl"></div>
+    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
+        <h2 className="text-xl font-bold text-gray-800">Privacy & Data Use</h2>
+
+        <ul className="text-sm text-gray-700 space-y-1">
+          <li>✅ Anonymous text + rating responses</li>
+          <li>✅ No video/audio recordings saved</li>
+          <li>✅ No personal identifiers</li>
+          <li>✅ AI only groups themes</li>
+          <li>✅ Raw responses deleted within <strong>90 days</strong></li>
+          <li>🚫 No profiling or selling data</li>
+        </ul>
+
+        <p className="text-sm text-gray-700">
+          <strong>Purpose:</strong> Improve experience by understanding themes —
+          not tracking individuals. Participation optional.
+        </p>
+
+        <div className="flex justify-end pt-3">
+          <button
+            onClick={onClose}
+            className="px-3 py-2 text-sm rounded-lg bg-gray-200 hover:bg-gray-300"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function QuickChatAthlete() {
+  const [fadeIn, setFadeIn] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+
+  useEffect(() => setFadeIn(true), []);
+
+  return (
+    <main className="relative flex flex-col items-center justify-center min-h-screen px-4 bg-gradient-to-br from-violet-50 via-white to-cyan-50">
+      {/* Background blobs */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-600 via-fuchsia-600 to-cyan-500 opacity-10"></div>
+        <div className="absolute top-12 left-8 w-36 h-36 bg-violet-300/20 rounded-full filter blur-3xl animate-[bounce_8s_infinite_alternate]"></div>
+        <div className="absolute bottom-12 right-8 w-48 h-48 bg-fuchsia-300/20 rounded-full filter blur-3xl animate-[bounce_10s_infinite_alternate]"></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-cyan-300/20 rounded-full filter blur-2xl animate-[bounce_6s_infinite_alternate]"></div>
       </div>
 
-      {/* Card */}
       <div
-        className={`relative z-10 bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full text-center transition-opacity duration-700 overflow-hidden ${
+        className={`relative z-10 max-w-2xl w-full transition-opacity duration-700 ${
           fadeIn ? "opacity-100" : "opacity-0"
         }`}
       >
-        {/* Sports motif inside the card */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 64 64"
-            className="w-64 h-64 text-rose-700"
-            fill="currentColor"
-          >
-            <path d="M47 10a7 7 0 11-7-7 7 7 0 017 7zM34.91 23.45a2 2 0 00-2.38 3.24l6.36 4.68-4.05 8.37a2 2 0 00.21 2l7.26 10.08a2 2 0 003.25-2.3L39.8 39.18l4.3-8.89 3.69 2.71a2 2 0 102.37-3.23zM18.76 26.59a2 2 0 10-2.52 3.12l6.36 5.13-2.28 11.66a2 2 0 103.93.76l2.53-12.93a2 2 0 00-.69-1.9z" />
-          </svg>
+        {/* Logo spinner */}
+        <div className="flex justify-center mb-6">
+          <div className="relative w-20 h-20">
+            <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-violet-500 border-r-fuchsia-500 animate-spin"></div>
+            <div className="absolute inset-2 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-600 animate-pulse flex items-center justify-center">
+              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+            <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-cyan-400 animate-[ping_2s_infinite]"></div>
+            <div className="absolute -bottom-1 -left-1 w-2 h-2 rounded-full bg-fuchsia-400 animate-[ping_3s_infinite]"></div>
+          </div>
         </div>
 
-        {!showVideo ? (
-          <>
-            {/* Header */}
-            <h1 className="text-5xl sm:text-6xl font-black mb-6 relative z-10 tracking-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 via-rose-600 to-amber-600 drop-shadow-2xl">
-                Quick Chat
-              </span>
-            </h1>
+        {/* Header + Tagline */}
+        <div className="text-center mb-6">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800">
+            Quick Chat
+          </h1>
+          <p className="text-gray-700 text-lg sm:text-xl mt-2">
+            Every athlete on the team matters. Be Real, Be Heard.
+          </p>
+        </div>
 
-            {/* Subheader */}
-            <p className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed relative z-10">
-              Every athlete on the team matters.{" "}
-              <br />
-              This is your space to share what's going well and what could be
-              better.
-            </p>
+        {/* Video + consent */}
+        <div className="relative w-full h-[60vh] rounded-2xl shadow-xl overflow-hidden">
+          <iframe
+            src="https://www.videoask.com/fjtaofiub"
+            allow="autoplay; encrypted-media"
+            className={`w-full h-full border-0 transition-opacity duration-300 ${
+              confirmed ? "opacity-100" : "opacity-90"
+            }`}
+            title="Quick Chat VideoAsk"
+          />
 
-            {/* Key message */}
-            <div className="text-gray-800 mb-4 text-base sm:text-lg leading-relaxed relative z-10">
-              <div className="mb-3">
-                <span className="font-bold text-rose-700 text-2xl sm:text-3xl block mb-3">
-                  Be Real, Be Heard
-                </span>
+          {/* Consent overlay */}
+          {!confirmed && (
+            <div className="absolute inset-0 z-50 flex flex-col items-center justify-center">
+              <div className="bg-black/70 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center gap-3 max-w-sm w-full shadow-xl ring-1 ring-white/30">
+                <button
+                  onClick={() => setConfirmed(true)}
+                  className="px-6 py-2 bg-fuchsia-600 text-white rounded-lg font-semibold hover:bg-fuchsia-700 shadow-md"
+                >
+                  I'm in — Let's Go!
+                </button>
+
+                <button
+                  onClick={() => setShowPrivacy(true)}
+                  className="text-xs text-gray-200 underline hover:text-white mt-2"
+                >
+                  Privacy & Data Use
+                </button>
               </div>
-              <ul className="space-y-1 text-gray-700">
-                <li>• Share how the team's feeling and performing</li>
-                <li>• Tell us what helps you grow and stay motivated</li>
-                <li>• Help create a high-support environment for everyone</li>
-              </ul>
             </div>
-
-            {/* CTA */}
-            <p className="text-gray-800 mb-6 text-base sm:text-lg leading-relaxed relative z-10">
-              It only takes a{" "}
-              <strong className="text-xl sm:text-2xl text-rose-700">
-                Quick Chat
-              </strong>{" "}
-              — your feedback helps us support every athlete's journey.
-            </p>
-
-            {/* Start button */}
-            <button
-              onClick={handleStart}
-              className="px-10 py-3 sm:px-12 sm:py-4 rounded-xl text-white font-semibold shadow-lg transition bg-gradient-to-r from-rose-700 to-amber-600 hover:from-rose-800 hover:to-amber-700 transform hover:scale-105 relative z-10"
-            >
-              Start Quick Chat
-            </button>
-
-            {/* Disclaimer */}
-            <p className="text-sm text-gray-600 mt-4 relative z-10">
-              100% confidential — building a progressive and caring sports programme together.
-            </p>
-          </>
-        ) : (
-          <div className="w-full h-[70vh] flex items-center justify-center relative z-10">
-            <iframe
-              src="https://www.videoask.com/fjtaofiub"
-              allow="camera; microphone; autoplay; encrypted-media;"
-              className="w-full h-full border-0 rounded-3xl shadow-2xl"
-              allowFullScreen
-            ></iframe>
-          </div>
-        )}
+          )}
+        </div>
       </div>
+
+      <style jsx>{`
+        @keyframes bounce {
+          from { transform: translateY(0); }
+          to { transform: translateY(-12px); }
+        }
+        .animate-[bounce_8s_infinite_alternate] { animation: bounce 8s infinite alternate; }
+        .animate-[bounce_10s_infinite_alternate] { animation: bounce 10s infinite alternate; }
+        .animate-[bounce_6s_infinite_alternate] { animation: bounce 6s infinite alternate; }
+      `}</style>
+
+      {/* Privacy modal */}
+      <PrivacyModal open={showPrivacy} onClose={() => setShowPrivacy(false)} />
     </main>
   );
 }

@@ -13,7 +13,7 @@ export default function Home() {
               <PlayCircleIcon className="h-8 w-8 text-white" />
             </div>
             <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-900 tracking-tight">
-              Video Coach
+              QuickChat
             </h1>
           </div>
           <p className="text-lg sm:text-xl text-gray-700 max-w-2xl">
@@ -89,7 +89,7 @@ Fix retention, communication, and culture issues before they show up in your tur
           Ready to see results?
         </h2>
         <p className="text-gray-700 mb-6">
-          Book a demo and see how Video Coach can transform team performance.
+          Book a demo and see how QuickChat can transform team performance.
         </p>
         <button className="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-500 transition font-medium text-lg">
           Book a Demo

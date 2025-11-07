@@ -79,7 +79,9 @@ export default function QuickChatAthlete() {
             Quick Chat
           </h1>
           <p className="text-gray-700 text-lg sm:text-xl mt-2">
-            Every athlete on the team matters. Be Real, Be Heard.
+            Every athlete on the team matters.
+            <br />
+            This is your space to share what's going well and what could be better.
           </p>
         </div>
 

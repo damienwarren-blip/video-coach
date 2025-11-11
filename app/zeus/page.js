@@ -79,7 +79,7 @@ export default function CustomerFeedbackLandingDE() {
           <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800">
             Mach ZEUS Besser
           </h1>
-          <p className="text-lg sm:text-xl mt-2 font-bold inline-block px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-600 shadow-md">
+          <p className="text-lg sm:text-xl mt-2 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-600">
             Anonym. Schnell. Gehört. + 2 kostenlose Fahrten am Ende ✨
           </p>
         </div>

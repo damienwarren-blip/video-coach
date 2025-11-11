@@ -8,20 +8,19 @@ function PrivacyModal({ open, onClose }) {
   return (
     <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
-        <h2 className="text-xl font-bold text-gray-800">Privacy & Data Use</h2>
+        <h2 className="text-xl font-bold text-gray-800">Datenschutz & Nutzung</h2>
 
         <ul className="text-sm text-gray-700 space-y-1">
-          <li>✅ Anonymous text + rating responses</li>
-          <li>✅ No video/audio recordings saved</li>
-          <li>✅ No personal identifiers</li>
-          <li>✅ AI only groups themes</li>
-          <li>✅ Raw responses deleted within <strong>90 days</strong></li>
-          <li>🚫 No profiling or selling data</li>
+          <li>✅ Anonyme Text- und Bewertungsantworten</li>
+          <li>✅ Keine Video- oder Audioaufnahmen gespeichert</li>
+          <li>✅ Keine persönlichen Identifikatoren</li>
+          <li>✅ KI gruppiert nur Themen</li>
+          <li>✅ Rohdaten werden innerhalb von <strong>90 Tagen</strong> gelöscht</li>
+          <li>🚫 Keine Profilierung oder Verkauf von Daten</li>
         </ul>
 
         <p className="text-sm text-gray-700">
-          <strong>Purpose:</strong> Improve experience by understanding themes —
-          not tracking individuals. Participation optional.
+          <strong>Zweck:</strong> Verbesserung der Nutzererfahrung durch Verständnis von Themen — individuelle Nachverfolgung findet nicht statt. Teilnahme freiwillig.
         </p>
 
         <div className="flex justify-end pt-3">
@@ -29,7 +28,7 @@ function PrivacyModal({ open, onClose }) {
             onClick={onClose}
             className="px-3 py-2 text-sm rounded-lg bg-gray-200 hover:bg-gray-300"
           >
-            Close
+            Schließen
           </button>
         </div>
       </div>
@@ -37,7 +36,7 @@ function PrivacyModal({ open, onClose }) {
   );
 }
 
-export default function CustomerFeedbackLanding() {
+export default function CustomerFeedbackLandingDE() {
   const [fadeIn, setFadeIn] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
@@ -46,7 +45,7 @@ export default function CustomerFeedbackLanding() {
 
   return (
     <main className="relative flex flex-col items-center justify-center min-h-screen px-4 bg-gradient-to-br from-violet-50 via-white to-cyan-50">
-      {/* Background blobs */}
+      {/* Hintergrundblobs */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-violet-600 via-fuchsia-600 to-cyan-500 opacity-10"></div>
         <div className="absolute top-12 left-8 w-36 h-36 bg-violet-300/20 rounded-full filter blur-3xl animate-[bounce_8s_infinite_alternate]"></div>
@@ -59,7 +58,7 @@ export default function CustomerFeedbackLanding() {
           fadeIn ? "opacity-100" : "opacity-0"
         }`}
       >
-        {/* Logo spinner */}
+        {/* Logo Spinner */}
         <div className="flex justify-center mb-6">
           <div className="relative w-20 h-20">
             <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-violet-500 border-r-fuchsia-500 animate-spin"></div>
@@ -73,25 +72,28 @@ export default function CustomerFeedbackLanding() {
           </div>
         </div>
 
-        {/* Header + Tagline */}
+        {/* Header + Tagline + Promo */}
         <div className="text-center mb-6">
           <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800">
-          Make ZEUS Better
+            Mach ZEUS Besser
           </h1>
           <p className="text-gray-700 text-lg sm:text-xl mt-2">
-            Anonymous. Quick. Heard.
+            Anonym. Schnell. Gehört.
+          </p>
+          <p className="text-lg sm:text-xl mt-2 font-semibold inline-block px-4 py-2 rounded-full bg-fuchsia-600 text-white shadow-md">
+            Mach’s fertig & sichere dir am Ende 2 Gratis-Fahrten!
           </p>
         </div>
 
-        {/* Video + consent */}
+        {/* Video + Consent */}
         <div className="relative w-full h-[60vh] rounded-2xl shadow-xl overflow-hidden">
           <iframe
-            src="https://www.videoask.com/fqqlzbxwp"
+            src="https://www.videoask.com/fch6lstck"
             allow="autoplay; encrypted-media"
             className={`w-full h-full border-0 transition-opacity duration-300 ${
               confirmed ? "opacity-100" : "opacity-90"
             }`}
-            title="Feedback VideoAsk"
+            title="Feedback VideoAsk DE"
           />
 
           {/* Consent overlay */}
@@ -102,14 +104,14 @@ export default function CustomerFeedbackLanding() {
                   onClick={() => setConfirmed(true)}
                   className="px-6 py-2 bg-fuchsia-600 text-white rounded-lg font-semibold hover:bg-fuchsia-700 shadow-md"
                 >
-                  I’m in — Let’s Go!
+                  Ich bin dabei — Los geht's!
                 </button>
 
                 <button
                   onClick={() => setShowPrivacy(true)}
                   className="text-xs text-gray-200 underline hover:text-white mt-2"
                 >
-                  Privacy & Data Use
+                  Datenschutz & Nutzung
                 </button>
               </div>
             </div>

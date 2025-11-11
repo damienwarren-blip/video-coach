@@ -15,7 +15,9 @@ function PrivacyModal({ open, onClose }) {
           <li>✅ Keine Video- oder Audioaufnahmen gespeichert</li>
           <li>✅ Keine persönlichen Identifikatoren</li>
           <li>✅ KI gruppiert nur Themen</li>
-          <li>✅ Rohdaten werden innerhalb von <strong>90 Tagen</strong> gelöscht</li>
+          <li>
+            ✅ Rohdaten werden innerhalb von <strong>90 Tagen</strong> gelöscht
+          </li>
           <li>🚫 Keine Profilierung oder Verkauf von Daten</li>
         </ul>
 
@@ -72,16 +74,13 @@ export default function CustomerFeedbackLandingDE() {
           </div>
         </div>
 
-        {/* Header + Tagline + Promo */}
+        {/* Header + Incentive Line */}
         <div className="text-center mb-6">
           <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800">
             Mach ZEUS Besser
           </h1>
-          <p className="text-gray-700 text-lg sm:text-xl mt-2">
-            Anonym. Schnell. Gehört.
-          </p>
-          <p className="text-lg sm:text-xl mt-2 font-semibold inline-block px-4 py-2 rounded-full bg-fuchsia-600 text-white shadow-md">
-            Mach’s fertig & sichere dir am Ende 2 Gratis-Fahrten!
+          <p className="text-lg sm:text-xl mt-2 font-bold inline-block px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-600 shadow-md">
+            Anonym. Schnell. Gehört. + 2 kostenlose Fahrten am Ende ✨
           </p>
         </div>
 

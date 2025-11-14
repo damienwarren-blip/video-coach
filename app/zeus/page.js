@@ -80,7 +80,7 @@ export default function CustomerFeedbackLandingDE() {
             Mach ZEUS Besser
           </h1>
           <p className="text-lg sm:text-xl mt-2 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-600">
-            Anonym. Schnell. Gehört. + 2 kostenlose Fahrten am Ende ✨
+            Anonym. Schnell. Gehört. + 2x kostenlos freischalten ✨
           </p>
         </div>
 

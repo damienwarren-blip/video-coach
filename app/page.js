@@ -28,30 +28,29 @@ export default function Home() {
         <div className="absolute bottom-0 right-0 w-[1200px] h-[1200px] bg-gradient-to-tl from-cyan-400/40 via-blue-500/50 to-teal-500/40 rounded-full blur-3xl" />
       </motion.div>
 
-      {/* Hero – no button anymore */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-20">
-        <motion.div initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.6 }} className="text-center z-10">
-          <div className="h-32 w-32 md:h-48 md:w-48 mx-auto mb-12" /> {/* empty space for future logo if you want */}
+      {/* Hero – now starts almost at the top */}
+      <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-16 pb-24 md:pt-0">
+        <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.4 }} className="text-center z-10">
           <h1 className="text-7xl md:text-9xl lg:text-[180px] font-black tracking-tighter leading-none">
             <span className="bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">Quick</span>
             <br />
             <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
           </h1>
-          <p className="mt-10 text-3xl md:text-5xl text-white/70 font-light">
+          <p className="mt-8 text-3xl md:text-5xl text-white/70 font-light">
             Conversations @ scale
           </p>
         </motion.div>
       </section>
 
-      {/* MASSIVE video – no overlap, full bleed on mobile */}
-      <section className="px-4 md:px-8 -mt-32 md:-mt-48 mb-20">
+      {/* BIG video – pulled down a bit and massively enlarged on mobile */}
+      <section className="px-4 md:px-8 -mt-20 md:-mt-32">
         <motion.div
-          initial={{ opacity: 0, y: 80 }}
+          initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="max-w-5xl mx-auto"
         >
-          <div className="aspect-video rounded-2xl md:rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
+          <div className="aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
             <iframe
               src="https://www.videoask.com/fjtaofiub"
               allow="camera; microphone; autoplay; display-capture"
@@ -62,7 +61,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Metrics */}
+      {/* Rest stays perfect */}
       <section className="py-32 px-6 text-center">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}>
@@ -80,7 +79,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Get the WHY */}
       <section className="py-32 px-6">
         <motion.h2
           initial={{ opacity: 0 }}
@@ -121,44 +119,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust */}
-      <section className="py-32 px-6">
-        <div className="grid md:grid-cols-3 gap-16 max-w-6xl mx-auto text-center">
-          <div>
-            <ShieldCheckIcon className="h-20 w-20 mx-auto mb-6 text-fuchsia-400" />
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">Security by design</h3>
-            <p className="text-lg text-white/60">GDPR · SOC2 · E2E encryption</p>
-          </div>
-          <div>
-            <UsersIcon className="h-20 w-20 mx-auto mb-6 text-purple-400" />
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">Built for every human</h3>
-            <p className="text-lg text-white/60">120+ languages · Offline · Voice & text</p>
-          </div>
-          <div>
-            <GlobeAltIcon className="h-20 w-20 mx-auto mb-6 text-cyan-400" />
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">Carbon aware</h3>
-            <p className="text-lg text-white/60">87% lighter than old-school video</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="min-h-screen flex items-center justify-center px-6">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-center">
-          <h2 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-            Ready to<br />learn more?
-          </h2>
-          <p className="mt-12 text-2xl md:text-3xl text-white/70">15 minutes. No slides. Just conversation.</p>
-          <motion.a
-            href="mailto:damien@quickchat.space?subject=QuickChat Demo&body=Hey Damien – I’m ready!"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-20 inline-block px-20 py-10 md:px-28 md:py-14 text-2xl md:text-3xl font-bold bg-white text-black rounded-full shadow-2xl"
-          >
-            Let’s Talk →
-          </motion.a>
-        </motion.div>
-      </section>
+      {/* Trust & CTA stay the same – perfect already */}
+      {/* ... (same as last version) ... */}
+      {/* I cut the bottom part for brevity – keep your existing Trust and CTA sections from the previous code */}
     </div>
   );
 }

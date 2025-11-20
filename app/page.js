@@ -8,14 +8,14 @@ import {
   GlobeAltIcon,
 } from '@heroicons/react/24/solid';
 
-// --- CONFIGURATION FOR THE SCATTERED MOCKS ---
+// --- CONFIGURATION FOR THE SCATTERED MOCKS (ADJUSTED FOR SPACE) ---
 const MOCKUPS = [
   {
     src: '/mockup-1.png',
     alt: 'App Screenshot 1',
     initialRotation: -10,
-    // Horizontal position shifted slightly right relative to the container's center
-    xOffset: '0%', 
+    // Horizontal position shifted slightly left for tighter cluster
+    xOffset: '-10%', 
     yOffset: '-100px', 
     zIndex: 15,
   },
@@ -23,7 +23,8 @@ const MOCKUPS = [
     src: '/mockup-2.png',
     alt: 'App Screenshot 2',
     initialRotation: 5,
-    xOffset: '15%',
+    // Horizontal position shifted slightly left for tighter cluster
+    xOffset: '0%', 
     yOffset: '-30px', 
     zIndex: 20, 
   },
@@ -31,7 +32,8 @@ const MOCKUPS = [
     src: '/mockup-3.png',
     alt: 'App Screenshot 3',
     initialRotation: 20,
-    xOffset: '35%',
+    // Horizontal position shifted slightly left for tighter cluster
+    xOffset: '15%',
     yOffset: '-130px', 
     zIndex: 10,
   },
@@ -68,24 +70,31 @@ export default function Home() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4 }}
-          className="text-center pt-32 md:pt-48 z-30" 
+          className="text-center pt-24 md:pt-48 z-30" 
         >
           <h1 className="text-7xl leading-none font-black tracking-tighter md:text-9xl lg:text-[200px] xl:text-[220px]">
             <span className="bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">Quick</span>
             <br />
             <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
           </h1>
+          
+          {/* 1. STRAP LINE (Main Subheading) */}
           <p className="mt-8 text-3xl md:text-5xl text-white/70 font-light">
             Conversations @ scale
           </p>
+
+          {/* 2. WORDING (Value Proposition) */}
+          <p className="mt-6 text-xl md:text-3xl text-white font-normal max-w-2xl mx-auto tracking-wide">
+            Give employees and customers the freedom to tell you what's really going on with short interactive videos.
+          </p>
+          
         </motion.div>
         
-        {/* SCATTERED MOCKUP GROUP (Adjusted for aggressive left horizontal alignment) */}
+        {/* SCATTERED MOCKUP GROUP (Adjusted top position to prevent overlap) */}
         <motion.div
           style={{ y: mockupsY, rotate: mockupsRotate }}
-          // Final top adjustment to clear the subheading
-          // 🔥 FINAL HORIZONTAL ADJUSTMENT: translate-x-[-40%] shifts the whole group significantly left
-          className="absolute top-[75vh] md:top-[65vh] w-full max-w-4xl h-[70vh] mx-auto z-10 translate-x-[-40%] md:translate-x-[-30%]" 
+          // 🔥 NEW: Moved down by another 5vh to guarantee separation
+          className="absolute top-[85vh] md:top-[75vh] w-full max-w-4xl h-[70vh] mx-auto z-10 translate-x-[-10%] md:translate-x-[-20%]" 
         >
           {MOCKUPS.map((mock, index) => (
             <motion.div

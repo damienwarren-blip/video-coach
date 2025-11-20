@@ -28,10 +28,10 @@ export default function Home() {
         <div className="absolute bottom-0 right-0 w-[1200px] h-[1200px] bg-gradient-to-tl from-cyan-400/40 via-blue-500/50 to-teal-500/40 rounded-full blur-3xl" />
       </motion.div>
 
-      {/* Hero – super clean on mobile */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-20 pb-10">
+      {/* Hero – no button anymore */}
+      <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-20">
         <motion.div initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.6 }} className="text-center z-10">
-          <div className="h-32 w-32 md:h-48 md:w-48 mx-auto mb-12" />
+          <div className="h-32 w-32 md:h-48 md:w-48 mx-auto mb-12" /> {/* empty space for future logo if you want */}
           <h1 className="text-7xl md:text-9xl lg:text-[180px] font-black tracking-tighter leading-none">
             <span className="bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">Quick</span>
             <br />
@@ -43,8 +43,8 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Video – now full-bleed and perfectly placed on mobile */}
-      <section className="px-6 -mt-20 md:-mt-32">
+      {/* MASSIVE video – no overlap, full bleed on mobile */}
+      <section className="px-4 md:px-8 -mt-32 md:-mt-48 mb-20">
         <motion.div
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,6 +56,7 @@ export default function Home() {
               src="https://www.videoask.com/fjtaofiub"
               allow="camera; microphone; autoplay; display-capture"
               className="w-full h-full"
+              title="QuickChat"
             />
           </div>
         </motion.div>
@@ -111,7 +112,7 @@ export default function Home() {
               transition={{ delay: i * 0.15 }}
               className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10"
             >
-              <h3 className="text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
+              <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
                 {item.title}
               </h3>
               <p className="text-lg md:text-xl text-white/70 leading-relaxed">{item.desc}</p>
@@ -121,4 +122,43 @@ export default function Home() {
       </section>
 
       {/* Trust */}
-      <section className="py-32 px-
+      <section className="py-32 px-6">
+        <div className="grid md:grid-cols-3 gap-16 max-w-6xl mx-auto text-center">
+          <div>
+            <ShieldCheckIcon className="h-20 w-20 mx-auto mb-6 text-fuchsia-400" />
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">Security by design</h3>
+            <p className="text-lg text-white/60">GDPR · SOC2 · E2E encryption</p>
+          </div>
+          <div>
+            <UsersIcon className="h-20 w-20 mx-auto mb-6 text-purple-400" />
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">Built for every human</h3>
+            <p className="text-lg text-white/60">120+ languages · Offline · Voice & text</p>
+          </div>
+          <div>
+            <GlobeAltIcon className="h-20 w-20 mx-auto mb-6 text-cyan-400" />
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">Carbon aware</h3>
+            <p className="text-lg text-white/60">87% lighter than old-school video</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="min-h-screen flex items-center justify-center px-6">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-center">
+          <h2 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            Ready to<br />learn more?
+          </h2>
+          <p className="mt-12 text-2xl md:text-3xl text-white/70">15 minutes. No slides. Just conversation.</p>
+          <motion.a
+            href="mailto:damien@quickchat.space?subject=QuickChat Demo&body=Hey Damien – I’m ready!"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="mt-20 inline-block px-20 py-10 md:px-28 md:py-14 text-2xl md:text-3xl font-bold bg-white text-black rounded-full shadow-2xl"
+          >
+            Let’s Talk →
+          </motion.a>
+        </motion.div>
+      </section>
+    </div>
+  );
+}

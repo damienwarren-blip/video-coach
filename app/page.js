@@ -10,17 +10,17 @@ import {
 
 export default function Home() {
   const container = useRef(null);
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress = useScroll({
     target: container,
     offset: ['start start', 'end end'],
-  });
+  }).scrollYProgress;
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -900]);
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -1000]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -600]);
 
   return (
     <div ref={container} className="relative bg-black overflow-hidden text-white">
-      {/* Parallax blobs */}
+      {/* Blobs */}
       <motion.div style={{ y: y1 }} className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute top-0 left-0 w-[1000px] h-[1000px] bg-gradient-to-br from-fuchsia-500/50 via-purple-600/40 to-pink-600/50 rounded-full blur-3xl" />
       </motion.div>
@@ -28,10 +28,15 @@ export default function Home() {
         <div className="absolute bottom-0 right-0 w-[1200px] h-[1200px] bg-gradient-to-tl from-cyan-400/40 via-blue-500/50 to-teal-500/40 rounded-full blur-3xl" />
       </motion.div>
 
-      {/* Hero – now starts almost at the top */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-16 pb-24 md:pt-0">
-        <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.4 }} className="text-center z-10">
-          <h1 className="text-7xl md:text-9xl lg:text-[180px] font-black tracking-tighter leading-none">
+      {/* HERO – MASSIVE and pushed way up */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-8 pb-32 md:pb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.4 }}
+          className="text-center z-10"
+        >
+          <h1 className="text-7xl leading-none font-black tracking-tighter md:text-9xl lg:text-[200px] xl:text-[220px]">
             <span className="bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">Quick</span>
             <br />
             <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
@@ -42,7 +47,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* BIG video – pulled down a bit and massively enlarged on mobile */}
+      {/* VIDEO – now super tall on mobile, perfect aspect on desktop */}
       <section className="px-4 md:px-8 -mt-20 md:-mt-32">
         <motion.div
           initial={{ opacity: 0, y: 100 }}
@@ -50,7 +55,7 @@ export default function Home() {
           viewport={{ once: true }}
           className="max-w-5xl mx-auto"
         >
-          <div className="aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
+          <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
             <iframe
               src="https://www.videoask.com/fjtaofiub"
               allow="camera; microphone; autoplay; display-capture"
@@ -61,7 +66,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Rest stays perfect */}
+      {/* Metrics */}
       <section className="py-32 px-6 text-center">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}>
@@ -79,6 +84,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Get the WHY */}
       <section className="py-32 px-6">
         <motion.h2
           initial={{ opacity: 0 }}
@@ -89,39 +95,59 @@ export default function Home() {
         </motion.h2>
 
         <div className="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
-          {[
-            {
-              title: "Strategy",
-              desc: "Numbers tell you what. Video tells you why. Tone, pauses, emotion — the signals no checkbox can capture.",
-            },
-            {
-              title: "Voice & freedom",
-              desc: "People can answer with video, voice notes, or text — whatever feels natural. No forced formats, just authentic responses.",
-            },
-            {
-              title: "Be Trendy",
-              desc: "The world runs on Reels, voice messages, and real moments. Your people insights should feel just as natural.",
-            },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.15 }}
-              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10"
-            >
-              <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
-                {item.title}
-              </h3>
-              <p className="text-lg md:text-xl text-white/70 leading-relaxed">{item.desc}</p>
-            </motion.div>
-          ))}
+          <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10">
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">Strategy</h3>
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed">Numbers tell you what. Video tells you why. Tone, pauses, emotion — the signals no checkbox can capture.</p>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10">
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">Voice & freedom</h3>
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed">People can answer with video, voice notes, or text — whatever feels natural. No forced formats, just authentic responses.</p>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10">
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">Be Trendy</h3>
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed">The world runs on Reels, voice messages, and real moments. Your people insights should feel just as natural.</p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Trust & CTA stay the same – perfect already */}
-      {/* ... (same as last version) ... */}
-      {/* I cut the bottom part for brevity – keep your existing Trust and CTA sections from the previous code */}
+      {/* Trust */}
+      <section className="py-32 px-6">
+        <div className="grid md:grid-cols-3 gap-16 max-w-6xl mx-auto text-center">
+          <div>
+            <ShieldCheckIcon className="h-20 w-20 mx-auto mb-6 text-fuchsia-400" />
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">Security by design</h3>
+            <p className="text-lg text-white/60">GDPR · SOC2 · E2E encryption</p>
+          </div>
+          <div>
+            <UsersIcon className="h-20 w-20 mx-auto mb-6 text-purple-400" />
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">Built for every human</h3>
+            <p className="text-lg text-white/60">120+ languages · Offline · Voice & text</p>
+          </div>
+          <div>
+            <GlobeAltIcon className="h-20 w-20 mx-auto mb-6 text-cyan-400" />
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">Carbon aware</h3>
+            <p className="text-lg text-white/60">87% lighter than old-school video</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="min-h-screen flex items-center justify-center px-6">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-center">
+          <h2 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            Ready to<br />learn more?
+          </h2>
+          <p className="mt-12 text-2xl md:text-3xl text-white/70">15 minutes. No slides. Just conversation.</p>
+          <motion.a
+            href="mailto:damien@quickchat.space?subject=QuickChat Demo&body=Hey Damien – I’m ready!"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="mt-20 inline-block px-20 py-10 md:px-28 md:py-14 text-2xl md:text-3xl font-bold bg-white text-black rounded-full shadow-2xl"
+          >
+            Let’s Talk →
+          </motion.a>
+        </motion.div>
+      </section>
     </div>
   );
 }

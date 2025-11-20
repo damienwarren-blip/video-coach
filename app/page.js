@@ -10,17 +10,17 @@ import {
 
 export default function Home() {
   const container = useRef(null);
-  const { scrollYProgress = useScroll({
+  const { scrollYProgress } = useScroll({
     target: container,
     offset: ['start start', 'end end'],
-  }).scrollYProgress;
+  });
 
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -1000]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -600]);
 
   return (
     <div ref={container} className="relative bg-black overflow-hidden text-white">
-      {/* Blobs */}
+      {/* Vibrant parallax blobs */}
       <motion.div style={{ y: y1 }} className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute top-0 left-0 w-[1000px] h-[1000px] bg-gradient-to-br from-fuchsia-500/50 via-purple-600/40 to-pink-600/50 rounded-full blur-3xl" />
       </motion.div>
@@ -28,7 +28,7 @@ export default function Home() {
         <div className="absolute bottom-0 right-0 w-[1200px] h-[1200px] bg-gradient-to-tl from-cyan-400/40 via-blue-500/50 to-teal-500/40 rounded-full blur-3xl" />
       </motion.div>
 
-      {/* HERO – MASSIVE and pushed way up */}
+      {/* HERO – massive and pushed up */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-8 pb-32 md:pb-20">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -47,7 +47,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* VIDEO – now super tall on mobile, perfect aspect on desktop */}
+      {/* VIDEO – tall on mobile, perfect on desktop */}
       <section className="px-4 md:px-8 -mt-20 md:-mt-32">
         <motion.div
           initial={{ opacity: 0, y: 100 }}
@@ -148,6 +148,7 @@ export default function Home() {
           </motion.a>
         </motion.div>
       </section>
+
     </div>
   );
 }

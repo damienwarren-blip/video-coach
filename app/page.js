@@ -111,15 +111,13 @@ export default function Home() {
               </motion.div>
             ))}
 
-            {/* 🔥 FIXED COPY 🔥 */}
+            {/* 🔥 REVISED CONCISE COPY 🔥 */}
             <p className="relative z-10 text-2xl md:text-3xl text-white font-normal leading-relaxed tracking-wide mt-2 text-center">
-              Give employees and customers the **freedom to tell you *WHY***—capturing the signals, context, and emotion that numbers alone can’t.
+              Give employees and customers the **FREEDOM to tell you WHY** they feel like they do.
             </p>
           </motion.div>
         </motion.div>
       </section>
-
-      {/* 🔥 GAP REDUCTION: Removed separator div and adjusted padding below 🔥 */}
 
       {/* HOW IT WORKS HEADING (Adjusted padding-top to close gap) */}
       <section className="pt-16 pb-12 px-6 text-center">
@@ -175,66 +173,4 @@ export default function Home() {
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="text-6xl md:text-8xl font-black text-center mb-20 bg-gradient-to-r from-white via-white/80 to-white/40 bg-clip-text text-transparent"
-        >
-          Get the WHY
-        </motion.h2>
-
-        <div className="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">Strategy</h3>
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed">Numbers tell you what. Video tells you why. Tone, pauses, emotion — the signals no checkbox can capture.</p>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">Voice & freedom</h3>
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed">People can answer with video, voice notes, or text — whatever feels natural. No forced formats, just authentic responses.</p>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">Be Trendy</h3>
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed">The world runs on Reels, voice messages, and real moments. Your people insights should feel just as natural.</p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Trust */}
-      <section className="py-32 px-6">
-        <div className="grid md:grid-cols-3 gap-16 max-w-6xl mx-auto text-center">
-          <div>
-            <ShieldCheckIcon className="h-20 w-20 mx-auto mb-6 text-fuchsia-400" />
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">Security by design</h3>
-            <p className="text-lg text-white/60">GDPR · SOC2 · E2E encryption</p>
-          </div>
-          <div>
-            <UsersIcon className="h-20 w-20 mx-auto mb-6 text-purple-400" />
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">Built for every human</h3>
-            <p className="text-lg text-white/60">120+ languages · Offline · Voice & text</p>
-          </div>
-          <div>
-            <GlobeAltIcon className="h-20 w-20 mx-auto mb-6 text-cyan-400" />
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">Carbon aware</h3>
-            <p className="text-lg text-white/60">87% lighter than old-school video</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="min-h-screen flex items-center justify-center px-6">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-center">
-          <h2 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-            Ready to<br />learn more?
-          </h2>
-          <p className="mt-12 text-2xl md:text-3xl text-white/70">15 minutes. No slides. Just conversation.</p>
-          <motion.a
-            href="mailto:damien@quickchat.space?subject=QuickChat Demo&body=Hey Damien – I’m ready!"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-20 inline-block px-20 py-10 md:px-28 md:py-14 text-2xl md:text-3xl font-bold bg-white text-black rounded-full shadow-2xl"
-          >
-            Let’s Talk →
-          </motion.a>
-        </motion.div>
-      </section>
-
-    </div>
-  );
-}
+          className="text-6xl md:text-8xl font-black text-center mb-20 bg-gradient-to-r from-white via

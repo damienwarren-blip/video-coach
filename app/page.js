@@ -8,37 +8,34 @@ import {
   GlobeAltIcon,
 } from '@heroicons/react/24/solid';
 
-// --- FINAL CONFIGURATION: Using simple Flexbox for even horizontal spacing and small vertical stagger ---
+// --- CONFIGURATION: ONLY 3 MOCKUPS FOR THE VIBRANT BOX ---
 const MOCKUPS = [
   {
     src: '/mockup-1.png',
     alt: 'App Screenshot 1',
-    initialRotation: -15, 
-    yTranslate: '-translate-y-12',  // Raise up slightly
+    initialRotation: -10, // Slight rotation for effect
+    xOffset: '-35%',      // Position relative to its parent container
+    yOffset: '10%',       // Position relative to its parent container
+    scale: 0.7,           // Smaller scale for background effect
+    zIndex: 5,            // Behind the text
   },
   {
     src: '/mockup-2.png',
     alt: 'App Screenshot 2',
-    initialRotation: 10,  
-    yTranslate: '-translate-y-20',  // Raise higher
+    initialRotation: 5,   // Slight rotation
+    xOffset: '0%',        // Center position
+    yOffset: '30%',       // Slightly lower
+    scale: 0.8,           // Slightly larger for middle
+    zIndex: 8,            // Behind the text
   },
   {
     src: '/mockup-3.png',
     alt: 'App Screenshot 3',
-    initialRotation: 25,  
-    yTranslate: '-translate-y-8',   // Lowest point
-  },
-  { 
-    src: '/mockup-4.png', 
-    alt: 'App Screenshot 4',
-    initialRotation: -5,  
-    yTranslate: '-translate-y-16',  // Medium high
-  },
-  { 
-    src: '/mockup-5.png', 
-    alt: 'App Screenshot 5',
-    initialRotation: 30,  
-    yTranslate: '-translate-y-24',  // High point
+    initialRotation: 15,  // Slight rotation
+    xOffset: '35%',       // Position relative to its parent container
+    yOffset: '15%',       // Position relative to its parent container
+    scale: 0.75,          // Smaller scale for background effect
+    zIndex: 6,            // Behind the text
   },
 ];
 
@@ -50,7 +47,7 @@ export default function Home() {
   });
 
   // Background gradient parallax remains
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -1000]); 
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -1000]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -600]);
 
   return (
@@ -69,63 +66,66 @@ export default function Home() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4 }}
-          className="text-center pt-24 md:pt-48 z-30" 
+          className="text-center pt-24 md:pt-48 z-30"
         >
-          {/* Title */}
+          {/* Title (Quick Chat) */}
           <h1 className="text-8xl leading-none font-black tracking-tighter md:text-9xl lg:text-[200px] xl:text-[220px]">
             <span className="bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">Quick</span>
             <br />
             <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
           </h1>
-          
-          {/* Text Order - Strap Line (mt-8 remains) */}
+
+          {/* Strap Line (Conversations @ scale) */}
           <p className="mt-8 text-4xl md:text-5xl text-white/70 font-light">
             Conversations @ scale
           </p>
 
-          {/* 🔥 FIX: Increased Margin Top from mt-6 to mt-12 */}
-          <p className="mt-12 text-2xl md:text-3xl text-white font-normal max-w-2xl mx-auto tracking-wide">
-            Give employees and customers the freedom to tell you what's really going on with short interactive videos.
-          </p>
-          
+          {/* VIBRANT CONTAINER: Freedom text and 3 background mockups */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.4, delay: 0.2 }}
+            className="relative mt-12 mx-auto w-[90vw] md:max-w-2xl min-h-[300px] md:min-h-[350px]
+                       rounded-3xl p-6 md:p-10
+                       bg-gradient-to-br from-purple-700/60 to-pink-600/60
+                       backdrop-blur-xl border border-white/20 shadow-2xl overflow-hidden"
+          >
+            {/* Background Mockups (First 3) inside the vibrant container */}
+            {MOCKUPS.map((mock, index) => (
+              <motion.div
+                key={index}
+                style={{
+                  position: 'absolute',
+                  left: '50%', // Center horizontally
+                  top: '50%',  // Center vertically
+                  transform: `translate(-50%, -50%) rotate(${mock.initialRotation}deg) translateX(${mock.xOffset}) translateY(${mock.yOffset}) scale(${mock.scale})`,
+                  zIndex: mock.zIndex,
+                }}
+                className="w-1/2 aspect-[9/16] rounded-3xl overflow-hidden opacity-40 md:opacity-60"
+              >
+                <img
+                  src={mock.src}
+                  alt={mock.alt}
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            ))}
+
+            {/* "Freedom" text - placed above the background mockups */}
+            <p className="relative z-10 text-2xl md:text-3xl text-white font-normal leading-relaxed tracking-wide mt-2 text-center">
+              Give employees and customers the freedom to tell you what's really going on with short interactive videos.
+            </p>
+          </motion.div>
         </motion.div>
-        
-        {/* GUARANTEED FLEXBOX ROW LAYOUT */}
-        <motion.div
-          className="w-full max-w-7xl px-4 absolute bottom-0 md:bottom-10 flex justify-between items-end h-[60vh] md:h-[80vh] overflow-visible z-10" 
-        >
-          {MOCKUPS.map((mock, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1 + 0.5, type: "spring", stiffness: 100 }} 
-              className={`
-                relative 
-                w-[18vw] md:w-[150px] min-w-[120px] aspect-[9/16] 
-                rounded-[3rem] overflow-hidden 
-                shadow-2xl border-4 border-white/5 
-                ${mock.yTranslate}
-                transform rotate-[${mock.initialRotation}deg] 
-              `}
-              style={{
-                zIndex: 10 + index, 
-              }}
-            >
-              <img 
-                src={mock.src} 
-                alt={mock.alt} 
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-          ))}
-        </motion.div>
+
+        {/* MOCKUPS 4 & 5 REMOVED ENTIRELY */}
+
       </section>
-      
+
       ---
 
       {/* Separator to ensure the next section starts well below the images */}
-      <div className="h-[20vh] md:h-[10vh]" /> 
+      <div className="h-[20vh] md:h-[10vh]" />
 
       {/* HOW IT WORKS HEADING */}
       <section className="pt-24 pb-12 px-6 text-center">

@@ -131,7 +131,7 @@ export default function Home() {
         >
           <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
             <iframe
-              src="https://www.videoask.com/fjtaofiub"
+              src="https://www.videoask.com/fvk6am2q6"
               allow="camera; microphone; autoplay; display-capture"
               className="w-full h-full"
               title="QuickChat"

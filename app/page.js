@@ -35,7 +35,7 @@ export default function Home() {
         <div className="absolute bottom-0 right-0 w-[1200px] h-[1200px] bg-gradient-to-tl from-cyan-400/40 via-blue-500/50 to-teal-500/40 rounded-full blur-3xl" />
       </motion.div>
 
-      {/* HERO */}
+      {/* HERO – ORIGINAL */}
       <section className="relative min-h-screen flex flex-col items-center justify-start pt-8 pb-32 md:pb-20">
         <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.4 }} className="text-center pt-24 md:pt-48 z-30">
           <h1 className="text-8xl leading-none font-black tracking-tighter md:text-9xl lg:text-[200px] xl:text-[220px]">
@@ -44,7 +44,8 @@ export default function Home() {
             <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
           </h1>
           <p className="mt-8 text-4xl md:text-5xl text-white/70 font-light">Conversations @ scale</p>
-          <p className="mt-8 md:mt-12 text-2xl md:text-3xl text-white font-normal leading-relaxed tracking-wide max-w-2xl mx-auto text-center">
+          
+          <p className="relative z-10 text-2xl md:text-3xl text-white font-normal leading-relaxed tracking-wide mt-8 md:mt-12 mx-auto max-w-2xl text-center">
             Give employees and customers the FREEDOM to tell you WHY they feel like they do.
           </p>
         </motion.div>
@@ -113,20 +114,18 @@ export default function Home() {
         </motion.h2>
       </section>
 
-      {/* HOW IT WORKS – PREMIUM GLASSMORPHIC CARDS */}
+      {/* HOW IT WORKS – CARDS */}
       <section className="pb-32 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             
-            {/* Step 1 – Updated */}
+            {/* Step 1 – Question Mark */}
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="relative group">
               <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/20 to-pink-600/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500" />
               <div className="relative bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-10 text-center hover:border-white/30 transition-all duration-500">
                 <div className="w-24 h-24 mx-auto mb-8 rounded-full bg-gradient-to-br from-fuchsia-500 to-pink-600 p-1">
                   <div className="w-full h-full rounded-full bg-black/50 backdrop-blur-xl flex items-center justify-center">
-                    <svg className="w-12 h-12 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                    <span className="text-6xl font-black text-fuchsia-400">?</span>
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold mb-4">What do you want to know?</h3>
@@ -134,7 +133,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Step 2 – Updated to "Reach out" */}
+            {/* Step 2 – Reach out */}
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="relative group">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-indigo-600/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500" />
               <div className="relative bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-10 text-center hover:border-white/30 transition-all duration-500">
@@ -146,7 +145,9 @@ export default function Home() {
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Reach out</h3>
-                <p className="text-white/70">Give employees and customers the freedom to tell you WHY they feel like they do where they are comfortable – video, voice interaction</p>
+                <p className="text-white/70">
+                  We send our short, interactive videos that give your employees and customers the freedom to tell you WHY they feel like they do.
+                </p>
               </div>
             </motion.div>
 
@@ -197,7 +198,7 @@ export default function Home() {
           <div>
             <UsersIcon className="h-20 w-20 mx-auto mb-6 text-purple-400" />
             <h3 className="text-3xl font-bold mb-4">Built for every human</h3>
-            <p className="text-lg text-white/60">120+ languages • Offline • Voice & text</p>
+            <p className="text-lg text-white/60">120+ languages • Accessibility • Voice & text</p>
           </div>
           <div>
             <GlobeAltIcon className="h-20 w-20 mx-auto mb-6 text-cyan-400" />

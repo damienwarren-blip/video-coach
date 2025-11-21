@@ -8,34 +8,37 @@ import {
   GlobeAltIcon,
 } from '@heroicons/react/24/solid';
 
-// --- CONFIGURATION FOR THE SCATTERED MOCKS (ADJUSTED FOR WIDER MOBILE SPREAD) ---
+// --- FINAL CONFIGURATION: Using simple Flexbox for even horizontal spacing and small vertical stagger ---
 const MOCKUPS = [
   {
     src: '/mockup-1.png',
     alt: 'App Screenshot 1',
-    initialRotation: -10,
-    // 🔥 NEW: Increased offset for wider spread on mobile
-    xOffset: '-15%', 
-    yOffset: '-100px', 
-    zIndex: 15,
+    initialRotation: -15, 
+    yTranslate: '-translate-y-12',  // Raise up slightly
   },
   {
     src: '/mockup-2.png',
     alt: 'App Screenshot 2',
-    initialRotation: 5,
-    // 🔥 NEW: Increased offset for wider spread on mobile
-    xOffset: '-5%', 
-    yOffset: '-30px', 
-    zIndex: 20, 
+    initialRotation: 10,  
+    yTranslate: '-translate-y-20',  // Raise higher
   },
   {
     src: '/mockup-3.png',
     alt: 'App Screenshot 3',
-    initialRotation: 20,
-    // 🔥 NEW: Increased offset for wider spread on mobile
-    xOffset: '10%',
-    yOffset: '-130px', 
-    zIndex: 10,
+    initialRotation: 25,  
+    yTranslate: '-translate-y-8',   // Lowest point
+  },
+  { 
+    src: '/mockup-4.png', 
+    alt: 'App Screenshot 4',
+    initialRotation: -5,  
+    yTranslate: '-translate-y-16',  // Medium high
+  },
+  { 
+    src: '/mockup-5.png', 
+    alt: 'App Screenshot 5',
+    initialRotation: 30,  
+    yTranslate: '-translate-y-24',  // High point
   },
 ];
 
@@ -46,13 +49,9 @@ export default function Home() {
     offset: ['start start', 'end end'],
   });
 
-  // Background gradient parallax
+  // Background gradient parallax remains
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -1000]); 
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -600]);
-  
-  // Parallax animation for the entire mockups group
-  const mockupsY = useTransform(scrollYProgress, [0, 0.4], [0, 300]); 
-  const mockupsRotate = useTransform(scrollYProgress, [0, 0.4], [0, 5]); 
 
   return (
     <div ref={container} className="relative bg-black overflow-hidden text-white">
@@ -72,45 +71,46 @@ export default function Home() {
           transition={{ duration: 1.4 }}
           className="text-center pt-24 md:pt-48 z-30" 
         >
-          {/* 🔥 NEW: Increased base mobile font size from text-7xl to text-8xl */}
+          {/* Title */}
           <h1 className="text-8xl leading-none font-black tracking-tighter md:text-9xl lg:text-[200px] xl:text-[220px]">
             <span className="bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">Quick</span>
             <br />
             <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
           </h1>
           
-          {/* 1. STRAP LINE (Main Subheading) - Increased mobile font size */}
+          {/* Text Order - Strap Line (mt-8 remains) */}
           <p className="mt-8 text-4xl md:text-5xl text-white/70 font-light">
             Conversations @ scale
           </p>
 
-          {/* 🔥 2. WORDING (Value Proposition) - Increased mobile font size from text-xl to text-2xl */}
-          <p className="mt-6 text-2xl md:text-3xl text-white font-normal max-w-2xl mx-auto tracking-wide">
+          {/* 🔥 FIX: Increased Margin Top from mt-6 to mt-12 */}
+          <p className="mt-12 text-2xl md:text-3xl text-white font-normal max-w-2xl mx-auto tracking-wide">
             Give employees and customers the freedom to tell you what's really going on with short interactive videos.
           </p>
           
         </motion.div>
         
-        {/* SCATTERED MOCKUP GROUP */}
+        {/* GUARANTEED FLEXBOX ROW LAYOUT */}
         <motion.div
-          style={{ y: mockupsY, rotate: mockupsRotate }}
-          className="absolute top-[85vh] md:top-[75vh] w-full max-w-4xl h-[70vh] mx-auto z-10 translate-x-[-10%] md:translate-x-[-20%]" 
+          className="w-full max-w-7xl px-4 absolute bottom-0 md:bottom-10 flex justify-between items-end h-[60vh] md:h-[80vh] overflow-visible z-10" 
         >
           {MOCKUPS.map((mock, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.15 + 0.5, type: "spring", stiffness: 100 }}
+              transition={{ delay: index * 0.1 + 0.5, type: "spring", stiffness: 100 }} 
+              className={`
+                relative 
+                w-[18vw] md:w-[150px] min-w-[120px] aspect-[9/16] 
+                rounded-[3rem] overflow-hidden 
+                shadow-2xl border-4 border-white/5 
+                ${mock.yTranslate}
+                transform rotate-[${mock.initialRotation}deg] 
+              `}
               style={{
-                zIndex: mock.zIndex,
-                transform: `rotate(${mock.initialRotation}deg) translateX(-50%)`,
-                left: '50%',
-                top: mock.yOffset,
-                marginLeft: mock.xOffset, 
+                zIndex: 10 + index, 
               }}
-              className="absolute w-1/3 md:w-1/4 max-w-[200px] aspect-[9/16] 
-                         rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white/5"
             >
               <img 
                 src={mock.src} 
@@ -122,6 +122,8 @@ export default function Home() {
         </motion.div>
       </section>
       
+      ---
+
       {/* Separator to ensure the next section starts well below the images */}
       <div className="h-[20vh] md:h-[10vh]" /> 
 

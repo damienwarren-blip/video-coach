@@ -117,7 +117,7 @@ export default function Home() {
           viewport={{ once: true }}
           className="text-6xl md:text-8xl font-black mb-12 bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent"
         >
-          Let's Start a conversation
+          Let's Chat
         </motion.h2>
       </section>
 

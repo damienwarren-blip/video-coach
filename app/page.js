@@ -111,24 +111,18 @@ export default function Home() {
               </motion.div>
             ))}
 
-            {/* "Freedom" text - placed above the background mockups */}
+            {/* 🔥 FIXED COPY 🔥 */}
             <p className="relative z-10 text-2xl md:text-3xl text-white font-normal leading-relaxed tracking-wide mt-2 text-center">
-              Give employees and customers the freedom to tell you what's really going on with short interactive videos.
+              Give employees and customers the **freedom to tell you *WHY***—capturing the signals, context, and emotion that numbers alone can’t.
             </p>
           </motion.div>
         </motion.div>
-
-        {/* MOCKUPS 4 & 5 REMOVED ENTIRELY */}
-
       </section>
 
-      ---
+      {/* 🔥 GAP REDUCTION: Removed separator div and adjusted padding below 🔥 */}
 
-      {/* Separator to ensure the next section starts well below the images */}
-      <div className="h-[20vh] md:h-[10vh]" />
-
-      {/* HOW IT WORKS HEADING */}
-      <section className="pt-24 pb-12 px-6 text-center">
+      {/* HOW IT WORKS HEADING (Adjusted padding-top to close gap) */}
+      <section className="pt-16 pb-12 px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

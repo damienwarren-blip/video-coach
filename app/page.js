@@ -8,34 +8,22 @@ import {
   GlobeAltIcon,
 } from '@heroicons/react/24/solid';
 
-// --- CONFIGURATION: ONLY 3 MOCKUPS FOR THE VIBRANT BOX ---
+// --- CONFIGURATION: 3 MOCKUPS FOR SIMPLE ROW DISPLAY ---
 const MOCKUPS = [
   {
     src: '/mockup-1.png',
     alt: 'App Screenshot 1',
-    initialRotation: -10, // Slight rotation for effect
-    xOffset: '-35%',      // Position relative to its parent container
-    yOffset: '10%',       // Position relative to its parent container
-    scale: 0.7,           // Smaller scale for background effect
-    zIndex: 5,            // Behind the text
+    initialRotation: -10, // Staggered rotation
   },
   {
     src: '/mockup-2.png',
     alt: 'App Screenshot 2',
-    initialRotation: 5,   // Slight rotation
-    xOffset: '0%',        // Center position
-    yOffset: '30%',       // Slightly lower
-    scale: 0.8,           // Slightly larger for middle
-    zIndex: 8,            // Behind the text
+    initialRotation: 5,   // Staggered rotation
   },
   {
     src: '/mockup-3.png',
     alt: 'App Screenshot 3',
-    initialRotation: 15,  // Slight rotation
-    xOffset: '35%',       // Position relative to its parent container
-    yOffset: '15%',       // Position relative to its parent container
-    scale: 0.75,          // Smaller scale for background effect
-    zIndex: 6,            // Behind the text
+    initialRotation: 15,  // Staggered rotation
   },
 ];
 
@@ -80,46 +68,48 @@ export default function Home() {
             Conversations @ scale
           </p>
 
-          {/* VIBRANT CONTAINER: Freedom text and 3 background mockups */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4, delay: 0.2 }}
-            className="relative mt-12 mx-auto w-[90vw] md:max-w-2xl min-h-[300px] md:min-h-[350px]
-                       rounded-3xl p-6 md:p-10
-                       bg-gradient-to-br from-purple-700/60 to-pink-600/60
-                       backdrop-blur-xl border border-white/20 shadow-2xl overflow-hidden"
-          >
-            {/* Background Mockups (First 3) inside the vibrant container */}
-            {MOCKUPS.map((mock, index) => (
-              <motion.div
-                key={index}
-                style={{
-                  position: 'absolute',
-                  left: '50%', // Center horizontally
-                  top: '50%',  // Center vertically
-                  transform: `translate(-50%, -50%) rotate(${mock.initialRotation}deg) translateX(${mock.xOffset}) translateY(${mock.yOffset}) scale(${mock.scale})`,
-                  zIndex: mock.zIndex,
-                }}
-                className="w-1/2 aspect-[9/16] rounded-3xl overflow-hidden opacity-40 md:opacity-60"
-              >
-                <img
-                  src={mock.src}
-                  alt={mock.alt}
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            ))}
-
-            {/* 🔥 REVISED CONCISE COPY 🔥 */}
-            <p className="relative z-10 text-2xl md:text-3xl text-white font-normal leading-relaxed tracking-wide mt-2 text-center">
-              Give employees and customers the **FREEDOM to tell you WHY** they feel like they do.
-            </p>
-          </motion.div>
+          {/* FINAL REVISED COPY */}
+          <p className="relative z-10 text-2xl md:text-3xl text-white font-normal leading-relaxed tracking-wide mt-8 md:mt-12 mx-auto max-w-2xl text-center">
+            Give employees and customers the FREEDOM to tell you WHY they feel like they do.
+          </p>
         </motion.div>
+
+        {/* --- RESTORED 3-IMAGE ROW LAYOUT --- */}
+        <motion.div
+          className="relative mt-16 md:mt-24 w-full max-w-4xl flex justify-center items-end overflow-visible z-20"
+        >
+          {MOCKUPS.map((mock, index) => (
+             <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 60, rotate: mock.initialRotation }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 + 0.5, type: "spring", stiffness: 100 }}
+              className={`
+                relative
+                w-1/3 min-w-[120px] aspect-[9/16]
+                rounded-[3rem] overflow-hidden
+                shadow-2xl border-4 border-white/5
+                mx-2 md:mx-4
+                transform rotate-[${mock.initialRotation}deg]
+                ${index === 1 ? '-translate-y-10 md:-translate-y-16' : ''} // Stagger the middle one
+              `}
+              style={{
+                zIndex: 10 + index,
+              }}
+            >
+              <img
+                src={mock.src}
+                alt={mock.alt}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+        {/* ------------------------------------- */}
+
       </section>
 
-      {/* HOW IT WORKS HEADING (Adjusted padding-top to close gap) */}
+      {/* HOW IT WORKS HEADING (Kept reduced padding for smaller gap) */}
       <section className="pt-16 pb-12 px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
@@ -168,7 +158,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Get the WHY */}
+      {/* 🔥 REORDERED GET THE WHY SECTION 🔥 */}
       <section className="py-32 px-6">
         <motion.h2
           initial={{ opacity: 0 }}
@@ -179,17 +169,22 @@ export default function Home() {
         </motion.h2>
 
         <div className="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+          {/* 1. BE TRENDY (New First Box) */}
           <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">Strategy</h3>
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed">Numbers tell you what. Video tells you why. Tone, pauses, emotion — the signals no checkbox can capture.</p>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">Be Trendy</h3>
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed">The Digital world runs on Video, voice messages, and real moments. We meet people where they already are.</p>
           </motion.div>
+
+          {/* 2. VOICE & FREEDOM (New Second Box) */}
           <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">Voice & freedom</h3>
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed">People can answer with video, voice notes, or text — whatever feels natural. No forced formats, just authentic responses.</p>
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed">Imagine having a coffee chat with thousands of customers and employees. It feels natural. No forced formats, just authentic responses.</p>
           </motion.div>
+
+          {/* 3. STRATEGY (New Third Box) */}
           <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">Be Trendy</h3>
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed">The world runs on Reels, voice messages, and real moments. Your people insights should feel just as natural.</p>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">Strategy</h3>
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed">Quick time to value. We provide your action plan — no analysis, no friction.</p>
           </motion.div>
         </div>
       </section>

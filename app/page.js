@@ -40,7 +40,7 @@ export default function Home() {
         <div className="absolute bottom-0 right-0 w-[1200px] h-[1200px] bg-gradient-to-tl from-teal-400/30 via-cyan-400/30 to-sky-400/20 rounded-full blur-3xl" />
       </motion.div>
 
-      {/* HERO */}
+      {/* HERO – mobile-perfect */}
       <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-32">
         <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.4 }} className="text-center z-30 max-w-7xl px-6">
           <h1 className="text-8xl leading-none font-black tracking-tighter md:text-9xl lg:text-[200px] xl:text-[220px]">
@@ -49,18 +49,19 @@ export default function Home() {
             <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
           </h1>
 
-          <p className="mt-8 text-4xl md:text-6xl text-white/70 font-light">Conversations @ scale</p>
+          {/* One line on mobile – slightly smaller */}
+          <p className="mt-8 text-4xl md:text-5xl lg:text-6xl text-white/70 font-light tracking-tight">
+            Conversations @ scale
+          </p>
 
-          {/* Updated hero text – no “video or voice”, Email or social */}
           <div className="mt-16 max-w-4xl mx-auto">
             <motion.p 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="text-2xl md:text-3xl text-white/85 leading-relaxed text-center"
+              className="text-2xl md:text-3xl text-white/85 leading-snug text-center px-4"
             >
               Short interactive videos that feel like real conversation.<br />
-              You ask once. They reply with their phone.<br />
               <span className="text-pink-300 font-medium">
                 Strategic insight delivered — no analysis, no waiting.
               </span>
@@ -102,20 +103,14 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* HOW IT WORKS – updated line 2 */}
+      {/* HOW IT WORKS */}
       <section className="py-24 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
-          <motion.h2 
-            initial={{ opacity: 0, y: 40 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }}
-            className="text-center text-6xl md:text-8xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent"
-          >
+          <motion.h2 className="text-center text-6xl md:text-8xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
             How it works
           </motion.h2>
 
           <div className="grid md:grid-cols-4 gap-12 mt-20">
-
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-center">
               <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-gradient-to-br from-pink-400 to-rose-400 p-2">
                 <div className="w-full h-full rounded-full bg-black/60 backdrop-blur flex items-center justify-center">
@@ -155,25 +150,32 @@ export default function Home() {
               <h3 className="text-2xl font-bold mb-3">Strategic insight delivered</h3>
               <p className="text-white/70">No analysis required — instantly clear.</p>
             </motion.div>
-
           </div>
         </div>
       </section>
 
-      {/* METRICS */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-center items-center gap-20 md:gap-32">
-          <div className="text-center">
-            <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">3×</div>
-            <p className="mt-6 text-xl md:text-2xl text-white/70">Higher response rates</p>
-          </div>
-          <div className="text-center">
-            <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">10×</div>
-            <p className="mt-6 text-xl md:text-2xl text-white/70">Deeper emotional insight</p>
-          </div>
-          <div className="text-center">
-            <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent">&lt;48h</div>
-            <p className="mt-6 text-xl md:text-2xl text-white/70">From question to clarity</p>
+      {/* KEY BENEFITS – replaces old metrics */}
+      <section className="py-24 md:py-32 px-6 bg-gradient-to-b from-transparent via-pink-900/5 to-transparent">
+        <div className="max-w-7xl mx-auto">
+          <motion.h2 className="text-center text-6xl md:text-8xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
+            Key benefits
+          </motion.h2>
+
+          <div className="grid md:grid-cols-3 gap-12 mt-20">
+            <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-center">
+              <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">3×</div>
+              <p className="mt-6 text-xl md:text-2xl text-white/70">Higher response rates</p>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-center">
+              <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">10×</div>
+              <p className="mt-6 text-xl md:text-2xl text-white/70">Deeper emotional insight</p>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-center">
+              <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent">&lt;48h</div>
+              <p className="mt-6 text-xl md:text-2xl text-white/70">From question to clarity</p>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -26,7 +25,7 @@ export default function Home() {
   return (
     <div ref={container} className="relative bg-black overflow-hidden text-white">
 
-      {/* Background blobs */}
+      {/* Background blobs (Parallax Effect) - z-10 ensures they are lowest */}
       <motion.div style={{ y: y1 }} className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute top-0 left-0 w-[1000px] h-[1000px] bg-gradient-to-br from-pink-400/40 via-rose-400/30 to-purple-500/40 rounded-full blur-3xl" />
         <div className="absolute top-40 -right-40 w-[800px] h-[800px] bg-gradient-to-bl from-fuchsia-400/30 to-violet-500/20 rounded-full blur-3xl" />
@@ -35,13 +34,43 @@ export default function Home() {
         <div className="absolute bottom-0 right-0 w-[1200px] h-[1200px] bg-gradient-to-tl from-teal-400/30 via-cyan-400/30 to-sky-400/20 rounded-full blur-3xl" />
       </motion.div>
 
-      {/* CLEAN HERO */}
+      {/* 🎯 HERO SECTION - MOCKUPS WITH UPDATED OPACITY (60) AND ROTATION REMOVED 🎯 */}
       <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-20 md:pb-32">
+        
+        {/* The 4 Mockup Images centered and scaled/rotated for a background look */}
+        {/* OPACITY UPDATED TO 60, ROTATE-12 REMOVED */}
+        <div className="absolute inset-0 flex items-center justify-center z-0"> 
+            {/* The parent grid container */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 lg:gap-12 opacity-60 scale-150 md:scale-125 pointer-events-none"> {/* rotate-12 removed from here */}
+                
+                {/* Image 1 */}
+                <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl blur-[2px]">
+                    <img src="/mockup-1.png" alt="QuickChat Mockup 1" className="w-full h-full object-cover" />
+                </div>
+                
+                {/* Image 2 */}
+                <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl translate-y-8 md:translate-y-16 blur-[2px]">
+                    <img src="/mockup-2.png" alt="QuickChat Mockup 2" className="w-full h-full object-cover" />
+                </div>
+                
+                {/* Image 3 */}
+                <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl blur-[2px]">
+                    <img src="/mockup-3.png" alt="QuickChat Mockup 3" className="w-full h-full object-cover" />
+                </div>
+                
+                {/* Image 4 */}
+                <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl translate-y-8 md:translate-y-16 blur-[2px]">
+                    <img src="/mockup-4.png" alt="QuickChat Mockup 4" className="w-full h-full object-cover" />
+                </div>
+            </div>
+        </div>
+        
+        {/* Hero Text (z-20 ensures text is above mockups) */}
         <motion.div 
           initial={{ opacity: 0, y: 40 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 1.4 }} 
-          className="text-center z-50 max-w-7xl px-6"
+          className="text-center z-20 max-w-7xl px-6"
         >
           <h1 className="text-8xl leading-none font-black tracking-tighter md:text-9xl lg:text-[200px] xl:text-[220px]">
             <span className="bg-gradient-to-r from-pink-300 via-rose-300 to-white bg-clip-text text-transparent">Quick</span>
@@ -55,48 +84,26 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* FINAL: CINEMATIC REPEATING GRID – MOBILE + DESKTOP PERFECTION */}
+      {/* --- Short interactive videos... --- */}
       <section className="relative py-24 md:py-32 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
-            className="relative"
-          >
-            {/* Repeating phone grid – massive on mobile, cinematic on desktop */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
-              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border-8 border-white/10 shadow-2xl">
-                <img src="/mockup-1.png" alt="" className="w-full h-full object-cover" />
-              </div>
-              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border-8 border-white/10 shadow-2xl translate-y-8 md:translate-y-16">
-                <img src="/mockup-2.png" alt="" className="w-full h-full object-cover" />
-              </div>
-              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border-8 border-white/10 shadow-2xl">
-                <img src="/mockup-3.png" alt="" className="w-full h-full object-cover" />
-              </div>
-              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border-8 border-white/10 shadow-2xl translate-y-8 md:translate-y-16">
-                <img src="/mockup-4.png" alt="" className="w-full h-full object-cover" />
-              </div>
-            </div>
-
-            {/* Bold, unmissable text overlay */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="text-center px-8">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+            <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2 }}
+            >
                 <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
                   Short interactive videos<br className="block md:hidden" />
                   <span className="hidden md:inline"> that </span>feel like real conversation.
                 </h2>
                 <p className="mt-8 md:mt-12 text-xl md:text-2xl text-white/95 font-medium">
-                  Strategic insight delivered — no analysis, no waiting.
+                  Strategic insight delivered — With Customers, Employees, Teams. Get the WHY behind the data.
                 </p>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
         </div>
       </section>
-
+      
       {/* Have a QuickChat with us */}
       <section className="pt-20 pb-16 px-6 text-center">
         <motion.h2 

@@ -78,13 +78,14 @@ export default function Home() {
             <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
           </h1>
 
-          <p className="mt-8 text-4xl md:text-5xl lg:text-6xl text-white/70 font-light tracking-tight">
+          {/* Subhead with pink gradient styling */}
+          <p className="mt-8 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight bg-gradient-to-r from-pink-300 via-rose-300 to-white bg-clip-text text-transparent">
             Conversations @ scale
           </p>
         </motion.div>
       </section>
 
-      {/* --- Short interactive videos... --- */}
+      {/* --- REVISED SECTION: Main/Tag Structure --- */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 text-center">
             <motion.div
@@ -93,14 +94,15 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 1.2 }}
             >
+                {/* H2: MAIN STATEMENT (Benefit-Driven) */}
                 <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
-                  Short interactive videos that feel like real conversation.
-                </h2>
-                <p className="mt-8 md:mt-12 text-xl md:text-2xl text-white/95 font-medium">
                   Go beyond surveys.<br/>
-                  Talk to Customers, Employees, Teams like never before.<br/>
-                  {/* REVISION: Replaced **WHY** with <strong>WHY</strong> */}
-                  Get the <strong>WHY</strong> behind the numbers.
+                  Talk to Customers, Employees like never before.
+                </h2>
+                
+                {/* P: TAGLINE (Feature + Why) */}
+                <p className="mt-8 md:mt-12 text-xl md:text-2xl text-white/95 font-medium">
+                  Short interactive videos gets the <strong>WHY</strong> behind data.
                 </p>
             </motion.div>
         </div>
@@ -187,7 +189,6 @@ export default function Home() {
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-center">
               <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">10×</div>
-              {/* REVISION: Replaced **WHY** with <strong>WHY</strong> */}
               <p className="mt-6 text-xl md:text-2xl text-white/70">Get the <strong>WHY</strong> behind the data</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-center">

@@ -4,13 +4,14 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import {
   ShieldCheckIcon,
-  GlobeAltIcon,
   HeartIcon,
   SparklesIcon,
   VideoCameraIcon,
   PaperAirplaneIcon,
   ChatBubbleLeftRightIcon,
-} from '@heroicons/react/24/solid';
+  LockClosedIcon, 
+}
+ from '@heroicons/react/24/solid';
 
 export default function Home() {
   const container = useRef(null);
@@ -34,14 +35,13 @@ export default function Home() {
         <div className="absolute bottom-0 right-0 w-[1200px] h-[1200px] bg-gradient-to-tl from-teal-400/30 via-cyan-400/30 to-sky-400/20 rounded-full blur-3xl" />
       </motion.div>
 
-      {/* 🎯 HERO SECTION - MOCKUPS WITH UPDATED OPACITY (60) AND ROTATION REMOVED 🎯 */}
+      {/* 🎯 HERO SECTION - MOCKUPS WITH OPACITY 70 🎯 */}
       <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-20 md:pb-32">
         
         {/* The 4 Mockup Images centered and scaled/rotated for a background look */}
-        {/* OPACITY UPDATED TO 60, ROTATE-12 REMOVED */}
         <div className="absolute inset-0 flex items-center justify-center z-0"> 
             {/* The parent grid container */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 lg:gap-12 opacity-60 scale-150 md:scale-125 pointer-events-none"> {/* rotate-12 removed from here */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 lg:gap-12 opacity-70 scale-150 md:scale-125 pointer-events-none"> 
                 
                 {/* Image 1 */}
                 <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl blur-[2px]">
@@ -98,7 +98,7 @@ export default function Home() {
                   <span className="hidden md:inline"> that </span>feel like real conversation.
                 </h2>
                 <p className="mt-8 md:mt-12 text-xl md:text-2xl text-white/95 font-medium">
-                  Strategic insight delivered — With Customers, Employees, Teams. Get the WHY behind the data.
+                  Go beyond surveys. Talk to Customers, Employees, Teams like never before. Get the WHY behind the data.
                 </p>
             </motion.div>
         </div>
@@ -138,8 +138,8 @@ export default function Home() {
                   <VideoCameraIcon className="h-14 w-14 text-pink-300" />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold mb-3">Create the right video</h3>
-              <p className="text-white/70">A real person asks a real question.</p>
+              <h3 className="text-2xl font-bold mb-3">Create a video.</h3>
+              <p className="text-white/70">Ask what you want to know.</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-center">
               <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-gradient-to-br from-purple-400 to-fuchsia-400 p-2">
@@ -166,7 +166,7 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-3">Strategic insight delivered</h3>
-              <p className="text-white/70">No analysis required — instantly clear.</p>
+              <p className="text-white/70">No analysis required — instantly clear. Quick time to value.</p>
             </motion.div>
           </div>
         </div>
@@ -185,7 +185,7 @@ export default function Home() {
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-center">
               <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">10×</div>
-              <p className="mt-6 text-xl md:text-2xl text-white/70">Deeper emotional insight</p>
+              <p className="mt-6 text-xl md:text-2xl text-white/70">Get the WHY behind the data</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-center">
               <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent">&lt;48h</div>
@@ -195,7 +195,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* YOUR TRUSTED PARTNER */}
+      {/* YOUR TRUSTED PARTNER (FINAL REVISED COPY HERE) */}
       <section className="py-24 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.h2 className="text-center text-6xl md:text-8xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
@@ -223,11 +223,12 @@ export default function Home() {
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-center">
               <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-gradient-to-br from-cyan-400 to-teal-400 p-2">
                 <div className="w-full h-full rounded-full bg-black/60 backdrop-blur flex items-center justify-center">
-                  <GlobeAltIcon className="h-16 w-16 text-cyan-300" />
+                  <LockClosedIcon className="h-16 w-16 text-cyan-300" />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold mb-3">Gentler on the planet</h3>
-              <p className="text-white/70">87% lighter than traditional video</p>
+              {/* FINAL CREATIVE REVISION */}
+              <h3 className="text-2xl font-bold mb-3">Impartial and Trusted</h3>
+              <p className="text-white/70">Third-party security • Freedom to voice</p>
             </motion.div>
           </div>
         </div>

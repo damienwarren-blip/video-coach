@@ -35,7 +35,7 @@ export default function Home() {
       </motion.div>
 
       {/* CLEAN HERO */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-40">
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-20 md:pb-32">
         <motion.div 
           initial={{ opacity: 0, y: 40 }} 
           animate={{ opacity: 1, y: 0 }} 
@@ -54,18 +54,18 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* FINAL: PEOPLE 100% VISIBLE + ULTRA-CLEAN CARD */}
-      <section className="relative -mt-32 pb-40">
-        {/* Big, beautiful phones – fully visible */}
-        <div className="relative flex justify-center items-end px-6 z-20">
+      {/* FINAL: PERFECT MOBILE + DESKTOP – ALL 3 PHONES VISIBLE */}
+      <section className="relative -mt-20 md:-mt-32 pb-32 md:pb-40">
+        {/* Phones – perfectly sized and spaced */}
+        <div className="relative flex justify-center items-end px-4 md:px-6 z-20">
           <motion.div
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, type: "spring", stiffness: 80 }}
-            className="relative -mr-20 md:-mr-32"
+            className="relative -mr-8 md:-mr-20"
           >
-            <div className="w-80 md:w-[540px] aspect-[9/16] rounded-[3.5rem] overflow-hidden border-8 border-white/10 shadow-2xl">
+            <div className="w-64 md:w-[460px] lg:w-[520px] aspect-[9/16] rounded-[3rem] md:rounded-[3.5rem] overflow-hidden border-6 md:border-8 border-white/10 shadow-2xl">
               <img src="/mockup-1.png" alt="Conversation" className="w-full h-full object-cover" />
             </div>
           </motion.div>
@@ -75,9 +75,9 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6, type: "spring", stiffness: 80 }}
-            className="relative -mr-20 md:-mr-32"
+            className="relative -mr-8 md:-mr-20"
           >
-            <div className="w-80 md:w-[540px] aspect-[9/16] rounded-[3.5rem] overflow-hidden border-8 border-white/10 shadow-2xl -translate-y-20 md:-translate-y-32">
+            <div className="w-72 md:w-[520px] lg:w-[580px] aspect-[9/16] rounded-[3rem] md:rounded-[3.5rem] overflow-hidden border-6 md:border-8 border-white/10 shadow-2xl -translate-y-12 md:-translate-y-24">
               <img src="/mockup-2.png" alt="Scale" className="w-full h-full object-cover" />
             </div>
           </motion.div>
@@ -88,13 +88,13 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ delay: 0.8, type: "spring", stiffness: 80 }}
           >
-            <div className="w-80 md:w-[540px] aspect-[9/16] rounded-[3.5rem] overflow-hidden border-8 border-white/10 shadow-2xl">
+            <div className="w-64 md:w-[460px] lg:w-[520px] aspect-[9/16] rounded-[3rem] md:rounded-[3.5rem] overflow-hidden border-6 md:border-8 border-white/10 shadow-2xl">
               <img src="/mockup-3.png" alt="Insight" className="w-full h-full object-cover" />
             </div>
           </motion.div>
         </div>
 
-        {/* ULTRA-TRANSPARENT CARD – people fully visible */}
+        {/* ULTRA-TRANSPARENT CARD – people 100% visible */}
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-40 pointer-events-none">
           <motion.div 
             initial={{ opacity: 0 }}
@@ -103,15 +103,15 @@ export default function Home() {
             transition={{ duration: 1.4 }}
             className="max-w-5xl mx-auto px-6"
           >
-            <div className="bg-black/10 backdrop-blur-sm rounded-3xl py-20 border border-white/5 text-center">
-              {/* Subtle inner glow so pink text pops */}
+            <div className="bg-black/10 backdrop-blur-sm rounded-3xl py-16 md:py-20 border border-white/5 text-center">
               <div className="relative">
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-pink-500/5 via-purple-500/5 to-cyan-500/5 blur-3xl"></div>
                 <div className="relative">
-                  <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
-                    Short interactive videos<br />that feel like real conversation.
+                  <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
+                    Short interactive videos<br className="block md:hidden" />
+                    <span className="hidden md:inline"> that </span>feel like real conversation.
                   </h2>
-                  <p className="mt-10 text-xl md:text-2xl text-white/95 font-medium">
+                  <p className="mt-8 md:mt-10 text-lg md:text-2xl text-white/95 font-medium">
                     Strategic insight delivered — no analysis, no waiting.
                   </p>
                 </div>

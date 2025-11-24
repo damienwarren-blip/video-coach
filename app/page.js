@@ -43,22 +43,22 @@ export default function Home() {
             {/* The parent grid container */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 lg:gap-12 opacity-70 scale-150 md:scale-125 pointer-events-none"> 
                 
-                {/* Image 1 - Removed blur-[2px] */}
+                {/* Image 1 */}
                 <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl">
                     <img src="/mockup-1.png" alt="QuickChat Mockup 1" className="w-full h-full object-cover" />
                 </div>
                 
-                {/* Image 2 - Removed blur-[2px] */}
+                {/* Image 2 */}
                 <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl translate-y-8 md:translate-y-16">
                     <img src="/mockup-2.png" alt="QuickChat Mockup 2" className="w-full h-full object-cover" />
                 </div>
                 
-                {/* Image 3 - Removed blur-[2px] */}
+                {/* Image 3 */}
                 <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl">
                     <img src="/mockup-3.png" alt="QuickChat Mockup 3" className="w-full h-full object-cover" />
                 </div>
                 
-                {/* Image 4 - Removed blur-[2px] */}
+                {/* Image 4 */}
                 <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl translate-y-8 md:translate-y-16">
                     <img src="/mockup-4.png" alt="QuickChat Mockup 4" className="w-full h-full object-cover" />
                 </div>
@@ -94,12 +94,13 @@ export default function Home() {
                 transition={{ duration: 1.2 }}
             >
                 <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
-                  {/* REVISION 1: Corrected grammar/flow */}
                   Short interactive videos that feel like real conversation.
                 </h2>
                 <p className="mt-8 md:mt-12 text-xl md:text-2xl text-white/95 font-medium">
-                  {/* REVISION 2: Bolded WHY and enforced wrap before data */}
-                  Go beyond surveys. Talk to Customers, Employees, Teams like never before. Get the **WHY** behind the<br/>data.
+                  Go beyond surveys.<br/>
+                  Talk to Customers, Employees, Teams like never before.<br/>
+                  {/* REVISION: Replaced **WHY** with <strong>WHY</strong> */}
+                  Get the <strong>WHY</strong> behind the numbers.
                 </p>
             </motion.div>
         </div>
@@ -186,7 +187,8 @@ export default function Home() {
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-center">
               <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">10×</div>
-              <p className="mt-6 text-xl md:text-2xl text-white/70">Get the **WHY** behind the data</p>
+              {/* REVISION: Replaced **WHY** with <strong>WHY</strong> */}
+              <p className="mt-6 text-xl md:text-2xl text-white/70">Get the <strong>WHY</strong> behind the data</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-center">
               <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent">&lt;48h</div>

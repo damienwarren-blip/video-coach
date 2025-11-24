@@ -19,25 +19,30 @@ export default function CaseStudyPage() {
           <p className="text-xl text-cyan-400 font-semibold mb-4">
             ZEUS SCOOTERS • CUSTOMER CHURN
           </p>
+          {/* Main Headline (Already fixed to scale better) */}
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-white bg-clip-text text-transparent leading-tight">
              How QuickChat Unlocked 3X Churn Insights for Zeus Scooters.
           </h1>
           
-          {/* Metrics/Outcome Strip */}
-          <div className="mt-12 grid grid-cols-3 gap-8 p-6 border-y border-pink-700/50">
+          {/* Metrics/Outcome Strip - FIX APPLIED HERE */}
+          <div className="mt-12 grid grid-cols-3 gap-4 md:gap-8 p-6 border-y border-pink-700/50">
+            {/* Metric 1: 3X */}
             <div className="text-center">
-                <div className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">3×</div>
-                <p className="text-white/70">Participation Rate vs. Surveys</p>
+                <div className="text-4xl md:text-7xl font-bold bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">3×</div>
+                <p className="text-white/70 text-sm md:text-base">Participation Rate vs. Surveys</p>
             </div>
+            {/* Metric 2: 150K */}
             <div className="text-center">
-                <div className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">150K</div>
-                <p className="text-white/70">German Customers Contacted</p>
+                <div className="text-4xl md:text-7xl font-bold bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">150K</div>
+                <p className="text-white/70 text-sm md:text-base">German Customers Contacted</p>
             </div>
+            {/* Metric 3: Clear Why */}
             <div className="text-center">
-                <div className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent">Clear Why</div>
-                <p className="text-white/70">Insights Delivered Instantly</p>
+                <div className="text-4xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent">Clear Why</div>
+                <p className="text-white/70 text-sm md:text-base">Insights Delivered Instantly</p>
             </div>
           </div>
+          {/* END FIX */}
         </motion.div>
 
         {/* 2. THE CHALLENGE */}

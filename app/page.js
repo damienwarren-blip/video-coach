@@ -1,3 +1,4 @@
+
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -76,7 +77,7 @@ export default function Home() {
                 <img src="/mockup-3.png" alt="" className="w-full h-full object-cover" />
               </div>
               <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border-8 border-white/10 shadow-2xl translate-y-8 md:translate-y-16">
-                <img src="/mockup-1.png" alt="" className="w-full h-full object-cover" />
+                <img src="/mockup-4.png" alt="" className="w-full h-full object-cover" />
               </div>
             </div>
 

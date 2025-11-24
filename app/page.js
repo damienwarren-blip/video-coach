@@ -54,78 +54,58 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* FINAL: PERFECT MOBILE + DESKTOP – ALL 3 PHONES VISIBLE */}
-      <section className="relative -mt-20 md:-mt-32 pb-32 md:pb-40">
-        {/* Phones – perfectly sized and spaced */}
-        <div className="relative flex justify-center items-end px-4 md:px-6 z-20">
-          <motion.div
-            initial={{ opacity: 0, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, type: "spring", stiffness: 80 }}
-            className="relative -mr-8 md:-mr-20"
-          >
-            <div className="w-64 md:w-[460px] lg:w-[520px] aspect-[9/16] rounded-[3rem] md:rounded-[3.5rem] overflow-hidden border-6 md:border-8 border-white/10 shadow-2xl">
-              <img src="/mockup-1.png" alt="Conversation" className="w-full h-full object-cover" />
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 140 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, type: "spring", stiffness: 80 }}
-            className="relative -mr-8 md:-mr-20"
-          >
-            <div className="w-72 md:w-[520px] lg:w-[580px] aspect-[9/16] rounded-[3rem] md:rounded-[3.5rem] overflow-hidden border-6 md:border-8 border-white/10 shadow-2xl -translate-y-12 md:-translate-y-24">
-              <img src="/mockup-2.png" alt="Scale" className="w-full h-full object-cover" />
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.8, type: "spring", stiffness: 80 }}
-          >
-            <div className="w-64 md:w-[460px] lg:w-[520px] aspect-[9/16] rounded-[3rem] md:rounded-[3.5rem] overflow-hidden border-6 md:border-8 border-white/10 shadow-2xl">
-              <img src="/mockup-3.png" alt="Insight" className="w-full h-full object-cover" />
-            </div>
-          </motion.div>
-        </div>
-
-        {/* ULTRA-TRANSPARENT CARD – people 100% visible */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-40 pointer-events-none">
+      {/* FINAL: ONE CLEAN, RESPONSIVE BLOCK – PHONES + TEXT */}
+      <section className="relative py-20 md:py-32 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.4 }}
-            className="max-w-5xl mx-auto px-6"
+            transition={{ duration: 1, delay: 0.3 }}
+            className="relative rounded-3xl bg-black/20 backdrop-blur-xl border border-white/10 overflow-hidden shadow-2xl"
           >
-            <div className="bg-black/10 backdrop-blur-sm rounded-3xl py-16 md:py-20 border border-white/5 text-center">
-              <div className="relative">
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-pink-500/5 via-purple-500/5 to-cyan-500/5 blur-3xl"></div>
-                <div className="relative">
-                  <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
-                    Short interactive videos<br className="block md:hidden" />
-                    <span className="hidden md:inline"> that </span>feel like real conversation.
-                  </h2>
-                  <p className="mt-8 md:mt-10 text-lg md:text-2xl text-white/95 font-medium">
-                    Strategic insight delivered — no analysis, no waiting.
-                  </p>
+            {/* Phones – fully visible behind text */}
+            <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
+              <div className="relative flex justify-center items-end w-full px-4">
+                <div className="w-56 md:w-96 -mr-8 md:-mr-20">
+                  <img src="/mockup-1.png" alt="Conversation" className="w-full rounded-3xl border-8 border-white/10 shadow-2xl" />
+                </div>
+                <div className="w-64 md:w-[440px] -mr-8 md:-mr-20 -mt-8 md:-mt-16">
+                  <img src="/mockup-2.png" alt="Scale" className="w-full rounded-3xl border-8 border-white/10 shadow-2xl" />
+                </div>
+                <div className="w-56 md:w-96">
+                  <img src="/mockup-3.png" alt="Insight" className="w-full rounded-3xl border-8 border-white/10 shadow-2xl" />
                 </div>
               </div>
+            </div>
+
+            {/* Text – perfectly centered, always readable */}
+            <div className="relative z-10 py-24 md:py-32 text-center px-8">
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
+                Short interactive videos<br className="block md:hidden" />
+                <span className="hidden md:inline"> that </span>feel like real conversation.
+              </h2>
+              <p className="mt-10 text-xl md:text-2xl text-white/90 font-medium">
+                Strategic insight delivered — no analysis, no waiting.
+              </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Let’s really talk */}
+      {/* Have a QuickChat with us */}
       <section className="pt-20 pb-16 px-6 text-center">
-        <motion.h2 className="text-7xl md:text-9xl font-extrabold bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
-          Let’s really talk
+        <motion.h2 
+          initial={{ opacity: 0, y: 40 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }}
+          className="text-7xl md:text-9xl font-extrabold bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent"
+        >
+          Have a QuickChat with us
         </motion.h2>
+        <p className="mt-6 text-xl md:text-2xl text-white/70 max-w-2xl mx-auto">
+          No slides. No fluff. Just a real conversation.
+        </p>
       </section>
 
       {/* VIDEO */}

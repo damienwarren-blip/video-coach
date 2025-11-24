@@ -23,6 +23,9 @@ export default function Home() {
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -900]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -700]);
 
+  // Define the CTA email target once for easy updates
+  const ctaLink = "mailto:damien@quickchat.space?subject=I want to hear my people&body=Hey Damien – let’s talk about how QuickChat can help us really listen.%0A%0ATeam size: %0ACurrent challenge: ";
+
   return (
     <div ref={container} className="relative bg-black overflow-hidden text-white">
 
@@ -82,10 +85,11 @@ export default function Home() {
           <p className="mt-8 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight bg-gradient-to-r from-pink-300 via-rose-300 to-white bg-clip-text text-transparent">
             Conversations @ scale
           </p>
+          {/* REMOVED: HERO CALL TO ACTION (CTA) was here */}
         </motion.div>
       </section>
 
-      {/* --- REVISED SECTION: Main/Tag Structure with & --- */}
+      {/* --- CORE VALUE PROPOSITION --- */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 text-center">
             <motion.div
@@ -108,7 +112,7 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Have a QuickChat with us */}
+      {/* Have a QuickChat with us (MCTA - Video) */}
       <section className="pt-20 pb-16 px-6 text-center">
         <motion.h2 
           initial={{ opacity: 0, y: 40 }} 
@@ -120,7 +124,7 @@ export default function Home() {
         </motion.h2>
       </section>
 
-      {/* VIDEO */}
+      {/* VIDEO EMBED */}
       <section className="px-4 md:px-8 -mt-12">
         <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-5xl mx-auto">
           <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
@@ -169,7 +173,7 @@ export default function Home() {
                   <SparklesIcon className="h-16 w-16 text-cyan-300" />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold mb-3">Strategic insight delivered</h3>
+              <h3 className="text-2xl font-bold mb-3">Instant Clarity</h3>
               <p className="text-white/70">No analysis required — instantly clear. Quick time to value.</p>
             </motion.div>
           </div>
@@ -198,6 +202,32 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+      {/* CASE STUDY CALL-OUT */}
+      <section className="py-16 md:py-20 px-6 bg-gradient-to-t from-pink-900/10 to-transparent">
+          <div className="max-w-4xl mx-auto text-center">
+              <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.0 }}
+                  className="text-2xl md:text-3xl text-white/80 font-medium"
+              >
+                  Want to see how we delivered 
+                  <span className="text-pink-400 font-bold"> $500k in savings </span> 
+                  for a global logistics company?
+              </motion.p>
+              <motion.a
+                  href="/case-study" // Link to your new case study page
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="mt-8 inline-block px-10 py-4 text-lg font-bold bg-white text-black rounded-full shadow-lg hover:shadow-white/50 transition-all"
+              >
+                  Read the Case Study →
+              </motion.a>
+          </div>
+      </section>
+      
 
       {/* YOUR TRUSTED PARTNER */}
       <section className="py-24 md:py-32 px-6">
@@ -230,8 +260,8 @@ export default function Home() {
                   <LockClosedIcon className="h-16 w-16 text-cyan-300" />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold mb-3">Impartial and Trusted</h3>
-              <p className="text-white/70">Third-party security • Freedom to voice</p>
+              <h3 className="text-2xl font-bold mb-3">Impartial Platform</h3>
+              <p className="text-white/70">Trusted third-party • Freedom to voice</p>
             </motion.div>
           </div>
         </div>
@@ -247,7 +277,7 @@ export default function Home() {
             15 minutes. No slides. Just a real conversation about your people.
           </p>
           <motion.a
-            href="mailto:damien@quickchat.space?subject=I want to hear my people&body=Hey Damien – let’s talk about how QuickChat can help us really listen.%0A%0ATeam size: %0ACurrent challenge: "
+            href={ctaLink}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="mt-20 inline-block px-32 py-16 text-3xl font-bold bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all"

@@ -54,40 +54,43 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* FINAL: ONE CLEAN, RESPONSIVE BLOCK – PHONES + TEXT */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
+      {/* FINAL: CINEMATIC REPEATING GRID – MOBILE + DESKTOP PERFECTION */}
+      <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="relative rounded-3xl bg-black/20 backdrop-blur-xl border border-white/10 overflow-hidden shadow-2xl"
+            transition={{ duration: 1.2 }}
+            className="relative"
           >
-            {/* Phones – fully visible behind text */}
-            <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-              <div className="relative flex justify-center items-end w-full px-4">
-                <div className="w-56 md:w-96 -mr-8 md:-mr-20">
-                  <img src="/mockup-1.png" alt="Conversation" className="w-full rounded-3xl border-8 border-white/10 shadow-2xl" />
-                </div>
-                <div className="w-64 md:w-[440px] -mr-8 md:-mr-20 -mt-8 md:-mt-16">
-                  <img src="/mockup-2.png" alt="Scale" className="w-full rounded-3xl border-8 border-white/10 shadow-2xl" />
-                </div>
-                <div className="w-56 md:w-96">
-                  <img src="/mockup-3.png" alt="Insight" className="w-full rounded-3xl border-8 border-white/10 shadow-2xl" />
-                </div>
+            {/* Repeating phone grid – massive on mobile, cinematic on desktop */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
+              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border-8 border-white/10 shadow-2xl">
+                <img src="/mockup-1.png" alt="" className="w-full h-full object-cover" />
+              </div>
+              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border-8 border-white/10 shadow-2xl translate-y-8 md:translate-y-16">
+                <img src="/mockup-2.png" alt="" className="w-full h-full object-cover" />
+              </div>
+              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border-8 border-white/10 shadow-2xl">
+                <img src="/mockup-3.png" alt="" className="w-full h-full object-cover" />
+              </div>
+              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border-8 border-white/10 shadow-2xl translate-y-8 md:translate-y-16">
+                <img src="/mockup-1.png" alt="" className="w-full h-full object-cover" />
               </div>
             </div>
 
-            {/* Text – perfectly centered, always readable */}
-            <div className="relative z-10 py-24 md:py-32 text-center px-8">
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
-                Short interactive videos<br className="block md:hidden" />
-                <span className="hidden md:inline"> that </span>feel like real conversation.
-              </h2>
-              <p className="mt-10 text-xl md:text-2xl text-white/90 font-medium">
-                Strategic insight delivered — no analysis, no waiting.
-              </p>
+            {/* Bold, unmissable text overlay */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="text-center px-8">
+                <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
+                  Short interactive videos<br className="block md:hidden" />
+                  <span className="hidden md:inline"> that </span>feel like real conversation.
+                </h2>
+                <p className="mt-8 md:mt-12 text-xl md:text-2xl text-white/95 font-medium">
+                  Strategic insight delivered — no analysis, no waiting.
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -103,9 +106,6 @@ export default function Home() {
         >
           Have a QuickChat with us
         </motion.h2>
-        <p className="mt-6 text-xl md:text-2xl text-white/70 max-w-2xl mx-auto">
-          No slides. No fluff. Just a real conversation.
-        </p>
       </section>
 
       {/* VIDEO */}

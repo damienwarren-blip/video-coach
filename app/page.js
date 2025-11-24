@@ -85,7 +85,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* --- REVISED SECTION: Main/Tag Structure --- */}
+      {/* --- REVISED SECTION: Main/Tag Structure with & --- */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 text-center">
             <motion.div
@@ -97,7 +97,7 @@ export default function Home() {
                 {/* H2: MAIN STATEMENT (Benefit-Driven) */}
                 <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
                   Go beyond surveys.<br/>
-                  Talk to Customers, Employees like never before.
+                  Talk to Customers & Employees like never before.
                 </h2>
                 
                 {/* P: TAGLINE (Feature + Why) */}

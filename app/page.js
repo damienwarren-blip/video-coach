@@ -178,7 +178,7 @@ export default function Home() {
             </p>
 
             <motion.a
-              href="/case-study-germany-churn"
+              href="/case-study"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               className="mt-12 inline-block px-10 py-4 text-lg font-medium text-black bg-white rounded-full shadow-xl hover:shadow-white/40 transition-all duration-300"

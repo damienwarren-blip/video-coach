@@ -21,7 +21,7 @@ export default function CaseStudyPage() {
           </p>
           {/* Main Headline (Fixed) */}
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-white bg-clip-text text-transparent leading-tight">
-             How QuickChat Unlocked 3X Churn Insights for Zeus Scooters.
+            How QuickChat Unlocked 3X Churn Insights for Zeus Scooters.
           </h1>
           
           {/* Metrics/Outcome Strip - FIX APPLIED HERE */}
@@ -45,43 +45,43 @@ export default function CaseStudyPage() {
           {/* END FIX */}
         </motion.div>
 
-        {/* 2. THE CHALLENGE */}
+        {/* 2. THE CHALLENGE (UPDATED) */}
         <section className="mt-20 max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-6 text-rose-400">
             The Challenge: The Cost of Silent Churn
           </h2>
           <p className="text-lg text-white/80">
-            Zeus Scooters was facing a critical customer retention problem. Traditional email surveys were yielding less than 1% engagement and provided only shallow, multiple-choice data. They couldn't determine the true **"why"** behind their churn, estimated to be costing the company hundreds of thousands annually in lost revenue. They needed an empathetic, high-engagement method to truly listen to 150,000 customers in the German market.
+            Zeus Scooters was battling a critical customer retention crisis. Their reliance on traditional email surveys yielded a **sub-1% engagement rate**, providing only shallow, multiple-choice data. This meant they were unable to determine the true 'why' behind their escalating churn—a problem costing them **significant annual revenue**. To solve this, **the Irish management team needed a culturally appropriate, German-speaking, high-engagement method** to truly listen to their massive German user base: 150,000 customers across 30 cities.
           </p>
         </section>
 
-        {/* 3. THE APPROACH & OUTCOME */}
+        {/* 3. THE APPROACH & OUTCOME (UPDATED) */}
         <section className="mt-20 max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-6 text-rose-400">
             The Solution: Video at Scale
           </h2>
           <p className="text-lg text-white/80">
-            QuickChat implemented an interactive video campaign, delivered directly via email, asking customers short, open-ended questions. This personalized, mobile-first approach was designed to match the casual, high-speed brand experience of Zeus Scooters, resulting in 3X higher participation.
+            QuickChat implemented a **high-impact, interactive video campaign**, strategically distributed across email, in-app, and social channels. This personalized, mobile-first approach, delivered entirely in German, was specifically engineered to mirror the casual, high-speed brand experience of Zeus Scooters. The result was immediate: QuickChat achieved a **3X higher participation rate** than traditional surveys and, crucially, delivered the **rich, qualitative 'why'** necessary to understand and solve their retention problems.
           </p>
           
           <div className="mt-12 p-8 bg-pink-900/20 rounded-xl">
               <h3 className="text-2xl font-bold mb-4 text-pink-300">Key Insights Delivered (Actionable, Not Specific)</h3>
               <ul className="list-disc list-inside space-y-3 text-lg text-white/80">
-                  <li>**Pricing Strategy:** Identified the precise moment of price friction, allowing for surgical adjustment of their monthly subscription tiers.</li>
-                  <li>**Critical UX Barrier:** Pinpointed a specific, overlooked interface flow in the application that was causing immediate high-value user abandonment.</li>
-                  <li>**Untapped Feature Demand:** Uncovered a high-demand feature request that, when implemented, would increase customer stickiness by an estimated 20%.</li>
+                  <li>**Vehicle Quality:** Solving the **#1 detractor** (defective scooters) is projected to instantly move company NPS from **Critical** to **Healthy** in one quarter.</li>
+                  <li>**Pricing:** Targeting the painful **unlock fee + broken scooter** combination is projected to **cut price complaints by half**.</li>
+                  <li>**City Operations:** Deploying an intervention blitz in specific **Crisis City hotspots** is targeted to **reverse their negative NPS scores** within 90 days.</li>
               </ul>
           </div>
         </section>
 
-        {/* 4. THE QUOTE & CONCLUSION */}
+        {/* 4. THE QUOTE & CONCLUSION (UPDATED) */}
         <section className="mt-20 py-16 bg-gradient-to-r from-purple-900/30 to-black rounded-xl">
             <figure className="max-w-4xl mx-auto px-8 text-center">
                 <blockquote className="text-4xl italic font-light leading-snug">
                     “You’ve given me a **step-by-step guide to reduce churn**. We went from guessing to knowing exactly which button to press to fix our problem.”
                 </blockquote>
                 <figcaption className="mt-8 text-2xl font-bold text-cyan-400">
-                    — [Name/Title], Head of Customer Experience, Zeus Scooters
+                    — Chris Kemp / Deputy CEO, Zeus Scooters
                 </figcaption>
             </figure>
         </section>

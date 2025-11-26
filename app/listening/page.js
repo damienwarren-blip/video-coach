@@ -12,7 +12,7 @@ export default function ListeningPage() {
     <div className="min-h-screen bg-black text-white relative p-0 sm:p-4">
       
       {/* ----------------------------------------------------------- */}
-      {/* 2. MAIN CONTENT (Z-10) - REMOVED max-w-7xl here */}
+      {/* 2. MAIN CONTENT (Z-10) - This div handles horizontal padding for text/buttons */}
       {/* ----------------------------------------------------------- */}
       <div className="mx-auto relative z-10 px-4 sm:px-0">
         
@@ -54,8 +54,8 @@ export default function ListeningPage() {
 
         {/* INTERACTIVE CONTENT CONTAINER (Reduced vertical padding) */}
         <div className="pt-4 pb-4 flex justify-center">
-          {/* Now using max-w-7xl AND max-w-full to center content on desktop but fill mobile width. */}
-          <div className="w-full max-w-full lg:max-w-6xl"> 
+          {/* FIX: Removed all max-w- classes from the video wrapper to allow it to expand fully in the available horizontal space. */}
+          <div className="w-full"> 
             
             {/* VIDEO CONTAINER with Aspect Ratio */}
             <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl shadow-pink-500/30 ring-4 ring-pink-500/50" style={{ paddingBottom: '56.25%' }}>

@@ -71,14 +71,14 @@ export default function Home() {
       {/* VALUE PROP - POLISHED AND CORRECTED */}
       <section className="py-24 md:py-32 px-6 text-center">
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-          {/* Problem Statement */}
+          {/* Problem Statement - EDITED to include WHY! */}
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-snug bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent max-w-5xl mx-auto">
-            We deliver the <span className="text-rose-300">WHY</span>,<br />
+            We deliver the <span className="text-rose-300">WHY!</span>,<br />
             powering strategic decisions and customer retention.
           </h2>
-          {/* UPDATED SOLUTION STATEMENT: Clearer visual separation and impact */}
+          {/* UPDATED SOLUTION STATEMENT: "instant strategy" is one color span */}
           <p className="mt-8 md:mt-12 text-3xl md:text-4xl text-white/95 font-medium max-w-4xl mx-auto">
-            Our Short interactive videos deliver the **instant <span className="font-extrabold text-cyan-300">strategy</span>** you need to inform product development, accelerate growth, and prevent churn.
+            Our Short interactive videos deliver the <span className="font-extrabold text-cyan-300">instant strategy</span> you need to inform product development, accelerate growth, and prevent churn.
           </p>
         </motion.div>
       </section>
@@ -124,7 +124,8 @@ export default function Home() {
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-center">
               <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-gradient-to-br from-rose-400 to-pink-400 p-2"><div className="w-full h-full rounded-full bg-black/60 backdrop-blur flex items-center justify-center"><ChatBubbleLeftRightIcon className="h-14 w-14 text-rose-300" /></div></div>
               <h3 className="text-2xl font-bold mb-3">3. Customers reply in their voice</h3>
-              <p className="text-white/70">Capturing the emotional urgency you need to act.</p>
+              {/* EDITED to be shorter and focus on the WHY */}
+              <p className="text-white/70">Capturing the WHY so you can act.</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }} className="text-center">
               <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-gradient-to-br from-cyan-400 to-teal-400 p-2"><div className="w-full h-full rounded-full bg-black/60 backdrop-blur flex items-center justify-center"><SparklesIcon className="h-16 w-16 text-cyan-300" /></div></div>
@@ -228,9 +229,9 @@ export default function Home() {
       {/* FINAL CTA - DUAL FOCUS: STRATEGY & PILOT */}
       <section className="min-h-screen flex items-center justify-center px-6 bg-gradient-to-b from-transparent via-pink-900/10 to-transparent">
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-center">
-          {/* UPDATED HEADING: Focus on strategy */}
+          {/* UPDATED HEADING: Removed bolding markdown and added cyan color to "Big Strategy" */}
           <h2 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent leading-tight">
-            Ready to Inform Your Next<br />**Big Strategy**?
+            Ready to Inform Your Next<br /><span className="text-cyan-300">Big Strategy</span>?
           </h2>
           {/* UPDATED TEXT: Reflects dual focus and custom pilot */}
           <p className="mt-12 text-2xl md:text-3xl text-white/80 max-w-2xl mx-auto">

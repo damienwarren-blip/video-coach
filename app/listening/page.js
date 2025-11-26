@@ -2,21 +2,22 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 
-export default function CaseStudyPage() {
-  // Video link for the interactive experience
-  const videoAskLink = "https://www.videoask.com/fvfteqxa4";
+export default function ListeningPage() {
+  // Dedicated Video link for the 5-Question Listening Challenge
+  // NOTE: This is the correct VideoAsk link for the interactive video.
+  const listeningChallengeLink = "https://www.videoask.com/fvfteqxa4"; 
 
   return (
-    // Main container with full height and black background
-    <div className="min-h-screen bg-black text-white relative p-4 sm:p-8">
+    // Main container with full height and black background (Reduced overall padding)
+    <div className="min-h-screen bg-black text-white relative p-2 sm:p-4">
       
       {/* ----------------------------------------------------------- */}
       {/* 2. MAIN CONTENT (Z-10) */}
       {/* ----------------------------------------------------------- */}
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* HEADER & BACK BUTTON */}
-        <a href="/" className="text-pink-400 hover:text-pink-300 font-bold mb-12 block">
+        {/* HEADER & BACK BUTTON (Reduced margin-bottom from mb-12 to mb-4) */}
+        <a href="/" className="text-pink-400 hover:text-pink-300 font-bold mb-4 block">
           ← Back to Homepage
         </a>
 
@@ -25,8 +26,9 @@ export default function CaseStudyPage() {
           initial={{ opacity: 0, y: 40 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 1.4 }} 
-          className="text-center pt-10 pb-4 z-20"
+          className="text-center pt-4 pb-2 z-20"
         >
+          {/* QUICKCHAT LOGO STYLE */}
           <h1 className="text-8xl leading-none font-black tracking-tighter md:text-9xl lg:text-[200px] xl:text-[220px]">
             <span className="bg-gradient-to-r from-pink-300 via-rose-300 to-white bg-clip-text text-transparent">Quick</span>
             <br />
@@ -34,30 +36,38 @@ export default function CaseStudyPage() {
           </h1>
           
           {/* Descriptive lines - UPDATED */}
-          <div className="mt-8">
-            <p className="text-3xl font-extrabold text-cyan-300/90 uppercase tracking-widest drop-shadow-lg">
-              Press Play to Help us shape the future.
+          <div className="mt-6">
+            {/* New Tagline */}
+            <p className="text-4xl font-extrabold text-pink-300/90 tracking-tight drop-shadow-lg">
+              we love listening and learning
+            </p>
+             {/* Retained descriptive text */}
+             <p className="mt-2 text-xl text-white/70 max-w-2xl mx-auto">
+                This short interactive video helps us understand your current challenges in customer discovery, feature validation, and churn prevention.
+            </p>
+             {/* Secondary CTA - Updated to match your exact request */}
+             <p className="mt-4 text-2xl font-semibold text-cyan-400">
+                Press Play Below to get started
             </p>
           </div>
         </motion.div>
 
-        {/* INTERACTIVE CONTENT CONTAINER */}
-        <div className="pt-8 pb-20 flex justify-center">
-          {/* Increased max-width to max-w-6xl for a larger video */}
-          <div className="max-w-6xl w-full">
+        {/* INTERACTIVE CONTENT CONTAINER (Reduced vertical padding) */}
+        <div className="pt-4 pb-4 flex justify-center">
+          {/* Ensure it's responsive on mobile, capped at 6xl on desktop */}
+          <div className="w-full max-w-full lg:max-w-6xl">
             
             {/* VIDEO CONTAINER with Aspect Ratio */}
             <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl shadow-pink-500/30 ring-4 ring-pink-500/50" style={{ paddingBottom: '56.25%' }}>
 
               {/* Iframe for the video - fully visible and interactive */}
               <iframe 
-                  src={videoAskLink} 
-                  allow="camera; microphone; autoplay; encrypted-media; geolocation; fullscreen" 
-                  className="absolute top-0 left-0 w-full h-full border-none transition-opacity duration-500"
-                  title="QuickChat Interactive Story"
+                src={listeningChallengeLink} 
+                allow="camera; microphone; autoplay; encrypted-media; geolocation; fullscreen" 
+                className="absolute top-0 left-0 w-full h-full border-none transition-opacity duration-500"
+                title="QuickChat Strategy Discovery"
               ></iframe>
             </div>
-            
           </div>
         </div>
         

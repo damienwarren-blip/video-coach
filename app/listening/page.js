@@ -55,12 +55,12 @@ export default function ListeningPage() {
         </motion.div>
 
         {/* INTERACTIVE CONTENT CONTAINER (Reduced vertical padding) */}
-        {/* We are removing all padding from this structure to allow the video to expand to the full width of the viewport. */}
-        <div className="pt-4 pb-4 flex justify-center">
+        {/* FIX: Added px-4 back here to give mobile spacing, while keeping w-full on the inner div */}
+        <div className="pt-4 pb-4 flex justify-center px-4 sm:px-0">
           <div className="w-full"> 
             
-            {/* VIDEO CONTAINER with Aspect Ratio - Added p-4 for inner padding on mobile, removed on sm: for larger screens */}
-            <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl shadow-pink-500/30 ring-4 ring-pink-500/50 p-4 sm:p-0" style={{ paddingBottom: '56.25%' }}>
+            {/* VIDEO CONTAINER with Aspect Ratio - REMOVED p-4/sm:p-0 */}
+            <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl shadow-pink-500/30 ring-4 ring-pink-500/50" style={{ paddingBottom: '56.25%' }}>
 
               {/* Iframe for the video - fully visible and interactive */}
               <iframe 

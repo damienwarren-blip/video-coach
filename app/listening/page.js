@@ -8,13 +8,13 @@ export default function ListeningPage() {
   const listeningChallengeLink = "https://www.videoask.com/fvfteqxa4"; 
 
   return (
-    // Main container with full height and black background (Set p-0 on mobile for max width, only use padding on sm and up)
+    // Main container with full height and black background (p-0 on mobile for max width)
     <div className="min-h-screen bg-black text-white relative p-0 sm:p-4">
       
       {/* ----------------------------------------------------------- */}
-      {/* 2. MAIN CONTENT (Z-10) - Add horizontal padding here to control content spacing */}
+      {/* 2. MAIN CONTENT (Z-10) - REMOVED max-w-7xl here */}
       {/* ----------------------------------------------------------- */}
-      <div className="max-w-7xl mx-auto relative z-10 px-4 sm:px-0">
+      <div className="mx-auto relative z-10 px-4 sm:px-0">
         
         {/* HEADER & BACK BUTTON (Reduced margin-bottom from mb-12 to mb-4) */}
         <a href="/" className="text-pink-400 hover:text-pink-300 font-bold mb-4 block">
@@ -54,8 +54,7 @@ export default function ListeningPage() {
 
         {/* INTERACTIVE CONTENT CONTAINER (Reduced vertical padding) */}
         <div className="pt-4 pb-4 flex justify-center">
-          {/* Ensure it's responsive on mobile, capped at 6xl on desktop */}
-          {/* Removed explicit px-4 from this wrapper since it's now on the parent container (max-w-7xl) */}
+          {/* Now using max-w-7xl AND max-w-full to center content on desktop but fill mobile width. */}
           <div className="w-full max-w-full lg:max-w-6xl"> 
             
             {/* VIDEO CONTAINER with Aspect Ratio */}

@@ -8,25 +8,27 @@ export default function ListeningPage() {
   const listeningChallengeLink = "https://www.videoask.com/fvfteqxa4"; 
 
   return (
-    // Main container with full height and black background (p-0 on mobile for max width)
+    // Main container (p-0 on mobile for max width, p-4 on sm and up)
     <div className="min-h-screen bg-black text-white relative p-0 sm:p-4">
       
       {/* ----------------------------------------------------------- */}
-      {/* 2. MAIN CONTENT (Z-10) - This div handles horizontal padding for text/buttons */}
+      {/* 2. MAIN CONTENT (Z-10) - This container ensures text content is centered and padded */}
       {/* ----------------------------------------------------------- */}
-      <div className="mx-auto relative z-10 px-4 sm:px-0">
+      <div className="mx-auto relative z-10">
         
-        {/* HEADER & BACK BUTTON (Reduced margin-bottom from mb-12 to mb-4) */}
-        <a href="/" className="text-pink-400 hover:text-pink-300 font-bold mb-4 block">
-          ← Back to Homepage
-        </a>
+        {/* HEADER & BACK BUTTON (Apply horizontal padding to text elements) */}
+        <div className="px-4 sm:px-0">
+          <a href="/" className="text-pink-400 hover:text-pink-300 font-bold mb-4 block">
+            ← Back to Homepage
+          </a>
+        </div>
 
         {/* PROMOTIONAL/DESCRIPTIVE AREA - QUICKCHAT LOGO STYLE */}
         <motion.div 
           initial={{ opacity: 0, y: 40 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 1.4 }} 
-          className="text-center pt-4 pb-2 z-20"
+          className="text-center pt-4 pb-2 z-20 px-4 sm:px-0"
         >
           {/* QUICKCHAT LOGO STYLE */}
           <h1 className="text-8xl leading-none font-black tracking-tighter md:text-9xl lg:text-[200px] xl:text-[220px]">
@@ -53,12 +55,12 @@ export default function ListeningPage() {
         </motion.div>
 
         {/* INTERACTIVE CONTENT CONTAINER (Reduced vertical padding) */}
+        {/* We are removing all padding from this structure to allow the video to expand to the full width of the viewport. */}
         <div className="pt-4 pb-4 flex justify-center">
-          {/* FIX: Removed all max-w- classes from the video wrapper to allow it to expand fully in the available horizontal space. */}
           <div className="w-full"> 
             
-            {/* VIDEO CONTAINER with Aspect Ratio */}
-            <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl shadow-pink-500/30 ring-4 ring-pink-500/50" style={{ paddingBottom: '56.25%' }}>
+            {/* VIDEO CONTAINER with Aspect Ratio - Added p-4 for inner padding on mobile, removed on sm: for larger screens */}
+            <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl shadow-pink-500/30 ring-4 ring-pink-500/50 p-4 sm:p-0" style={{ paddingBottom: '56.25%' }}>
 
               {/* Iframe for the video - fully visible and interactive */}
               <iframe 

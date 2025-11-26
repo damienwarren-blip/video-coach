@@ -8,13 +8,13 @@ export default function ListeningPage() {
   const listeningChallengeLink = "https://www.videoask.com/fvfteqxa4"; 
 
   return (
-    // Main container with full height and black background (Reduced overall padding)
-    <div className="min-h-screen bg-black text-white relative p-2 sm:p-4">
+    // Main container with full height and black background (Set p-0 on mobile for max width, only use padding on sm and up)
+    <div className="min-h-screen bg-black text-white relative p-0 sm:p-4">
       
       {/* ----------------------------------------------------------- */}
-      {/* 2. MAIN CONTENT (Z-10) */}
+      {/* 2. MAIN CONTENT (Z-10) - Add horizontal padding here to control content spacing */}
       {/* ----------------------------------------------------------- */}
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10 px-4 sm:px-0">
         
         {/* HEADER & BACK BUTTON (Reduced margin-bottom from mb-12 to mb-4) */}
         <a href="/" className="text-pink-400 hover:text-pink-300 font-bold mb-4 block">
@@ -55,7 +55,8 @@ export default function ListeningPage() {
         {/* INTERACTIVE CONTENT CONTAINER (Reduced vertical padding) */}
         <div className="pt-4 pb-4 flex justify-center">
           {/* Ensure it's responsive on mobile, capped at 6xl on desktop */}
-          <div className="w-full max-w-full lg:max-w-6xl">
+          {/* Removed explicit px-4 from this wrapper since it's now on the parent container (max-w-7xl) */}
+          <div className="w-full max-w-full lg:max-w-6xl"> 
             
             {/* VIDEO CONTAINER with Aspect Ratio */}
             <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl shadow-pink-500/30 ring-4 ring-pink-500/50" style={{ paddingBottom: '56.25%' }}>

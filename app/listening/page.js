@@ -4,7 +4,6 @@ import React from 'react';
 
 export default function ListeningPage() {
   // Dedicated Video link for the 5-Question Listening Challenge
-  // NOTE: This is the correct VideoAsk link for the interactive video.
   const listeningChallengeLink = "https://www.videoask.com/fvfteqxa4"; 
 
   return (
@@ -14,7 +13,7 @@ export default function ListeningPage() {
       {/* ----------------------------------------------------------- */}
       {/* 2. MAIN CONTENT (Z-10) - This container ensures text content is centered and padded */}
       {/* ----------------------------------------------------------- */}
-      <div className="mx-auto relative z-10">
+      <div className="mx-auto relative z-10 max-w-7xl">
         
         {/* HEADER & BACK BUTTON (Apply horizontal padding to text elements) */}
         <div className="px-4 sm:px-0">
@@ -54,21 +53,21 @@ export default function ListeningPage() {
           </div>
         </motion.div>
 
-        {/* INTERACTIVE CONTENT CONTAINER (Reduced vertical padding) */}
-        {/* FIX: Removed px-4 sm:px-0 to ensure absolute maximum width expansion on mobile. */}
-        <div className="pt-4 pb-4 flex justify-center">
-          <div className="w-full"> 
+        {/* INTERACTIVE CONTENT CONTAINER - NOW USES WORKING EXAMPLE STRUCTURE */}
+        <div className="pt-4 pb-4 flex justify-center px-4">
+          {/* max-w-5xl mx-auto centers and constrains the video block on larger screens. */}
+          <div className="w-full max-w-5xl mx-auto"> 
             
-            {/* VIDEO CONTAINER with Aspect Ratio - This now spans the full width of the viewport */}
-            <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl shadow-pink-500/30 ring-4 ring-pink-500/50" style={{ paddingBottom: '56.25%' }}>
+            {/* VIDEO CONTAINER: Uses responsive aspect ratio classes (Aspect-[9/16] on mobile, 16/9 on desktop) */}
+            <div className="aspect-[9/16] md:aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-pink-500/30 ring-4 ring-pink-500/50">
 
-              {/* Iframe for the video - fully visible and interactive */}
+              {/* Iframe: w-full h-full inside aspect container */}
               <iframe 
                 src={listeningChallengeLink} 
                 allow="camera; microphone; autoplay; encrypted-media; geolocation; fullscreen" 
-                className="absolute top-0 left-0 w-full h-full border-none transition-opacity duration-500"
+                className="w-full h-full border-none"
                 title="QuickChat Strategy Discovery"
-              ></iframe>
+              />
             </div>
           </div>
         </div>

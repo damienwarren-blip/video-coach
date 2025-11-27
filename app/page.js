@@ -1,6 +1,6 @@
 'use client';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import {
   ShieldCheckIcon,
   HeartIcon,
@@ -20,9 +20,15 @@ export default function Home() {
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -900]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -700]);
 
+  // State to manage consent for the final strategy call CTA
+  const [strategyAgreed, setStrategyAgreed] = useState(false);
+  // State to manage consent for the general newsletter signup
+  const [newsletterChecked, setNewsletterChecked] = useState(false);
+  // NEW STATE: State to manage consent for the VideoAsk chat
+  const [videoConsent, setVideoConsent] = useState(false); 
+
   // CX/Customer Churn Aligned CTA LINKS
   const pilotLink = "/book-cx-pilot-call";
-  // UPDATED: Link changed to point to a local "listening" folder page.
   const videoAskLink = "/listening";
   
   // Revised final CTA link: Now targets both Discovery and Retention
@@ -85,7 +91,7 @@ export default function Home() {
 
       <div className="border-y border-pink-700/50" />
 
-      {/* VIDEOASK - Keep this section, it's a good feature display. NOTE: The iframe still uses the original external videoAsk URL for the demo. */}
+      {/* VIDEOASK - Keep this section, it's a good feature display. */}
       <section className="pt-20 pb-16 px-6 text-center">
         <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-7xl md:text-9xl font-extrabold bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
@@ -94,8 +100,49 @@ export default function Home() {
       </section>
       <section className="px-4 md:px-8 -mt-12 pb-24 md:pb-32">
         <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-5xl mx-auto">
-          <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
-            <iframe src="https://www.videoask.com/fvk6am2q6" allow="camera; microphone; autoplay; display-capture" className="w-full h-full" title="QuickChat Demo" />
+          {/* Wrapper for the VideoAsk and the Consent Overlay */}
+          <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl relative">
+            
+            <iframe 
+                src="https://www.videoask.com/fvk6am2q6" 
+                allow="camera; microphone; autoplay; display-capture" 
+                className="w-full h-full" 
+                title="QuickChat Demo" 
+            />
+            
+            {/* MODIFIED: Glass-like Consent Panel - NOW MINIMAL */}
+            {!videoConsent && (
+                <div 
+                    // This container ensures the panel is perfectly centered over the video area
+                    className="absolute inset-0 z-10 flex items-center justify-center p-4 md:p-8 pointer-events-none"
+                >
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        // The Glass Panel itself - strong blur, light background, and pointer events active
+                        className="max-w-md text-center p-4 rounded-xl bg-white/10 border border-white/30 shadow-2xl backdrop-blur-xl pointer-events-auto"
+                    >
+                        {/* Consent Text - Reduced Font Size */}
+                        <p className="text-lg md:text-xl font-light text-white leading-snug">
+                            I need your consent to process and store your personal data (voice, name, email) solely for this survey's completion.
+                        </p>
+                        
+                        {/* Consent Button - Reduced Size/Padding */}
+                        <motion.button
+                            onClick={() => setVideoConsent(true)}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="mt-4 px-4 py-2 text-base font-bold rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg shadow-pink-500/50 transition-all duration-300 transform"
+                        >
+                            I Consent (Start Chat) →
+                        </motion.button>
+                    </motion.div>
+                </div>
+            )}
+            {/* END MODIFIED: Glass-like Consent Panel */}
+            
           </div>
         </motion.div>
       </section>
@@ -178,9 +225,9 @@ export default function Home() {
           >
             <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent opacity-60" />
 
-            {/* Updated text to reflect Discovery/Retention scope */}
+            {/* UPDATED TEXT: European market strategy */}
             <p className="text-2xl md:text-4xl lg:text-5xl font-light tracking-tight text-white/90 leading-tight">
-              See how we helped an Irish company use QuickChat to inform their **German market entry strategy**<br />
+              See how we helped an Irish company use QuickChat to inform their **European market strategy**<br />
               and <span className="font-medium bg-gradient-to-r from-pink-300 to-rose-300 bg-clip-text text-transparent">
                 strategically reduce churn in one week
               </span>.
@@ -209,7 +256,8 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-12 mt-20">
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-center">
               <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-gradient-to-br from-pink-400 to-rose-400 p-2"><div className="w-full h-full rounded-full bg-black/60 backdrop-blur flex items-center justify-center"><ShieldCheckIcon className="h-16 w-16 text-pink-300" /></div></div>
-              <h3 className="text-2xl font-bold mb-3">Safe & Compliant</h3>
+              {/* UPDATED TEXT: Safe, Secure & Compliant */}
+              <h3 className="text-2xl font-bold mb-3">Safe, Secure & Compliant</h3>
               <p className="text-white/70">✓ GDPR • ✓ SOC2 • ✓ End-to-end encryption</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-center">
@@ -229,7 +277,6 @@ export default function Home() {
       {/* FINAL CTA - DUAL FOCUS: STRATEGY & PILOT */}
       <section className="min-h-screen flex items-center justify-center px-6 bg-gradient-to-b from-transparent via-pink-900/10 to-transparent">
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-center">
-          {/* UPDATED HEADING: Removed bolding markdown and added cyan color to "Big Strategy" */}
           <h2 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent leading-tight">
             Ready to Inform Your Next<br /><span className="text-cyan-300">Big Strategy</span>?
           </h2>
@@ -237,20 +284,81 @@ export default function Home() {
           <p className="mt-12 text-2xl md:text-3xl text-white/80 max-w-2xl mx-auto">
             Run a <span className="font-semibold text-white">custom pilot</span> to validate your next feature, find your ideal customer profile, or save at-risk accounts.
           </p>
+          
+          {/* NEW: PRIVACY NOTICE AND CONSENT CHECKBOX for Strategy Call */}
+          <div className="mt-16 mb-8 max-w-lg mx-auto p-4 rounded-xl bg-white/5 shadow-inner shadow-pink-500/10 border border-pink-400/30">
+            <label className="flex items-start cursor-pointer text-sm md:text-base text-white/90">
+                <input 
+                    type="checkbox" 
+                    checked={strategyAgreed} 
+                    onChange={() => setStrategyAgreed(!strategyAgreed)} 
+                    className="mt-1 mr-3 w-5 h-5 form-checkbox accent-pink-500 bg-transparent border-pink-400 rounded-md focus:ring-pink-500 transition duration-150 ease-in-out"
+                />
+                <span className="text-left leading-snug font-light">
+                    By clicking the link, you AGREE for "QuickChat" to capture your personal data (first name, surname, email address) for the sole purpose of emailing you about setting up a strategy call.
+                </span>
+            </label>
+          </div>
+          
           <motion.a
-            href={finalCTALink}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-20 inline-block px-32 py-16 text-3xl font-bold bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-full shadow-2xl hover:shadow-pink-500/50 transition-all"
+            // Link is only active if agreed
+            href={strategyAgreed ? finalCTALink : "#"} 
+            whileHover={strategyAgreed ? { scale: 1.05 } : { scale: 1.0 }}
+            whileTap={strategyAgreed ? { scale: 0.95 } : { scale: 1.0 }}
+            className={`mt-8 inline-block px-32 py-16 text-3xl font-bold rounded-full shadow-2xl transition-all duration-300
+                ${strategyAgreed 
+                    // Active State Styling
+                    ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:shadow-pink-500/50 cursor-pointer"
+                    // Disabled State Styling
+                    : "bg-gray-700/50 text-gray-400 cursor-not-allowed shadow-none"
+                }`
+            }
+            // Prevent navigation if not agreed
+            onClick={(e) => { !strategyAgreed && e.preventDefault(); }} 
           >
             Book Your Strategy Call →
           </motion.a>
-          {/* UPDATED TEXT: Clearer options */}
-          <p className="mt-8 text-xl text-white/50">
-            Or, <a href={videoAskLink} className="underline text-white/90 hover:text-white transition">Answer 5 Quick Questions →</a> about your current discovery and retention challenges.
-          </p>
+          
+
         </motion.div>
       </section>
+      
+      {/* NEW SECTION: NEWSLETTER SIGNUP (At the end of the site) */}
+      <div className="py-16 px-6 text-center border-t border-pink-700/50 bg-black/20">
+        <div className="max-w-2xl mx-auto">
+            <label className="flex items-center justify-center cursor-pointer text-xl text-white font-medium">
+                <input 
+                    type="checkbox" 
+                    checked={newsletterChecked} 
+                    onChange={() => setNewsletterChecked(!newsletterChecked)} 
+                    className="mr-3 w-6 h-6 form-checkbox accent-cyan-500 bg-transparent border-cyan-400 rounded-md focus:ring-cyan-500 transition duration-150 ease-in-out"
+                />
+                <span className="leading-snug">
+                    If you would like to receive our company newsletter with marketing & sales updates
+                </span>
+            </label>
+            {newsletterChecked && (
+                <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    transition={{ duration: 0.3 }}
+                    className="mt-6 flex flex-col sm:flex-row gap-4"
+                >
+                    <input
+                        type="email"
+                        placeholder="Enter your email address"
+                        className="flex-grow p-4 rounded-xl bg-black/50 border border-cyan-400/50 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-cyan-400 focus:outline-none transition-colors"
+                    />
+                    <button className="px-6 py-4 rounded-xl font-bold text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50">
+                        Subscribe
+                    </button>
+                </motion.div>
+            )}
+        </div>
+        <p className="mt-16 text-sm text-white/50">
+            © 2025 QuickChat. All rights reserved.
+        </p>
+      </div>
     </div>
   );
 }

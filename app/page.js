@@ -1,6 +1,5 @@
-'use client';
+import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
 import {
   ShieldCheckIcon,
   HeartIcon,
@@ -9,9 +8,11 @@ import {
   PaperAirplaneIcon,
   ChatBubbleLeftRightIcon,
   LockClosedIcon,
+  PlayCircleIcon, // Added for the new embedded CTA
 } from '@heroicons/react/24/solid';
 
-export default function Home() {
+// The main component, renamed from Home to App for consistency
+const App = () => {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -51,10 +52,18 @@ export default function Home() {
         <div className="absolute inset-0 flex items-center justify-center z-0">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 lg:gap-12 opacity-70 scale-150 md:scale-125 pointer-events-none">
             {/* Image mockups remain */}
-            <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl"><img src="/mockup-1.png" alt="" className="w-full h-full object-cover" /></div>
-            <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl translate-y-8 md:translate-y-16"><img src="/mockup-2.png" alt="" className="w-full h-full object-cover" /></div>
-            <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl"><img src="/mockup-3.png" alt="" className="w-full h-full object-cover" /></div>
-            <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl translate-y-8 md:translate-y-16"><img src="/mockup-4.png" alt="" className="w-full h-full object-cover" /></div>
+            <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl">
+              <img src="https://placehold.co/100x178/1f2937/ffffff?text=Mockup+1" alt="Mockup 1" className="w-full h-full object-cover" />
+            </div>
+            <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl translate-y-8 md:translate-y-16">
+              <img src="https://placehold.co/100x178/1f2937/ffffff?text=Mockup+2" alt="Mockup 2" className="w-full h-full object-cover" />
+            </div>
+            <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl">
+              <img src="https://placehold.co/100x178/1f2937/ffffff?text=Mockup+3" alt="Mockup 3" className="w-full h-full object-cover" />
+            </div>
+            <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl translate-y-8 md:translate-y-16">
+              <img src="https://placehold.co/100x178/1f2937/ffffff?text=Mockup+4" alt="Mockup 4" className="w-full h-full object-cover" />
+            </div>
           </div>
         </div>
 
@@ -103,45 +112,48 @@ export default function Home() {
           {/* Wrapper for the VideoAsk and the Consent Overlay */}
           <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl relative">
             
+            {/* The iframe is always present but obscured if consent is not given */}
             <iframe 
-                src="https://www.videoask.com/fvk6am2q6" 
-                allow="camera; microphone; autoplay; display-capture" 
-                className="w-full h-full" 
-                title="QuickChat Demo" 
+              src="https://www.videoask.com/fvk6am2q6" 
+              allow="camera; microphone; autoplay; display-capture" 
+              className="w-full h-full" 
+              title="QuickChat Demo" 
             />
             
-            {/* MODIFIED: Glass-like Consent Panel - NOW MINIMAL */}
+            {/* RADICAL EMBEDDED CONSENT: The entire video area becomes the low-friction barrier */}
             {!videoConsent && (
                 <div 
-                    // This container ensures the panel is perfectly centered over the video area
-                    className="absolute inset-0 z-10 flex items-center justify-center p-4 md:p-8 pointer-events-none"
+                    // Background remains bg-black/40 for good visibility
+                    className="absolute inset-0 z-10 flex flex-col items-center justify-center p-4 md:p-8 bg-black/40 pointer-events-auto"
+                    onClick={() => setVideoConsent(true)} // Click anywhere to consent
                 >
                     <motion.div 
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.5 }}
-                        // The Glass Panel itself - strong blur, light background, and pointer events active
-                        className="max-w-md text-center p-4 rounded-xl bg-white/10 border border-white/30 shadow-2xl backdrop-blur-xl pointer-events-auto"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        // INCREASED TRANSPARENCY of the bottom card
+                        className="absolute bottom-4 left-0 right-0 p-6 flex flex-col items-center justify-center bg-black/30 backdrop-blur-md rounded-b-2xl md:rounded-b-3xl"
                     >
-                        {/* Consent Text - Reduced Font Size */}
-                        <p className="text-lg md:text-xl font-light text-white leading-snug">
-                            I need your consent to process and store your personal data (voice, name, email) solely for this survey's completion.
-                        </p>
                         
-                        {/* Consent Button - Reduced Size/Padding */}
+                        {/* 1. Main Action - Made significantly softer and less harsh */}
                         <motion.button
-                            onClick={() => setVideoConsent(true)}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="mt-4 px-4 py-2 text-base font-bold rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg shadow-pink-500/50 transition-all duration-300 transform"
+                            // New Soft/Frosted Styling
+                            whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(255, 255, 255, 0.4)" }}
+                            whileTap={{ scale: 0.98 }}
+                            className="flex items-center space-x-4 py-3 px-8 text-2xl font-bold rounded-full border border-white/50 bg-white/10 text-white shadow-lg shadow-fuchsia-900/40 backdrop-blur-sm transition-all duration-300 transform cursor-pointer"
                         >
-                            I Consent (Start Chat) →
+                            <PlayCircleIcon className="h-8 w-8 text-pink-300" />
+                            <span>Click to Start QuickChat</span>
                         </motion.button>
+
+                        {/* 2. Consent Text - Minimal, reduced opacity, small font, integrated below CTA */}
+                        <p className="mt-4 text-xs text-gray-400 leading-snug text-center max-w-md">
+                            By clicking, you consent to QuickChat processing your voice and personal data solely for sales & discovery purposes.
+                            <a href="#" className="ml-1 underline hover:text-gray-300 transition">Privacy Policy</a>
+                        </p>
                     </motion.div>
                 </div>
             )}
-            {/* END MODIFIED: Glass-like Consent Panel */}
             
           </div>
         </motion.div>
@@ -311,8 +323,7 @@ export default function Home() {
                     ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:shadow-pink-500/50 cursor-pointer"
                     // Disabled State Styling
                     : "bg-gray-700/50 text-gray-400 cursor-not-allowed shadow-none"
-                }`
-            }
+                }`}
             // Prevent navigation if not agreed
             onClick={(e) => { !strategyAgreed && e.preventDefault(); }} 
           >
@@ -349,7 +360,7 @@ export default function Home() {
                         placeholder="Enter your email address"
                         className="flex-grow p-4 rounded-xl bg-black/50 border border-cyan-400/50 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-cyan-400 focus:outline-none transition-colors"
                     />
-                    <button className="px-6 py-4 rounded-xl font-bold text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50">
+                    <button className="px-6 py-4 rounded-xl font-bold text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/30">
                         Subscribe
                     </button>
                 </motion.div>
@@ -362,3 +373,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default App;

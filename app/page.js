@@ -304,6 +304,39 @@ export default function Home() {
         </div>
       </section>
 
+      {/* NEW SECTION: OUR OWN QUICKCHAT DATA */}
+      <div className="border-y border-pink-700/50" />
+
+      <section className="py-24 md:py-32 px-6 text-center">
+        <div className="max-w-5xl mx-auto">
+            <motion.h2 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-cyan-400 via-teal-400 to-sky-400 bg-clip-text text-transparent">
+                Our Own QuickChat Data
+            </motion.h2>
+
+            <motion.div 
+                initial={{ opacity: 0 }} 
+                whileInView={{ opacity: 1 }} 
+                viewport={{ once: true }} 
+                className="mt-16"
+            >
+                <p className="text-2xl md:text-3xl font-light text-white/90">
+                    We eat our own cooking. Every quarter we run QuickChat on ourselves and publish the results. We use the evidence to make our platform better and more focused on **real customer needs**.
+                </p>
+                <motion.a 
+                    href={videoAskLink} 
+                    className="mt-6 inline-block px-8 py-3 text-xl font-extrabold rounded-full text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-lg shadow-cyan-500/30"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    Read Our Self-Assessment →
+                </motion.a>
+            </motion.div>
+        </div>
+      </section>
+
+      <div className="border-y border-pink-700/50" />
+      {/* END NEW SECTION */}
+
       {/* FINAL CTA - REVISED FOR GENERIC GROWTH FOCUS */}
       <section className="min-h-screen flex items-center justify-center px-6 bg-gradient-to-b from-transparent via-pink-900/10 to-transparent">
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-center">
@@ -316,7 +349,7 @@ export default function Home() {
             Stop guessing and start growing. Launch a **custom pilot** to get the direct customer evidence that transforms product strategy and fuels reliable long-term growth.
           </p>
           
-          {/* NEW: PRIVACY NOTICE AND CONSENT CHECKBOX for Strategy Call */}
+          {/* UPDATED: PRIVACY NOTICE AND CONSENT CHECKBOX for Strategy Call */}
           <div className="mt-16 mb-8 max-w-lg mx-auto p-4 rounded-xl bg-white/5 shadow-inner shadow-pink-500/10 border border-pink-400/30">
             <label className="flex items-start cursor-pointer text-sm md:text-base text-white/90">
                 <input 
@@ -325,8 +358,9 @@ export default function Home() {
                     onChange={() => setStrategyAgreed(!strategyAgreed)} 
                     className="mt-1 mr-3 w-5 h-5 form-checkbox accent-pink-500 bg-transparent border-pink-400 rounded-md focus:ring-pink-500 transition duration-150 ease-in-out"
                 />
-                <span className="text-left leading-snug font-light">
-                    By clicking the link, you AGREE for "QuickChat" to capture your personal data (first name, surname, email address) for the sole purpose of emailing you about setting up a strategy call.
+                {/* REVISED CONSENT TEXT */}
+                <span className="text-left leading-snug font-medium">
+                    By checking, you agree to the temporary capture of your name and email address for scheduling purposes.
                 </span>
             </label>
           </div>
@@ -346,32 +380,18 @@ export default function Home() {
             // Prevent navigation if not agreed
             onClick={(e) => { !strategyAgreed && e.preventDefault(); }} 
           >
-            Launch My Retention Multiplier Pilot →
+            {/* UPDATED BUTTON TEXT */}
+            Book Your Strategy Call →
           </motion.a>
           
 
         </motion.div>
       </section>
       
-      {/* NEW SECTION: NEWSLETTER SIGNUP and FOOTER */}
+      {/* NEWSLETTER SIGNUP and FOOTER - The commitment section was removed from here. */}
       <div className="py-16 px-6 text-center border-t border-pink-700/50 bg-black/20">
         <div className="max-w-2xl mx-auto">
-          {/* NEW: WE EAT OUR OWN COOKING COMMITMENT */}
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-12">
-            <p className="text-xl md:text-2xl font-light text-white/90">
-              We eat our own cooking. Every quarter we run QuickChat on ourselves and publish the results.
-            </p>
-            <motion.a 
-                href={videoAskLink} 
-                className="mt-2 inline-block text-2xl font-extrabold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-            >
-                Read Our Self-Assessment →
-            </motion.a>
-          </motion.div>
-          {/* END NEW: WE EAT OUR OWN COOKING COMMITMENT */}
-
+          {/* Newsletter Signup (Now the first element in this div) */}
           <label className="flex items-center justify-center cursor-pointer text-xl text-white font-medium">
               <input 
                   type="checkbox" 

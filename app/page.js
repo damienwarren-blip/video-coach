@@ -59,33 +59,63 @@ export default function Home() {
         </div>
 
         <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.4 }} className="text-center z-20 max-w-7xl px-6">
+          
+          
           <h1 className="text-8xl leading-none font-black tracking-tighter md:text-9xl lg:text-[200px] xl:text-[220px]">
             <span className="bg-gradient-to-r from-pink-300 via-rose-300 to-white bg-clip-text text-transparent">Quick</span>
             <br />
             <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
           </h1>
-          {/* UPDATED TAGLINE: Focus on Strategy, Growth, and Churn with distinct colors */}
-          <p className="mt-8 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white/90 max-w-4xl mx-auto">
-            Unlock the <span className="font-semibold text-rose-300">Voice</span> of your customers to fuel <span className="font-semibold text-cyan-300">Growth</span> and accelerate <span className="font-semibold text-rose-300">Retention</span>.
+          
+          {/* REVISED TAGLINE (User Request) */}
+          <p className="mt-8 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-cyan-300 max-w-4xl mx-auto">
+            START CREATING WHAT CUSTOMERS LOVE.
           </p>
+          
         </motion.div>
       </section>
 
       {/* DIVIDER — same style as case study */}
       <div className="border-y border-pink-700/50" />
 
-      {/* VALUE PROP - POLISHED AND CORRECTED */}
+      {/* VALUE PROP - REWRITTEN TO FOCUS ON CUSTOMER KNOWLEDGE */}
       <section className="py-24 md:py-32 px-6 text-center">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-          {/* Problem Statement - EDITED to include WHY! */}
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-snug bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent max-w-5xl mx-auto">
-            We deliver the <span className="text-rose-300">WHY!</span>,<br />
-            powering strategic decisions and customer retention.
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="max-w-6xl mx-auto">
+          
+          {/* NEW H2 TEXT */}
+          <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-snug bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent max-w-5xl mx-auto">
+            Stop Guessing. Your Customers Already Know the Answers.
           </h2>
-          {/* UPDATED SOLUTION STATEMENT: "instant strategy" is one color span */}
-          <p className="mt-8 md:mt-12 text-3xl md:text-4xl text-white/95 font-medium max-w-4xl mx-auto">
-            Our Short interactive videos deliver the <span className="font-extrabold text-cyan-300">instant strategy</span> you need to inform product development, accelerate growth, and prevent churn.
-          </p>
+          
+          {/* NEW BULLETED LIST - High Impact Display */}
+          <div className="mt-16 text-3xl md:text-4xl text-left inline-block">
+              <p className="font-extrabold text-white">Your customers already know:</p>
+              <ul className="mt-4 space-y-3 font-medium text-white/95 leading-normal">
+                  <li className="flex items-center"><span className="text-rose-400 text-4xl mr-4">→</span> what’s brilliant about your product</li>
+                  <li className="flex items-center"><span className="text-rose-400 text-4xl mr-4">→</span> what’s confusing</li>
+                  <li className="flex items-center"><span className="text-rose-400 text-4xl mr-4">→</span> and exactly what’s missing.</li>
+              </ul>
+          </div>
+
+          <div className="mt-16 max-w-4xl mx-auto text-3xl md:text-4xl text-white/95 font-medium">
+              {/* MODIFIED: More concise phrasing */}
+              <p className="font-light leading-normal">
+                  This knowledge surpasses your roadmap, your PMs, and every ignored customer survey.
+              </p>
+          </div>
+          
+          <div className="mt-16 max-w-4xl mx-auto text-4xl md:text-5xl text-white/95 font-medium border-l-4 border-cyan-400 pl-8 pt-2 pb-2 text-left">
+              <p className="font-extrabold leading-snug">
+                  Here’s the thing: QuickChat lets them tell you — in short videos — what they actually use, love, and want next.
+              </p>
+          </div>
+
+          <div className="mt-16 max-w-5xl mx-auto text-3xl md:text-4xl text-white/95 font-medium">
+              <p className="font-extrabold leading-normal text-cyan-300">
+                  You get the real priority list in days, not months. <br/>Perfect timing for your next sprint, quarter plan, or board meeting.
+              </p>
+          </div>
+
         </motion.div>
       </section>
 
@@ -110,7 +140,7 @@ export default function Home() {
                 title="QuickChat Demo" 
             />
             
-            {/* MODIFIED: Glass-like Consent Panel - NOW MINIMAL */}
+            {/* UPDATED: Glass-like Consent Panel - SMALLER AND FRIENDLIER */}
             {!videoConsent && (
                 <div 
                     // This container ensures the panel is perfectly centered over the video area
@@ -121,27 +151,28 @@ export default function Home() {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.5 }}
-                        // The Glass Panel itself - strong blur, light background, and pointer events active
-                        className="max-w-md text-center p-4 rounded-xl bg-white/10 border border-white/30 shadow-2xl backdrop-blur-xl pointer-events-auto"
+                        // REDUCED SIZE: max-w-sm -> max-w-xs, p-6 -> p-4
+                        className="max-w-xs text-center p-4 rounded-xl bg-white/10 border border-white/30 shadow-2xl backdrop-blur-xl pointer-events-auto"
                     >
-                        {/* Consent Text - Reduced Font Size */}
-                        <p className="text-lg md:text-xl font-light text-white leading-snug">
-                            I need your consent to process and store your personal data (voice, name, email) solely for this survey's completion.
+                        {/* REDUCED FONT SIZE: text-base/lg -> text-sm */}
+                        <p className="text-sm font-light text-white leading-snug">
+                            {/* NEW TEXT: Focuses on video capture AND sales data (name, email) */}
+                            By proceeding, you consent to giving your name/email to discuss sales and strategy.
                         </p>
                         
-                        {/* Consent Button - Reduced Size/Padding */}
+                        {/* REDUCED BUTTON SIZE: text-lg -> text-base, py-3 -> py-2 */}
                         <motion.button
                             onClick={() => setVideoConsent(true)}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="mt-4 px-4 py-2 text-base font-bold rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg shadow-pink-500/50 transition-all duration-300 transform"
+                            className="mt-3 px-5 py-2 text-base font-bold rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg shadow-pink-500/50 transition-all duration-300 transform"
                         >
-                            I Consent (Start Chat) →
+                            Let's Chat →
                         </motion.button>
                     </motion.div>
                 </div>
             )}
-            {/* END MODIFIED: Glass-like Consent Panel */}
+            {/* END UPDATED: Glass-like Consent Panel */}
             
           </div>
         </motion.div>
@@ -149,36 +180,35 @@ export default function Home() {
 
       <div className="border-y border-pink-700/50" />
 
-      {/* HOW IT WORKS - NEW HEADING */}
+      {/* HOW IT WORKS - FOCUS ON EVIDENCE & PARTNERSHIP */}
       <section className="py-24 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.h2 className="text-center text-6xl md:text-8xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
-            Get Actionable Answers in 4 Simple Steps
+            How it works
           </motion.h2>
           <div className="grid md:grid-cols-4 gap-12 mt-20">
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-center">
               <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-gradient-to-br from-pink-400 to-rose-400 p-2"><div className="w-full h-full rounded-full bg-black/60 backdrop-blur flex items-center justify-center"><VideoCameraIcon className="h-14 w-14 text-pink-300" /></div></div>
-              <h3 className="text-2xl font-bold mb-3">1. Create a personalized video.</h3>
-              {/* Updated text to reflect Discovery/Retention scope */}
-              <p className="text-white/70">"What is the biggest roadblock to your success?" or "What feature would you miss most?"</p>
+              <h3 className="text-2xl font-bold mb-3">1. Align on the Co-Creation Goal</h3> 
+              {/* UPDATED TEXT: Focus on the 'why' */}
+              <p className="text-white/70">Pinpoint the exact challenge you and your customers will solve together, focusing on mutual value and growth.</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-center">
               <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-gradient-to-br from-purple-400 to-fuchsia-400 p-2"><div className="w-full h-full rounded-full bg-black/60 backdrop-blur flex items-center justify-center"><PaperAirplaneIcon className="h-14 w-14 text-purple-300 rotate-12" /></div></div>
-              {/* Updated text to reflect Discovery/Retention scope */}
-              <h3 className="text-2xl font-bold mb-3">2. Deploy to key segments</h3>
-              <p className="text-white/70">Target growth, product, or at-risk segments via a single link.</p>
+              <h3 className="text-2xl font-bold mb-3">2. Deploy to Key Segments</h3>
+              <p className="text-white/70">Target your most valuable, newest, or at-risk customers via a simple, personalized link.</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-center">
               <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-gradient-to-br from-rose-400 to-pink-400 p-2"><div className="w-full h-full rounded-full bg-black/60 backdrop-blur flex items-center justify-center"><ChatBubbleLeftRightIcon className="h-14 w-14 text-rose-300" /></div></div>
-              <h3 className="text-2xl font-bold mb-3">3. Customers reply in their voice</h3>
-              {/* EDITED to be shorter and focus on the WHY */}
-              <p className="text-white/70">Capturing the WHY so you can act.</p>
+              <h3 className="text-2xl font-bold mb-3">3. Capture Evidence (Not Opinions)</h3> {/* REVISED TITLE */}
+              {/* REFINED TEXT: Focuses on 'Evidence' and 'Partnership' */}
+              <p className="text-white/70">Capture honest video evidence from paying customers. This unfiltered dialogue moves the relationship from transaction to true partnership.</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }} className="text-center">
               <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-gradient-to-br from-cyan-400 to-teal-400 p-2"><div className="w-full h-full rounded-full bg-black/60 backdrop-blur flex items-center justify-center"><SparklesIcon className="h-16 w-16 text-cyan-300" /></div></div>
-              {/* Updated text to reflect Discovery/Retention scope */}
-              <h3 className="text-2xl font-bold mb-3">4. Instant Strategy Blueprint</h3>
-              <p className="text-white/70">AI analyzes sentiment and pain points. Delivered to your CRM in &lt;48 hours.</p>
+              <h3 className="text-2xl font-bold mb-3">4. Deliver the Collaborative Roadmap</h3> 
+              {/* UPDATED TEXT */}
+              <p className="text-white/70">AI synthesizes feedback and pain points. We deliver a **Co-developed Roadmap** to your team, validated by customer voice in under 48 hours.</p>
             </motion.div>
           </div>
         </div>
@@ -186,26 +216,26 @@ export default function Home() {
 
       <div className="border-y border-pink-700/50" />
 
-      {/* KEY BENEFITS - ROI */}
+      {/* KEY BENEFITS - ROI - SOFTENED */}
       <section className="py-24 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.h2 className="text-center text-6xl md:text-8xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
-            The ROI of Customer Voice
+            The Real Impact of Listening
           </motion.h2>
           <div className="grid md:grid-cols-3 gap-12 mt-20">
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-center">
               <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">3×</div>
-              <p className="mt-6 text-xl md:text-2xl text-white/70">Higher response rates than traditional text-based surveys</p>
+              <p className="mt-6 text-xl md:text-2xl text-white/70">Higher response rates than traditional text-based surveys, guaranteeing data liquidity.</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-center">
               <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">10×</div>
-              {/* Updated text to reflect Discovery/Retention scope */}
-              <p className="mt-6 text-xl md:text-2xl text-white/70">Get the <span className="font-semibold text-rose-300">WHY</span> behind attrition **and** prioritize future features</p>
+              {/* Softened text - removed 'LTV accelerators' */}
+              <p className="mt-6 text-xl md:text-2xl text-white/70">Faster identification of why customers leave and what makes them stay loyal.</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-center">
               <div className="text-9xl md:text-[180px] font-black leading-none bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent">&lt;48h</div>
-              {/* Updated text to reflect Discovery/Retention scope */}
-              <p className="mt-6 text-xl md:text-2xl text-white/70">From customer question to **strategic action plan**</p>
+              {/* Softened text - removed 'financially justified' */}
+              <p className="mt-6 text-xl md:text-2xl text-white/70">From customer question to a **clear, confident decision** on what to build next.</p>
             </motion.div>
           </div>
         </div>
@@ -274,15 +304,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FINAL CTA - DUAL FOCUS: STRATEGY & PILOT */}
+      {/* FINAL CTA - REVISED FOR GENERIC GROWTH FOCUS */}
       <section className="min-h-screen flex items-center justify-center px-6 bg-gradient-to-b from-transparent via-pink-900/10 to-transparent">
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-center">
           <h2 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent leading-tight">
-            Ready to Inform Your Next<br /><span className="text-cyan-300">Big Strategy</span>?
+            Ready for Real <br /><span className="text-cyan-300">Customer Clarity?</span> 
           </h2>
-          {/* UPDATED TEXT: Reflects dual focus and custom pilot */}
-          <p className="mt-12 text-2xl md:text-3xl text-white/80 max-w-2xl mx-auto">
-            Run a <span className="font-semibold text-white">custom pilot</span> to validate your next feature, find your ideal customer profile, or save at-risk accounts.
+          
+          {/* NEW GENERIC TEXT: Focuses on customer evidence, strategy, and growth */}
+          <p className="mt-12 text-2xl md:text-3xl text-white/80 max-w-3xl mx-auto">
+            Stop guessing and start growing. Launch a **custom pilot** to get the direct customer evidence that transforms product strategy and fuels reliable long-term growth.
           </p>
           
           {/* NEW: PRIVACY NOTICE AND CONSENT CHECKBOX for Strategy Call */}
@@ -311,49 +342,64 @@ export default function Home() {
                     ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:shadow-pink-500/50 cursor-pointer"
                     // Disabled State Styling
                     : "bg-gray-700/50 text-gray-400 cursor-not-allowed shadow-none"
-                }`
-            }
+                }`}
             // Prevent navigation if not agreed
             onClick={(e) => { !strategyAgreed && e.preventDefault(); }} 
           >
-            Book Your Strategy Call →
+            Launch My Retention Multiplier Pilot →
           </motion.a>
           
 
         </motion.div>
       </section>
       
-      {/* NEW SECTION: NEWSLETTER SIGNUP (At the end of the site) */}
+      {/* NEW SECTION: NEWSLETTER SIGNUP and FOOTER */}
       <div className="py-16 px-6 text-center border-t border-pink-700/50 bg-black/20">
         <div className="max-w-2xl mx-auto">
-            <label className="flex items-center justify-center cursor-pointer text-xl text-white font-medium">
-                <input 
-                    type="checkbox" 
-                    checked={newsletterChecked} 
-                    onChange={() => setNewsletterChecked(!newsletterChecked)} 
-                    className="mr-3 w-6 h-6 form-checkbox accent-cyan-500 bg-transparent border-cyan-400 rounded-md focus:ring-cyan-500 transition duration-150 ease-in-out"
-                />
-                <span className="leading-snug">
-                    If you would like to receive our company newsletter with marketing & sales updates
-                </span>
-            </label>
-            {newsletterChecked && (
-                <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    transition={{ duration: 0.3 }}
-                    className="mt-6 flex flex-col sm:flex-row gap-4"
-                >
-                    <input
-                        type="email"
-                        placeholder="Enter your email address"
-                        className="flex-grow p-4 rounded-xl bg-black/50 border border-cyan-400/50 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-cyan-400 focus:outline-none transition-colors"
-                    />
-                    <button className="px-6 py-4 rounded-xl font-bold text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50">
-                        Subscribe
-                    </button>
-                </motion.div>
-            )}
+          {/* NEW: WE EAT OUR OWN COOKING COMMITMENT */}
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-12">
+            <p className="text-xl md:text-2xl font-light text-white/90">
+              We eat our own cooking. Every quarter we run QuickChat on ourselves and publish the results.
+            </p>
+            <motion.a 
+                href={videoAskLink} 
+                className="mt-2 inline-block text-2xl font-extrabold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+            >
+                Read Our Self-Assessment →
+            </motion.a>
+          </motion.div>
+          {/* END NEW: WE EAT OUR OWN COOKING COMMITMENT */}
+
+          <label className="flex items-center justify-center cursor-pointer text-xl text-white font-medium">
+              <input 
+                  type="checkbox" 
+                  checked={newsletterChecked} 
+                  onChange={() => setNewsletterChecked(!newsletterChecked)} 
+                  className="mr-3 w-6 h-6 form-checkbox accent-cyan-500 bg-transparent border-cyan-400 rounded-md focus:ring-cyan-500 transition duration-150 ease-in-out"
+              />
+              <span className="leading-snug">
+                  Click here If you would like to receive our company newsletter with marketing & sales updates
+              </span>
+          </label>
+          {newsletterChecked && (
+              <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-6 flex flex-col sm:flex-row gap-4"
+              >
+                  <input
+                      type="email"
+                      placeholder="Enter your email address"
+                      className="flex-grow p-4 rounded-xl bg-black/50 border border-cyan-400/50 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-cyan-400 focus:outline-none transition-colors"
+                  />
+                  <button className="px-6 py-4 rounded-xl font-bold text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50">
+                      Subscribe
+                  </button>
+              </motion.div>
+          )}
         </div>
         <p className="mt-16 text-sm text-white/50">
             © 2025 QuickChat. All rights reserved.

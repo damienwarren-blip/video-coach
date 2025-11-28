@@ -1,4 +1,4 @@
-'use client'; 
+'use client';
 import { motion } from 'framer-motion';
 import React from 'react';
 
@@ -6,16 +6,16 @@ import React from 'react';
 export default function ListeningPage() {
   // Dedicated Video link for the 5-Question Listening Challenge
   const listeningChallengeLink = "https://www.videoask.com/fvfteqxa4"; 
-
-  // State to track if the user has agreed (used to toggle between consent prompt and main content/assurance)
+  
+  // State to track if the user has agreed (used to toggle the overlay)
   const [agreed, setAgreed] = React.useState(false);
 
   // Function to handle proceeding after agreement
   const handleProceed = () => {
-    // Set agreed state instantly. The main video content will fade in immediately.
+    // Set agreed state to hide the overlay and enable video interaction.
     setAgreed(true); 
   };
-  
+
   // Custom transition for content fade-in
   const contentTransition = { duration: 0.8, ease: "easeOut" };
 
@@ -25,7 +25,7 @@ export default function ListeningPage() {
     <div className="min-h-screen bg-black text-white relative p-0 font-sans">
       
       {/* ----------------------------------------------------------- */}
-      {/* 1. ANIMATED BACKGROUND EFFECT (z-0) - Maintains the Vibe */}
+      {/* 1. ANIMATED BACKGROUND EFFECT (z-0) - Maintains the Vibe */ }
       {/* ----------------------------------------------------------- */}
       <motion.div 
         initial={{ scale: 0.9, opacity: 0.8 }}
@@ -44,10 +44,11 @@ export default function ListeningPage() {
         />
       </motion.div>
 
+
       {/* ----------------------------------------------------------- */}
-      {/* 2. MAIN CONTENT CONTAINER (z-10) */}
+      {/* 2. MAIN CONTENT CONTAINER (z-20) - Now holds the central video */ }
       {/* ----------------------------------------------------------- */}
-      <div className="mx-auto relative z-10 max-w-7xl pb-16 pt-4 sm:p-8">
+      <div className="mx-auto relative z-20 max-w-7xl pb-16 pt-4 sm:p-8">
         
         {/* HEADER & BACK BUTTON (always visible) */}
         <div className="px-4 sm:px-0">
@@ -66,97 +67,103 @@ export default function ListeningPage() {
           {/* QUICKCHAT LOGO STYLE */}
           <h1 className="text-8xl leading-none font-black tracking-tighter md:text-9xl lg:text-[180px] xl:text-[220px]">
             <span className="bg-gradient-to-r from-pink-300 via-rose-300 to-white bg-clip-text text-transparent">Quick</span>
-            <br />
+            
+            <div className="my-8"></div> 
+
             <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
           </h1>
           
-          {/* Descriptive lines */}
+          {/* Descriptive lines - UPDATED FORMAT */}
           <div className="mt-6">
-            <p className="text-4xl font-extrabold text-pink-300/90 tracking-tight drop-shadow-lg">
-              we love listening and learning
+            <p className="text-4xl font-black tracking-tight drop-shadow-lg leading-snug">
+              <span className="text-pink-300/90">Your Vision. Our Creation.</span>
+              <br/>
+              <span className="text-3xl font-extrabold text-cyan-400/80">Help us build the ultimate QuickChat experience.</span>
             </p>
           </div>
         </motion.div>
 
 
-        {/* --- CONSENT/ASSURANCE CARD (Integrated) --- */}
-        <div className="mt-10 p-6 max-w-2xl mx-auto rounded-3xl bg-white/5 shadow-2xl shadow-pink-500/10 border border-white/10 backdrop-blur-sm text-center">
-            
-            {agreed ? (
-                // ASSURANCE MESSAGE (Visible once agreed=true)
-                <motion.p
-                    key="assurance-text"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-xl sm:text-2xl font-semibold text-cyan-400 tracking-tight"
-                >
-                    As your trusted survey partner, please be assured that your personal data is inputted, processed and stored safely, securely and compliantly with anonymity maintained.
-                </motion.p>
-            ) : (
-                // CONSENT PROMPT & BUTTONS (Visible initially)
-                <>
-                    <p className="text-lg sm:text-xl font-semibold text-pink-300 mb-6 leading-relaxed">
-                        Before starting, I need your consent to process and store your personal data (voice, name, email) solely for this survey's completion.
-                    </p>
-                    <p className="text-base text-white/70 italic mb-6">
-                        — Text or say YES to proceed, NO to end.
-                    </p>
-                    <motion.div 
+        {/* --- INTERACTIVE VIDEO CONTENT (Central Focus) --- */}
+        <motion.div 
+            key="video-content"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, ...contentTransition }}
+            className="pt-10 pb-4 flex flex-col items-center px-4 w-full"
+        >
+            {/* The primary container for the video and the consent overlay */}
+            <div className="w-full max-w-5xl mx-auto relative">
+                
+                {/* VIDEO CONTAINER: Prominent styling */}
+                <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-pink-500/50 ring-8 ring-pink-500/20">
+
+                  {/* Iframe: w-full h-full inside aspect container */}
+                  <iframe 
+                    src={listeningChallengeLink} 
+                    allow="camera; microphone; autoplay; encrypted-media; geolocation; fullscreen" 
+                    className="w-full h-full border-none"
+                    title="QuickChat Strategy Discovery"
+                    loading="eager"
+                  />
+                </div>
+
+                {/* --- TRANSPARENT CONSENT OVERLAY (Visible only if not agreed) --- */}
+                {!agreed && (
+                    <motion.div
+                        key="consent-overlay"
+                        initial={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        // Absolute positioning to cover the video, high z-index, and pointer events enabled
+                        className="absolute inset-0 flex items-center justify-center z-30 bg-black/50 backdrop-blur-sm rounded-3xl"
+                    >
+                         {/* CONSENT CARD - Floating, translucent card for readability */}
+                        <div className="p-6 m-4 max-w-sm mx-auto rounded-xl bg-white/10 shadow-2xl border border-white/20 backdrop-blur-lg text-center">
+                            <p className="text-lg sm:text-xl font-semibold text-pink-300 mb-6 leading-relaxed">
+                                Please confirm consent to process and store your personal data (voice, name, email) solely for this survey's completion.
+                            </p>
+                            <motion.div 
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.2 }}
+                                className="mt-4 flex justify-center space-x-4"
+                            >
+                                <button
+                                    onClick={handleProceed}
+                                    className="px-6 py-2 text-base font-bold rounded-full text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-xl shadow-cyan-500/40 transform hover:scale-[1.02]"
+                                >
+                                    Yes, I Agree & Proceed
+                                </button>
+                                <a
+                                    href="/" // Redirect back to homepage if they decline
+                                    className="px-6 py-2 text-base font-bold rounded-full border border-pink-400 text-pink-400 hover:bg-pink-400/20 transition-all duration-300 transform hover:scale-[1.02]"
+                                >
+                                    No, End Survey
+                                </a>
+                            </motion.div>
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* --- POST-AGREEMENT OVERLAY MESSAGE (Optional - Reassurance) --- */}
+                {agreed && (
+                    <motion.div
+                        key="assurance-message"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="mt-4 flex justify-center space-x-4 sm:space-x-6"
+                        transition={{ delay: 0.2, duration: 1.0 }}
+                        // This message is non-interactive (pointer-events-none)
+                        className="absolute bottom-4 left-0 right-0 p-4 flex justify-center pointer-events-none"
                     >
-                        <button
-                            onClick={handleProceed}
-                            className="px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg font-bold rounded-full text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-xl shadow-cyan-500/40 transform hover:scale-[1.02]"
-                        >
-                            Yes, I Agree & Proceed
-                        </button>
-                        <a
-                            href="/" // Redirect back to homepage if they decline
-                            className="px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg font-bold rounded-full border border-pink-400 text-pink-400 hover:bg-pink-400/20 transition-all duration-300 transform hover:scale-[1.02]"
-                        >
-                            No, End Survey
-                        </a>
+                        <p className="text-sm font-semibold text-cyan-400/80 bg-black/30 rounded-full px-4 py-1 backdrop-blur-sm">
+                            Ready to chat!
+                        </p>
                     </motion.div>
-                </>
-            )}
-        </div>
+                )}
 
-
-        {/* --- INTERACTIVE VIDEO CONTENT (Visible ONLY if agreed) --- */}
-        {agreed && (
-            <motion.div 
-                key="video-content"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, ...contentTransition }}
-                className="pt-10 pb-4 flex flex-col items-center px-4 w-full"
-            >
-                {/* Secondary CTA */}
-                <p className="mb-6 text-3xl font-bold text-cyan-400">
-                    Press Play Below to get started
-                </p>
-
-                <div className="w-full max-w-5xl mx-auto"> 
-                    
-                    {/* VIDEO CONTAINER: Uses responsive aspect ratio classes */}
-                    <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-pink-500/50 ring-8 ring-pink-500/20 hover:ring-pink-400/30 transition-all duration-500 ease-in-out">
-
-                      {/* Iframe: w-full h-full inside aspect container */}
-                      <iframe 
-                        src={listeningChallengeLink} 
-                        allow="camera; microphone; autoplay; encrypted-media; geolocation; fullscreen" 
-                        className="w-full h-full border-none"
-                        title="QuickChat Strategy Discovery"
-                        loading="eager"
-                      />
-                    </div>
-                </div>
-            </motion.div>
-        )}
+            </div>
+        </motion.div>
         
       </div>
     </div>

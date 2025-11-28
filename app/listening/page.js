@@ -120,20 +120,18 @@ export default function ListeningPage() {
                     >
                          {/* CONSENT CARD - Floating, translucent card for readability */}
                         <div className="p-6 m-4 max-w-sm mx-auto rounded-xl bg-white/10 shadow-2xl border border-white/20 backdrop-blur-lg text-center">
-                            <p className="text-lg sm:text-xl font-semibold text-pink-300 mb-6 leading-relaxed">
-                                Please confirm consent to process and store your personal data (voice, name, email) solely for this survey's completion.
-                            </p>
+                            
                             <motion.div 
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.2 }}
-                                className="mt-4 flex justify-center space-x-4"
+                                className="flex justify-center space-x-4 mb-4"
                             >
                                 <button
                                     onClick={handleProceed}
                                     className="px-6 py-2 text-base font-bold rounded-full text-black bg-cyan-400 hover:bg-cyan-300 transition-all duration-300 shadow-xl shadow-cyan-500/40 transform hover:scale-[1.02]"
                                 >
-                                    Yes, I Agree & Proceed
+                                    Yes! Lets go!
                                 </button>
                                 <a
                                     href="/" // Redirect back to homepage if they decline
@@ -142,6 +140,11 @@ export default function ListeningPage() {
                                     No, End Survey
                                 </a>
                             </motion.div>
+
+                            {/* CONSENT TEXT MOVED BELOW BUTTONS AND STYLED SMALLER */}
+                            <p className="text-xs font-medium text-white/70 mt-4 leading-snug">
+                                Please confirm consent to process and store your personal data (voice, name, email) solely for this survey's completion.
+                            </p>
                         </div>
                     </motion.div>
                 )}

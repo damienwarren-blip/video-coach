@@ -90,15 +90,18 @@ function Hero({ y1, y2 }) {
                     <br />
                     <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
                 </h1>
-                <p className="mt-8 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-white/90 max-w-4xl mx-auto">
-                    Hear what your customers really think.
+                {/* UPDATED: Hero strap line */}
+                <p className="mt-8 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight max-w-4xl mx-auto">
+                    <span className="bg-gradient-to-r from-cyan-300 to-teal-400 bg-clip-text text-transparent">
+                        START CREATING WHAT CUSTOMERS LOVE.
+                    </span>
                 </p>
             </motion.div>
         </section>
     );
 }
 
-function VideoAskSection({ videoConsent, setVideoConsent }) {
+function VideoAskSection() { // Removed videoConsent, setVideoConsent props
     return (
         <>
             <section className="pt-20 pb-16 px-6 text-center">
@@ -110,40 +113,13 @@ function VideoAskSection({ videoConsent, setVideoConsent }) {
             <section className="px-4 md:px-8 -mt-12 pb-24 md:pb-32">
                 <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-5xl mx-auto">
                     <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl relative">
-                        
+                        {/* REMOVED: !videoConsent logic and consent card */}
                         <iframe 
-                            src="https://www.videoask.com/f79eyujri" 
+                            src="https://www.videoask.com/fvk6am2q6" 
                             allow="camera; microphone; autoplay; display-capture" 
                             className="w-full h-full" 
                             title="QuickChat Demo" 
                         />
-                        
-                        {!videoConsent && (
-                            <div 
-                                className="absolute inset-0 z-10 flex items-center justify-center p-4 md:p-8 pointer-events-none"
-                            >
-                                <motion.div 
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.5 }}
-                                    className="max-w-md text-center p-4 rounded-xl bg-white/10 border border-white/30 shadow-2xl backdrop-blur-xl pointer-events-auto"
-                                >
-                                    <p className="text-lg md:text-xl font-light text-white leading-snug">
-                                        By continuing, you agree to share your name and email so we can follow up with you.
-                                    </p>
-                                    
-                                    <motion.button
-                                        onClick={() => setVideoConsent(true)}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="mt-4 px-4 py-2 text-base font-bold rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg shadow-pink-500/50 transition-all duration-300 transform"
-                                    >
-                                        Start the chat →
-                                    </motion.button>
-                                </motion.div>
-                            </div>
-                        )}
                     </div>
                 </motion.div>
             </section>
@@ -258,7 +234,7 @@ export default function Home() {
     const y2 = useTransform(scrollYProgress, [0, 1], [0, -700]);
 
     const [strategyAgreed, setStrategyAgreed] = useState(false);
-    const [videoConsent, setVideoConsent] = useState(false);
+    // REMOVED: videoConsent state as it's no longer used
 
     // --- Specific URL for the QuickChat Data Listening Page ---
     const listeningPageLink = "/listening"; 
@@ -305,7 +281,7 @@ export default function Home() {
             <div className="border-y border-pink-700/50" />
 
             {/* 3. VIDEO ASK SECTION */}
-            <VideoAskSection videoConsent={videoConsent} setVideoConsent={setVideoConsent} />
+            <VideoAskSection /> {/* Removed videoConsent, setVideoConsent props */}
 
             <div className="border-y border-pink-700/50" />
 

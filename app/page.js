@@ -105,9 +105,10 @@ function VideoAskSection() {
     return (
         <>
             <section className="pt-20 pb-16 px-6 text-center">
+                {/* UPDATED: Change to a more action-oriented heading */}
                 <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                     className="text-7xl md:text-9xl font-extrabold bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
-                    Have a QuickChat with us
+                    Experience QuickChat Now
                 </motion.h2>
             </section>
             <section className="px-4 md:px-8 -mt-12 pb-24 md:pb-32">
@@ -247,7 +248,7 @@ export default function Home() {
 
             <div className="border-y border-pink-700/50" />
 
-            {/* 2. VALUE PROPOSITION (Updated with final approved copy) */}
+            {/* 2. VALUE PROPOSITION (UPDATED with 'video conversations') */}
             <section className="py-24 md:py-32 px-6 text-center">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-snug bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent max-w-5xl mx-auto">
                     The Customer Dictates Success.
@@ -264,7 +265,7 @@ export default function Home() {
                 {/* --- UPDATED: SINGLE SENTENCE CORE VALUE --- */}
                 
                 <p className="mt-16 text-4xl md:text-5xl font-light max-w-5xl mx-auto leading-snug">
-                    QuickChat delivers conversations @ scale, giving you the critical
+                    QuickChat delivers video conversations @ scale, giving you the critical
                     <span className="font-extrabold bg-gradient-to-r from-cyan-300 to-teal-400 bg-clip-text text-transparent">
                         {' '}WHY{' '}
                     </span> 
@@ -280,7 +281,7 @@ export default function Home() {
 
             <div className="border-y border-pink-700/50" />
 
-            {/* 3. VIDEO ASK SECTION */}
+            {/* 3. VIDEO ASK SECTION (UPDATED HEADING) */}
             <VideoAskSection />
 
             <div className="border-y border-pink-700/50" />

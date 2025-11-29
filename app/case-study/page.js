@@ -28,24 +28,19 @@ ZEUS SCOOTERS • CUSTOMER CHURN
 How QuickChat Unlocked 3X Churn Insights for Zeus Scooters.
 </h1>
 
-{/* Metrics/Outcome Strip - Grid layout changed to 4 columns on desktop */}
-<div className="mt-12 grid grid-cols-2 gap-y-8 md:grid-cols-4 md:gap-8 p-6 border-y border-pink-700/50 backdrop-blur-sm bg-white/5 rounded-xl">
-{/* Metric 1: 3X */}
+{/* Metrics/Outcome Strip - Updated to 3 columns: €900K, 10K, <7 Days */}
+<div className="mt-12 grid grid-cols-3 gap-y-8 md:grid-cols-3 md:gap-8 p-6 border-y border-pink-700/50 backdrop-blur-sm bg-white/5 rounded-xl">
+{/* Metric 1: Revenue Recovery (€900K) */}
 <div className="text-center">
-<div className="text-4xl md:text-7xl font-extrabold bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">3×</div>
-<p className="text-white/70 text-sm md:text-base mt-2">Participation Rate vs. Surveys</p>
-</div>
-{/* Metric 2: 150K */}
-<div className="text-center">
-<div className="text-4xl md:text-7xl font-extrabold bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">150K</div>
-<p className="text-white/70 text-sm md:text-base mt-2">German Customers Contacted</p>
-</div>
-{/* Metric 3: Revenue Recovery */}
-<div className="text-center">
-<div className="text-4xl md:text-7xl font-extrabold bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent">€900K</div>
+<div className="text-4xl md:text-7xl font-extrabold bg-gradient-to-r from-pink-400 to-rose-400 bg-clip-text text-transparent">€900K</div>
 <p className="text-white/70 text-sm md:text-base mt-2">annual projected revenue recovery</p>
 </div>
-{/* Metric 4: Strategy Delivered (NEW) */}
+{/* Metric 2: Win-back Goal (10K) */}
+<div className="text-center">
+<div className="text-4xl md:text-7xl font-extrabold bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-transparent">10K</div>
+<p className="text-white/70 text-sm md:text-base mt-2">customers targeted for win-back Q1</p>
+</div>
+{/* Metric 3: Strategy Delivered (<7 days) */}
 <div className="text-center">
 <div className="text-4xl md:text-7xl font-extrabold bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent">{'<7'}</div>
 <p className="text-white/70 text-sm md:text-base mt-2">Strategy delivered in days</p>
@@ -59,7 +54,7 @@ How QuickChat Unlocked 3X Churn Insights for Zeus Scooters.
 The Challenge: The Cost of Silent Churn
 </h2>
 <p className="text-lg text-white/80 leading-relaxed">
-Zeus Scooters was battling a critical customer retention crisis. Their reliance on traditional email surveys yielded a <strong>sub-1% engagement rate</strong>, providing only shallow, multiple-choice data. This meant they were unable to determine the true 'why' behind their escalating churn—a problem costing them <strong>significant annual revenue</strong>. To solve this, <strong>the Irish management team needed a culturally appropriate, German-speaking, high-engagement method</strong> to truly listen to their massive German user base: 150,000 customers across 30 cities.
+Zeus Scooters was battling a critical customer retention crisis. Their reliance on traditional email surveys yielded a **sub-1% engagement rate**, providing only shallow, multiple-choice data. This meant they were unable to determine the true 'why' behind their escalating churn—a problem costing them **significant annual revenue**. To solve this, **the Irish management team needed a culturally appropriate, German-speaking, high-engagement method** to truly listen to their massive German user base: 150,000 customers across 30 cities.
 </p>
 </section>
 
@@ -69,24 +64,24 @@ Zeus Scooters was battling a critical customer retention crisis. Their reliance 
 The Solution: Video at Scale
 </h2>
 <p className="text-lg text-white/80 leading-relaxed">
-QuickChat implemented a <strong>high-impact, interactive video campaign</strong>, strategically distributed across email, in-app, and social channels. This personalized, mobile-first approach, delivered entirely in German, was specifically engineered to mirror the casual, high-speed brand experience of Zeus Scooters. The result was immediate: QuickChat achieved a <strong>3X higher participation rate</strong> than traditional surveys and, crucially, delivered the <strong>rich, qualitative 'why'</strong> necessary to understand and solve their retention problems.
+QuickChat implemented a **high-impact, interactive video campaign**, strategically distributed across email, in-app, and social channels. This personalized, mobile-first approach, delivered entirely in German, was specifically engineered to mirror the casual, high-speed brand experience of Zeus Scooters. The result was immediate: QuickChat achieved a **3X higher participation rate** than traditional surveys and, crucially, delivered the **rich, qualitative 'why'** necessary to understand and solve their retention problems.
 </p>
 
 <div className="mt-12 p-8 bg-pink-900/20 rounded-xl border border-pink-700/50 shadow-2xl shadow-pink-900/40">
 <h3 className="text-2xl font-bold mb-4 text-pink-300">Key Results:</h3>
-{/* Broken down the high-level metrics into clear, actionable bullets */}
+{/* Broken down the high-level metrics into clear, actionable bullets, updated to match the 3 core metrics */}
 <ul className="list-disc list-inside space-y-3 text-lg text-white/80 pl-4">
 <li>
-<strong>Rapid Strategy:</strong> Full strategic blueprint delivered in **less than seven days** from campaign launch.
+**Rapid Strategy:** Full strategic blueprint delivered in **less than seven days** from campaign launch.
 </li>
 <li>
-<strong>Financial Impact:</strong> €900K annual projected revenue recovery, achieved at only 30% of the cost of new customer acquisition.
+**Financial Impact:** €900K annual projected revenue recovery, achieved at only 30% of the cost of new customer acquisition.
 </li>
 <li>
-<strong>Win-Back Goal:</strong> Targeted initiatives to win back 10,000 high-value customers in the next quarter by directly addressing specific churn reasons.
+**Win-Back Goal:** Targeted initiatives to win back **10,000 high-value customers in the next quarter** by directly addressing specific churn reasons.
 </li>
 <li>
-<strong>Root Cause Action:</strong> Identified and prioritized the top 3 operational friction points for immediate resolution across all 30 German cities.
+**Root Cause Action:** Identified and prioritized the top 3 operational friction points for immediate resolution across all 30 German cities.
 </li>
 </ul>
 </div>
@@ -96,7 +91,7 @@ QuickChat implemented a <strong>high-impact, interactive video campaign</strong>
 <section className="mt-20 py-16 bg-gradient-to-r from-purple-900/30 to-black rounded-xl border border-purple-700/50">
 <figure className="max-w-4xl mx-auto px-8 text-center">
 <blockquote className="text-4xl italic font-light leading-snug text-white">
-“You’ve given me a <strong>step-by-step guide to reduce churn</strong>. We went from guessing to knowing exactly which button to press to fix our problem.”
+“You’ve given me a **step-by-step guide to reduce churn**. We went from guessing to knowing exactly which button to press to fix our problem.”
 </blockquote>
 <figcaption className="mt-8 text-2xl font-bold text-cyan-400">
 — Chris Kemp / Deputy CEO, Zeus Scooters

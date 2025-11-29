@@ -69,16 +69,16 @@ QuickChat implemented a **high-impact, interactive video campaign**, strategical
 
 <div className="mt-12 p-8 bg-pink-900/20 rounded-xl border border-pink-700/50 shadow-2xl shadow-pink-900/40">
 <h3 className="text-2xl font-bold mb-4 text-pink-300">Key Results:</h3>
-{/* Broken down the high-level metrics into clear, actionable bullets, updated to match the 3 core metrics */}
+{/* UPDATED LIST: Only the descriptor is bolded, not the values/numbers */}
 <ul className="list-disc list-inside space-y-3 text-lg text-white/80 pl-4">
 <li>
-**Rapid Strategy:** Full strategic blueprint delivered in **less than seven days** from campaign launch.
+**Rapid Strategy:** Full strategic blueprint delivered in less than seven days from campaign launch.
 </li>
 <li>
 **Financial Impact:** €900K annual projected revenue recovery, achieved at only 30% of the cost of new customer acquisition.
 </li>
 <li>
-**Win-Back Goal:** Targeted initiatives to win back **10,000 high-value customers in the next quarter** by directly addressing specific churn reasons.
+**Win-Back Goal:** Targeted initiatives to win back 10,000 high-value customers in the next quarter by directly addressing specific churn reasons.
 </li>
 <li>
 **Root Cause Action:** Identified and prioritized the top 3 operational friction points for immediate resolution across all 30 German cities.

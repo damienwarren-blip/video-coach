@@ -105,16 +105,16 @@ function VideoAskSection() {
     return (
         <>
             <section className="pt-20 pb-16 px-6 text-center">
-                {/* UPDATED: Change to a more action-oriented heading */}
+                {/* FIX: Adjusted mobile font size from text-7xl to text-5xl to prevent cutoff on small screens */}
                 <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                    className="text-7xl md:text-9xl font-extrabold bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
+                    className="text-5xl md:text-9xl font-extrabold bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
                     Experience QuickChat Now
                 </motion.h2>
             </section>
             <section className="px-4 md:px-8 -mt-12 pb-24 md:pb-32">
                 <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-5xl mx-auto">
                     <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl relative">
-                        {/* UPDATED: Video Ask URL */}
+                        {/* Video Ask URL */}
                         <iframe 
                             src="https://www.videoask.com/f79eyujri" 
                             allow="camera; microphone; autoplay; display-capture" 
@@ -281,7 +281,7 @@ export default function Home() {
 
             <div className="border-y border-pink-700/50" />
 
-            {/* 3. VIDEO ASK SECTION (UPDATED HEADING) */}
+            {/* 3. VIDEO ASK SECTION (UPDATED HEADING FOR MOBILE FIX) */}
             <VideoAskSection />
 
             <div className="border-y border-pink-700/50" />

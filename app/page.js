@@ -119,6 +119,7 @@ function VideoAskSection() {
                             allow="camera; microphone; autoplay; display-capture" 
                             className="w-full h-full" 
                             title="QuickChat Demo" 
+                            loading="eager"
                         />
                     </div>
                 </motion.div>
@@ -128,6 +129,7 @@ function VideoAskSection() {
 }
 
 function FeatureBlock({ title, data, type, gridColumns }) {
+    // Dynamically calculate grid class
     const gridClass = `grid md:grid-cols-${gridColumns} gap-12 mt-20`;
 
     return (
@@ -164,7 +166,7 @@ function FeatureBlock({ title, data, type, gridColumns }) {
                                     </div>
                                 )}
 
-                                <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
+                                <h3 className="text-2xl font-bold mb-3">{item.title || item.metric}</h3>
                                 <p className="text-white/70">{item.detail}</p>
                             </motion.div>
                         );
@@ -245,10 +247,10 @@ export default function Home() {
 
             <div className="border-y border-pink-700/50" />
 
-            {/* 2. VALUE PROPOSITION (Icons removed, using centered list style) */}
+            {/* 2. VALUE PROPOSITION (Updated with final approved copy) */}
             <section className="py-24 md:py-32 px-6 text-center">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-snug bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent max-w-5xl mx-auto">
-                    Your Customer has the Strategy.
+                    The Customer Dictates Success.
                 </h2>
                 <div className="mt-12 text-3xl md:text-4xl text-white/95 font-medium max-w-4xl mx-auto">
                     {/* Reverted to simple text list, centered */}
@@ -259,18 +261,17 @@ export default function Home() {
                     </ul>
                 </div>
                 
-                {/* --- SINGLE SENTENCE CORE VALUE --- */}
+                {/* --- UPDATED: SINGLE SENTENCE CORE VALUE --- */}
                 
                 <p className="mt-16 text-4xl md:text-5xl font-light max-w-5xl mx-auto leading-snug">
-                    QuickChat uses video to provide the missing
+                    QuickChat delivers conversations @ scale, giving you the critical
                     <span className="font-extrabold bg-gradient-to-r from-cyan-300 to-teal-400 bg-clip-text text-transparent">
                         {' '}WHY{' '}
                     </span> 
-                    and delivers clear strategy in
+                    and a clear strategic action plan in less than
                     <span className="font-extrabold bg-gradient-to-r from-cyan-300 to-teal-400 bg-clip-text text-transparent">
-                        {' '}48 hours{' '}
+                        {' '}48 hours.
                     </span> 
-                    for faster growth.
                 </p>
                 
                 {/* ---------------------------------------------------- */}

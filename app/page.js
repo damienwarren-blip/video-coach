@@ -270,13 +270,14 @@ export default function Home() {
 
             <div className="border-y border-pink-700/50" />
 
-            {/* 2. VALUE PROPOSITION (Spacing guaranteed with internal spaces) */}
+            {/* 2. VALUE PROPOSITION (List Centering Applied) */}
             <section className="py-24 md:py-32 px-6 text-center">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-snug bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent max-w-5xl mx-auto">
                     Your Customers Already Know the Strategy.
                 </h2>
                 <div className="mt-12 text-3xl md:text-4xl text-white/95 font-medium max-w-4xl mx-auto">
-                    <ul className="list-none space-y-4 font-normal">
+                    {/* Centering is achieved by making the <ul> block centered and using text-center on it */}
+                    <ul className="list-none space-y-4 font-normal text-center mx-auto">
                         <li className="text-rose-300">→ The value they prioritize.</li>
                         <li className="text-rose-300">→ The experience that frustrates them.</li>
                         <li className="text-rose-300">→ The moment they nearly decided to leave.</li>

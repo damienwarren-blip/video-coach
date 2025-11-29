@@ -54,7 +54,7 @@ How QuickChat Unlocked 3X Churn Insights for Zeus Scooters.
 The Challenge: The Cost of Silent Churn
 </h2>
 <p className="text-lg text-white/80 leading-relaxed">
-Zeus Scooters was battling a critical customer retention crisis. Their reliance on traditional email surveys yielded a **sub-1% engagement rate**, providing only shallow, multiple-choice data. This meant they were unable to determine the true 'why' behind their escalating churn—a problem costing them **significant annual revenue**. To solve this, **the Irish management team needed a culturally appropriate, German-speaking, high-engagement method** to truly listen to their massive German user base: 150,000 customers across 30 cities.
+Zeus Scooters was battling a critical customer retention crisis. Their reliance on traditional email surveys yielded a <strong>sub-1% engagement rate</strong>, providing only shallow, multiple-choice data. This meant they were unable to determine the true 'why' behind their escalating churn—a problem costing them <strong>significant annual revenue</strong>. To solve this, <strong>the Irish management team needed a culturally appropriate, German-speaking, high-engagement method</strong> to truly listen to their massive German user base: 150,000 customers across 30 cities.
 </p>
 </section>
 
@@ -64,24 +64,24 @@ Zeus Scooters was battling a critical customer retention crisis. Their reliance 
 The Solution: Video at Scale
 </h2>
 <p className="text-lg text-white/80 leading-relaxed">
-QuickChat implemented a **high-impact, interactive video campaign**, strategically distributed across email, in-app, and social channels. This personalized, mobile-first approach, delivered entirely in German, was specifically engineered to mirror the casual, high-speed brand experience of Zeus Scooters. The result was immediate: QuickChat achieved a **3X higher participation rate** than traditional surveys and, crucially, delivered the **rich, qualitative 'why'** necessary to understand and solve their retention problems.
+QuickChat implemented a <strong>high-impact, interactive video campaign</strong>, strategically distributed across email, in-app, and social channels. This personalized, mobile-first approach, delivered entirely in German, was specifically engineered to mirror the casual, high-speed brand experience of Zeus Scooters. The result was immediate: QuickChat achieved a <strong>3X higher participation rate</strong> than traditional surveys and, crucially, delivered the <strong>rich, qualitative 'why'</strong> necessary to understand and solve their retention problems.
 </p>
 
 <div className="mt-12 p-8 bg-pink-900/20 rounded-xl border border-pink-700/50 shadow-2xl shadow-pink-900/40">
 <h3 className="text-2xl font-bold mb-4 text-pink-300">Key Results:</h3>
-{/* UPDATED LIST: Only the descriptor is bolded, not the values/numbers */}
+{/* UPDATED LIST: Bolded using <strong> tags, no asterisks */}
 <ul className="list-disc list-inside space-y-3 text-lg text-white/80 pl-4">
 <li>
-**Rapid Strategy:** Full strategic blueprint delivered in less than seven days from campaign launch.
+<strong>Rapid Strategy:</strong> Full strategic blueprint delivered in less than seven days from campaign launch.
 </li>
 <li>
-**Financial Impact:** €900K annual projected revenue recovery, achieved at only 30% of the cost of new customer acquisition.
+<strong>Financial Impact:</strong> €900K annual projected revenue recovery, achieved at only 30% of the cost of new customer acquisition.
 </li>
 <li>
-**Win-Back Goal:** Targeted initiatives to win back 10,000 high-value customers in the next quarter by directly addressing specific churn reasons.
+<strong>Win-Back Goal:</strong> Targeted initiatives to win back 10,000 high-value customers in the next quarter by directly addressing specific churn reasons.
 </li>
 <li>
-**Root Cause Action:** Identified and prioritized the top 3 operational friction points for immediate resolution across all 30 German cities.
+<strong>Root Cause Action:</strong> Identified and prioritized the top 3 operational friction points for immediate resolution across all 30 German cities.
 </li>
 </ul>
 </div>
@@ -91,7 +91,7 @@ QuickChat implemented a **high-impact, interactive video campaign**, strategical
 <section className="mt-20 py-16 bg-gradient-to-r from-purple-900/30 to-black rounded-xl border border-purple-700/50">
 <figure className="max-w-4xl mx-auto px-8 text-center">
 <blockquote className="text-4xl italic font-light leading-snug text-white">
-“You’ve given me a **step-by-step guide to reduce churn**. We went from guessing to knowing exactly which button to press to fix our problem.”
+“You’ve given me a <strong>step-by-step guide to reduce churn</strong>. We went from guessing to knowing exactly which button to press to fix our problem.”
 </blockquote>
 <figcaption className="mt-8 text-2xl font-bold text-cyan-400">
 — Chris Kemp / Deputy CEO, Zeus Scooters

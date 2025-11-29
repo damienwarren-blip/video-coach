@@ -90,7 +90,7 @@ function Hero({ y1, y2 }) {
                     <br />
                     <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
                 </h1>
-                {/* UPDATED: Hero strap line */}
+                {/* Hero strap line */}
                 <p className="mt-8 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight max-w-4xl mx-auto">
                     <span className="bg-gradient-to-r from-cyan-300 to-teal-400 bg-clip-text text-transparent">
                         START CREATING WHAT CUSTOMERS LOVE.
@@ -101,7 +101,7 @@ function Hero({ y1, y2 }) {
     );
 }
 
-function VideoAskSection() { // Removed videoConsent, setVideoConsent props
+function VideoAskSection() {
     return (
         <>
             <section className="pt-20 pb-16 px-6 text-center">
@@ -113,9 +113,8 @@ function VideoAskSection() { // Removed videoConsent, setVideoConsent props
             <section className="px-4 md:px-8 -mt-12 pb-24 md:pb-32">
                 <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-5xl mx-auto">
                     <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl relative">
-                        {/* REMOVED: !videoConsent logic and consent card */}
                         <iframe 
-                            src="https://www.videoask.com/f79eyujri" 
+                            src="https://www.videoask.com/fvk6am2q6" 
                             allow="camera; microphone; autoplay; display-capture" 
                             className="w-full h-full" 
                             title="QuickChat Demo" 
@@ -234,7 +233,6 @@ export default function Home() {
     const y2 = useTransform(scrollYProgress, [0, 1], [0, -700]);
 
     const [strategyAgreed, setStrategyAgreed] = useState(false);
-    // REMOVED: videoConsent state as it's no longer used
 
     // --- Specific URL for the QuickChat Data Listening Page ---
     const listeningPageLink = "/listening"; 
@@ -246,21 +244,29 @@ export default function Home() {
 
             <div className="border-y border-pink-700/50" />
 
-            {/* 2. VALUE PROPOSITION (List Centering Applied) */}
+            {/* 2. VALUE PROPOSITION (List Centering Applied with Icons) */}
             <section className="py-24 md:py-32 px-6 text-center">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-snug bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent max-w-5xl mx-auto">
                     Your Customer has the Strategy.
                 </h2>
                 <div className="mt-12 text-3xl md:text-4xl text-white/95 font-medium max-w-4xl mx-auto">
-                    {/* Centering is achieved by making the <ul> block centered and using text-center on it */}
-                    <ul className="list-none space-y-4 font-normal text-center mx-auto">
-                        <li className="text-rose-300">→ The value they prioritize.</li>
-                        <li className="text-rose-300">→ The experience that frustrates them.</li>
-                        <li className="text-rose-300">→ The moment they nearly decided to leave.</li>
+                    <ul className="list-none space-y-8 font-normal flex flex-col items-center">
+                        <li className="text-rose-300 flex items-center justify-center space-x-4">
+                            <HeartIcon className="h-10 w-10 text-rose-500" />
+                            <span>The value they prioritize.</span>
+                        </li>
+                        <li className="text-rose-300 flex items-center justify-center space-x-4">
+                            <LockClosedIcon className="h-10 w-10 text-pink-500" />
+                            <span>The experience that frustrates them.</span>
+                        </li>
+                        <li className="text-rose-300 flex items-center justify-center space-x-4">
+                            <ShieldCheckIcon className="h-10 w-10 text-purple-500" />
+                            <span>The moment they nearly decided to leave.</span>
+                        </li>
                     </ul>
                 </div>
                 
-                {/* --- SINGLE SENTENCE CORE VALUE (SPACING FIXED) --- */}
+                {/* --- SINGLE SENTENCE CORE VALUE --- */}
                 
                 <p className="mt-16 text-4xl md:text-5xl font-light max-w-5xl mx-auto leading-snug">
                     QuickChat uses video to provide the missing
@@ -281,7 +287,7 @@ export default function Home() {
             <div className="border-y border-pink-700/50" />
 
             {/* 3. VIDEO ASK SECTION */}
-            <VideoAskSection /> {/* Removed videoConsent, setVideoConsent props */}
+            <VideoAskSection />
 
             <div className="border-y border-pink-700/50" />
 

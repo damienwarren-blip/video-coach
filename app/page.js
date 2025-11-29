@@ -115,7 +115,7 @@ function VideoAskSection() { // Removed videoConsent, setVideoConsent props
                     <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl relative">
                         {/* REMOVED: !videoConsent logic and consent card */}
                         <iframe 
-                            src="https://www.videoask.com/fvk6am2q6" 
+                            src="https://www.videoask.com/f79eyujri" 
                             allow="camera; microphone; autoplay; display-capture" 
                             className="w-full h-full" 
                             title="QuickChat Demo" 

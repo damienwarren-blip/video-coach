@@ -10,14 +10,14 @@ import {
 const HOW_IT_WORKS_DATA = [
     { title: "1. Set your question.", detail: "We agree on one clear question to explore — onboarding, cancellations, trust, pricing, or product fit.", icon: "VideoCameraIcon", color: "pink" },
     { title: "2. Deploy to key segments", detail: "You share one simple link with the customers you want to hear from — new, loyal, at-risk, or recently cancelled.", icon: "PaperAirplaneIcon", color: "purple" },
-    { title: "3. Hear the Real Experience", detail: "Customers respond in a short voice note or a brief written message. It’s often the first time they’ve had an easy way to say what really shaped their experience.", icon: "ChatBubbleLeftRightIcon", color: "rose" },
+    { title: "3. Hear the Real Experience", detail: "Customers respond via a short voice note or brief written message, in any language. This low-friction, voice-accessible approach ensures you capture what truly shaped their experience.", icon: "ChatBubbleLeftRightIcon", color: "rose" },
     { title: "4. Instant Strategy Blueprint", detail: "We summarise the main patterns, concerns, and drivers — and return a clear, practical view of what to focus on next, usually within 48 hours.", icon: "SparklesIcon", color: "cyan" },
 ];
 
 const ROI_DATA = [
-    { metric: "3×", detail: "Higher participation than traditional surveys, because people find it easier to speak or write naturally.", color: "pink" },
-    { metric: "10×", detail: "Faster understanding of the reasons behind cancellations, hesitation, and long-term loyalty.", color: "purple" },
-    { metric: "<48h", detail: "From question to clear direction while there is still time to act.", color: "cyan" },
+    { metric: "3×", detail: "Higher participation than traditional surveys, because people find it easier to speak or write naturally.", color: "pink", title: "Higher Participation" },
+    { metric: "10×", detail: "Faster understanding of the reasons behind cancellations, hesitation, and long-term loyalty.", color: "purple", title: "Faster Insights" },
+    { metric: "<48h", detail: "From question to clear direction while there is still time to act.", color: "cyan", title: "Strategy Actionable" },
 ];
 
 const TRUST_DATA = [
@@ -102,30 +102,32 @@ function Hero({ y1, y2 }) {
 }
 
 function VideoAskSection() {
+    // The URL for the VideoAsk demo
+    const demoVideoAskUrl = "https://www.videoask.com/f79eyujri";
+    
     return (
-        <>
-            <section className="pt-20 pb-16 px-6 text-center">
-                {/* FIX: Adjusted mobile font size from text-7xl to text-5xl to prevent cutoff on small screens */}
-                <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                    className="text-5xl md:text-9xl font-extrabold bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
-                    Experience QuickChat Now
-                </motion.h2>
-            </section>
-            <section className="px-4 md:px-8 -mt-12 pb-24 md:pb-32">
-                <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-5xl mx-auto">
-                    <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl relative">
-                        {/* Video Ask URL */}
-                        <iframe 
-                            src="https://www.videoask.com/f79eyujri" 
-                            allow="camera; microphone; autoplay; display-capture" 
-                            className="w-full h-full" 
-                            title="QuickChat Demo" 
-                            loading="eager"
-                        />
-                    </div>
-                </motion.div>
-            </section>
-        </>
+        <section className="pt-20 pb-24 md:pb-32 px-6 text-center">
+            
+            {/* Main Heading */}
+            <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                className="text-5xl md:text-9xl font-extrabold bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent mb-12">
+                Experience QuickChat Now
+            </motion.h2>
+
+            {/* Embedded Video Demo (Simplified, direct focus) */}
+            <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-5xl mx-auto">
+                <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl relative">
+                    {/* Embedded Video Ask iframe */}
+                    <iframe 
+                        src={demoVideoAskUrl} 
+                        allow="camera; microphone; autoplay; display-capture" 
+                        className="w-full h-full" 
+                        title="QuickChat Demo" 
+                        loading="eager"
+                    />
+                </div>
+            </motion.div>
+        </section>
     );
 }
 
@@ -182,7 +184,7 @@ function FinalCTA({ strategyAgreed, setStrategyAgreed }) {
     const finalCTALink = "mailto:damien@quickchat.space?subject=I want to run a QuickChat Discovery & Retention Pilot&body=Hey Damien – let's discuss running a pilot to inform our customer strategy for growth and retention. %0A%0ACompany Turnover: %0ACurrent Churn Rate: %0APrimary Goal (Discovery or Retention): ";
 
     return (
-        <section className="min-h-screen flex items-center justify-center px-6 bg-gradient-to-b from-transparent via-pink-900/10 to-transparent">
+        <section id="final-cta" className="min-h-screen flex items-center justify-center px-6 bg-gradient-to-b from-transparent via-pink-900/10 to-transparent">
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-center">
                 <h2 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent leading-tight">
                     Ready to Inform Your Next<br /><span className="text-cyan-300">Big Strategy</span>?
@@ -201,7 +203,7 @@ function FinalCTA({ strategyAgreed, setStrategyAgreed }) {
                             className="mt-1 mr-3 w-5 h-5 form-checkbox accent-pink-500 bg-transparent border-pink-400 rounded-md focus:ring-pink-500 transition duration-150 ease-in-out"
                         />
                         <span className="text-left leading-snug font-light">
-                            By checking, you agree to the temporary use of your name and email address for <span className="font-bold">scheduling purposes only</span>.
+                            By checking, you agree to the temporary use of your name and email address for <span className="font-bold">scheduling purposes only.</span>
                         </span>
                     </label>
                 </div>
@@ -248,21 +250,18 @@ export default function Home() {
 
             <div className="border-y border-pink-700/50" />
 
-            {/* 2. VALUE PROPOSITION (UPDATED with 'video conversations') */}
+            {/* 2. VALUE PROPOSITION */}
             <section className="py-24 md:py-32 px-6 text-center">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-snug bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent max-w-5xl mx-auto">
                     The Customer Dictates Success.
                 </h2>
                 <div className="mt-12 text-3xl md:text-4xl text-white/95 font-medium max-w-4xl mx-auto">
-                    {/* Reverted to simple text list, centered */}
                     <ul className="list-none space-y-4 font-normal text-center mx-auto">
                         <li className="text-rose-300">The value they prioritize.</li>
                         <li className="text-rose-300">The experience that frustrates them.</li>
                         <li className="text-rose-300">The moment they nearly decided to leave.</li>
                     </ul>
                 </div>
-                
-                {/* --- UPDATED: SINGLE SENTENCE CORE VALUE --- */}
                 
                 <p className="mt-16 text-4xl md:text-5xl font-light max-w-5xl mx-auto leading-snug">
                     QuickChat delivers video conversations @ scale, giving you the critical
@@ -275,30 +274,28 @@ export default function Home() {
                     </span> 
                 </p>
                 
-                {/* ---------------------------------------------------- */}
-                
             </section>
 
             <div className="border-y border-pink-700/50" />
 
-            {/* 3. VIDEO ASK SECTION (UPDATED HEADING FOR MOBILE FIX) */}
+            {/* 3. VIDEO ASK SECTION (SIMPLE HEADING + VIDEO) */}
             <VideoAskSection />
 
             <div className="border-y border-pink-700/50" />
 
-            {/* 4. HOW IT WORKS SECTION (Title Changed) */}
+            {/* 4. HOW IT WORKS SECTION */}
             <FeatureBlock
                 title="How it works"
                 data={HOW_IT_WORKS_DATA}
                 type="icon"
                 gridColumns={4}
             />
-
+            
             <div className="border-y border-pink-700/50" />
 
-            {/* 5. ROI SECTION */}
-            <FeatureBlock
-                title="The Real Impact of Listening"
+            {/* 5. KEY BENEFITS SECTION (Updated Title) */}
+             <FeatureBlock
+                title="Key Benefits"
                 data={ROI_DATA}
                 type="metric"
                 gridColumns={3}
@@ -306,7 +303,7 @@ export default function Home() {
 
             <div className="border-y border-pink-700/50" />
 
-            {/* 6. CASE STUDY TEASER (Spacing Guaranteed with explicit { ' ' } ) */}
+            {/* 6. CASE STUDY TEASER */}
             <section className="py-24 md:py-32 px-6">
                 <div className="max-w-5xl mx-auto text-center">
                     <div className="relative">
@@ -368,7 +365,7 @@ export default function Home() {
 
             <div className="border-y border-pink-700/50" />
 
-            {/* 9. FINAL CTA */}
+            {/* 9. FINAL CTA (Includes ID 'final-cta' for navigation) */}
             <FinalCTA
                 strategyAgreed={strategyAgreed}
                 setStrategyAgreed={setStrategyAgreed}

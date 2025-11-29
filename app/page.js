@@ -273,7 +273,7 @@ export default function Home() {
             {/* 2. VALUE PROPOSITION (List Centering Applied) */}
             <section className="py-24 md:py-32 px-6 text-center">
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-snug bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent max-w-5xl mx-auto">
-                    Your Customers Already Know the Strategy.
+                    Your Customer has the Strategy.
                 </h2>
                 <div className="mt-12 text-3xl md:text-4xl text-white/95 font-medium max-w-4xl mx-auto">
                     {/* Centering is achieved by making the <ul> block centered and using text-center on it */}

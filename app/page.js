@@ -8,7 +8,7 @@ import {
 // --- DATA STRUCTURES ---
 
 const HOW_IT_WORKS_DATA = [
-    { title: "1. Set your question.", detail: "We agree on one clear question to explore — onboarding, cancellations, trust, pricing, or product fit.", icon: "VideoCameraIcon", color: "pink" },
+    { title: "1. Set your question.", detail: "We agree on clear questions to explore — onboarding, cancellations, trust, pricing, or product fit.", icon: "VideoCameraIcon", color: "pink" },
     { title: "2. Deploy to key segments", detail: "You share one simple link with the customers you want to hear from — new, loyal, at-risk, or recently cancelled.", icon: "PaperAirplaneIcon", color: "purple" },
     { title: "3. Hear the Real Experience", detail: "Customers respond via a short voice note or brief written message, in any language. This low-friction, voice-accessible approach ensures you capture what truly shaped their experience.", icon: "ChatBubbleLeftRightIcon", color: "rose" },
     { title: "4. Instant Strategy Blueprint", detail: "We summarise the main patterns, concerns, and drivers — and return a clear, practical view of what to focus on next, usually within 48 hours.", icon: "SparklesIcon", color: "cyan" },

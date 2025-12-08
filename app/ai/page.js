@@ -9,6 +9,7 @@ const QuickChatVideoPortal = () => {
 
             {/* In a real Next.js app, external Tailwind and Fonts are handled differently,
                but for this single-file conversion, we rely on the component structure. */}
+            
 
             {/* Header / Logo Section - Updated with QuickChat Brand and Play Button Icon */}
             <header className="w-full max-w-4xl mb-12 flex justify-between items-center py-4">

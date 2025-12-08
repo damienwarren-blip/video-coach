@@ -1,5 +1,7 @@
 // Note: This component uses client-side hooks like useState and Framer Motion.
 
+"use client";
+
 import { useRef, useState } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import {

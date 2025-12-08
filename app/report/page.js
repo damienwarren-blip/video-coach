@@ -41,7 +41,7 @@ export default function ReportPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-6">
+    <main className="min-h-screen bg-white py-12 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-8">
           <div className="flex items-center justify-between mb-6">

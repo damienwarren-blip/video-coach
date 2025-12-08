@@ -2,7 +2,33 @@ import React from 'react';
 
 // Main App Component using Tailwind CSS for responsiveness and modern styling
 export default function App() {
-  // Utility function for table cells that need background colors
+
+  // Component for displaying a visual Risk Rating (Colored Dot + Text)
+  const RiskRatingBadge = ({ level }) => {
+    let colorClass = 'bg-gray-400';
+    let text = level;
+
+    if (level === 'critical' || level === 'high') {
+        colorClass = 'bg-red-500';
+        text = level === 'critical' ? 'Critical' : 'High';
+    } else if (level === 'medium') {
+        colorClass = 'bg-yellow-500';
+        text = 'Medium';
+    } else if (level === 'low') {
+        colorClass = 'bg-green-500';
+        text = 'Low';
+    }
+
+    return (
+        <div className="flex items-center justify-start space-x-1">
+            <span className={`w-2.5 h-2.5 rounded-full ${colorClass} flex-shrink-0 shadow-md`}></span>
+            <span className="font-semibold text-xs tracking-wider uppercase text-gray-700">{text}</span>
+        </div>
+    );
+  };
+
+
+  // Utility function for table cells that need background colors (used for descriptive/insight columns)
   const RiskCell = ({ children, level, className = '' }) => {
     let bgColor = 'bg-white';
     // Map Critical/High to 'high', Medium to 'medium' for color coding
@@ -11,7 +37,6 @@ export default function App() {
     else if (level === 'low') bgColor = 'bg-green-100/70';
 
     return (
-      // Reduced padding from px-4 py-4 to px-3 py-3
       <td className={`px-3 py-3 text-sm border-b border-gray-100 ${bgColor} ${className}`}>
         {children}
       </td>
@@ -28,7 +53,6 @@ export default function App() {
     const whitespaceClass = wrap ? 'whitespace-normal' : 'whitespace-nowrap';
 
     return (
-      // Reduced padding from px-4 py-4 to px-3 py-3
       <td className={`px-3 py-3 text-sm border-b border-gray-100 ${whitespaceClass} ${textColor} ${className}`}>
         {children}
       </td>
@@ -41,12 +65,61 @@ export default function App() {
     </div>
   );
 
+  // New component for the visual summary of exposure
+  const ExposureBarChart = ({ total, preventable, residual }) => {
+    // Safely extract numerical values (assuming input format like "€4.7M")
+    const totalValue = 4.7; // Hardcoded for simplicity and stability, but can be calculated if needed
+    const preventableValue = 1.96;
+    const residualValue = 2.74;
+
+    // Calculate percentages
+    const preventablePct = (preventableValue / totalValue) * 100; // ~41.7%
+    const residualPct = (residualValue / totalValue) * 100; // ~58.3%
+
+    return (
+        <div className="flex flex-col space-y-3 mt-4 mb-8">
+            {/* Legend */}
+            <div className="flex space-x-6 text-sm font-medium">
+                <div className="flex items-center space-x-2">
+                    <span className="w-3 h-3 bg-green-500 rounded-full flex-shrink-0 shadow-md"></span>
+                    <span className="text-gray-700">Preventable/ROI ({preventable})</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <span className="w-3 h-3 bg-red-500 rounded-full flex-shrink-0 shadow-md"></span>
+                    <span className="text-gray-700">Residual ({residual})</span>
+                </div>
+            </div>
+
+            {/* Bar visualization */}
+            <div className="w-full h-8 bg-gray-200 rounded-lg flex overflow-hidden shadow-lg border border-gray-200">
+                {/* Preventable (Green) */}
+                <div 
+                    style={{ width: `${preventablePct}%` }}
+                    className="bg-green-500 transition-all duration-700 ease-out"
+                    aria-label={`${preventablePct.toFixed(0)}% Preventable`}
+                ></div>
+                {/* Residual (Red) */}
+                <div 
+                    style={{ width: `${residualPct}%` }}
+                    className="bg-red-500 transition-all duration-700 ease-out"
+                    aria-label={`${residualPct.toFixed(0)}% Residual`}
+                ></div>
+            </div>
+            
+        </div>
+    );
+  };
+
+  const totalExposure = '€4.7M';
+  const preventableExposure = '€1.96M';
+  const residualExposure = '€2.74M';
+
   return (
     <div className="min-h-screen flex justify-center bg-gray-50 text-gray-900 font-inter">
       <div className="w-full max-w-7xl mx-4 my-8 md:mx-10 md:my-10 bg-white p-6 md:p-12 shadow-2xl rounded-2xl">
         {/* Header Section */}
         <h1 className="text-5xl md:text-7xl font-light tracking-tight mb-4 leading-tight">
-          €4.7M<br />Total AI Exposure
+          {totalExposure}<br />Total AI Exposure
         </h1>
         <p className="text-lg text-gray-500 mb-10">
           CISO pulse survey · 200 employees · 50% response rate
@@ -54,10 +127,12 @@ export default function App() {
 
         {/* Training Impact Summary */}
         <h2 className="text-2xl font-semibold mt-10 mb-5 text-gray-900">Training Impact Summary</h2>
+        
+        {/* Exposure Value Table */}
         <div className="overflow-x-auto">
-          <table className="w-full border-collapse my-6 text-sm">
+          <table className="w-full border-collapse my-2 text-sm">
             <thead>
-              <tr className='h-16'>
+              <tr className='h-12'>
                 {/* Reduced padding */}
                 <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 rounded-tl-lg">Total Exposure</th>
                 <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Preventable Exposure</th>
@@ -66,14 +141,21 @@ export default function App() {
             </thead>
             <tbody>
               <tr>
-                <DataCell isHighlight={true}>€4.7M</DataCell>
-                <DataCell isROI={true}>€1.96M</DataCell>
-                <DataCell isHighlight={true}>€2.74M</DataCell>
+                <DataCell isHighlight={true}>{totalExposure}</DataCell>
+                <DataCell isROI={true}>{preventableExposure}</DataCell>
+                <DataCell isHighlight={true}>{residualExposure}</DataCell>
               </tr>
             </tbody>
           </table>
         </div>
 
+        {/* New: Visual Bar Chart */}
+        <ExposureBarChart 
+            total={totalExposure} 
+            preventable={preventableExposure} 
+            residual={residualExposure} 
+        />
+        
         {/* Critical Governance Gaps */}
         <Caption>Survey Findings</Caption>
         <h2 className="text-2xl font-semibold mt-5 mb-5 text-gray-900">Critical Governance Gaps</h2>
@@ -92,7 +174,8 @@ export default function App() {
               <tr>
                 <DataCell>Who is responsible for AI?</DataCell>
                 <DataCell isHighlight={true}>71% don't know</DataCell>
-                <RiskCell level="high">No owner &rarr; slow decisions</RiskCell>
+                {/* RiskCell used for background color on descriptive text */}
+                <RiskCell level="high">No owner &rarr; slow decisions</RiskCell> 
                 <DataCell>EU AI Act Art. 10</DataCell>
               </tr>
               <tr>
@@ -130,13 +213,13 @@ export default function App() {
                 {/* Reduced width for Likelihood, Impact, and Rating cells */}
                 <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 whitespace-nowrap w-14">Likelihood</th>
                 <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 whitespace-nowrap w-14">Impact</th>
-                <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 whitespace-nowrap w-14">Rating</th>
+                <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 whitespace-nowrap w-24">Rating</th>
                 {/* UPDATED: Reduced padding to px-2 for the Control header */}
                 <th className="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Control</th>
                 {/* UPDATED: Shortened Header Text 1 (kept previous change) */}
-                <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Training Addressable Exposure</th>
+                <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 whitespace-nowrap">Training Addressable Exposure</th>
                 {/* UPDATED: Shortened Header Text 2 (kept previous change) */}
-                <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 rounded-tr-lg">Residual Exposure</th>
+                <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 rounded-tr-lg whitespace-nowrap">Residual Exposure</th>
               </tr>
             </thead>
             <tbody>
@@ -152,7 +235,7 @@ export default function App() {
                 {/* Reduced width for Likelihood, Impact, and Rating cells */}
                 <DataCell className='w-14'>High</DataCell>
                 <DataCell className='w-14'>High</DataCell>
-                <RiskCell level="critical" className='w-14'>Critical</RiskCell>
+                <RiskCell level="critical" className='w-24'><RiskRatingBadge level='critical'/></RiskCell>
                 {/* UPDATED: Reduced padding to px-2 for this DataCell */}
                 <DataCell wrap={true} className='px-2'>Awareness, Data Handling Playbooks</DataCell>
                 <DataCell isROI={true}>€400k</DataCell>
@@ -166,7 +249,7 @@ export default function App() {
                 {/* Reduced width for Likelihood, Impact, and Rating cells */}
                 <DataCell className='w-14'>Medium</DataCell>
                 <DataCell className='w-14'>High</DataCell>
-                <RiskCell level="high" className='w-14'>High</RiskCell>
+                <RiskCell level="high" className='w-24'><RiskRatingBadge level='high'/></RiskCell>
                 {/* UPDATED: Reduced padding to px-2 for this DataCell */}
                 <DataCell wrap={true} className='px-2'>Validation & Review</DataCell>
                 <DataCell isROI={true}>€150k</DataCell>
@@ -185,7 +268,7 @@ export default function App() {
                 {/* Reduced width for Likelihood, Impact, and Rating cells */}
                 <DataCell className='w-14'>Medium</DataCell>
                 <DataCell className='w-14'>High</DataCell>
-                <RiskCell level="high" className='w-14'>High</RiskCell>
+                <RiskCell level="high" className='w-24'><RiskRatingBadge level='high'/></RiskCell>
                 {/* UPDATED: Reduced padding to px-2 for this DataCell */}
                 <DataCell wrap={true} className='px-2'>Model Guidelines & Monitoring</DataCell>
                 <DataCell isROI={true}>€300k</DataCell>
@@ -204,7 +287,7 @@ export default function App() {
                 {/* Reduced width for Likelihood, Impact, and Rating cells */}
                 <DataCell className='w-14'>High</DataCell>
                 <DataCell className='w-14'>High</DataCell>
-                <RiskCell level="high" className='w-14'>High</RiskCell>
+                <RiskCell level="high" className='w-24'><RiskRatingBadge level='high'/></RiskCell>
                 {/* UPDATED: Reduced padding to px-2 for this DataCell */}
                 <DataCell wrap={true} className='px-2'>RACI & Escalation</DataCell>
                 <DataCell isROI={true}>€180k</DataCell>
@@ -218,7 +301,7 @@ export default function App() {
                 {/* Reduced width for Likelihood, Impact, and Rating cells */}
                 <DataCell className='w-14'>Medium</DataCell>
                 <DataCell className='w-14'>High</DataCell>
-                <RiskCell level="high" className='w-14'>High</RiskCell>
+                <RiskCell level="high" className='w-24'><RiskRatingBadge level='high'/></RiskCell>
                 {/* UPDATED: Reduced padding to px-2 for this DataCell */}
                 <DataCell wrap={true} className='px-2'>Policies, Evidence & Reporting</DataCell>
                 <DataCell isROI={true}>€750k</DataCell>
@@ -237,7 +320,7 @@ export default function App() {
                 {/* Reduced width for Likelihood, Impact, and Rating cells */}
                 <DataCell className='w-14'>Medium</DataCell>
                 <DataCell className='w-14'>Low</DataCell>
-                <RiskCell level="medium" className='w-14'>Medium</RiskCell>
+                <RiskCell level="medium" className='w-24'><RiskRatingBadge level='medium'/></RiskCell>
                 {/* UPDATED: Reduced padding to px-2 for this DataCell */}
                 <DataCell wrap={true} className='px-2'>Role-based Guardrails & Tool Guidance</DataCell>
                 <DataCell isROI={true}>€80k</DataCell>
@@ -256,7 +339,7 @@ export default function App() {
                 {/* Reduced width for Likelihood, Impact, and Rating cells */}
                 <DataCell className='w-14'>Low</DataCell>
                 <DataCell className='w-14'>Medium</DataCell>
-                <RiskCell level="medium" className='w-14'>Medium</RiskCell>
+                <RiskCell level="medium" className='w-24'><RiskRatingBadge level='medium'/></RiskCell>
                 {/* UPDATED: Reduced padding to px-2 for this DataCell */}
                 <DataCell wrap={true} className='px-2'>Curriculum & Modules</DataCell>
                 <DataCell isROI={true}>€600k</DataCell>
@@ -270,7 +353,7 @@ export default function App() {
                 {/* Reduced width for Likelihood, Impact, and Rating cells */}
                 <DataCell className='w-14'>Medium</DataCell>
                 <DataCell className='w-14'>Medium</DataCell>
-                <RiskCell level="medium" className='w-14'>Medium</RiskCell>
+                <RiskCell level="medium" className='w-24'><RiskRatingBadge level='medium'/></RiskCell>
                 {/* UPDATED: Reduced padding to px-2 for this DataCell */}
                 <DataCell wrap={true} className='px-2'>Skills Programmes</DataCell>
                 <DataCell isROI={true}>€350k</DataCell>
@@ -278,30 +361,30 @@ export default function App() {
               </tr>
               
               {/* Total Row */}
-              <tr className="font-bold bg-gray-50">
-                <td colSpan="2" className="px-3 py-3 text-left text-base border-b border-gray-100">Total / Adjusted</td>
+              <tr className="font-bold bg-gray-100/80 border-t-2 border-gray-400">
+                <td colSpan="2" className="px-3 py-3 text-left text-base">Total / Adjusted</td>
                 <DataCell className="text-sm text-gray-400">-</DataCell>
                 {/* Reduced width for Likelihood, Impact, and Rating cells */}
                 <DataCell className="text-sm text-gray-400 w-14">-</DataCell>
                 <DataCell className="text-sm text-gray-400 w-14">-</DataCell>
-                <DataCell className="text-sm text-gray-400 w-14">-</DataCell>
+                <DataCell className="text-sm text-gray-400 w-24">-</DataCell>
                 {/* UPDATED: Reduced padding to px-2 for this DataCell */}
                 <DataCell className="text-sm px-2">Training + governance controls</DataCell>
                 {/* UPDATED: Shortened content in the Total row */}
-                <DataCell isROI={true} className="text-base">€1.96M (Training)</DataCell>
-                <DataCell isHighlight={true} className="text-base">€2.74M (Residual)</DataCell>
+                <DataCell isROI={true} className="text-base">{preventableExposure} (Training)</DataCell>
+                <DataCell isHighlight={true} className="text-base">{residualExposure} (Residual)</DataCell>
               </tr>
             </tbody>
           </table>
         </div>
 
         {/* Callout */}
-        <div className="bg-green-50 border border-green-300 rounded-xl p-8 text-center my-12 text-green-700">
+        <div className="bg-green-50 border border-green-300 rounded-xl p-8 text-center my-12 text-green-700 shadow-xl">
           <span className="text-3xl font-extrabold text-green-900 mb-2 block">
             €135k targeted training investment
           </span>
           <div className="text-xl">
-            Addresses €1.96M of behavior-driven AI exposure and converts it from
+            Addresses {preventableExposure} of behavior-driven AI exposure and converts it from
             &ldquo;unmanaged&rdquo; to &ldquo;managed and evidenced&rdquo; risk, with documented coverage
             for CRO, CISO, and regulators.
           </div>

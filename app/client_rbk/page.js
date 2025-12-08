@@ -21,11 +21,8 @@ export default function ClientRBK() {
 
   return (
     <main className="relative flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0">
-        <div className="w-full h-full bg-gradient-to-br from-indigo-600 via-purple-600 to-teal-500 animate-gradient-x"></div>
-        <div className="absolute top-10 left-10 w-36 h-36 bg-indigo-300/20 rounded-full filter blur-3xl animate-bounce-slow"></div>
-        <div className="absolute bottom-20 right-16 w-56 h-56 bg-teal-300/20 rounded-full filter blur-2xl animate-bounce-slow"></div>
+      {/* Gradient background - removed for white background */}
+      <div className="absolute inset-0 bg-white">
       </div>
 
       {/* Card */}

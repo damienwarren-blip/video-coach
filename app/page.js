@@ -43,11 +43,11 @@
 
   const textColor = (color) => {
       switch (color) {
-          case 'pink': return 'text-pink-300';
-          case 'purple': return 'text-purple-300';
-          case 'rose': return 'text-rose-300';
-          case 'cyan': return 'text-cyan-300';
-          default: return 'text-white';
+          case 'pink': return 'text-pink-600';
+          case 'purple': return 'text-purple-600';
+          case 'rose': return 'text-rose-600';
+          case 'cyan': return 'text-cyan-600';
+          default: return 'text-gray-900';
       }
   };
 
@@ -86,13 +86,13 @@
 
               <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.4 }} className="text-center z-20 max-w-7xl px-6">
                   <h1 className="text-8xl leading-none font-black tracking-tighter md:text-9xl lg:text-[200px] xl:text-[220px]">
-                      <span className="bg-gradient-to-r from-pink-300 via-rose-300 to-white bg-clip-text text-transparent">Quick</span>
+                      <span className="bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 bg-clip-text text-transparent">Quick</span>
                       <br />
-                      <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
+                      <span className="bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 bg-clip-text text-transparent">Chat</span>
                   </h1>
                   {/* Hero strap line */}
-                  <p className="mt-8 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight max-w-4xl mx-auto">
-                      <span className="bg-gradient-to-r from-cyan-300 to-teal-400 bg-clip-text text-transparent">
+                  <p className="mt-8 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl mx-auto">
+                      <span className="bg-gradient-to-r from-cyan-600 to-teal-700 bg-clip-text text-transparent">
                           START CREATING WHAT CUSTOMERS LOVE.
                       </span>
                   </p>
@@ -110,21 +110,24 @@
               
               {/* Main Heading */}
               <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                  className="text-5xl md:text-9xl font-extrabold bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent mb-12">
+                  className="text-5xl md:text-9xl font-extrabold bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 bg-clip-text text-transparent mb-12">
                   Experience QuickChat Now
               </motion.h2>
 
-              {/* Embedded Video Demo (Simplified, direct focus) */}
+              {/* Embedded Video Demo (Framed like AI page) */}
               <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-5xl mx-auto">
-                  <div className="aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl relative">
-                      {/* Embedded Video Ask iframe */}
-                      <iframe 
-                          src={demoVideoAskUrl} 
-                          allow="camera; microphone; autoplay; display-capture" 
-                          className="w-full h-full" 
-                          title="QuickChat Demo" 
-                          loading="eager"
-                      />
+                  <div className="bg-white p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-100">
+                      <div className="aspect-[9/16] md:aspect-video rounded-xl overflow-hidden relative">
+                          {/* Embedded Video Ask iframe */}
+                          <iframe 
+                              src={demoVideoAskUrl} 
+                              allow="camera; microphone; autoplay; display-capture" 
+                              className="absolute top-0 left-0 w-full h-full rounded-xl"
+                              style={{ border: 'none', minHeight: '500px' }}
+                              title="QuickChat Demo" 
+                              loading="eager"
+                          />
+                      </div>
                   </div>
               </motion.div>
           </section>
@@ -138,7 +141,7 @@
       return (
           <section className="py-24 md:py-32 px-6">
               <div className="max-w-7xl mx-auto">
-                  <motion.h2 className="text-center text-6xl md:text-8xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
+                  <motion.h2 className="text-center text-6xl md:text-8xl font-black bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 bg-clip-text text-transparent">
                       {title}
                   </motion.h2>
 
@@ -157,9 +160,9 @@
                               >
                                   {type === 'icon' && (
                                       <div className={`w-28 h-28 mx-auto mb-8 rounded-full ${colorGradient(item.color)} p-2`}>
-                                          <div className="w-full h-full rounded-full bg-black/60 backdrop-blur flex items-center justify-center">
-                                              <Icon className={`h-16 w-16 ${textColor(item.color)}`} />
-                                          </div>
+                                      <div className="w-full h-full rounded-full bg-white flex items-center justify-center shadow-inner">
+                                          <Icon className={`h-16 w-16 ${textColor(item.color)}`} />
+                                      </div>
                                       </div>
                                   )}
                                   
@@ -170,7 +173,7 @@
                                   )}
 
                                   <h3 className="text-2xl font-bold mb-3">{item.title || item.metric}</h3>
-                                  <p className="text-white/70">{item.detail}</p>
+                                  <p className="text-gray-700 font-medium">{item.detail}</p>
                               </motion.div>
                           );
                       })}
@@ -186,21 +189,21 @@
       return (
           <section id="final-cta" className="min-h-screen flex items-center justify-center px-6 bg-gradient-to-b from-transparent via-pink-900/10 to-transparent">
               <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-center">
-                  <h2 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent leading-tight">
-                      Ready to Inform Your Next<br /><span className="text-cyan-300">Big Strategy</span>?
+                  <h2 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 bg-clip-text text-transparent leading-tight">
+                      Ready to Inform Your Next<br /><span className="bg-gradient-to-r from-cyan-600 to-teal-700 bg-clip-text text-transparent">Big Strategy</span>?
                   </h2>
-                  <p className="mt-12 text-2xl md:text-3xl text-white/80 max-w-2xl mx-auto">
-                      If you’d like a clearer picture of what your customers actually experience, a <span className="font-bold">short pilot</span> can give you that insight within days.
+                  <p className="mt-12 text-2xl md:text-3xl text-gray-700 max-w-2xl mx-auto">
+                      If you'd like a clearer picture of what your customers actually experience, a <span className="font-bold">short pilot</span> can give you that insight within days.
                   </p>
                   
                   {/* Privacy Notice and Consent Checkbox for Strategy Call */}
-                  <div className="mt-16 mb-8 max-w-lg mx-auto p-4 rounded-xl bg-white/5 shadow-inner shadow-pink-500/10 border border-pink-400/30">
-                      <label className="flex items-start cursor-pointer text-sm md:text-base text-white/90">
+                  <div className="mt-16 mb-8 max-w-lg mx-auto p-4 rounded-xl bg-gray-100 shadow-inner shadow-pink-500/10 border border-pink-300/60">
+                      <label className="flex items-start cursor-pointer text-sm md:text-base text-gray-700">
                           <input 
                               type="checkbox" 
                               checked={strategyAgreed} 
                               onChange={() => setStrategyAgreed(!strategyAgreed)} 
-                              className="mt-1 mr-3 w-5 h-5 form-checkbox accent-pink-500 bg-transparent border-pink-400 rounded-md focus:ring-pink-500 transition duration-150 ease-in-out"
+                              className="mt-1 mr-3 w-5 h-5 form-checkbox appearance-none bg-transparent border-2 border-pink-500 rounded-md checked:bg-pink-600 checked:border-transparent focus:ring-0 transition duration-150 ease-in-out"
                           />
                           <span className="text-left leading-snug font-light">
                               By checking, you agree to the temporary use of your name and email address for <span className="font-bold">scheduling purposes only.</span>
@@ -215,7 +218,7 @@
                       className={`mt-8 inline-block px-32 py-16 text-3xl font-bold rounded-full shadow-2xl transition-all duration-300
                           ${strategyAgreed 
                               ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:shadow-pink-500/50 cursor-pointer"
-                              : "bg-gray-700/50 text-gray-400 cursor-not-allowed shadow-none"
+                              : "bg-gray-200 text-gray-500 cursor-not-allowed shadow-none"
                           }`}
                       onClick={(e) => { !strategyAgreed && e.preventDefault(); }} 
                   >
@@ -244,44 +247,44 @@
       const listeningPageLink = "/listening"; 
 
       return (
-          <div ref={container} className="relative bg-black overflow-hidden text-white">
+          <div ref={container} className="relative bg-white overflow-hidden text-gray-900">
               {/* 1. HERO SECTION */}
               <Hero y1={y1} y2={y2} />
 
-              <div className="border-y border-pink-700/50" />
+              <div className="border-y border-gray-300" />
 
               {/* 2. VALUE PROPOSITION */}
               <section className="py-24 md:py-32 px-6 text-center">
-                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-snug bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent max-w-5xl mx-auto">
+                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-snug bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 bg-clip-text text-transparent max-w-5xl mx-auto">
                       The Customer Dictates Success.
                   </h2>
-                  <div className="mt-12 text-3xl md:text-4xl text-white/95 font-medium max-w-4xl mx-auto">
+                  <div className="mt-12 text-3xl md:text-4xl text-gray-900 font-medium max-w-4xl mx-auto">
                       <ul className="list-none space-y-4 font-normal text-center mx-auto">
-                          <li className="text-rose-300">The value they prioritize.</li>
-                          <li className="text-rose-300">The experience that frustrates them.</li>
-                          <li className="text-rose-300">The moment they nearly decided to leave.</li>
+                          <li className="text-rose-600">The value they prioritize.</li>
+                          <li className="text-rose-600">The experience that frustrates them.</li>
+                          <li className="text-rose-600">The moment they nearly decided to leave.</li>
                       </ul>
                   </div>
                   
-                  <p className="mt-16 text-4xl md:text-5xl font-light max-w-5xl mx-auto leading-snug">
+                  <p className="mt-16 text-4xl md:text-5xl font-semibold max-w-5xl mx-auto leading-snug text-gray-800">
                       QuickChat delivers video conversations @ scale, giving you the critical
-                      <span className="font-extrabold bg-gradient-to-r from-cyan-300 to-teal-400 bg-clip-text text-transparent">
+                      <span className="font-extrabold bg-gradient-to-r from-cyan-600 to-teal-700 bg-clip-text text-transparent">
                           {' '}WHY{' '}
                       </span> 
                       and a clear strategic action plan in less than
-                      <span className="font-extrabold bg-gradient-to-r from-cyan-300 to-teal-400 bg-clip-text text-transparent">
+                      <span className="font-extrabold bg-gradient-to-r from-cyan-600 to-teal-700 bg-clip-text text-transparent">
                           {' '}48 hours.
                       </span> 
                   </p>
                   
               </section>
 
-              <div className="border-y border-pink-700/50" />
+              <div className="border-y border-gray-300" />
 
               {/* 3. VIDEO ASK SECTION (SIMPLE HEADING + VIDEO) */}
               <VideoAskSection />
 
-              <div className="border-y border-pink-700/50" />
+              <div className="border-y border-gray-300" />
 
               {/* 4. HOW IT WORKS SECTION */}
               <FeatureBlock
@@ -291,7 +294,7 @@
                   gridColumns={4}
               />
               
-              <div className="border-y border-pink-700/50" />
+              <div className="border-y border-gray-300" />
 
               {/* 5. KEY BENEFITS SECTION (Updated Title) */}
               <FeatureBlock
@@ -301,23 +304,23 @@
                   gridColumns={3}
               />
 
-              <div className="border-y border-pink-700/50" />
+              <div className="border-y border-gray-300" />
 
               {/* 6. CASE STUDY TEASER */}
               <section className="py-24 md:py-32 px-6">
                   <div className="max-w-5xl mx-auto text-center">
                       <div className="relative">
                           <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent opacity-60" />
-                          <p className="text-2xl md:text-4xl lg:text-5xl font-light tracking-tight text-white/80 leading-snug">
+                          <p className="text-2xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-gray-800 leading-snug">
                               See how we helped an Irish company use QuickChat to inform their
                               {' '}
-                              <span className="font-bold bg-gradient-to-r from-rose-400 to-pink-400 bg-clip-text text-transparent">
+                              <span className="font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
                                   European market strategy
                               </span>
                               {' '}
                               and started to fix
                               {' '}
-                              <span className="font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
+                              <span className="font-bold bg-gradient-to-r from-cyan-600 to-teal-600 bg-clip-text text-transparent">
                                   churn
                               </span> 
                               {' '}
@@ -333,7 +336,7 @@
                   </div>
               </section>
 
-              <div className="border-y border-pink-700/50" />
+              <div className="border-y border-gray-300" />
 
               {/* 7. TRUST PARTNER SECTION */}
               <FeatureBlock
@@ -343,15 +346,15 @@
                   gridColumns={3}
               />
 
-              <div className="border-y border-pink-700/50" />
+              <div className="border-y border-gray-300" />
 
               {/* 8. OUR OWN DATA SECTION */}
               <section className="py-24 md:py-32 px-6">
                   <div className="max-w-4xl mx-auto text-center">
-                      <h2 className="text-center text-6xl md:text-8xl font-black bg-gradient-to-r from-cyan-400 via-teal-400 to-sky-400 bg-clip-text text-transparent">
+                      <h2 className="text-center text-6xl md:text-8xl font-black bg-gradient-to-r from-cyan-600 via-teal-600 to-sky-600 bg-clip-text text-transparent">
                           Our Own QuickChat Data
                       </h2>
-                      <p className="mt-8 text-2xl md:text-3xl text-white/80 font-light max-w-2xl mx-auto">
+                      <p className="mt-8 text-2xl md:text-3xl text-gray-700 font-light max-w-2xl mx-auto">
                           Each quarter, we run QuickChat with our own customers and publish what we learn. It helps us improve the platform in practical, customer-led ways.
                       </p>
                       <a
@@ -363,7 +366,7 @@
                   </div>
               </section>
 
-              <div className="border-y border-pink-700/50" />
+              <div className="border-y border-gray-300" />
 
               {/* 9. FINAL CTA (Includes ID 'final-cta' for navigation) */}
               <FinalCTA
@@ -372,7 +375,7 @@
               />
 
               {/* 10. SIMPLE FOOTER */}
-              <div className="py-8 px-6 text-center text-sm text-white/50 bg-black/20">
+              <div className="py-8 px-6 text-center text-sm text-gray-500 bg-gray-100">
                   © 2025 QuickChat. All rights reserved.
               </div>
           </div>

@@ -23,7 +23,7 @@ export default function App() {
     return (
         // 1. MAIN CONTAINER: Handles full height, fixed background, and padding.
         // Added flex properties to the main container for better layout control
-        <div className="min-h-screen bg-black text-white relative p-0 font-sans flex flex-col items-center justify-center">
+        <div className="min-h-screen bg-white text-gray-900 relative p-0 font-sans flex flex-col items-center justify-center">
             
             {/* ----------------------------------------------------------- */}
             {/* 1. ANIMATED BACKGROUND EFFECT (z-0) - Maintains the Vibe */}
@@ -53,7 +53,7 @@ export default function App() {
                 
                 {/* HEADER & BACK BUTTON (always visible) */}
                 <div className="px-4 sm:px-0">
-                    <a href="/" className="text-pink-400 hover:text-pink-300 font-bold mb-8 block transition duration-300 text-lg">
+                    <a href="/" className="text-pink-600 hover:text-pink-500 font-bold mb-8 block transition duration-300 text-lg">
                         ← Back to Homepage
                     </a>
                 </div>
@@ -67,17 +67,17 @@ export default function App() {
                 >
                     {/* QUICKCHAT LOGO STYLE */}
                     <h1 className="text-8xl leading-none font-black tracking-tighter md:text-9xl lg:text-[180px] xl:text-[220px]">
-                        <span className="bg-gradient-to-r from-pink-300 via-rose-300 to-white bg-clip-text text-transparent">Quick</span>
+                        <span className="bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 bg-clip-text text-transparent">Quick</span>
                         
                         <br className="h-4"/> 
                         
-                        <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Chat</span>
+                        <span className="bg-gradient-to-r from-fuchsia-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">Chat</span>
                     </h1>
                     
                     {/* Descriptive lines - ALIGNMENT REINFORCED */}
                     <div className="mt-6 max-w-4xl mx-auto">
                         <p className="text-4xl font-black tracking-tight drop-shadow-lg leading-snug">
-                            <span className="text-3xl font-extrabold text-cyan-400/80">Help us build the ultimate QuickChat experience.</span>
+                            <span className="text-3xl font-extrabold bg-gradient-to-r from-cyan-600 to-teal-700 bg-clip-text text-transparent">Help us build the ultimate QuickChat experience.</span>
                             <br/>
                         </p>
                     </div>
@@ -116,11 +116,11 @@ export default function App() {
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.5 }}
                                 // Absolute positioning to cover the video, high z-index, and pointer events enabled
-                                className="absolute inset-0 flex items-center justify-center z-30 bg-black/50 backdrop-blur-sm rounded-3xl"
+                                className="absolute inset-0 flex items-center justify-center z-30 bg-white/90 backdrop-blur-sm rounded-3xl"
                             >
                                 
                                 {/* CONSENT CARD - Floating, translucent card for readability */}
-                                <div className="p-6 m-4 max-w-sm mx-auto rounded-xl bg-white/10 shadow-2xl border border-white/20 backdrop-blur-lg text-center">
+                                <div className="p-6 m-4 max-w-sm mx-auto rounded-xl bg-white shadow-2xl border border-gray-200 backdrop-blur-lg text-center">
                                     
                                     {/* REMOVED: Previous 'Anonymous' line */}
                                     {/* NEW: Anonymous line inserted here */}
@@ -145,10 +145,10 @@ export default function App() {
                                     </motion.div>
 
                                     {/* CONSENT TEXT - Now includes the "Quick and Anonymous" line */}
-                                    <p className="text-xs font-semibold text-cyan-400/80 mt-4 leading-snug">
+                                    <p className="text-xs font-semibold text-cyan-600 mt-4 leading-snug">
                                         It's Quick and Anonymous (contact details optional).
                                         <br />
-                                        <span className="text-white/70">
+                                        <span className="text-gray-800 font-medium">
                                             Please confirm consent to process and store your personal data (voice, name, email) solely for this survey's completion.
                                         </span>
                                     </p>
@@ -166,7 +166,7 @@ export default function App() {
                                 // This message is non-interactive (pointer-events-none)
                                 className="absolute bottom-4 left-0 right-0 p-4 flex justify-center pointer-events-none"
                             >
-                                <p className="text-sm font-semibold text-cyan-400/80 bg-black/30 rounded-full px-4 py-1 backdrop-blur-sm">
+                                <p className="text-sm font-semibold text-cyan-600 bg-gray-100 rounded-full px-4 py-1 backdrop-blur-sm">
                                     Ready to chat!
                                 </p>
                             </motion.div>

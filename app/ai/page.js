@@ -5,7 +5,7 @@ import React from 'react';
 
 const QuickChatVideoPortal = () => {
     return (
-        <div className="min-h-screen antialiased flex flex-col items-center p-4 sm:p-8 bg-[#f7f9fc] font-inter">
+        <div className="min-h-screen antialiased flex flex-col items-center p-4 sm:p-8 bg-white font-inter">
 
             {/* In a real Next.js app, external Tailwind and Fonts are handled differently,
                but for this single-file conversion, we rely on the component structure. */}
@@ -30,7 +30,7 @@ const QuickChatVideoPortal = () => {
             {/* Main Content Area: Videoask Embed */}
             <main className="w-full max-w-4xl bg-white p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-100">
                 <h1 className="text-3xl font-extrabold text-gray-900 mb-4 text-center">Let's Connect Via Video</h1>
-                <p className="text-gray-500 mb-8 text-center max-w-lg mx-auto">Click below to start the interactive video experience. We look forward to hearing from you!</p>
+                <p className="text-gray-700 mb-8 text-center max-w-lg mx-auto font-medium">Click below to start the interactive video experience. We look forward to hearing from you!</p>
 
                 {/* Responsive Iframe Container for Videoask */}
                 <div className="relative w-full overflow-hidden" style={{ paddingTop: '177.78%' }}>

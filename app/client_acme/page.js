@@ -74,7 +74,7 @@ const placeholderUrl = (w, h, text) => `https://placehold.co/${w}x${h}/fff/37415
 
 function Header() {
     return (
-        <header className="sticky top-0 z-50 w-full bg-[#f7f9fc]/90 backdrop-blur-sm shadow-md transition-all duration-300">
+        <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-sm shadow-md transition-all duration-300">
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-4">
                 {/* QuickChat Logo with Play Button Icon and Gradient Style (Matching portal component) */}
                 <a href="#top" className="flex items-center space-x-3 group" aria-label="QuickChat Home">
@@ -140,7 +140,7 @@ function Hero({ y1, y2 }) {
                     <span className={`${SECONDARY_GRADIENT} bg-clip-text text-transparent`}>Chat</span>
                 </h1>
                 {/* Hero strap line */}
-                <p className="mt-8 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight max-w-4xl mx-auto">
+                <p className="mt-8 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl mx-auto">
                     <span className={`${SECONDARY_GRADIENT} bg-clip-text text-transparent`}>
                         START CREATING WHAT CUSTOMERS LOVE.
                     </span>
@@ -208,7 +208,7 @@ function FeatureBlock({ title, data, type, gridColumns }) {
                             >
                                 {type === 'icon' && (
                                     <div className={`w-28 h-28 mx-auto mb-8 rounded-full ${colorGradient(item.color)} p-2`}>
-                                        <div className="w-full h-full rounded-full bg-[#f7f9fc] flex items-center justify-center shadow-inner">
+                                        <div className="w-full h-full rounded-full bg-white flex items-center justify-center shadow-inner">
                                             <Icon className={`h-16 w-16 ${textColor(item.color)}`} />
                                         </div>
                                     </div>
@@ -221,7 +221,7 @@ function FeatureBlock({ title, data, type, gridColumns }) {
                                 )}
 
                                 <h3 className="text-2xl font-bold mb-3">{item.title || item.metric}</h3>
-                                <p className="text-gray-600">{item.detail}</p>
+                                <p className="text-gray-700 font-medium">{item.detail}</p>
                             </motion.div>
                         );
                     })}
@@ -298,8 +298,8 @@ export default function App() {
     const listeningPageLink = "/listening"; 
 
     return (
-        // Changed bg-white to bg-[#f7f9fc] and added 'font-inter' preference
-        <div ref={container} className="relative bg-[#f7f9fc] overflow-hidden text-gray-900 min-h-screen font-sans">
+        // Changed bg-white to bg-white and added 'font-inter' preference
+        <div ref={container} className="relative bg-white overflow-hidden text-gray-900 min-h-screen font-sans">
             
             <Header />
 
@@ -322,7 +322,7 @@ export default function App() {
                     </ul>
                 </div>
                 
-                <p className="mt-16 text-4xl md:text-5xl font-light max-w-5xl mx-auto leading-snug text-gray-700"> 
+                <p className="mt-16 text-4xl md:text-5xl font-semibold max-w-5xl mx-auto leading-snug text-gray-800"> 
                     QuickChat delivers video conversations @ scale, giving you the critical
                     <span className={`font-extrabold ${SECONDARY_GRADIENT} bg-clip-text text-transparent`}>
                         {' '}WHY{' '}
@@ -367,7 +367,7 @@ export default function App() {
                 <div className="max-w-5xl mx-auto text-center">
                     <div className="relative">
                         <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent opacity-60" />
-                        <p className="text-2xl md:text-4xl lg:text-5xl font-light tracking-tight text-gray-700 leading-snug">
+                        <p className="text-2xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-gray-800 leading-snug">
                             See how we helped an Irish company use QuickChat to inform their
                             {' '}
                             <span className="font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
@@ -411,7 +411,7 @@ export default function App() {
                     <h2 className={`text-center text-6xl md:text-8xl font-black ${SECONDARY_GRADIENT} bg-clip-text text-transparent`}>
                         Our Own QuickChat Data
                     </h2>
-                    <p className="mt-8 text-2xl md:text-3xl text-gray-700 font-light max-w-2xl mx-auto">
+                    <p className="mt-8 text-2xl md:text-3xl text-gray-800 font-semibold max-w-2xl mx-auto">
                         Each quarter, we run QuickChat with our own customers and publish what we learn. It helps us improve the platform in practical, customer-led ways.
                     </p>
                     <a

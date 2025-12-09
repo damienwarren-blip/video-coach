@@ -27,7 +27,7 @@ export default async function ReportViewerPage() {
   }
 
   const { report, sections } = data
-  const insights = JSON.parse(report.key_insights || '[]')
+  const insights = report.key_insights || []
 
   return (
     <div className="p-6 max-w-4xl mx-auto font-sans">

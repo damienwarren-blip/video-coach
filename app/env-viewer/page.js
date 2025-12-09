@@ -1,4 +1,4 @@
-export const runtime = 'node'; // Ensures it runs on the server, not edge
+export const runtime = 'nodejs'; // Ensures it runs on the server, not edge
 
 export default function EnvViewerPage() {
   const dbUrl = process.env.DATABASE_URL;

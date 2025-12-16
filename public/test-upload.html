@@ -1,19 +1,157 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Test Clustering Upload</title>
+    <style>
+      body { font-family: sans-serif; margin: 2rem; }
+      label, select { display: block; margin-top: 1rem; }
+    </style>
+  </head>
   <body>
     <h1>Test Clustering Upload</h1>
-    <form action="/api/clustering/run" method="POST" enctype="multipart/form-data">
-      <input type="file" name="file" required />
-      <br />
+
+    <form id="uploadForm" action="/api/clustering/run" method="POST" enctype="multipart/form-data">
+      <input type="file" id="csvFile" name="file" accept=".csv" required />
+      
       <label>
-        <input type="checkbox" name="do_gpt_summary" value="true" checked /> GPT Summary
+        <input type="checkbox" name="do_gpt_summary" value="true" checked />
+        GPT Summary
       </label>
-      <br />
+
       <label>
-        <input type="checkbox" name="do_clustering" value="true" checked /> Clustering
+        <input type="checkbox" name="do_clustering" value="true" checked />
+        Clustering
       </label>
+
+      <div id="columnSelectors" style="margin-top: 2rem; display: none;">
+        <label>Respondent ID Column:
+          <select id="respondentSelect" required></select>
+        </label>
+
+        <div id="questionColumnsContainer">
+          <label>Question Column:
+            <select class="questionSelect"></select>
+          </label>
+        </div>
+      </div>
+
+      <input type="hidden" name="format_version" value="pivoted" />
+      <input type="hidden" name="column_config" id="columnConfigInput" />
+
       <br /><br />
       <button type="submit">Upload & Run</button>
     </form>
+
+    <script>
+      const csvFileInput = document.getElementById('csvFile')
+      const respondentSelect = document.getElementById('respondentSelect')
+      const questionContainer = document.getElementById('questionColumnsContainer')
+      const form = document.getElementById('uploadForm')
+      const columnConfigInput = document.getElementById('columnConfigInput')
+      const columnSelectors = document.getElementById('columnSelectors')
+
+      let allHeaders = []
+
+      // Utility to parse CSV headers from file
+      function extractHeaders(file, callback) {
+        const reader = new FileReader()
+        reader.onload = () => {
+          const lines = reader.result.split('\n')
+          const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''))
+          callback(headers)
+        }
+        reader.readAsText(file)
+      }
+
+      function refreshDropdowns() {
+        const selected = new Set(
+          Array.from(document.querySelectorAll('.questionSelect'))
+            .map(sel => sel.value).filter(Boolean)
+        )
+
+        document.querySelectorAll('.questionSelect').forEach(select => {
+          const currentVal = select.value
+          select.innerHTML = '<option value="">Select column</option>'
+          allHeaders.forEach(h => {
+            if (!selected.has(h) || h === currentVal) {
+              const opt = document.createElement('option')
+              opt.value = h
+              opt.textContent = h
+              select.appendChild(opt)
+            }
+          })
+          select.value = currentVal
+        })
+      }
+
+      function addQuestionSelect() {
+        const wrapper = document.createElement('label')
+        wrapper.innerHTML = 'Question Column: '
+        const select = document.createElement('select')
+        select.className = 'questionSelect'
+        select.innerHTML = '<option value="">Select column</option>'
+        allHeaders.forEach(h => {
+          const opt = document.createElement('option')
+          opt.value = h
+          opt.textContent = h
+          select.appendChild(opt)
+        })
+
+        select.addEventListener('change', () => {
+          refreshDropdowns()
+          if (select.value && !questionContainer.contains(select.nextSibling)) {
+            addQuestionSelect()
+          }
+        })
+
+        wrapper.appendChild(select)
+        questionContainer.appendChild(wrapper)
+      }
+
+      csvFileInput.addEventListener('change', () => {
+        const file = csvFileInput.files[0]
+        if (!file) return
+
+        extractHeaders(file, (headers) => {
+          allHeaders = headers
+
+          // Show the selectors section
+          columnSelectors.style.display = 'block'
+
+          // Populate respondent dropdown
+          respondentSelect.innerHTML = '<option value="">Select column</option>'
+          headers.forEach(h => {
+            const opt = document.createElement('option')
+            opt.value = h
+            opt.textContent = h
+            respondentSelect.appendChild(opt)
+          })
+
+          // Clear question selects
+          questionContainer.innerHTML = ''
+          addQuestionSelect()
+        })
+      })
+
+      form.addEventListener('submit', (e) => {
+        const respondentId = respondentSelect.value
+        const questionColumns = Array.from(
+          document.querySelectorAll('.questionSelect')
+        ).map(sel => sel.value).filter(Boolean)
+
+        if (!respondentId || questionColumns.length === 0) {
+          e.preventDefault()
+          alert('Please select Respondent ID and at least one Question Column.')
+          return
+        }
+
+        const config = {
+          respondent_id: respondentId,
+          question_columns: questionColumns
+        }
+
+        columnConfigInput.value = JSON.stringify(config)
+      })
+    </script>
   </body>
 </html>

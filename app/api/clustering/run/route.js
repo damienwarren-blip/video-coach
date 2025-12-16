@@ -52,8 +52,19 @@ export async function POST(req) {
 
     const clusteringJobId = jobRes.rows[0].id
 
+        // --------------------------------------------------
+    // 3. PARSE COLUMN CONFIG (REQUIRED BY API)
     // --------------------------------------------------
-    // 3. CALL EXTERNAL CLUSTERING API
+    const columnConfigRaw = formData.get('column_config')
+    let columnConfig
+    try {
+      columnConfig = JSON.parse(columnConfigRaw)
+    } catch (err) {
+      return new Response('Invalid or missing column_config JSON', { status: 400 })
+    }
+
+    // --------------------------------------------------
+    // 4. CALL EXTERNAL CLUSTERING API
     // --------------------------------------------------
     let apiResponse
     try {
@@ -61,10 +72,11 @@ export async function POST(req) {
         filePath,
         doGptSummary,
         doClustering,
-        // authToken: process.env.CLUSTERING_API_TOKEN,
+        columnConfig,
         authToken: "uVdZ8HPvoXc77A26IzuNWFzIywkwaJj3GV-tsJ9LCttH-LZjsVoeGxG-Y7YZ3sJ5z17wJH98SSWs0_LQ6hXfusLl4yQntNIAKFa6KCYmQE4M2TRg0tyIf_VSuM8O3KtcEjJb7JZYUUmyefr8Gz8O7h9p6hdt7b5oJ66r-MYj3jo",
       })
     } catch (err) {
+        // Update job status to 'failed'
       await db.query(
         `
         UPDATE clustering_jobs

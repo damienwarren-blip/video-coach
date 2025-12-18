@@ -79,12 +79,12 @@ export default function App() {
     <div className="min-h-screen flex justify-center bg-gray-100 text-gray-900 font-inter p-4 md:p-8">
       <div className="w-full max-w-7xl bg-white p-8 md:p-14 shadow-2xl rounded-3xl border-t-8 border-red-600">
         
-        {/* Report Header/Title - Removed "Mandate" */}
+        {/* Report Header/Title - Adjusted H1 font size for mobile (text-5xl) */}
         <div className="mb-8 pb-5 border-b border-gray-200">
-            <h1 className="text-6xl md:text-7xl font-extrabold tracking-tight mb-2 leading-tight text-red-700">
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-2 leading-tight text-red-700">
               Churn Reduction Strategy
             </h1>
-            <h2 className="text-2xl font-light text-blue-900">Q4 E-Bike Quality and Service Recovery</h2>
+            <h2 className="text-xl md:text-2xl font-light text-blue-900">Q4 E-Bike Quality and Service Recovery</h2>
             <p className="text-sm text-gray-500 mt-2">
                 Focus on Detractor Conversion & Service Recovery · Sample Size: 3,450 Valid Responses
             </p>
@@ -92,43 +92,43 @@ export default function App() {
 
 
         {/* NPS & Churn Summary - Prominent Metrics (Padding reduced from p-7 to p-6) */}
-        <h2 className="text-3xl font-bold mb-7 text-gray-900">Executive Summary: The Critical NPS Gap</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-7 text-gray-900">Executive Summary: The Critical NPS Gap</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             
-            {/* Metric 1: Current NPS Score */}
+            {/* Metric 1: Current NPS Score - Adjusted font size for mobile (text-5xl) */}
             <div className="p-6 bg-white border-b-4 border-red-600 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="text-7xl font-extrabold text-red-700 leading-none">{npsScore}</div>
+                <div className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-red-700 leading-none">{npsScore}</div>
                 <div className="text-xl font-semibold mt-2 text-gray-800">Current NPS Score</div>
                 <p className="text-sm text-red-500 mt-1 font-medium">Critical Alert: Severe product inconsistency and brand risk.</p>
             </div>
             
-            {/* Metric 2: Target NPS */}
+            {/* Metric 2: Target NPS - Adjusted font size for mobile (text-5xl) */}
             <div className="p-6 bg-white border-b-4 border-blue-600 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="text-7xl font-extrabold text-blue-700 leading-none">{targetNPS}</div>
+                <div className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-blue-700 leading-none">{targetNPS}</div>
                 <div className="text-xl font-semibold mt-2 text-gray-800">Industry Benchmark Target</div>
                 <p className="text-sm text-blue-500 mt-1 font-medium">The gap to close for sustainable, healthy growth.</p>
             </div>
             
-            {/* Metric 3: Detractor Volume */}
+            {/* Metric 3: Detractor Volume - Adjusted font size for mobile (text-5xl) */}
             <div className="p-6 bg-white border-b-4 border-gray-500 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="text-7xl font-extrabold text-gray-800 leading-none">{detractorCount}</div>
+                <div className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-gray-800 leading-none">{detractorCount}</div>
                 <div className="text-xl font-semibold mt-2 text-gray-800">Active Detractors</div>
                 <p className="text-sm text-gray-500 mt-1 font-medium">1,166 users actively damaging brand and at risk of churn.</p>
             </div>
         </div>
         
-        {/* Churn Reduction Mandate Callout (Reduced padding from p-8 to p-7) */}
+        {/* Churn Reduction Mandate Callout - Adjusted font size for mobile (text-3xl) */}
         <div className="bg-gradient-to-r from-red-600 to-orange-500 rounded-xl p-7 text-center my-10 text-white shadow-2xl transform hover:scale-[1.01] transition-transform duration-300">
-          <span className="text-4xl font-black mb-3 block tracking-wide">
+          <span className="text-3xl md:text-4xl font-black mb-3 block tracking-wide">
             The 5 Strategic Actions Target 90% of All Detractor Complaints
           </span>
-          <div className="text-xl font-normal opacity-90">
+          <div className="text-lg md:text-xl font-normal opacity-90">
             Focusing on the top three churn drivers (Mechanical Failure, Fee Policy, and Crisis City Ops) is our primary path to service recovery and NPS stabilization.
           </div>
         </div>
 
 
-        {/* Strategic Impact Table (Driver and Target Focused) - Reduced padding on headers and cells */}
+        {/* Strategic Impact Table (Driver and Target Focused) - Still relies on overflow-x-auto for responsiveness */}
         <Caption>CX Driver Mitigation Plan</Caption>
         <h2 className="text-2xl font-semibold mt-5 mb-5 text-gray-900">Addressing Root Causes to Drive Detractor Conversion</h2>
         <div className="overflow-x-auto shadow-lg rounded-xl border border-gray-200">
@@ -283,7 +283,7 @@ export default function App() {
 
         {/* Footer */}
         <div className="mt-16 text-xs text-gray-500 text-center border-t border-gray-200 pt-6 tracking-wider">
-          Sky Bikes – Mobility @ Scale · Confidential Strategy Document
+          QuickChat – Conversations @ Scale · Confidential Strategy Document
         </div>
       </div>
     </div>

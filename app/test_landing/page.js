@@ -3,13 +3,13 @@
 import React, { useState, useEffect } from 'react';
 
 /**
- * QUICKCHAT LANDING PAGE - ZERO DEPENDENCY VERSION
- * This version uses 100% inline SVGs to resolve "Module not found: lucide-react".
- * Optimized for UK/IE Scale-up Executives.
+ * QUICKCHAT LANDING PAGE - REFINED FOR UK/IE EXECUTIVES
+ * Fully self-contained, responsive, and using modern UI principles.
+ * Removed lucide-react dependency to resolve "Module not found" build errors.
  */
 
 // --- Comprehensive Inline SVG Icon Library ---
-// This replaces the need for ANY external icon library.
+// Replaces external 'lucide-react' dependency with optimized inline SVGs
 const Icon = ({ name, className = "" }) => {
   const icons = {
     MessageSquareText: (
@@ -27,16 +27,6 @@ const Icon = ({ name, className = "" }) => {
         <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.95.12-3.5-.5-4.5l-2.5 1.5Z"/><path d="M11.5 4.5c1.26-1.5 5-2 5-2s-.5 3.74-2 5c-.95.71-3.5.12-4.5-.5l1.5-2.5Z"/><path d="M8 10V7l4-3 5 1 1 5-3 4h-3"/><path d="M11.5 11.5 10 13c-1.17 1.17-2.61 2.15-3.98 3.12l-1.02.73a1 1 0 0 0-.01 1.63l.53.38a1 1 0 0 0 1.25-.09l1.63-1.63a14.88 14.88 0 0 0 4.11-8.14"/>
       </svg>
     ),
-    ShieldAlert: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M12 8v4"/><path d="M12 16h.01"/>
-      </svg>
-    ),
-    Gauge: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>
-      </svg>
-    ),
     Target: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
@@ -50,6 +40,11 @@ const Icon = ({ name, className = "" }) => {
     TrendingUp: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+      </svg>
+    ),
+    TrendingDown: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/>
       </svg>
     ),
     CheckCircle: (
@@ -70,11 +65,6 @@ const Icon = ({ name, className = "" }) => {
     Bot: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
         <rect width="18" height="10" x="3" y="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/>
-      </svg>
-    ),
-    Lock: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
       </svg>
     ),
     Globe: (
@@ -141,6 +131,7 @@ export default function App() {
       <main>
         {/* Hero Section */}
         <section className="pt-32 pb-20 md:pt-48 md:pb-32 px-6 relative overflow-hidden">
+          {/* Subtle Background Elements */}
           <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-lime-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
@@ -291,7 +282,7 @@ export default function App() {
           </div>
           
           <div className="max-w-4xl mx-auto text-center relative z-10">
-            <h2 className="text-5xl md:text-8xl font-black mb-10 tracking-tighter text-white">Stop the Bleed.</h2>
+            <h2 className="text-5xl md:text-8xl font-black mb-10 tracking-tighter">Stop Guessing.</h2>
             <p className="text-xl md:text-2xl text-slate-400 mb-14 max-w-2xl mx-auto font-medium leading-relaxed">
               Book a 15-minute diagnostic call for your scale-up. We'll show you how to turn silent churn into strategic growth.
             </p>
@@ -332,6 +323,7 @@ export default function App() {
         </div>
       </footer>
 
+      {/* Styles for subtle animations */}
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes fade-in {
           from { opacity: 0; transform: translateY(10px); }

@@ -63,6 +63,11 @@
         reader.readAsText(file)
       }
 
+      function hasEmptyQuestionSelect() {
+        return Array.from(document.querySelectorAll('.questionSelect'))
+          .some(sel => !sel.value)
+      }
+
       function refreshDropdowns() {
         const selected = new Set(
           Array.from(document.querySelectorAll('.questionSelect'))
@@ -99,7 +104,20 @@
 
         select.addEventListener('change', () => {
           refreshDropdowns()
-          if (select.value && !questionContainer.contains(select.nextSibling)) {
+
+          // Remove extra empty selects
+          const selects = Array.from(document.querySelectorAll('.questionSelect'))
+          const emptySelects = selects.filter(sel => !sel.value)
+
+          if (emptySelects.length > 1) {
+            // Keep only the first empty select
+            for (let i = 1; i < emptySelects.length; i++) {
+              emptySelects[i].parentElement.remove()
+            }
+          }
+
+          // Add a new one only if no empty select exists
+          if (select.value && !hasEmptyQuestionSelect()) {
             addQuestionSelect()
           }
         })
@@ -127,7 +145,7 @@
             respondentSelect.appendChild(opt)
           })
 
-          // Clear question selects
+          // Clear and add first question select
           questionContainer.innerHTML = ''
           addQuestionSelect()
         })

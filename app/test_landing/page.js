@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, 
@@ -107,10 +105,6 @@ export default function App() {
         
         <div className="max-w-7xl mx-auto relative z-10 w-full">
           <div className="flex flex-col items-center text-center animate-fadeIn">
-            <div className="inline-flex items-center gap-3 px-5 py-2 bg-white rounded-full text-[10px] font-black tracking-[0.3em] text-indigo-600 mb-12 border border-slate-200 shadow-sm uppercase">
-              <Sparkles size={14} /> We are building
-            </div>
-            
             <h1 className="text-7xl md:text-[110px] font-black leading-[0.82] mb-12 tracking-tighter text-slate-950">
               The power of <br/>
               <span className="text-indigo-600 underline decoration-indigo-200 decoration-8 underline-offset-[12px]">voice.</span> <br/>
@@ -118,15 +112,11 @@ export default function App() {
               of <span className="text-indigo-600 underline decoration-indigo-200 decoration-8 underline-offset-[12px]">AI.</span>
             </h1>
             
-            <p className="text-2xl md:text-3xl text-slate-500 mb-6 max-w-3xl font-medium leading-relaxed">
-              A new kind of customer survey tool. Accessible to everyone, enabling you to <span className="text-slate-900 font-bold">reduce customer churn fast.</span>
+            <p className="text-2xl md:text-3xl text-slate-500 mb-6 max-w-4xl font-medium leading-relaxed">
+              We are building a new kind of customer survey tool. Accessible to everyone, enabling you to <span className="text-slate-900 font-bold underline decoration-indigo-100 decoration-4 underline-offset-4">understand customer churn, act fast, increase revenue.</span>
             </p>
             
-            <p className="text-lg md:text-xl text-indigo-600/80 mb-12 font-bold tracking-tight">
-              Bring your existing data or test our voice bot — let’s find what works for you.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 items-center justify-center w-full mt-4">
+            <div className="flex flex-col sm:flex-row gap-6 items-center justify-center w-full mt-12">
                <button onClick={() => scrollTo('how-it-works')} className="group flex items-center gap-3 text-slate-400 font-black uppercase tracking-[0.3em] text-[10px] hover:text-indigo-600 transition-colors">
                   Learn how we do it <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                </button>
@@ -148,7 +138,7 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-            {/* Step 01 - Updated with Human Face in Frame */}
+            {/* Step 01 */}
             <div className="flex flex-col gap-10 group">
               <PhoneFrame bgColor="bg-white">
                 <div className="absolute inset-0 flex flex-col items-center p-0">
@@ -181,7 +171,7 @@ export default function App() {
               <div className="px-4">
                 <div className="w-12 h-12 bg-indigo-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-indigo-100 font-black">01</div>
                 <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight leading-none">Launch a short voice conversation</h3>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed">Ready in minutes — multilingual and tuned for customer churn insights.</p>
+                <p className="text-slate-500 text-lg font-medium leading-relaxed">to your customer segment — multilingual and tuned for customer churn insights.</p>
               </div>
             </div>
 
@@ -208,7 +198,7 @@ export default function App() {
               <div className="px-4">
                 <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-blue-100 font-black">02</div>
                 <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight leading-none">Accessible to all</h3>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed">Designed for everyone — fully accessible and easy to use, no matter ability or language — capturing 10× richer feedback with natural conversations.</p>
+                <p className="text-slate-500 text-lg font-medium leading-relaxed">Designed for everyone — fully accessible and easy to use, no matter ability or language — capturing 10× richer feedback.</p>
               </div>
             </div>
 
@@ -234,8 +224,8 @@ export default function App() {
               </PhoneFrame>
               <div className="px-4">
                 <div className="w-12 h-12 bg-violet-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-violet-100 font-black">03</div>
-                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight leading-none">Deliver strategic, action-ready reports automatically</h3>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed">No manual analysis needed — AI turns raw feedback into clear themes, root causes, and prioritized next steps in days.</p>
+                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight leading-none">Deliver strategic reports fast</h3>
+                <p className="text-slate-500 text-lg font-medium leading-relaxed">AI turns raw feedback into clear themes, root causes, and prioritized next steps in days.</p>
               </div>
             </div>
 
@@ -254,7 +244,7 @@ export default function App() {
               </PhoneFrame>
               <div className="px-4">
                 <div className="w-12 h-12 bg-slate-800 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-slate-100 font-black">04</div>
-                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight leading-none">Drive results and build long-term trust</h3>
+                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight leading-none">Drive results and build trust</h3>
                 <p className="text-slate-500 text-lg font-medium leading-relaxed">Fix issues fast, show customers you listened, and turn feedback into loyalty and growth.</p>
               </div>
             </div>
@@ -279,7 +269,7 @@ export default function App() {
                
                <ul className="space-y-6">
                  {[
-                   "Upload an anonymized CSV — we’ll turn it into a clear report in days. No setup, no manual work.",
+                   "Upload an anonymized CSV — we’ll turn it into a clear report in days.",
                    "You control everything: pick columns, anonymize sensitive info.",
                    "Fully GDPR-compliant.",
                    "Perfect low-risk test — try with old data and see the insights.",
@@ -331,8 +321,8 @@ export default function App() {
                <Zap size={12} className="fill-indigo-600" /> Case Study
             </div>
             <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-950 leading-[0.9]">
-              Early Success: QuickChat Unlocked <br/>
-              <span className="text-indigo-600 italic">3X Churn Insights</span> for Zeus Scooters.
+              Early Success: QuickChat Recovered <br/>
+              <span className="text-indigo-600 italic">€900K Revenue.</span>
             </h2>
           </div>
 
@@ -345,7 +335,7 @@ export default function App() {
                   </svg>
                 </div>
                 <p className="text-3xl md:text-4xl font-bold text-slate-950 leading-tight mb-12 italic">
-                  "You've given me a step-by-step guide to reduce churn. We went from guessing to knowing exactly which button to press to fix our problem."
+                  "You've given me a step-by-step guide to reduce churn. We went from guessing to knowing exactly which button to press."
                 </p>
                 <div className="flex items-center gap-6">
                   <div className="w-16 h-16 bg-slate-200 rounded-full overflow-hidden flex items-center justify-center">

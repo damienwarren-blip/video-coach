@@ -1,100 +1,43 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { 
+  ArrowRight, 
+  Mic, 
+  Shield, 
+  Lock, 
+  Sparkles, 
+  Play,
+  CheckCircle2,
+  MessageSquare,
+  Target,
+  FileText,
+  Accessibility,
+  Database,
+  FileSearch,
+  Layers,
+  HardDriveUpload,
+  Heart,
+  TrendingUp,
+  BarChart3,
+  Users,
+  Zap
+} from 'lucide-react';
 
-/**
- * QUICKCHAT LANDING PAGE - REFINED FOR UK/IE EXECUTIVES
- * Fully self-contained, responsive, and using modern UI principles.
- * Removed lucide-react dependency to resolve "Module not found" build errors.
- */
-
-// --- Comprehensive Inline SVG Icon Library ---
-// Replaces external 'lucide-react' dependency with optimized inline SVGs
-const Icon = ({ name, className = "" }) => {
-  const icons = {
-    MessageSquareText: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 8H7"/><path d="M17 12H7"/>
-      </svg>
-    ),
-    Zap: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-      </svg>
-    ),
-    Rocket: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.95.12-3.5-.5-4.5l-2.5 1.5Z"/><path d="M11.5 4.5c1.26-1.5 5-2 5-2s-.5 3.74-2 5c-.95.71-3.5.12-4.5-.5l1.5-2.5Z"/><path d="M8 10V7l4-3 5 1 1 5-3 4h-3"/><path d="M11.5 11.5 10 13c-1.17 1.17-2.61 2.15-3.98 3.12l-1.02.73a1 1 0 0 0-.01 1.63l.53.38a1 1 0 0 0 1.25-.09l1.63-1.63a14.88 14.88 0 0 0 4.11-8.14"/>
-      </svg>
-    ),
-    Target: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
-      </svg>
-    ),
-    Users: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-      </svg>
-    ),
-    TrendingUp: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
-      </svg>
-    ),
-    TrendingDown: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/>
-      </svg>
-    ),
-    CheckCircle: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-      </svg>
-    ),
-    ArrowRight: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-      </svg>
-    ),
-    Database: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-      </svg>
-    ),
-    Bot: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <rect width="18" height="10" x="3" y="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/>
-      </svg>
-    ),
-    Globe: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-      </svg>
-    )
-  };
-  
-  return icons[name] || icons.Zap;
-};
-
-// --- Reusable UI Elements ---
-
-const PrimaryButton = ({ children, className = '', href = '#' }) => (
-  <a
-    href={href}
-    className={`inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-slate-900 bg-lime-400 rounded-xl shadow-lg hover:bg-lime-300 transition-all duration-300 transform hover:-translate-y-1 active:scale-95 ${className}`}
-  >
-    {children}
-  </a>
+const PhoneFrame = ({ children, bgColor = "bg-slate-950" }) => (
+  <div className="relative mx-auto w-[260px] h-[520px] bg-slate-950 rounded-[3rem] p-3 shadow-2xl border-[6px] border-slate-800 overflow-hidden">
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-2xl z-50"></div>
+    <div className={`relative w-full h-full rounded-[2.2rem] overflow-hidden ${bgColor}`}>
+      {children}
+    </div>
+  </div>
 );
-
-// --- Main Application ---
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -107,235 +50,392 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-lime-200 antialiased overflow-x-hidden">
-      {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md border-b border-slate-100 py-3 shadow-sm' : 'bg-transparent py-6'}`}>
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-            <div className="w-8 h-8 bg-lime-400 rounded-lg flex items-center justify-center font-black italic shadow-sm">Q</div>
-            <span className="text-2xl font-black tracking-tight">QuickChat<span className="text-lime-500">.</span></span>
-          </div>
-          
-          <div className="hidden md:flex items-center space-x-10">
-            <button onClick={() => scrollTo('tiers')} className="font-bold text-slate-600 hover:text-slate-900 transition-colors">Process</button>
-            <button onClick={() => scrollTo('audit')} className="font-bold text-slate-600 hover:text-slate-900 transition-colors">Audit</button>
-            <PrimaryButton className="py-2.5 px-6 text-sm" href="#cta">Schedule Pilot</PrimaryButton>
-          </div>
+    <div className="min-h-screen bg-[#F8F9FF] font-sans text-slate-950 antialiased selection:bg-indigo-100">
+      <style>{`
+        @keyframes wave {
+          0%, 100% { height: 20%; }
+          50% { height: 100%; }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+        }
+        @keyframes morph {
+          0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+          50% { border-radius: 30% 60% 70% 30% / 50% 60% 30% 60%; }
+        }
+        .animate-wave { animation: wave 1.2s ease-in-out infinite; }
+        .animate-fadeIn { animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-morph { animation: morph 12s ease-in-out infinite; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .hero-mesh {
+          background-color: #F8F9FF;
+          background-image: 
+            radial-gradient(at 0% 0%, hsla(243,75%,95%,1) 0, transparent 50%), 
+            radial-gradient(at 100% 0%, hsla(270,70%,95%,1) 0, transparent 50%),
+            radial-gradient(at 50% 100%, hsla(243,75%,92%,1) 0, transparent 50%);
+        }
+        .dot-grid {
+          background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+          background-size: 32px 32px;
+        }
+      `}</style>
 
-          <div className="md:hidden">
-             <PrimaryButton className="py-2 px-4 text-xs" href="#cta">Pilot</PrimaryButton>
+      {/* Nav */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/90 backdrop-blur-xl border-b border-slate-100 py-4 shadow-sm' : 'bg-transparent py-8'}`}>
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          <div className="flex items-center gap-3 cursor-pointer group" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+            <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-xl group-hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">Q</div>
+            <span className="text-2xl font-black tracking-tighter">QuickChat<span className="text-indigo-600">.</span></span>
+          </div>
+          <div className="flex items-center gap-8">
+            <button onClick={() => scrollTo('how-it-works')} className="hidden md:block text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-indigo-600 transition">How it works</button>
+            <button onClick={() => scrollTo('byod')} className="hidden md:block text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-indigo-600 transition">Intelligence</button>
+            <button onClick={() => scrollTo('early-success')} className="hidden md:block text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-indigo-600 transition">Success</button>
+            <button onClick={() => scrollTo('pilots')} className="group bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95 shadow-xl shadow-indigo-200 flex items-center gap-2 text-sm">
+              Get Started <Heart size={16} className="group-hover:scale-110 transition-transform" />
+            </button>
           </div>
         </div>
       </nav>
 
-      <main>
-        {/* Hero Section */}
-        <section className="pt-32 pb-20 md:pt-48 md:pb-32 px-6 relative overflow-hidden">
-          {/* Subtle Background Elements */}
-          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-lime-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
-
-          <div className="max-w-6xl mx-auto text-center relative z-10">
-            <div className="inline-flex items-center px-4 py-1.5 bg-slate-900 text-white rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest mb-8 animate-fade-in">
-              <span className="w-2 h-2 bg-lime-400 rounded-full mr-2 animate-pulse"></span>
-              UK & Ireland Scale-up Diagnostic
-            </div>
+      {/* Hero Section */}
+      <header className="relative min-h-screen pt-48 pb-20 px-6 overflow-hidden hero-mesh flex items-center">
+        <div className="absolute inset-0 dot-grid opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10 w-full">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
             
-            <h1 className="text-5xl md:text-8xl font-black leading-[1.1] mb-8 tracking-tighter text-slate-950">
-              Turn <span className="relative inline-block text-orange-500">
-                Churn
-                <svg className="absolute -bottom-2 left-0 w-full h-3 text-orange-200" viewBox="0 0 100 10" preserveAspectRatio="none">
-                  <path d="M0 5 Q 25 0 50 5 T 100 5" stroke="currentColor" strokeWidth="4" fill="transparent" />
-                </svg>
-              </span> into Strategy.
-            </h1>
-            
-            <p className="text-lg md:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
-              Why do they really leave? QuickChat uncovers the sincere truth from your data or via active AI deployment—delivered in a 48-hour roadmap.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6">
-              <PrimaryButton className="text-lg md:text-xl px-10 md:px-12 py-5 shadow-lime-400/30" href="#cta">
-                Book Diagnostic Call
-              </PrimaryButton>
-              <button 
-                onClick={() => scrollTo('tiers')}
-                className="inline-flex items-center justify-center px-8 py-4 text-lg md:text-xl font-bold text-slate-600 hover:text-lime-600 transition-all group"
-              >
-                How it Works <Icon name="ArrowRight" className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* Quick Stats / Trust Bar */}
-        <section className="py-16 bg-white border-y border-slate-50">
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8">
-            <div className="text-center group">
-              <div className="text-4xl font-black text-slate-950 group-hover:text-lime-500 transition-colors">48h</div>
-              <div className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mt-2">Strategy Turnaround</div>
-            </div>
-            <div className="text-center group">
-              <div className="text-4xl font-black text-slate-950 group-hover:text-lime-500 transition-colors">35%+</div>
-              <div className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mt-2">Active Engagement</div>
-            </div>
-            <div className="text-center group">
-              <div className="text-4xl font-black text-slate-950 group-hover:text-lime-500 transition-colors">10x</div>
-              <div className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mt-2">Survey ROI</div>
-            </div>
-            <div className="text-center group">
-              <div className="text-4xl font-black text-slate-950 group-hover:text-lime-500 transition-colors">UK/IE</div>
-              <div className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mt-2">Executive Focus</div>
-            </div>
-          </div>
-        </section>
-
-        {/* Tiers Section */}
-        <section id="tiers" className="py-24 md:py-32 px-6 bg-slate-50">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">Two Paths to Certainty.</h2>
-              <p className="text-xl text-slate-500 max-w-2xl mx-auto">The fastest way to identify and fix your revenue leaks without the overhead of a traditional consultancy.</p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-              {/* Tier 1 */}
-              <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border-t-8 border-slate-900 relative overflow-hidden group hover:shadow-2xl transition-all duration-500">
-                <div className="absolute -right-6 -top-6 transition-transform group-hover:scale-110 group-hover:-rotate-12 duration-500 opacity-5 md:opacity-10">
-                  <Icon name="Database" className="w-32 h-32 text-slate-900" />
-                </div>
-                <span className="text-xs font-black text-slate-400 uppercase tracking-widest block mb-4">Tier 1</span>
-                <h3 className="text-3xl md:text-4xl font-black mb-6">BYOD <span className="text-slate-400 font-light block md:inline-block md:ml-2 text-xl md:text-3xl">(Bring Your Data)</span></h3>
-                <p className="text-slate-600 mb-10 leading-relaxed text-lg font-medium">Upload existing support tickets, call logs, or raw exit data. Our engine synthesizes the noise into a high-level strategic action plan.</p>
-                <ul className="space-y-5 mb-12">
-                  {['Synthesis of existing silos', 'Impact-weighted priority list', '48-hour report delivery'].map((item, idx) => (
-                    <li key={idx} className="flex items-center text-slate-700 font-bold">
-                      <div className="w-6 h-6 bg-lime-100 rounded-full flex items-center justify-center mr-4 shrink-0">
-                        <Icon name="CheckCircle" className="w-4 h-4 text-lime-600" />
-                      </div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <PrimaryButton className="w-full bg-slate-900 text-white hover:bg-slate-800" href="#cta">Start BYOD Process</PrimaryButton>
+            <div className="flex flex-col items-start animate-fadeIn">
+              <div className="inline-flex items-center gap-3 px-5 py-2 bg-white rounded-full text-[10px] font-black tracking-[0.3em] text-indigo-600 mb-12 border border-slate-200 shadow-sm uppercase">
+                <Sparkles size={14} /> Reimagining Feedback
               </div>
+              
+              <h1 className="text-7xl md:text-[110px] font-black leading-[0.82] mb-12 tracking-tighter text-slate-950">
+                The power of <br/>
+                <span className="text-indigo-600 underline decoration-indigo-200 decoration-8 underline-offset-[12px]">voice.</span> <br/>
+                The speed <br/>
+                of <span className="text-indigo-600 underline decoration-indigo-200 decoration-8 underline-offset-[12px]">AI.</span>
+              </h1>
+              
+              <p className="text-2xl text-slate-500 mb-12 max-w-lg font-medium leading-relaxed">
+                A new kind of customer survey tool. Accessible to everyone, delivering strategic insights fast.
+              </p>
 
-              {/* Tier 2 */}
-              <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl shadow-lime-200/30 border-t-8 border-lime-400 relative overflow-hidden group hover:shadow-2xl transition-all duration-500">
-                <div className="absolute -right-6 -top-6 transition-transform group-hover:scale-110 group-hover:rotate-12 duration-500 opacity-10">
-                  <Icon name="Bot" className="w-32 h-32 text-lime-400" />
-                </div>
-                <span className="text-xs font-black text-lime-600 uppercase tracking-widest block mb-4">Tier 2</span>
-                <h3 className="text-3xl md:text-4xl font-black mb-6">Active Deployment</h3>
-                <p className="text-slate-600 mb-10 leading-relaxed text-lg font-medium">We deploy conversational bots directly to your churned segments. Capture qualitative data that traditional surveys miss.</p>
-                <ul className="space-y-5 mb-12">
-                  {['Conversational AI Bots', 'Dynamic objection handling', 'Emotion & Sentiment tracking'].map((item, idx) => (
-                    <li key={idx} className="flex items-center text-slate-700 font-bold">
-                      <div className="w-6 h-6 bg-lime-400 rounded-full flex items-center justify-center mr-4 shrink-0">
-                        <Icon name="CheckCircle" className="w-4 h-4 text-slate-900" />
-                      </div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <PrimaryButton className="w-full shadow-lime-400/20" href="#cta">Deploy Diagnostic Bots</PrimaryButton>
+              <div className="flex flex-col sm:flex-row gap-6 items-center w-full">
+                <button onClick={() => scrollTo('pilots')} className="group w-full sm:w-auto bg-indigo-600 text-white px-12 py-6 rounded-[2rem] text-xl font-black shadow-2xl shadow-indigo-200 hover:bg-indigo-700 transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3">
+                  Let's Build Together <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                </button>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* Features / Icons Grid */}
-        <section id="audit" className="py-24 px-6">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-12 lg:gap-20">
-              <div className="text-center md:text-left group">
-                <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-lime-400 transition-colors duration-300">
-                  <Icon name="Target" className="w-8 h-8 text-slate-900" />
+            <div className="relative h-[600px] w-full flex items-center justify-center animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+              <div className="absolute w-[80%] h-[80%] bg-indigo-500/10 animate-morph rounded-full blur-3xl"></div>
+              
+              <div className="relative w-full max-w-[550px] h-full flex flex-col items-center justify-center">
+                <div className="relative w-full aspect-[4/5] md:aspect-square rounded-[4rem] overflow-hidden shadow-2xl border-[12px] border-white z-20">
+                  <img 
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop" 
+                    className="w-full h-full object-cover" 
+                    alt="A happy, diverse group of people of various ages and races laughing and looking at their phones" 
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-slate-950/70 backdrop-blur-xl p-10 flex items-end justify-center gap-2.5 h-32">
+                    {[...Array(24)].map((_, i) => (
+                      <div 
+                        key={i} 
+                        className="flex-1 bg-indigo-400 rounded-full animate-wave" 
+                        style={{ 
+                          height: `${15 + (i % 8) * 10}%`, 
+                          animationDelay: `${i * 0.04}s`,
+                        }} 
+                      />
+                    ))}
+                  </div>
                 </div>
-                <h4 className="text-2xl font-black mb-4">Revenue Leak Audit</h4>
-                <p className="text-slate-500 leading-relaxed text-lg">We pinpoint exactly where you're losing money and which segments are at highest risk using quantitative modeling.</p>
-              </div>
-              <div className="text-center md:text-left group">
-                <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-lime-400 transition-colors duration-300">
-                  <Icon name="TrendingUp" className="w-8 h-8 text-slate-900" />
+                
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-2xl z-30 animate-float border-[8px] border-white">
+                  <Mic size={40} />
                 </div>
-                <h4 className="text-2xl font-black mb-4">Roadmap Priorities</h4>
-                <p className="text-slate-500 leading-relaxed text-lg">Don't fix everything. We isolate the three initiatives that will move the retention needle the most this quarter.</p>
               </div>
-              <div className="text-center md:text-left group">
-                <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-lime-400 transition-colors duration-300">
-                  <Icon name="Users" className="w-8 h-8 text-slate-900" />
-                </div>
-                <h4 className="text-2xl font-black mb-4">Segment Specifics</h4>
-                <p className="text-slate-500 leading-relaxed text-lg">Understand the deep divide between your 'Bad Fit' churn and your 'Product Gap' churn to fix GTM alignment.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section id="cta" className="py-32 px-6 bg-slate-950 text-white relative overflow-hidden">
-          <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-            <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-lime-500 to-transparent"></div>
-            <div className="absolute top-0 left-2/4 w-px h-full bg-gradient-to-b from-transparent via-lime-500 to-transparent"></div>
-            <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-lime-500 to-transparent"></div>
-          </div>
-          
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <h2 className="text-5xl md:text-8xl font-black mb-10 tracking-tighter">Stop Guessing.</h2>
-            <p className="text-xl md:text-2xl text-slate-400 mb-14 max-w-2xl mx-auto font-medium leading-relaxed">
-              Book a 15-minute diagnostic call for your scale-up. We'll show you how to turn silent churn into strategic growth.
-            </p>
-            <PrimaryButton className="px-16 py-7 text-2xl" href="mailto:hello@quickchat.io">
-              Schedule Diagnostic <Icon name="ArrowRight" className="ml-3 w-6 h-6" />
-            </PrimaryButton>
-            <div className="mt-12 flex flex-wrap justify-center gap-8 text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">
-              <span>GDPR Compliant</span>
-              <span>Enterprise Ready</span>
-              <span>UK/IE Hosted</span>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="py-16 border-t border-slate-100 px-6 bg-white">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-          <div className="flex flex-col items-center md:items-start">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-lime-400 rounded flex items-center justify-center font-black italic text-slate-950 text-xs">Q</div>
-              <span className="text-2xl font-black text-slate-950">QuickChat.</span>
-            </div>
-            <p className="text-slate-400 text-sm font-medium">Retention intelligence for the modern scale-up.</p>
-          </div>
-          
-          <div className="flex flex-col items-center md:items-end gap-6">
-            <div className="flex space-x-8 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
-              <a href="#" className="hover:text-lime-500 transition-colors">Privacy</a>
-              <a href="#" className="hover:text-lime-500 transition-colors">Security</a>
-              <a href="#" className="hover:text-lime-500 transition-colors">Legal</a>
-              <a href="#" className="hover:text-lime-500 transition-colors">Contact</a>
-            </div>
-            <div className="text-slate-400 text-xs font-bold">
-              © 2025 QuickChat Diagnostic Platform. London | Dublin
             </div>
           </div>
         </div>
-      </footer>
+      </header>
 
-      {/* Styles for subtle animations */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out forwards;
-        }
-        html {
-          scroll-behavior: smooth;
-        }
-      `}} />
+      {/* How it Works Section */}
+      <section id="how-it-works" className="py-64 px-6 bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col items-center text-center mb-40">
+            <div className="px-6 py-2 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-[0.5em] mb-8 border border-indigo-100">
+              User Experience
+            </div>
+            <h2 className="text-7xl md:text-[100px] font-black tracking-tighter leading-none text-slate-950 mb-8">
+              How it works<span className="text-indigo-600 italic">.</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+            {/* Step 01 */}
+            <div className="flex flex-col gap-10 group">
+              <PhoneFrame bgColor="bg-slate-50">
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop" className="w-full h-full object-cover" alt="Portrait of a user" />
+                    <div className="absolute inset-0 bg-indigo-600/10 flex items-center justify-center">
+                      <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl animate-pulse">
+                        <Mic size={28} className="text-indigo-600" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </PhoneFrame>
+              <div className="px-4">
+                <div className="w-12 h-12 bg-indigo-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-indigo-100 font-black">01</div>
+                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight">Hear Every Voice.</h3>
+                <p className="text-slate-500 text-lg font-medium leading-relaxed">Frictionless voice responses ensure that feedback is accessible to everyone, regardless of ability.</p>
+              </div>
+            </div>
+
+            {/* Step 02 */}
+            <div className="flex flex-col gap-10 group lg:mt-12">
+              <PhoneFrame bgColor="bg-indigo-600">
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+                   <div className="w-32 h-32 rounded-full border-4 border-white/30 p-1 mb-8">
+                      <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover rounded-full" alt="Speaker" />
+                   </div>
+                   <div className="bg-white rounded-3xl p-6 shadow-2xl w-full">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></div>
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Live Analysis</span>
+                      </div>
+                      <p className="text-slate-950 font-bold text-sm text-left leading-relaxed">
+                        "The interface is so much easier to use with voice commands..."
+                      </p>
+                   </div>
+                </div>
+              </PhoneFrame>
+              <div className="px-4">
+                <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-blue-100 font-black">02</div>
+                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight">Deeper Nuance.</h3>
+                <p className="text-slate-500 text-lg font-medium leading-relaxed">Voice captures the emotion and specific pain points that text forms miss.</p>
+              </div>
+            </div>
+
+            {/* Step 03 */}
+            <div className="flex flex-col gap-10 group">
+              <PhoneFrame bgColor="bg-slate-50">
+                <div className="absolute inset-0 p-4 flex flex-col bg-white">
+                  <div className="flex items-center justify-between mb-4 pb-4 border-b">
+                    <div className="font-black text-[10px] uppercase tracking-tighter">Strategic Report</div>
+                    <BarChart3 size={16} className="text-indigo-600" />
+                  </div>
+                  <div className="space-y-3">
+                    <div className="h-20 bg-indigo-50 rounded-xl p-3">
+                      <div className="w-full h-2 bg-indigo-200 rounded-full mb-2"></div>
+                      <div className="w-2/3 h-2 bg-indigo-200 rounded-full mb-3"></div>
+                      <div className="flex justify-between items-end">
+                        <div className="w-8 h-4 bg-indigo-400 rounded-sm"></div>
+                        <div className="w-8 h-8 bg-indigo-600 rounded-sm"></div>
+                        <div className="w-8 h-6 bg-indigo-300 rounded-sm"></div>
+                      </div>
+                    </div>
+                    {[1,2,3].map(i => (
+                      <div key={i} className="flex items-center gap-3 p-2 border-b border-slate-50">
+                        <div className="w-4 h-4 bg-slate-100 rounded-full"></div>
+                        <div className="flex-1 h-2 bg-slate-100 rounded-full"></div>
+                      </div>
+                    ))}
+                    <div className="bg-indigo-600 p-3 rounded-xl text-[10px] text-white font-bold">
+                      Insight: Users prefer voice navigation by 78%
+                    </div>
+                  </div>
+                </div>
+              </PhoneFrame>
+              <div className="px-4">
+                <div className="w-12 h-12 bg-violet-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-violet-100 font-black">03</div>
+                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight">Fast Synthesis.</h3>
+                <p className="text-slate-500 text-lg font-medium leading-relaxed">No manual analysis. Our engine turns raw voice into full strategic reports instantly.</p>
+              </div>
+            </div>
+
+            {/* Step 04 */}
+            <div className="flex flex-col gap-10 group lg:mt-12">
+              <PhoneFrame bgColor="bg-white">
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
+                  <div className="w-20 h-20 bg-green-50 text-green-600 rounded-full flex items-center justify-center mb-6">
+                    <TrendingUp size={40} />
+                  </div>
+                  <h4 className="text-2xl font-black text-slate-950 mb-2">Real Results</h4>
+                  <div className="w-full space-y-3">
+                    <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                      <span className="text-[10px] font-black text-slate-600">Completion Rate</span>
+                      <span className="text-[10px] font-black text-green-600">+42%</span>
+                    </div>
+                    <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                      <span className="text-[10px] font-black text-slate-600">Sentiment Score</span>
+                      <span className="text-[10px] font-black text-green-600">+18%</span>
+                    </div>
+                  </div>
+                </div>
+              </PhoneFrame>
+              <div className="px-4">
+                <div className="w-12 h-12 bg-slate-800 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-slate-100 font-black">04</div>
+                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight">Results.</h3>
+                <p className="text-slate-500 text-lg font-medium leading-relaxed">Turn high-quality feedback into measurable growth and customer loyalty.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Intelligence Section */}
+      <section id="byod" className="py-40 bg-indigo-600 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="text-white">
+              <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-white/10 rounded-full text-[10px] font-black tracking-widest uppercase mb-8 border border-white/20 backdrop-blur-md">
+                <Database size={14} /> Intelligence Integration
+              </div>
+              <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-none">
+                Intelligence <br/>
+                <span className="text-indigo-200 font-light italic">on demand.</span>
+              </h2>
+              <p className="text-xl md:text-2xl text-indigo-100 mb-12 font-medium leading-relaxed max-w-xl">
+                Connect your existing support channels or survey results. Our AI extracts the human signals you've been missing.
+              </p>
+              
+              <div className="space-y-6">
+                {[
+                  { icon: HardDriveUpload, title: "Data Ticket Import", desc: "Upload support tickets or CRM notes to find hidden themes." },
+                  { icon: Layers, title: "Legacy Surveys", desc: "Bring in your CSVs and let our engine find the real signal." },
+                  { icon: FileSearch, title: "Synthesis Engine", desc: "Fast sentiment and theme detection on your existing stacks." }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-6 group">
+                    <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-white group-hover:text-indigo-600 transition-all">
+                      <item.icon size={28} />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-black mb-1">{item.title}</h4>
+                      <p className="text-indigo-200 font-medium">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="relative z-10 animate-float">
+                <PhoneFrame bgColor="bg-slate-50">
+                  <div className="absolute inset-0 p-8 flex flex-col items-center justify-center">
+                    <div className="w-full space-y-4">
+                       <div className="p-4 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4">
+                          <div className="w-8 h-8 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center"><FileText size={16}/></div>
+                          <div className="flex-1">
+                             <div className="h-2 w-16 bg-slate-200 rounded-full mb-2"></div>
+                          </div>
+                       </div>
+                       <div className="mt-8 p-6 bg-indigo-600 rounded-[2rem] shadow-xl text-center">
+                          <div className="text-white font-black text-xs uppercase tracking-[0.2em] mb-4">Processing Data</div>
+                          <div className="flex items-center justify-center gap-1 h-8">
+                             {[...Array(8)].map((_, i) => (
+                                <div key={i} className="w-1 bg-white/40 rounded-full animate-wave" style={{ animationDelay: `${i*0.1}s` }} />
+                             ))}
+                          </div>
+                       </div>
+                    </div>
+                  </div>
+                </PhoneFrame>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Early Success Section - Zeus Scooters Case Study */}
+      <section id="early-success" className="py-48 px-6 bg-[#F8F9FF]">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-24">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-8 border border-indigo-100">
+               <Zap size={12} className="fill-indigo-600" /> Case Study
+            </div>
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-950 leading-[0.9]">
+              Early Success: QuickChat Unlocked <br/>
+              <span className="text-indigo-600 italic">3X Churn Insights</span> for Zeus Scooters.
+            </h2>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-24 items-start">
+            <div className="relative">
+              <div className="bg-white p-12 md:p-16 rounded-[4rem] shadow-2xl relative z-10 border border-slate-100">
+                <div className="mb-10 text-indigo-600">
+                  <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.89543 14.9124 3 16.017 3H19.017C21.2261 3 23.017 4.79086 23.017 7V15C23.017 18.3137 20.3307 21 17.017 21H14.017ZM1 21L1 18C1 16.8954 1.89543 16 3 16H6C6.55228 16 7 15.5523 7 15V9C7 8.44772 6.55228 8 6 8H3C1.89543 8 1 7.10457 1 6V5C1 3.89543 1.89543 3 3 3H6C8.20914 3 10 4.79086 10 7V15C10 18.3137 7.31371 21 4 21H1Z" />
+                  </svg>
+                </div>
+                <p className="text-3xl md:text-4xl font-bold text-slate-950 leading-tight mb-12 italic">
+                  "You've given me a step-by-step guide to reduce churn. We went from guessing to knowing exactly which button to press to fix our problem."
+                </p>
+                <div className="flex items-center gap-6">
+                  <div className="w-16 h-16 bg-slate-200 rounded-full overflow-hidden flex items-center justify-center">
+                    <Users size={32} className="text-slate-400" />
+                  </div>
+                  <div>
+                    <div className="font-black text-xl text-slate-900 tracking-tight">Chris Kemp</div>
+                    <div className="text-indigo-600 font-bold uppercase text-xs tracking-widest">Deputy CEO, Zeus Scooters</div>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -bottom-8 -right-8 w-full h-full bg-indigo-600/5 rounded-[4rem] -z-10"></div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:mt-12">
+              {[
+                { val: "€900K", label: "Recovery", desc: "Annual projected revenue recovery from churn reduction." },
+                { val: "10K", label: "Target", desc: "Customers targeted for win-back campaign in Q1." },
+                { val: "<7", label: "Velocity", desc: "Strategic feedback delivery in days, not months." },
+                { val: "3x", label: "Clarity", desc: "More actionable insights compared to previous NPS surveys." }
+              ].map((stat, i) => (
+                <div key={i} className="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-100 hover:shadow-xl hover:scale-105 transition-all duration-300">
+                  <div className="text-5xl font-black text-indigo-600 mb-4">{stat.val}</div>
+                  <div className="text-slate-900 font-black tracking-widest mb-3 uppercase text-[10px]">{stat.label}</div>
+                  <p className="text-slate-500 text-sm font-medium leading-relaxed">{stat.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pilots CTA */}
+      <section id="pilots" className="py-40 px-6 text-center relative overflow-hidden bg-white">
+        <div className="max-w-4xl mx-auto relative z-10">
+          <h2 className="text-6xl md:text-[100px] font-black mb-12 tracking-tight leading-none text-slate-950">
+            Secure your edge.
+          </h2>
+          <p className="text-2xl text-slate-500 mb-16 font-medium max-w-2xl mx-auto">
+            Opening a few co-creation slots for teams building inclusive customer experiences.
+          </p>
+          <div className="flex flex-col items-center gap-8">
+            <button className="bg-indigo-600 text-white px-16 py-8 rounded-[2rem] text-3xl font-black hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-indigo-200">
+              Apply for Pilot
+            </button>
+            <div className="flex items-center gap-6 text-slate-400 font-black text-[10px] uppercase tracking-[0.3em]">
+              <span className="flex items-center gap-2"><Lock size={14}/> NDA PROTECTED</span>
+              <span className="flex items-center gap-2"><Shield size={14}/> GDPR COMPLIANT</span>
+              <span className="flex items-center gap-2"><Accessibility size={14}/> WCAG AA</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="py-12 border-t border-slate-100 bg-[#F8F9FF]">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center opacity-40">
+           <div className="text-xs font-black tracking-widest uppercase text-slate-950">QuickChat © 2025</div>
+           <div className="text-[10px] font-black tracking-widest uppercase italic text-slate-950">Built for Everyone</div>
+        </div>
+      </footer>
     </div>
   );
 }

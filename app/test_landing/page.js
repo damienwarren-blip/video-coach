@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, 
@@ -19,7 +21,9 @@ import {
   MessageCircle, 
   BarChartHorizontal,
   CloudUpload,
-  Info
+  Info,
+  CheckCircle2,
+  ChevronRight
 } from 'lucide-react';
 
 const PhoneFrame = ({ children, bgColor = "bg-slate-950" }) => (
@@ -202,23 +206,53 @@ export default function App() {
               </div>
             </div>
 
-            {/* Step 03 */}
+            {/* Step 03 - Richer Mockup */}
             <div className="flex flex-col gap-10 group">
               <PhoneFrame bgColor="bg-slate-50">
-                <div className="absolute inset-0 p-4 flex flex-col bg-white">
-                  <div className="flex items-center justify-between mb-4 pb-4 border-b">
-                    <div className="font-black text-[10px] uppercase tracking-tighter">Churn Analysis</div>
-                    <BarChartHorizontal size={16} className="text-indigo-600" />
+                <div className="absolute inset-0 p-5 flex flex-col bg-white overflow-hidden">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex flex-col">
+                      <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Active Report</span>
+                      <span className="font-black text-xs text-slate-900 tracking-tighter">Strategic Churn Audit</span>
+                    </div>
+                    <div className="p-2 bg-indigo-50 rounded-lg"><BarChartHorizontal size={14} className="text-indigo-600" /></div>
                   </div>
-                  <div className="space-y-3">
-                    <div className="h-24 bg-indigo-50 rounded-xl p-3 flex flex-col justify-between">
-                      <div className="text-[10px] font-black text-indigo-600">ROOT CAUSE IDENTIFIED</div>
-                      <div className="h-2 w-full bg-indigo-200 rounded-full"></div>
-                      <div className="h-2 w-2/3 bg-indigo-200 rounded-full"></div>
+                  
+                  <div className="space-y-4">
+                    <div className="p-3 bg-indigo-600 rounded-2xl shadow-lg shadow-indigo-100">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-[9px] font-bold text-indigo-100">AI DETECTED THEME</span>
+                        <Zap size={10} className="text-yellow-400 fill-yellow-400" />
+                      </div>
+                      <div className="text-[11px] font-bold text-white leading-tight mb-2">"App UI complexity leading to initial drop-off"</div>
+                      <div className="w-full bg-white/20 h-1 rounded-full overflow-hidden">
+                        <div className="w-[85%] h-full bg-white"></div>
+                      </div>
                     </div>
-                    <div className="bg-indigo-600 p-3 rounded-xl text-[10px] text-white font-bold">
-                      Report generated automatically
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <div className="text-[14px] font-black text-slate-900 leading-none mb-1">22%</div>
+                        <div className="text-[8px] font-bold text-slate-400 uppercase">Impact</div>
+                      </div>
+                      <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <div className="text-[14px] font-black text-slate-900 leading-none mb-1">High</div>
+                        <div className="text-[8px] font-bold text-slate-400 uppercase">Urgency</div>
+                      </div>
                     </div>
+
+                    <div className="bg-indigo-50/50 p-3 rounded-xl border border-indigo-100">
+                      <div className="text-[9px] font-bold text-indigo-600 mb-2">ROOT CAUSE DATA</div>
+                      <div className="space-y-1.5">
+                        <div className="h-1.5 w-full bg-indigo-100 rounded-full"></div>
+                        <div className="h-1.5 w-3/4 bg-indigo-100 rounded-full"></div>
+                        <div className="h-1.5 w-1/2 bg-indigo-100 rounded-full"></div>
+                      </div>
+                    </div>
+                    
+                    <button className="w-full py-2.5 bg-slate-900 text-white text-[10px] font-bold rounded-xl flex items-center justify-center gap-2">
+                      Export to Board Deck <ArrowRight size={10} />
+                    </button>
                   </div>
                 </div>
               </PhoneFrame>
@@ -229,16 +263,52 @@ export default function App() {
               </div>
             </div>
 
-            {/* Step 04 */}
+            {/* Step 04 - Richer Mockup */}
             <div className="flex flex-col gap-10 group lg:mt-12">
               <PhoneFrame bgColor="bg-white">
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
-                  <div className="w-20 h-20 bg-green-50 text-green-600 rounded-full flex items-center justify-center mb-6">
-                    <TrendingUp size={40} />
+                <div className="absolute inset-0 flex flex-col p-6 bg-white">
+                  <div className="flex flex-col items-center text-center mb-6">
+                    <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-4 border-4 border-green-500/10">
+                      <TrendingUp className="text-green-600" size={28} />
+                    </div>
+                    <div className="text-xs font-black text-slate-900 tracking-tight">Strategy Execution</div>
+                    <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">Status: Active</div>
                   </div>
-                  <h4 className="text-2xl font-black text-slate-950 mb-2">Long-term Loyalty</h4>
-                  <div className="w-full space-y-2 mt-4 text-center">
-                    <div className="text-[10px] font-black text-slate-400">BUILDING TRUST...</div>
+
+                  <div className="space-y-4">
+                    <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center text-white"><CheckCircle2 size={12}/></div>
+                        <span className="text-[10px] font-bold text-slate-900">Churn Rate Improved</span>
+                      </div>
+                      <div className="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
+                        <div className="w-[34%] h-full bg-green-500"></div>
+                      </div>
+                      <div className="flex justify-between mt-2">
+                        <span className="text-[8px] font-bold text-slate-400">TARGET: -15%</span>
+                        <span className="text-[8px] font-black text-green-600">-34% ACTUAL</span>
+                      </div>
+                    </div>
+
+                    <div className="bg-indigo-600 p-4 rounded-2xl shadow-xl text-white">
+                      <div className="flex items-center justify-between mb-3">
+                         <div className="text-[10px] font-bold">LOYALTY SCORE</div>
+                         <Heart size={12} className="fill-white" />
+                      </div>
+                      <div className="flex items-baseline gap-2 mb-2">
+                        <span className="text-2xl font-black tracking-tighter">+18</span>
+                        <span className="text-[10px] font-bold text-indigo-200">pt increase</span>
+                      </div>
+                      <div className="text-[9px] font-medium leading-tight opacity-90">Based on follow-up validation campaigns.</div>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 bg-white border border-slate-100 rounded-xl">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400"><Users size={14}/></div>
+                        <span className="text-[10px] font-bold text-slate-600">Growth Projection</span>
+                      </div>
+                      <ChevronRight size={14} className="text-slate-300" />
+                    </div>
                   </div>
                 </div>
               </PhoneFrame>

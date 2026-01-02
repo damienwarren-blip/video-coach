@@ -371,10 +371,10 @@ export default function App() {
       <section id="pilots" className="py-40 px-6 text-center relative overflow-hidden bg-white">
         <div className="max-w-4xl mx-auto relative z-10">
           <h2 className="text-6xl md:text-[100px] font-black mb-12 tracking-tight leading-none text-slate-950">
-            Secure your edge.
+            Ready to understand your customers?
           </h2>
-          <p className="text-2xl text-slate-500 mb-16 font-medium max-w-2xl mx-auto">
-            Opening a few co-creation slots for teams building inclusive customer experiences.
+          <p className="text-2xl text-slate-500 mb-12 font-medium max-w-2xl mx-auto leading-relaxed">
+            Bring your existing data or test our voice bot — let’s find what works for you.
           </p>
           <div className="flex flex-col items-center gap-8">
             <button className="bg-indigo-600 text-white px-16 py-8 rounded-[2rem] text-3xl font-black hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-indigo-200">
@@ -384,21 +384,6 @@ export default function App() {
               <span className="flex items-center gap-2"><Shield size={14}/> GDPR COMPLIANT</span>
               <span className="flex items-center gap-2"><Accessibility size={14}/> WCAG AA</span>
             </div>
-          </div>
-          
-          <div className="mt-32 max-w-2xl mx-auto px-6 py-10 bg-slate-50 rounded-3xl border border-slate-100 flex gap-6 text-left">
-             <div className="shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center text-indigo-600 shadow-sm border border-slate-100">
-                <Info size={24} />
-             </div>
-             <div>
-                <div className="text-xs font-black text-indigo-600 uppercase tracking-widest mb-3">Early Pilot Report Note</div>
-                <p className="text-sm text-slate-500 font-medium leading-relaxed italic">
-                  *This early pilot report is generated from our prototype AI using your data. 
-                  It highlights key themes and actions to explore. 
-                  Please review with your team and combine with other metrics before major decisions. 
-                  We’re improving fast with your feedback — thanks for helping shape it!*
-                </p>
-             </div>
           </div>
         </div>
       </section>

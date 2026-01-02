@@ -7,7 +7,6 @@ import {
   Shield, 
   Lock, 
   Sparkles, 
-  Play,
   CheckCircle2,
   MessageSquare,
   Target,
@@ -21,7 +20,9 @@ import {
   TrendingUp,
   BarChart3,
   Users,
-  Zap
+  Zap,
+  MessageCircle,
+  BarChartHorizontal
 } from 'lucide-react';
 
 const PhoneFrame = ({ children, bgColor = "bg-slate-950" }) => (
@@ -92,10 +93,9 @@ export default function App() {
           </div>
           <div className="flex items-center gap-8">
             <button onClick={() => scrollTo('how-it-works')} className="hidden md:block text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-indigo-600 transition">How it works</button>
-            <button onClick={() => scrollTo('byod')} className="hidden md:block text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-indigo-600 transition">Intelligence</button>
             <button onClick={() => scrollTo('early-success')} className="hidden md:block text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-indigo-600 transition">Success</button>
             <button onClick={() => scrollTo('pilots')} className="group bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95 shadow-xl shadow-indigo-200 flex items-center gap-2 text-sm">
-              Get Started <Heart size={16} className="group-hover:scale-110 transition-transform" />
+              Apply for Pilot <Heart size={16} className="group-hover:scale-110 transition-transform" />
             </button>
           </div>
         </div>
@@ -106,59 +106,26 @@ export default function App() {
         <div className="absolute inset-0 dot-grid opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"></div>
         
         <div className="max-w-7xl mx-auto relative z-10 w-full">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            
-            <div className="flex flex-col items-start animate-fadeIn">
-              <div className="inline-flex items-center gap-3 px-5 py-2 bg-white rounded-full text-[10px] font-black tracking-[0.3em] text-indigo-600 mb-12 border border-slate-200 shadow-sm uppercase">
-                <Sparkles size={14} /> Reimagining Feedback
-              </div>
-              
-              <h1 className="text-7xl md:text-[110px] font-black leading-[0.82] mb-12 tracking-tighter text-slate-950">
-                The power of <br/>
-                <span className="text-indigo-600 underline decoration-indigo-200 decoration-8 underline-offset-[12px]">voice.</span> <br/>
-                The speed <br/>
-                of <span className="text-indigo-600 underline decoration-indigo-200 decoration-8 underline-offset-[12px]">AI.</span>
-              </h1>
-              
-              <p className="text-2xl text-slate-500 mb-12 max-w-lg font-medium leading-relaxed">
-                A new kind of customer survey tool. Accessible to everyone, delivering strategic insights fast.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-6 items-center w-full">
-                <button onClick={() => scrollTo('pilots')} className="group w-full sm:w-auto bg-indigo-600 text-white px-12 py-6 rounded-[2rem] text-xl font-black shadow-2xl shadow-indigo-200 hover:bg-indigo-700 transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3">
-                  Let's Build Together <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
+          <div className="flex flex-col items-center text-center animate-fadeIn">
+            <div className="inline-flex items-center gap-3 px-5 py-2 bg-white rounded-full text-[10px] font-black tracking-[0.3em] text-indigo-600 mb-12 border border-slate-200 shadow-sm uppercase">
+              <Sparkles size={14} /> We are building
             </div>
+            
+            <h1 className="text-7xl md:text-[110px] font-black leading-[0.82] mb-12 tracking-tighter text-slate-950">
+              The power of <br/>
+              <span className="text-indigo-600 underline decoration-indigo-200 decoration-8 underline-offset-[12px]">voice.</span> <br/>
+              The speed <br/>
+              of <span className="text-indigo-600 underline decoration-indigo-200 decoration-8 underline-offset-[12px]">AI.</span>
+            </h1>
+            
+            <p className="text-2xl md:text-3xl text-slate-500 mb-12 max-w-3xl font-medium leading-relaxed">
+              A new kind of customer survey tool. Accessible to everyone, enabling you to <span className="text-slate-900 font-bold">reduce customer churn fast.</span>
+            </p>
 
-            <div className="relative h-[600px] w-full flex items-center justify-center animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-              <div className="absolute w-[80%] h-[80%] bg-indigo-500/10 animate-morph rounded-full blur-3xl"></div>
-              
-              <div className="relative w-full max-w-[550px] h-full flex flex-col items-center justify-center">
-                <div className="relative w-full aspect-[4/5] md:aspect-square rounded-[4rem] overflow-hidden shadow-2xl border-[12px] border-white z-20">
-                  <img 
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop" 
-                    className="w-full h-full object-cover" 
-                    alt="A happy, diverse group of people of various ages and races laughing and looking at their phones" 
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-slate-950/70 backdrop-blur-xl p-10 flex items-end justify-center gap-2.5 h-32">
-                    {[...Array(24)].map((_, i) => (
-                      <div 
-                        key={i} 
-                        className="flex-1 bg-indigo-400 rounded-full animate-wave" 
-                        style={{ 
-                          height: `${15 + (i % 8) * 10}%`, 
-                          animationDelay: `${i * 0.04}s`,
-                        }} 
-                      />
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-2xl z-30 animate-float border-[8px] border-white">
-                  <Mic size={40} />
-                </div>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-6 items-center justify-center w-full mt-4">
+               <button onClick={() => scrollTo('how-it-works')} className="group flex items-center gap-3 text-slate-400 font-black uppercase tracking-[0.3em] text-[10px] hover:text-indigo-600 transition-colors">
+                  Learn how we do it <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+               </button>
             </div>
           </div>
         </div>
@@ -181,20 +148,27 @@ export default function App() {
             <div className="flex flex-col gap-10 group">
               <PhoneFrame bgColor="bg-slate-50">
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop" className="w-full h-full object-cover" alt="Portrait of a user" />
-                    <div className="absolute inset-0 bg-indigo-600/10 flex items-center justify-center">
-                      <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl animate-pulse">
-                        <Mic size={28} className="text-indigo-600" />
+                   <div className="w-full bg-white rounded-2xl shadow-xl p-4 border border-slate-100">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white"><MessageCircle size={16}/></div>
+                        <div className="h-2 w-20 bg-slate-100 rounded-full"></div>
                       </div>
-                    </div>
-                  </div>
+                      <div className="space-y-3">
+                        <div className="h-2 w-full bg-slate-50 rounded-full"></div>
+                        <div className="h-2 w-2/3 bg-slate-50 rounded-full"></div>
+                        <div className="h-8 w-full bg-indigo-50 rounded-xl flex items-center px-3 justify-center gap-2">
+                           <div className="w-1 h-3 bg-indigo-300 rounded-full animate-wave"></div>
+                           <div className="w-1 h-3 bg-indigo-400 rounded-full animate-wave" style={{animationDelay: '0.1s'}}></div>
+                           <div className="w-1 h-3 bg-indigo-300 rounded-full animate-wave" style={{animationDelay: '0.2s'}}></div>
+                        </div>
+                      </div>
+                   </div>
                 </div>
               </PhoneFrame>
               <div className="px-4">
                 <div className="w-12 h-12 bg-indigo-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-indigo-100 font-black">01</div>
-                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight">Hear Every Voice.</h3>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed">Frictionless voice responses ensure that feedback is accessible to everyone, regardless of ability.</p>
+                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight leading-none">Deploy our chat bot tuned for customer churn</h3>
+                <p className="text-slate-500 text-lg font-medium leading-relaxed">A short 3–5 question conversation, ready in minutes.</p>
               </div>
             </div>
 
@@ -202,24 +176,26 @@ export default function App() {
             <div className="flex flex-col gap-10 group lg:mt-12">
               <PhoneFrame bgColor="bg-indigo-600">
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                   <div className="w-32 h-32 rounded-full border-4 border-white/30 p-1 mb-8">
+                   <div className="w-32 h-32 rounded-full border-4 border-white/30 p-1 mb-8 overflow-hidden">
                       <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover rounded-full" alt="Speaker" />
                    </div>
                    <div className="bg-white rounded-3xl p-6 shadow-2xl w-full">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></div>
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Live Analysis</span>
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Voice Active</span>
                       </div>
-                      <p className="text-slate-950 font-bold text-sm text-left leading-relaxed">
-                        "The interface is so much easier to use with voice commands..."
-                      </p>
+                      <div className="flex items-center justify-center gap-1.5 h-6">
+                        {[...Array(12)].map((_, i) => (
+                           <div key={i} className="w-1 bg-indigo-600/30 rounded-full animate-wave" style={{height: '60%', animationDelay: `${i*0.05}s`}} />
+                        ))}
+                      </div>
                    </div>
                 </div>
               </PhoneFrame>
               <div className="px-4">
                 <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-blue-100 font-black">02</div>
-                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight">Deeper Nuance.</h3>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed">Voice captures the emotion and specific pain points that text forms miss.</p>
+                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight leading-none">Capture 10× more data with voice</h3>
+                <p className="text-slate-500 text-lg font-medium leading-relaxed">Customers speak in their own language — voice responses deliver richer detail and up to 10× higher completion.</p>
               </div>
             </div>
 
@@ -228,35 +204,31 @@ export default function App() {
               <PhoneFrame bgColor="bg-slate-50">
                 <div className="absolute inset-0 p-4 flex flex-col bg-white">
                   <div className="flex items-center justify-between mb-4 pb-4 border-b">
-                    <div className="font-black text-[10px] uppercase tracking-tighter">Strategic Report</div>
-                    <BarChart3 size={16} className="text-indigo-600" />
+                    <div className="font-black text-[10px] uppercase tracking-tighter">Churn Analysis</div>
+                    <BarChartHorizontal size={16} className="text-indigo-600" />
                   </div>
                   <div className="space-y-3">
-                    <div className="h-20 bg-indigo-50 rounded-xl p-3">
-                      <div className="w-full h-2 bg-indigo-200 rounded-full mb-2"></div>
-                      <div className="w-2/3 h-2 bg-indigo-200 rounded-full mb-3"></div>
-                      <div className="flex justify-between items-end">
-                        <div className="w-8 h-4 bg-indigo-400 rounded-sm"></div>
-                        <div className="w-8 h-8 bg-indigo-600 rounded-sm"></div>
-                        <div className="w-8 h-6 bg-indigo-300 rounded-sm"></div>
-                      </div>
+                    <div className="h-24 bg-indigo-50 rounded-xl p-3 flex flex-col justify-between">
+                      <div className="text-[10px] font-black text-indigo-600">ROOT CAUSE IDENTIFIED</div>
+                      <div className="h-2 w-full bg-indigo-200 rounded-full"></div>
+                      <div className="h-2 w-2/3 bg-indigo-200 rounded-full"></div>
                     </div>
-                    {[1,2,3].map(i => (
+                    {[1,2].map(i => (
                       <div key={i} className="flex items-center gap-3 p-2 border-b border-slate-50">
                         <div className="w-4 h-4 bg-slate-100 rounded-full"></div>
                         <div className="flex-1 h-2 bg-slate-100 rounded-full"></div>
                       </div>
                     ))}
                     <div className="bg-indigo-600 p-3 rounded-xl text-[10px] text-white font-bold">
-                      Insight: Users prefer voice navigation by 78%
+                      Report generated in 24h
                     </div>
                   </div>
                 </div>
               </PhoneFrame>
               <div className="px-4">
                 <div className="w-12 h-12 bg-violet-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-violet-100 font-black">03</div>
-                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight">Fast Synthesis.</h3>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed">No manual analysis. Our engine turns raw voice into full strategic reports instantly.</p>
+                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight leading-none">Get instant strategic, actionable reports</h3>
+                <p className="text-slate-500 text-lg font-medium leading-relaxed">Our AI turns raw feedback into clear themes, root causes, and prioritized next steps — in days.</p>
               </div>
             </div>
 
@@ -267,86 +239,18 @@ export default function App() {
                   <div className="w-20 h-20 bg-green-50 text-green-600 rounded-full flex items-center justify-center mb-6">
                     <TrendingUp size={40} />
                   </div>
-                  <h4 className="text-2xl font-black text-slate-950 mb-2">Real Results</h4>
-                  <div className="w-full space-y-3">
-                    <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-                      <span className="text-[10px] font-black text-slate-600">Completion Rate</span>
-                      <span className="text-[10px] font-black text-green-600">+42%</span>
-                    </div>
-                    <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-                      <span className="text-[10px] font-black text-slate-600">Sentiment Score</span>
-                      <span className="text-[10px] font-black text-green-600">+18%</span>
-                    </div>
+                  <h4 className="text-2xl font-black text-slate-950 mb-2">Long-term Loyalty</h4>
+                  <div className="w-full space-y-2 mt-4">
+                    <div className="h-2 w-full bg-slate-100 rounded-full"></div>
+                    <div className="h-2 w-full bg-slate-100 rounded-full"></div>
+                    <div className="h-2 w-1/2 bg-slate-100 rounded-full"></div>
                   </div>
                 </div>
               </PhoneFrame>
               <div className="px-4">
                 <div className="w-12 h-12 bg-slate-800 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-slate-100 font-black">04</div>
-                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight">Results.</h3>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed">Turn high-quality feedback into measurable growth and customer loyalty.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Intelligence Section */}
-      <section id="byod" className="py-40 bg-indigo-600 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="text-white">
-              <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-white/10 rounded-full text-[10px] font-black tracking-widest uppercase mb-8 border border-white/20 backdrop-blur-md">
-                <Database size={14} /> Intelligence Integration
-              </div>
-              <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-none">
-                Intelligence <br/>
-                <span className="text-indigo-200 font-light italic">on demand.</span>
-              </h2>
-              <p className="text-xl md:text-2xl text-indigo-100 mb-12 font-medium leading-relaxed max-w-xl">
-                Connect your existing support channels or survey results. Our AI extracts the human signals you've been missing.
-              </p>
-              
-              <div className="space-y-6">
-                {[
-                  { icon: HardDriveUpload, title: "Data Ticket Import", desc: "Upload support tickets or CRM notes to find hidden themes." },
-                  { icon: Layers, title: "Legacy Surveys", desc: "Bring in your CSVs and let our engine find the real signal." },
-                  { icon: FileSearch, title: "Synthesis Engine", desc: "Fast sentiment and theme detection on your existing stacks." }
-                ].map((item, idx) => (
-                  <div key={idx} className="flex gap-6 group">
-                    <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-white group-hover:text-indigo-600 transition-all">
-                      <item.icon size={28} />
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-black mb-1">{item.title}</h4>
-                      <p className="text-indigo-200 font-medium">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="relative z-10 animate-float">
-                <PhoneFrame bgColor="bg-slate-50">
-                  <div className="absolute inset-0 p-8 flex flex-col items-center justify-center">
-                    <div className="w-full space-y-4">
-                       <div className="p-4 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4">
-                          <div className="w-8 h-8 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center"><FileText size={16}/></div>
-                          <div className="flex-1">
-                             <div className="h-2 w-16 bg-slate-200 rounded-full mb-2"></div>
-                          </div>
-                       </div>
-                       <div className="mt-8 p-6 bg-indigo-600 rounded-[2rem] shadow-xl text-center">
-                          <div className="text-white font-black text-xs uppercase tracking-[0.2em] mb-4">Processing Data</div>
-                          <div className="flex items-center justify-center gap-1 h-8">
-                             {[...Array(8)].map((_, i) => (
-                                <div key={i} className="w-1 bg-white/40 rounded-full animate-wave" style={{ animationDelay: `${i*0.1}s` }} />
-                             ))}
-                          </div>
-                       </div>
-                    </div>
-                  </div>
-                </PhoneFrame>
+                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight leading-none">Drive results and build long-term trust</h3>
+                <p className="text-slate-500 text-lg font-medium leading-relaxed">Fix issues fast, show customers you listened, and turn feedback into loyalty and growth.</p>
               </div>
             </div>
           </div>
@@ -422,7 +326,6 @@ export default function App() {
               Apply for Pilot
             </button>
             <div className="flex items-center gap-6 text-slate-400 font-black text-[10px] uppercase tracking-[0.3em]">
-              <span className="flex items-center gap-2"><Lock size={14}/> NDA PROTECTED</span>
               <span className="flex items-center gap-2"><Shield size={14}/> GDPR COMPLIANT</span>
               <span className="flex items-center gap-2"><Accessibility size={14}/> WCAG AA</span>
             </div>

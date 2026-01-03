@@ -18,11 +18,13 @@ import {
   Languages,
   CheckCircle2,
   TrendingDown,
-  Smile
+  Smile,
+  X,
+  Info
 } from 'lucide-react';
 
-const PhoneFrame = ({ children, bgColor = "bg-slate-950" }) => (
-  <div className="relative mx-auto w-[260px] h-[520px] bg-slate-950 rounded-[3rem] p-3 shadow-2xl border-[6px] border-slate-800 overflow-hidden">
+const PhoneFrame = ({ children, bgColor = "bg-slate-950", className = "" }) => (
+  <div className={`relative mx-auto w-[260px] h-[520px] bg-slate-950 rounded-[3rem] p-3 shadow-2xl border-[6px] border-slate-800 overflow-hidden ${className}`}>
     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-2xl z-50"></div>
     <div className={`relative w-full h-full rounded-[2.2rem] overflow-hidden ${bgColor}`}>
       {children}
@@ -36,8 +38,148 @@ const Avatar = ({ char, color }) => (
   </div>
 );
 
+// Modular UI Components for Phone Frames (Extracted for reuse in Walkthrough)
+const Step01Visual = () => (
+  <div className="absolute inset-0 flex flex-col p-6 items-center justify-center">
+    <div className="relative w-full aspect-square mb-8">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+        <div className="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-2xl shadow-indigo-200">
+          <Share2 size={32} />
+        </div>
+        <div className="absolute inset-0 w-full h-full bg-indigo-400 rounded-2xl animate-pulse-soft"></div>
+      </div>
+      {[
+        { angle: 0, char: 'JD', color: 'bg-orange-500' },
+        { angle: 45, char: 'AM', color: 'bg-pink-500' },
+        { angle: 90, char: 'SK', color: 'bg-green-600' },
+        { angle: 135, char: 'TW', color: 'bg-blue-500' },
+        { angle: 180, char: 'RB', color: 'bg-purple-500' },
+        { angle: 225, char: 'ML', color: 'bg-red-400' },
+        { angle: 270, char: 'YP', color: 'bg-yellow-600' },
+        { angle: 315, char: 'CJ', color: 'bg-cyan-500' }
+      ].map((node) => (
+        <div 
+          key={node.angle}
+          className="absolute top-1/2 left-1/2 w-32 h-px bg-gradient-to-r from-indigo-500/40 to-indigo-500/10 origin-left"
+          style={{ transform: `rotate(${node.angle}deg)` }}
+        >
+          <div 
+            className="absolute right-0 -top-3 transform"
+            style={{ transform: `rotate(-${node.angle}deg)` }}
+          >
+            <Avatar char={node.char} color={node.color} />
+          </div>
+        </div>
+      ))}
+    </div>
+    <div className="text-center">
+      <div className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-1">Live Segment</div>
+      <div className="text-xl font-black text-slate-900 tracking-tighter">CHURN CHAT</div>
+      <div className="text-[9px] font-bold text-slate-400 mt-2">Connecting to 12,400 Users...</div>
+    </div>
+  </div>
+);
+
+const Step02Visual = () => (
+  <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+     <div className="w-24 h-24 rounded-full border-4 border-white/20 overflow-hidden mb-6 shadow-2xl relative bg-indigo-800">
+        <img 
+          src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=300&h=300&q=80" 
+          alt="Older Black woman"
+          className="w-full h-full object-cover"
+          onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=User&background=6366f1&color=fff'; }}
+        />
+     </div>
+     <div className="w-full bg-white rounded-3xl p-6 shadow-2xl text-left relative overflow-hidden mb-6">
+        <div className="flex items-center gap-2 mb-3">
+          <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600"><Accessibility size={18} /></div>
+          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Feedback Capture</span>
+        </div>
+        <div className="text-sm font-bold text-slate-900 leading-tight">
+          "I'm finding it hard to check out. The <span className="text-indigo-600 underline underline-offset-2">navigation is so confusing</span> when I'm in a rush."
+        </div>
+     </div>
+     <div className="flex gap-4">
+        <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white backdrop-blur-sm border border-white/20"><Languages size={20} /></div>
+        <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white backdrop-blur-sm border border-white/20"><Mic size={20} /></div>
+     </div>
+  </div>
+);
+
+const Step03Visual = () => (
+  <div className="absolute inset-0 p-5 flex flex-col bg-white overflow-hidden">
+    <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col">
+        <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Strategic Insight</span>
+        <span className="font-black text-xs text-slate-900 tracking-tighter">APP ISSUES & FIXES</span>
+      </div>
+      <div className="p-2 bg-indigo-50 rounded-lg"><BarChartHorizontal size={14} className="text-indigo-600" /></div>
+    </div>
+    <div className="space-y-4">
+      <div className="p-4 bg-slate-900 rounded-2xl shadow-lg border border-slate-800">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="w-2 h-2 rounded-full bg-red-500"></div>
+          <div className="text-[9px] font-bold text-white uppercase tracking-tighter">Issue: Navigation Friction</div>
+        </div>
+        <div className="text-[10px] text-slate-400 leading-tight mb-3 italic">"Checkout flow fails for 12% of users due to complex UI."</div>
+        <div className="p-2 bg-indigo-600/20 border border-indigo-500/30 rounded-lg">
+          <div className="text-[8px] font-black text-indigo-400 uppercase">Recommended Fix</div>
+          <div className="text-[9px] text-white">Streamline to 1-click checkout.</div>
+        </div>
+      </div>
+      <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
+         <div className="text-[9px] font-black text-slate-400 uppercase mb-2">Impact Score</div>
+         <div className="flex items-center gap-3">
+           <div className="h-2 flex-1 bg-indigo-100 rounded-full overflow-hidden">
+              <div className="h-full w-[85%] bg-indigo-600"></div>
+           </div>
+           <span className="text-[10px] font-black text-indigo-600">85%</span>
+         </div>
+      </div>
+    </div>
+  </div>
+);
+
+const Step04Visual = () => (
+  <div className="absolute inset-0 flex flex-col p-6 bg-white overflow-hidden">
+    <div className="text-center mb-8">
+       <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center mb-3 mx-auto shadow-sm">
+          <TrendingUp className="text-green-600" size={32} />
+       </div>
+       <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Growth Metric</div>
+       <div className="text-2xl font-black text-slate-900 tracking-tighter">+24% MRR Recovery</div>
+    </div>
+    <div className="space-y-3">
+      <div className="bg-indigo-50 p-4 rounded-2xl border border-indigo-100 flex items-center gap-4">
+         <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white shadow-lg">
+            <Heart size={20} fill="currentColor" />
+         </div>
+         <div>
+           <div className="text-xs font-black text-indigo-950 uppercase">Trust Index</div>
+           <div className="text-[10px] text-indigo-600">Customer loyalty up 42%</div>
+         </div>
+      </div>
+      <div className="bg-slate-900 p-4 rounded-2xl text-white">
+         <div className="flex justify-between items-center mb-2">
+            <div className="text-[8px] font-bold uppercase text-slate-400">Churn Reduction</div>
+            <TrendingDown className="text-green-400" size={14} />
+         </div>
+         <div className="text-2xl font-black leading-none">-18%</div>
+         <div className="mt-3 h-1 w-full bg-white/10 rounded-full">
+            <div className="h-full w-2/3 bg-green-400 rounded-full"></div>
+         </div>
+      </div>
+    </div>
+    <div className="mt-auto flex items-center justify-center gap-2 py-4">
+       <CheckCircle2 size={12} className="text-green-500" />
+       <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Loyalty Secured</span>
+    </div>
+  </div>
+);
+
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -74,6 +216,8 @@ export default function App() {
           background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
           background-size: 32px 32px;
         }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
       {/* Nav */}
@@ -129,49 +273,12 @@ export default function App() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-24">
             
-            {/* Step 01 - Churn Chatbot Update */}
+            {/* Step 01 */}
             <div className="flex flex-col gap-10 group">
               <PhoneFrame bgColor="bg-slate-50">
-                <div className="absolute inset-0 flex flex-col p-6 items-center justify-center">
-                  <div className="relative w-full aspect-square mb-8">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                      <div className="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-2xl shadow-indigo-200">
-                        <Share2 size={32} />
-                      </div>
-                      <div className="absolute inset-0 w-full h-full bg-indigo-400 rounded-2xl animate-pulse-soft"></div>
-                    </div>
-                    {[
-                      { angle: 0, char: 'JD', color: 'bg-orange-500' },
-                      { angle: 45, char: 'AM', color: 'bg-pink-500' },
-                      { angle: 90, char: 'SK', color: 'bg-green-600' },
-                      { angle: 135, char: 'TW', color: 'bg-blue-500' },
-                      { angle: 180, char: 'RB', color: 'bg-purple-500' },
-                      { angle: 225, char: 'ML', color: 'bg-red-400' },
-                      { angle: 270, char: 'YP', color: 'bg-yellow-600' },
-                      { angle: 315, char: 'CJ', color: 'bg-cyan-500' }
-                    ].map((node) => (
-                      <div 
-                        key={node.angle}
-                        className="absolute top-1/2 left-1/2 w-32 h-px bg-gradient-to-r from-indigo-500/40 to-indigo-500/10 origin-left"
-                        style={{ transform: `rotate(${node.angle}deg)` }}
-                      >
-                        <div 
-                          className="absolute right-0 -top-3 transform"
-                          style={{ transform: `rotate(-${node.angle}deg)` }}
-                        >
-                          <Avatar char={node.char} color={node.color} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="text-center">
-                    <div className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-1">Live Segment</div>
-                    <div className="text-xl font-black text-slate-900 tracking-tighter">CHURN CHAT</div>
-                    <div className="text-[9px] font-bold text-slate-400 mt-2">Connecting to 12,400 Users...</div>
-                  </div>
-                </div>
+                <Step01Visual />
               </PhoneFrame>
               <div className="px-4">
                 <div className="w-12 h-12 bg-indigo-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-indigo-100 font-black">01</div>
@@ -180,33 +287,10 @@ export default function App() {
               </div>
             </div>
 
-            {/* Step 02 - Designed for Everyone (Realistic Face Update) */}
+            {/* Step 02 */}
             <div className="flex flex-col gap-10 group lg:mt-12">
               <PhoneFrame bgColor="bg-indigo-600">
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                   {/* Realistic Portrait of an Older Black Woman */}
-                   <div className="w-24 h-24 rounded-full border-4 border-white/20 overflow-hidden mb-6 shadow-2xl relative bg-indigo-800">
-                      <img 
-                        src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=300&h=300&q=80" 
-                        alt="Older Black woman smiling"
-                        className="w-full h-full object-cover"
-                        onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=User&background=6366f1&color=fff'; }}
-                      />
-                   </div>
-                   <div className="w-full bg-white rounded-3xl p-6 shadow-2xl text-left relative overflow-hidden mb-6">
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600"><Accessibility size={18} /></div>
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Feedback Capture</span>
-                      </div>
-                      <div className="text-sm font-bold text-slate-900 leading-tight">
-                        "I'm finding it hard to check out. The <span className="text-indigo-600 underline underline-offset-2">navigation is so confusing</span> when I'm in a rush."
-                      </div>
-                   </div>
-                   <div className="flex gap-4">
-                      <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white backdrop-blur-sm border border-white/20"><Languages size={20} /></div>
-                      <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white backdrop-blur-sm border border-white/20"><Mic size={20} /></div>
-                   </div>
-                </div>
+                <Step02Visual />
               </PhoneFrame>
               <div className="px-4">
                 <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-blue-100 font-black">02</div>
@@ -215,42 +299,10 @@ export default function App() {
               </div>
             </div>
 
-            {/* Step 03 - Action-Ready Reports */}
+            {/* Step 03 */}
             <div className="flex flex-col gap-10 group">
               <PhoneFrame bgColor="bg-slate-50">
-                <div className="absolute inset-0 p-5 flex flex-col bg-white overflow-hidden">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex flex-col">
-                      <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Strategic Insight</span>
-                      <span className="font-black text-xs text-slate-900 tracking-tighter">APP ISSUES & FIXES</span>
-                    </div>
-                    <div className="p-2 bg-indigo-50 rounded-lg"><BarChartHorizontal size={14} className="text-indigo-600" /></div>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div className="p-4 bg-slate-900 rounded-2xl shadow-lg border border-slate-800">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                        <div className="text-[9px] font-bold text-white uppercase tracking-tighter">Issue: Navigation Friction</div>
-                      </div>
-                      <div className="text-[10px] text-slate-400 leading-tight mb-3 italic">"Checkout flow fails for 12% of users due to complex UI."</div>
-                      <div className="p-2 bg-indigo-600/20 border border-indigo-500/30 rounded-lg">
-                        <div className="text-[8px] font-black text-indigo-400 uppercase">Recommended Fix</div>
-                        <div className="text-[9px] text-white">Streamline to 1-click checkout.</div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                       <div className="text-[9px] font-black text-slate-400 uppercase mb-2">Impact Score</div>
-                       <div className="flex items-center gap-3">
-                         <div className="h-2 flex-1 bg-indigo-100 rounded-full overflow-hidden">
-                            <div className="h-full w-[85%] bg-indigo-600"></div>
-                         </div>
-                         <span className="text-[10px] font-black text-indigo-600">85%</span>
-                       </div>
-                    </div>
-                  </div>
-                </div>
+                <Step03Visual />
               </PhoneFrame>
               <div className="px-4">
                 <div className="w-12 h-12 bg-violet-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-violet-100 font-black">03</div>
@@ -259,46 +311,10 @@ export default function App() {
               </div>
             </div>
 
-            {/* Step 04 - Drive Results & Trust */}
+            {/* Step 04 */}
             <div className="flex flex-col gap-10 group lg:mt-12">
               <PhoneFrame bgColor="bg-white">
-                <div className="absolute inset-0 flex flex-col p-6 bg-white overflow-hidden">
-                  <div className="text-center mb-8">
-                     <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center mb-3 mx-auto shadow-sm">
-                        <TrendingUp className="text-green-600" size={32} />
-                     </div>
-                     <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Growth Metric</div>
-                     <div className="text-2xl font-black text-slate-900 tracking-tighter">+24% MRR Recovery</div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="bg-indigo-50 p-4 rounded-2xl border border-indigo-100 flex items-center gap-4">
-                       <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white shadow-lg">
-                          <Heart size={20} fill="currentColor" />
-                       </div>
-                       <div>
-                         <div className="text-xs font-black text-indigo-950 uppercase">Trust Index</div>
-                         <div className="text-[10px] text-indigo-600">Customer loyalty up 42%</div>
-                       </div>
-                    </div>
-                    
-                    <div className="bg-slate-900 p-4 rounded-2xl text-white">
-                       <div className="flex justify-between items-center mb-2">
-                          <div className="text-[8px] font-bold uppercase text-slate-400">Churn Reduction</div>
-                          <TrendingDown className="text-green-400" size={14} />
-                       </div>
-                       <div className="text-2xl font-black leading-none">-18%</div>
-                       <div className="mt-3 h-1 w-full bg-white/10 rounded-full">
-                          <div className="h-full w-2/3 bg-green-400 rounded-full"></div>
-                       </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-auto flex items-center justify-center gap-2 py-4">
-                     <CheckCircle2 size={12} className="text-green-500" />
-                     <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Loyalty Secured</span>
-                  </div>
-                </div>
+                <Step04Visual />
               </PhoneFrame>
               <div className="px-4">
                 <div className="w-12 h-12 bg-slate-800 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-slate-100 font-black">04</div>
@@ -307,8 +323,110 @@ export default function App() {
               </div>
             </div>
           </div>
+
+          <div className="flex justify-center pt-20 border-t border-slate-50">
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="group flex items-center gap-4 px-10 py-6 bg-slate-50 hover:bg-indigo-50 text-slate-400 hover:text-indigo-600 rounded-3xl transition-all font-black uppercase tracking-[0.3em] text-xs border border-transparent hover:border-indigo-100"
+            >
+              Detailed Walkthrough <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
       </section>
+
+      {/* WALKTHROUGH MODAL */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-[100] bg-white overflow-y-auto hide-scrollbar animate-fadeIn">
+          <div className="max-w-6xl mx-auto px-6 py-20">
+            <div className="flex justify-between items-center mb-24">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold">Q</div>
+                <span className="text-sm font-black uppercase tracking-widest text-slate-400">Deep Dive Walkthrough</span>
+              </div>
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="w-12 h-12 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center transition-colors text-slate-600"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            <div className="space-y-48">
+              {/* Step 01 Detailed */}
+              <div className="grid lg:grid-cols-2 gap-24 items-center">
+                <PhoneFrame bgColor="bg-slate-50" className="scale-110">
+                  <Step01Visual />
+                </PhoneFrame>
+                <div>
+                  <div className="text-indigo-600 font-black text-xs uppercase tracking-[0.4em] mb-6">Step 01</div>
+                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-950 mb-8 leading-[0.9]">Launch our churn conversation</h2>
+                  <div className="space-y-6 text-xl md:text-2xl text-slate-500 font-medium leading-relaxed">
+                    <p>We’re keeping it simple: a short 3–5 question conversation tuned to uncover why customers leave.</p>
+                    <p className="text-slate-900 font-bold">No complex setup — just share a link and let it run.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 02 Detailed */}
+              <div className="grid lg:grid-cols-2 gap-24 items-center">
+                <div className="order-2 lg:order-1">
+                  <div className="text-blue-600 font-black text-xs uppercase tracking-[0.4em] mb-6">Step 02</div>
+                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-950 mb-8 leading-[0.9]">Designed for everyone</h2>
+                  <div className="space-y-6 text-xl md:text-2xl text-slate-500 font-medium leading-relaxed">
+                    <p>This is at the heart of what we’re building.</p>
+                    <p>Voice removes typing barriers, works in any language, and is fully accessible (WCAG-compliant).</p>
+                    <p className="text-slate-900 font-bold">We want every customer to feel comfortable sharing — because that’s how we get the real truth.</p>
+                  </div>
+                </div>
+                <PhoneFrame bgColor="bg-indigo-600" className="order-1 lg:order-2 scale-110">
+                  <Step02Visual />
+                </PhoneFrame>
+              </div>
+
+              {/* Step 03 Detailed */}
+              <div className="grid lg:grid-cols-2 gap-24 items-center">
+                <PhoneFrame bgColor="bg-slate-50" className="scale-110">
+                  <Step03Visual />
+                </PhoneFrame>
+                <div>
+                  <div className="text-violet-600 font-black text-xs uppercase tracking-[0.4em] mb-6">Step 03</div>
+                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-950 mb-8 leading-[0.9]">Action-ready reports</h2>
+                  <div className="space-y-6 text-xl md:text-2xl text-slate-500 font-medium leading-relaxed">
+                    <p>No spreadsheets. No weeks of analysis.</p>
+                    <p className="text-slate-900 font-bold">Our AI handles the heavy lifting and gives you clear themes, root causes, and next steps you can act on right away.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 04 Detailed */}
+              <div className="grid lg:grid-cols-2 gap-24 items-center">
+                <div className="order-2 lg:order-1">
+                  <div className="text-slate-900 font-black text-xs uppercase tracking-[0.4em] mb-6">Step 04</div>
+                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-950 mb-8 leading-[0.9]">Drive results and build long-term trust</h2>
+                  <div className="space-y-6 text-xl md:text-2xl text-slate-500 font-medium leading-relaxed">
+                    <p>When you fix things fast and show customers you’ve listened, something powerful happens: trust grows.</p>
+                    <p className="text-slate-900 font-bold">That’s how feedback turns into loyalty — and churn turns into growth.</p>
+                  </div>
+                </div>
+                <PhoneFrame bgColor="bg-white" className="order-1 lg:order-2 scale-110">
+                  <Step04Visual />
+                </PhoneFrame>
+              </div>
+            </div>
+
+            <div className="mt-64 pt-20 border-t border-slate-100 text-center">
+              <p className="text-sm font-black text-slate-400 uppercase tracking-[0.2em] mb-12">We’re still early — your feedback helps us shape it.</p>
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="bg-indigo-600 text-white px-12 py-6 rounded-3xl text-xl font-black hover:bg-indigo-700 transition-all hover:scale-105"
+              >
+                Back to main site
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* BYOD Section */}
       <section id="byod" className="py-48 px-6 bg-slate-950 relative overflow-hidden">
@@ -320,8 +438,8 @@ export default function App() {
                   <CloudUpload size={14} /> Zero Risk Start
                </div>
                <h2 className="text-5xl md:text-7xl font-black mb-10 tracking-tighter leading-[0.9]">
-                 Bring Your Own Data <br/>
-                 <span className="text-indigo-400 font-light italic">– No Risk Start.</span>
+                  Bring Your Own Data <br/>
+                  <span className="text-indigo-400 font-light italic">– No Risk Start.</span>
                </h2>
                <p className="text-2xl text-slate-400 mb-12 font-medium italic">Already have feedback sitting in a spreadsheet?</p>
                <ul className="space-y-6">

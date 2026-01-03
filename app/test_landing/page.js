@@ -131,7 +131,7 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             
-            {/* Step 01 - Churn Conversation */}
+            {/* Step 01 - Churn Chatbot Update */}
             <div className="flex flex-col gap-10 group">
               <PhoneFrame bgColor="bg-slate-50">
                 <div className="absolute inset-0 flex flex-col p-6 items-center justify-center">
@@ -175,8 +175,8 @@ export default function App() {
               </PhoneFrame>
               <div className="px-4">
                 <div className="w-12 h-12 bg-indigo-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-indigo-100 font-black">01</div>
-                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight uppercase leading-[0.9]">Launch our churn conversation</h3>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed">A short, friendly chat ready in minutes — designed to uncover what’s really going on with your customers.</p>
+                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight uppercase leading-[0.9]">Launch our Churn chatbot</h3>
+                <p className="text-slate-500 text-lg font-medium leading-relaxed">A short, friendly chat designed to engage — share the link with your customer segments via your usual channels.</p>
               </div>
             </div>
 

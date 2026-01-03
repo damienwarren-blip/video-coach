@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, 
@@ -21,7 +19,11 @@ import {
   Smile,
   X,
   Info,
-  ChevronRight
+  ChevronRight,
+  Globe,
+  Lock,
+  Plus,
+  Minus
 } from 'lucide-react';
 
 const PhoneFrame = ({ children, bgColor = "bg-slate-950", className = "" }) => (
@@ -38,6 +40,29 @@ const Avatar = ({ char, color }) => (
     {char}
   </div>
 );
+
+// FAQ Component
+const FAQItem = ({ question, answer, subAnswer }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="border-b border-slate-200">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full py-8 flex justify-between items-center text-left group hover:text-indigo-600 transition-colors"
+      >
+        <span className="text-xl md:text-2xl font-black tracking-tight text-slate-950 group-hover:text-indigo-600">{question}</span>
+        <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-indigo-600 text-white rotate-180' : 'bg-slate-100 text-slate-400'}`}>
+          {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+        </div>
+      </button>
+      <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[400px] pb-8 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <p className="text-indigo-600 font-bold mb-3 italic text-lg">{answer}</p>
+        <p className="text-slate-500 text-lg leading-relaxed">{subAnswer}</p>
+      </div>
+    </div>
+  );
+};
 
 // Modular UI Components for Phone Frames
 const Step01Visual = () => (
@@ -76,7 +101,7 @@ const Step01Visual = () => (
     <div className="text-center">
       <div className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-1">Live Segment</div>
       <div className="text-xl font-black text-slate-900 tracking-tighter">CHURN CHAT</div>
-      <div className="text-[9px] font-bold text-slate-400 mt-2">Connecting to 12,400 Users...</div>
+      <div className="text-[9px] font-bold text-slate-400 mt-2">Connecting...</div>
     </div>
   </div>
 );
@@ -88,21 +113,20 @@ const Step02Visual = () => (
           src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=300&h=300&q=80" 
           alt="User Profile"
           className="w-full h-full object-cover"
-          onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=User&background=6366f1&color=fff'; }}
         />
      </div>
      <div className="w-full bg-white rounded-3xl p-6 shadow-2xl text-left relative overflow-hidden mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600"><Accessibility size={18} /></div>
-          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Feedback Capture</span>
+          <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600"><Mic size={18} /></div>
+          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Speaking Now</span>
         </div>
         <div className="text-sm font-bold text-slate-900 leading-tight">
-          "I'm finding it hard to check out. The <span className="text-indigo-600 underline underline-offset-2">navigation is so confusing</span> when I'm in a rush."
+          "The checkout process took way too long on my commute..."
         </div>
      </div>
      <div className="flex gap-4">
         <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white backdrop-blur-sm border border-white/20"><Languages size={20} /></div>
-        <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white backdrop-blur-sm border border-white/20"><Mic size={20} /></div>
+        <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white backdrop-blur-sm border border-white/20"><Accessibility size={20} /></div>
      </div>
   </div>
 );
@@ -111,30 +135,29 @@ const Step03Visual = () => (
   <div className="absolute inset-0 p-5 flex flex-col bg-white overflow-hidden">
     <div className="flex items-center justify-between mb-6">
       <div className="flex flex-col">
-        <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Strategic Insight</span>
-        <span className="font-black text-xs text-slate-900 tracking-tighter">APP ISSUES & FIXES</span>
+        <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Deep Analysis</span>
+        <span className="font-black text-xs text-slate-900 tracking-tighter">AI INSIGHTS</span>
       </div>
       <div className="p-2 bg-indigo-50 rounded-lg"><BarChartHorizontal size={14} className="text-indigo-600" /></div>
     </div>
     <div className="space-y-4">
       <div className="p-4 bg-slate-900 rounded-2xl shadow-lg border border-slate-800">
         <div className="flex items-center gap-2 mb-2">
-          <div className="w-2 h-2 rounded-full bg-red-500"></div>
-          <div className="text-[9px] font-bold text-white uppercase tracking-tighter">Issue: Navigation Friction</div>
+          <div className="w-2 h-2 rounded-full bg-indigo-500"></div>
+          <div className="text-[9px] font-bold text-white uppercase tracking-tighter">Theme: UX Friction</div>
         </div>
-        <div className="text-[10px] text-slate-400 leading-tight mb-3 italic">"Checkout flow fails for 12% of users due to complex UI."</div>
         <div className="p-2 bg-indigo-600/20 border border-indigo-500/30 rounded-lg">
-          <div className="text-[8px] font-black text-indigo-400 uppercase">Recommended Fix</div>
-          <div className="text-[9px] text-white">Streamline to 1-click checkout.</div>
+          <div className="text-[8px] font-black text-indigo-400 uppercase">Primary Root Cause</div>
+          <div className="text-[9px] text-white">Mobile loading times exceed 4s.</div>
         </div>
       </div>
       <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-         <div className="text-[9px] font-black text-slate-400 uppercase mb-2">Impact Score</div>
+         <div className="text-[9px] font-black text-slate-400 uppercase mb-2">Confidence Level</div>
          <div className="flex items-center gap-3">
            <div className="h-2 flex-1 bg-indigo-100 rounded-full overflow-hidden">
-              <div className="h-full w-[85%] bg-indigo-600"></div>
+              <div className="h-full w-[94%] bg-indigo-600"></div>
            </div>
-           <span className="text-[10px] font-black text-indigo-600">85%</span>
+           <span className="text-[10px] font-black text-indigo-600">94%</span>
          </div>
       </div>
     </div>
@@ -147,7 +170,7 @@ const Step04Visual = () => (
        <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center mb-3 mx-auto shadow-sm">
           <TrendingUp className="text-green-600" size={32} />
        </div>
-       <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Growth Metric</div>
+       <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Strategy Result</div>
        <div className="text-2xl font-black text-slate-900 tracking-tighter">+24% MRR Recovery</div>
     </div>
     <div className="space-y-3">
@@ -157,7 +180,7 @@ const Step04Visual = () => (
          </div>
          <div>
            <div className="text-xs font-black text-indigo-950 uppercase">Trust Index</div>
-           <div className="text-[10px] text-indigo-600">Customer loyalty up 42%</div>
+           <div className="text-[10px] text-indigo-600">Loyalty up 42%</div>
          </div>
       </div>
       <div className="bg-slate-900 p-4 rounded-2xl text-white">
@@ -166,13 +189,7 @@ const Step04Visual = () => (
             <TrendingDown className="text-green-400" size={14} />
          </div>
          <div className="text-2xl font-black leading-none">-18%</div>
-         <div className="mt-3 h-1 w-full bg-white/10 rounded-full">
-            <div className="h-full w-2/3 bg-green-400 rounded-full"></div>
-         </div>
       </div>
-    </div>
-    <div className="mt-auto flex items-center justify-center gap-2 py-4">
-       <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Loyalty Secured</span>
     </div>
   </div>
 );
@@ -199,17 +216,15 @@ export default function App() {
       id: "01",
       visual: <Step01Visual />,
       bgColor: "bg-slate-50",
-      mainTitle: "Launch our churn conversation",
-      mainHeadline: "We’re keeping it simple: a short 3–5 question conversation tuned to uncover why customers leave.",
-      mainDescription: "No complex setup — just share a link and let it run.",
-      headline: "Launch a short voice conversation",
+      mainTitle: "Simple Delivery",
+      mainHeadline: "You send your customers a simple link",
+      mainDescription: "It opens a short voice conversation on their phone — just 3–5 friendly questions about why they might leave.",
+      headline: "Start with a simple link",
       body: (
         <div className="space-y-4 text-slate-600 leading-relaxed">
-          <p>Traditional surveys are exhausting customers.</p>
-          <p>Response rates have fallen to single digits in many industries — people are tired of long forms, tick boxes, and questions that feel irrelevant.</p>
-          <p className="font-bold text-slate-900">We start simple: a short 3–5 question conversation, ready in minutes.</p>
-          <p>No complex setup. Just share a link with the customers you’re losing — or any segment you want to understand better.</p>
-          <p>It’s tuned to uncover churn drivers, but flexible enough for any feedback need.</p>
+          <p className="font-bold text-slate-900">No long forms, no typing, no login.</p>
+          <p>The conversation is tuned specifically for the mobile experience, making it feel lightweight and low-effort.</p>
+          <p>Customers just talk naturally, like they are leaving a voicemail for a friend.</p>
         </div>
       )
     },
@@ -217,22 +232,15 @@ export default function App() {
       id: "02",
       visual: <Step02Visual />,
       bgColor: "bg-indigo-600",
-      mainTitle: "Designed for everyone",
-      mainHeadline: "This is at the heart of what we’re building.",
-      mainDescription: "Voice removes typing barriers, works in any language, and is fully accessible (WCAG-compliant). We want every customer to feel comfortable sharing — because that’s how we get the WHY!",
-      headline: "Accessibility from the ground up",
+      mainTitle: "Natural Response",
+      mainHeadline: "They respond with their voice",
+      mainDescription: "Voice removes all the usual barriers, so more people reply, and they share deeper, more honest thoughts.",
+      headline: "Everyone has a voice",
       body: (
         <div className="space-y-4 text-slate-600 leading-relaxed">
-          <p>Most surveys unintentionally exclude people.</p>
-          <p>Older adults, neurodiverse users, non-native speakers — they drop off because typing is hard, forms are long, or language feels off.</p>
-          <p className="font-bold text-slate-900">We remove those barriers from the ground up.</p>
-          <ul className="space-y-2 list-disc pl-5">
-            <li><span className="font-bold">Voice-first</span> — no typing required</li>
-            <li><span className="font-bold">Multilingual</span> — customers respond naturally in their own language</li>
-            <li><span className="font-bold">Fully accessible</span> — WCAG-compliant, works with screen readers and keyboards</li>
-          </ul>
-          <p>The result? Up to 10× higher completion and feedback that’s richer, more honest, and more representative.</p>
-          <p className="text-indigo-600 font-bold italic">Every voice gets heard. That’s how we get the WHY!</p>
+          <p className="font-bold text-slate-900">Anyone can do this — older customers, people who find typing hard, or who speak different languages.</p>
+          <p>By removing the friction of a keyboard, we unlock insights that traditional surveys miss.</p>
+          <p>The result is 10x more qualitative data that captures the emotion behind the feedback.</p>
         </div>
       )
     },
@@ -240,18 +248,15 @@ export default function App() {
       id: "03",
       visual: <Step03Visual />,
       bgColor: "bg-slate-50",
-      mainTitle: "Action-ready reports",
-      mainHeadline: "No spreadsheets. No weeks of analysis.",
-      mainDescription: "Our AI handles the heavy lifting and gives you clear themes, root causes, and next steps you can act on right away.",
-      headline: "Actionable strategy, automatically",
+      mainTitle: "Instant Analysis",
+      mainHeadline: "Our AI listens and understands",
+      mainDescription: "We automatically turn thousands of voice responses into a clear report — spotting the main themes and root causes.",
+      headline: "AI-Powered Strategy",
       body: (
         <div className="space-y-4 text-slate-600 leading-relaxed">
-          <p>Even when companies do get survey data, it often sits unused.</p>
-          <p>Why? Because turning raw responses into strategy takes time most teams don’t have — manual tagging, spreadsheets, weeks of analysis, or expensive consultants.</p>
-          <p className="font-bold text-slate-900 underline decoration-indigo-200">We cut all that out.</p>
-          <p>No manual transcription. No data crunching. No training needed.</p>
-          <p>Our AI listens to the conversations, identifies recurring themes, pinpoints root causes, and delivers a clear report with prioritized next steps — usually in days.</p>
-          <p>You get insights you can act on immediately — not a data dump you have to figure out later.</p>
+          <p className="font-bold text-slate-900">You don’t have to listen to recordings or analyse spreadsheets. We do the heavy work.</p>
+          <p>Our AI identifies what needs to be fixed first, prioritizing issues by revenue impact.</p>
+          <p>Get a board-ready report in days, not weeks.</p>
         </div>
       )
     },
@@ -259,24 +264,22 @@ export default function App() {
       id: "04",
       visual: <Step04Visual />,
       bgColor: "bg-white",
-      mainTitle: "Drive results and build trust",
-      mainHeadline: "When you fix things fast and show customers you’ve listened, something powerful happens: trust grows.",
-      mainDescription: "That’s how feedback turns into loyalty — and churn turns into growth.",
-      headline: "Earn loyalty through action",
+      mainTitle: "Strategic Results",
+      mainHeadline: "Act fast and build trust",
+      mainDescription: "When customers see you’ve listened and made changes, they stay longer — turning feedback into loyalty.",
+      headline: "Closing the loop",
       body: (
         <div className="space-y-4 text-slate-600 leading-relaxed">
-          <p>The real power isn’t just knowing why customers leave — it’s doing something about it.</p>
-          <p>When you fix issues fast and show customers you’ve listened (“we heard you about checkout — here’s what we changed”), trust grows.</p>
-          <p>Research shows that customers who feel heard are far more likely to stay, spend more, and recommend you.</p>
-          <p className="font-bold text-slate-900">This isn’t one-off feedback. It’s a loop: listen → act → communicate → earn loyalty → grow.</p>
-          <p className="text-green-600 font-black">That’s how feedback becomes your biggest competitive advantage.</p>
+          <p className="font-bold text-slate-900">With clear next steps, you can fix real issues quickly.</p>
+          <p>Communication is key: show your customers the "Why" behind your updates to build long-term trust.</p>
+          <p>This virtuous cycle transforms feedback from a cost center into your biggest growth lever.</p>
         </div>
       )
     }
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8F9FF] font-sans text-slate-950 antialiased selection:bg-indigo-100">
+    <div className="min-h-screen bg-[#F8F9FF] font-sans text-slate-950 antialiased selection:bg-indigo-100 overflow-x-hidden">
       <style>{`
         @keyframes pulse-soft {
           0%, 100% { transform: scale(1); opacity: 0.5; }
@@ -319,12 +322,10 @@ export default function App() {
             <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-xl group-hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">Q</div>
             <span className="text-2xl font-black tracking-tighter">QuickChat<span className="text-indigo-600">.</span></span>
           </div>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 md:gap-8">
             <button onClick={() => scrollTo('how-it-works')} className="hidden md:block text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-indigo-600 transition">How it works</button>
-            <button onClick={() => scrollTo('byod')} className="hidden md:block text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-indigo-600 transition">BYOD</button>
-            <button onClick={() => scrollTo('early-success')} className="hidden md:block text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-indigo-600 transition">Success</button>
-            <button onClick={() => scrollTo('pilots')} className="group bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95 shadow-xl shadow-indigo-200 flex items-center gap-2 text-sm">
-              Book Pilot Call <Heart size={16} className="group-hover:scale-110 transition-transform" />
+            <button onClick={() => scrollTo('pilots')} className="group bg-indigo-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95 shadow-xl shadow-indigo-200 flex items-center gap-2 text-sm">
+              Book Pilot <Heart size={16} className="group-hover:scale-110 transition-transform" />
             </button>
           </div>
         </div>
@@ -335,18 +336,31 @@ export default function App() {
         <div className="absolute inset-0 dot-grid opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"></div>
         <div className="max-w-7xl mx-auto relative z-10 w-full">
           <div className="flex flex-col items-center text-center animate-fadeIn">
-            <h1 className="text-7xl md:text-[110px] font-black leading-[0.82] mb-12 tracking-tighter text-slate-950">
+            {/* Header Badges */}
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+               <div className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-slate-200 rounded-full flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-600">
+                  <Shield size={12} className="text-indigo-600" /> GDPR COMPLIANT
+               </div>
+               <div className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-slate-200 rounded-full flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-600">
+                  <Lock size={12} className="text-indigo-600" /> SOC2 TYPE II
+               </div>
+               <div className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-slate-200 rounded-full flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-600">
+                  <Accessibility size={12} className="text-indigo-600" /> WCAG 2.1
+               </div>
+            </div>
+
+            <h1 className="text-6xl md:text-[110px] font-black leading-[0.85] mb-12 tracking-tighter text-slate-950">
               The power of <br/>
               <span className="text-indigo-600 underline decoration-indigo-200 decoration-8 underline-offset-[12px]">voice.</span> <br/>
               The speed <br/>
               of <span className="text-indigo-600 underline decoration-indigo-200 decoration-8 underline-offset-[12px]">AI.</span>
             </h1>
-            <p className="text-2xl md:text-3xl text-slate-500 mb-6 max-w-4xl font-medium leading-relaxed">
+            <p className="text-xl md:text-3xl text-slate-500 mb-6 max-w-4xl font-medium leading-relaxed">
               We are building a new kind of survey tool. Enabling you to <span className="text-slate-900 font-bold underline decoration-indigo-100 decoration-4 underline-offset-4">understand customer churn, act fast, and increase revenue.</span>
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 items-center justify-center w-full mt-12">
+            <div className="mt-12">
                <button onClick={() => scrollTo('how-it-works')} className="group flex items-center gap-3 text-slate-400 font-black uppercase tracking-[0.3em] text-[10px] hover:text-indigo-600 transition-colors">
-                  See the process <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  See how it works <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                </button>
             </div>
           </div>
@@ -354,14 +368,14 @@ export default function App() {
       </header>
 
       {/* How it Works Section */}
-      <section id="how-it-works" className="py-64 px-6 bg-white relative overflow-hidden">
+      <section id="how-it-works" className="py-24 md:py-48 px-6 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex flex-col items-center text-center mb-40">
+          <div className="flex flex-col items-center text-center mb-24 md:mb-40">
             <div className="px-6 py-2 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-[0.5em] mb-8 border border-indigo-100">
               The Journey
             </div>
-            <h2 className="text-7xl md:text-[100px] font-black tracking-tighter leading-none text-slate-950 mb-8">
-              How it works<span className="text-indigo-600 italic">.</span>
+            <h2 className="text-5xl md:text-[100px] font-black tracking-tighter leading-none text-slate-950 mb-8">
+              How it Works<span className="text-indigo-600 italic">.</span>
             </h2>
           </div>
 
@@ -390,64 +404,46 @@ export default function App() {
           <div className="mt-32 flex justify-center">
              <button 
                onClick={() => setShowModal(true)}
-               className="group flex items-center gap-4 bg-slate-950 text-white px-12 py-6 rounded-3xl font-black text-xl hover:bg-indigo-600 transition-all shadow-2xl hover:scale-105 active:scale-95"
+               className="group flex items-center gap-4 bg-slate-950 text-white px-8 md:px-12 py-4 md:py-6 rounded-3xl font-black text-lg md:text-xl hover:bg-indigo-600 transition-all shadow-2xl hover:scale-105 active:scale-95"
              >
-                Detailed Walkthrough <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
+                Read Detailed Guide <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
              </button>
           </div>
         </div>
       </section>
 
-      {/* Detailed Walkthrough Modal */}
+      {/* Modal Overlay */}
       {showModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
           <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-md" onClick={() => setShowModal(false)}></div>
-          <div className="relative w-full max-w-6xl h-full max-h-[90vh] bg-white rounded-[3rem] shadow-2xl flex flex-col overflow-hidden animate-fadeIn">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-8 border-b border-slate-100 shrink-0">
+          <div className="relative w-full max-w-6xl h-full max-h-[90vh] bg-white rounded-[2rem] md:rounded-[3rem] shadow-2xl flex flex-col overflow-hidden animate-fadeIn">
+            <div className="flex items-center justify-between p-6 md:p-8 border-b border-slate-100 shrink-0">
                <div>
-                 <h2 className="text-3xl font-black tracking-tight text-slate-950">Deep Dive: The QuickChat Process</h2>
-                 <p className="text-slate-500 font-medium">Understanding how we turn voice into actionable strategy.</p>
+                 <h2 className="text-2xl md:text-3xl font-black tracking-tight text-slate-950">How it Works</h2>
+                 <p className="text-slate-500 font-medium hidden md:block">A step-by-step look at the customer journey.</p>
                </div>
-               <button 
-                 onClick={() => setShowModal(false)}
-                 className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-950 hover:bg-red-50 hover:text-red-600 transition-colors"
-               >
+               <button onClick={() => setShowModal(false)} className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-950 hover:bg-red-50 hover:text-red-600 transition-colors">
                  <X size={24} />
                </button>
             </div>
-
-            {/* Modal Content - Scrollable */}
-            <div className="flex-1 overflow-y-auto p-8 md:p-12 custom-scrollbar">
-               <div className="space-y-32 mb-20">
+            <div className="flex-1 overflow-y-auto p-6 md:p-12 custom-scrollbar">
+               <div className="space-y-24 md:space-y-32 mb-20">
                  {walkthroughData.map((step) => (
-                   <div key={step.id} className={`flex flex-col ${parseInt(step.id) % 2 === 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-24 items-center`}>
-                      <div className="shrink-0 scale-90 lg:scale-100">
-                        <PhoneFrame bgColor={step.bgColor}>
-                          {step.visual}
-                        </PhoneFrame>
+                   <div key={step.id} className={`flex flex-col ${parseInt(step.id) % 2 === 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 items-center`}>
+                      <div className="shrink-0 scale-75 md:scale-90 lg:scale-100">
+                        <PhoneFrame bgColor={step.bgColor}>{step.visual}</PhoneFrame>
                       </div>
-                      <div className="flex-1 space-y-6">
+                      <div className="flex-1 space-y-4 md:space-y-6">
                         <div className="flex items-center gap-4">
-                           <span className="text-6xl font-black text-indigo-600/20">{step.id}</span>
+                           <span className="text-4xl md:text-6xl font-black text-indigo-600/20">{step.id}</span>
                            <div className="h-px flex-1 bg-slate-100"></div>
                         </div>
-                        <h3 className="text-2xl font-black text-slate-400 uppercase tracking-widest">{step.mainTitle}</h3>
-                        <h4 className="text-4xl md:text-5xl font-black text-slate-950 tracking-tighter leading-none">{step.headline}</h4>
-                        <div className="text-xl">
-                          {step.body}
-                        </div>
+                        <h4 className="text-3xl md:text-5xl font-black text-slate-950 tracking-tighter leading-none">{step.mainHeadline}</h4>
+                        <p className="text-xl md:text-2xl text-indigo-600 font-bold italic leading-tight">{step.mainDescription}</p>
+                        <div className="text-base md:text-xl text-slate-600">{step.body}</div>
                       </div>
                    </div>
                  ))}
-               </div>
-
-               {/* Closing Note */}
-               <div className="mt-32 pt-12 border-t border-slate-100 text-center max-w-2xl mx-auto">
-                  <p className="text-slate-400 text-sm font-medium italic">
-                    We’re still early and learning with every pilot. Your experience and feedback directly shape what comes next. 
-                    <span className="block mt-2 font-bold text-slate-900 not-italic">Thank you for helping us build something better — together.</span>
-                  </p>
                </div>
             </div>
           </div>
@@ -455,46 +451,45 @@ export default function App() {
       )}
 
       {/* BYOD Section */}
-      <section id="byod" className="py-48 px-6 bg-slate-950 relative overflow-hidden">
+      <section id="byod" className="py-24 md:py-48 px-6 bg-slate-950 relative overflow-hidden">
         <div className="absolute inset-0 dot-grid opacity-10"></div>
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
             <div className="text-white">
                <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-white/10 rounded-full text-[10px] font-black tracking-widest uppercase mb-8 border border-white/20">
-                  <CloudUpload size={14} /> Zero Risk Start
+                  <CloudUpload size={14} /> Zero Friction Start
                </div>
                <h2 className="text-5xl md:text-7xl font-black mb-10 tracking-tighter leading-[0.9]">
                   Bring Your Own Data <br/>
                   <span className="text-indigo-400 font-light italic">– No Risk Start.</span>
                </h2>
-               <p className="text-2xl text-slate-400 mb-12 font-medium italic">Already have feedback sitting in a spreadsheet?</p>
+               <p className="text-xl md:text-2xl text-slate-400 mb-12 font-medium italic">Already have feedback sitting in a spreadsheet?</p>
                <ul className="space-y-6">
                  {[
-                   "Upload an anonymized CSV — we’ll turn it into a clear report in days.",
-                   "You control everything: pick columns, anonymize sensitive info.",
-                   "Perfect low-risk test — try with old data and see the insights.",
-                   "Many pilots start here and quickly spot hidden churn drivers."
+                   "Upload an anonymized CSV — report in days.",
+                   "You control everything: pick columns, anonymize info.",
+                   "Perfect low-risk test — try with historical data.",
                  ].map((text, i) => (
                    <li key={i} className="flex gap-4 items-start group">
-                     <div className="mt-1.5 shrink-0 w-6 h-6 rounded-full bg-indigo-600/20 flex items-center justify-center border border-indigo-500/30 group-hover:bg-indigo-600 transition-all">
-                        <ArrowRight size={12} className="text-indigo-400 group-hover:text-white" />
+                     <div className="mt-1.5 shrink-0 w-6 h-6 rounded-full bg-indigo-600/20 flex items-center justify-center border border-indigo-500/30">
+                        <ArrowRight size={12} className="text-indigo-400" />
                      </div>
-                     <span className="text-xl text-slate-300 font-medium leading-relaxed">{text}</span>
+                     <span className="text-lg md:text-xl text-slate-300 font-medium">{text}</span>
                    </li>
                  ))}
                </ul>
             </div>
-            <div className="relative p-12 bg-white/5 border border-white/10 rounded-[4rem] backdrop-blur-xl">
+            <div className="relative p-8 md:p-12 bg-white/5 border border-white/10 rounded-[2rem] md:rounded-[4rem] backdrop-blur-xl">
                <div className="flex items-center gap-4 mb-10">
-                  <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-xl">
+                  <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center">
                      <FileText className="text-white" />
                   </div>
                   <div>
-                    <div className="text-white font-black uppercase text-xs tracking-widest">Pilot Environment</div>
-                    <div className="text-slate-400 text-sm">Upload & Analyze</div>
+                    <div className="text-white font-black uppercase text-xs tracking-widest">Pilot Portal</div>
+                    <div className="text-slate-400 text-sm">Secure Data Sync</div>
                   </div>
                </div>
-               <div className="border-2 border-dashed border-white/10 rounded-3xl p-12 flex flex-col items-center text-center">
+               <div className="border-2 border-dashed border-white/10 rounded-3xl p-8 md:p-12 flex flex-col items-center text-center">
                   <HardDriveUpload size={48} className="text-indigo-400 mb-6 opacity-50" />
                   <div className="text-white font-black text-xl mb-2">Drop your CSV here</div>
                   <div className="text-slate-500 text-sm">GDPR Secure Upload</div>
@@ -504,26 +499,26 @@ export default function App() {
         </div>
       </section>
 
-      {/* Early Success Section */}
-      <section id="early-success" className="py-48 px-6 bg-[#F8F9FF]">
+      {/* Early Success / Case Study */}
+      <section className="py-24 md:py-48 px-6 bg-[#F8F9FF]">
         <div className="max-w-7xl mx-auto">
           <div className="mb-24">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-8 border border-indigo-100">
-               <Zap size={12} className="fill-indigo-600" /> Case Study
+               <Zap size={12} className="fill-indigo-600" /> Success Story
             </div>
             <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-950 leading-[0.9]">
               QuickChat Recovered <br/>
               <span className="text-indigo-600 italic">€900K Revenue.</span>
             </h2>
           </div>
-          <div className="grid lg:grid-cols-2 gap-24 items-start">
-            <div className="bg-white p-12 md:p-16 rounded-[4rem] shadow-2xl border border-slate-100">
+          <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-start">
+            <div className="bg-white p-8 md:p-16 rounded-[2rem] md:rounded-[4rem] shadow-2xl border border-slate-100">
               <div className="mb-10 text-indigo-600 italic font-black text-6xl opacity-10">“</div>
-              <p className="text-3xl md:text-4xl font-bold text-slate-950 leading-tight mb-12 italic">
+              <p className="text-2xl md:text-4xl font-bold text-slate-950 leading-tight mb-12 italic">
                 "You've given me a step-by-step guide to reduce churn. We went from guessing to knowing exactly which button to press."
               </p>
               <div className="flex items-center gap-6">
-                <div className="w-16 h-16 bg-[#3d2b1f] rounded-full overflow-hidden flex items-center justify-center text-white font-black">CK</div>
+                <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center text-white font-black">CK</div>
                 <div>
                   <div className="font-black text-xl text-slate-900 tracking-tight">Chris Kemp</div>
                   <div className="text-indigo-600 font-bold uppercase text-xs tracking-widest">Deputy CEO, Zeus Scooters</div>
@@ -537,10 +532,10 @@ export default function App() {
                 { val: "42%", label: "Loyalty", desc: "Increase in customer trust indices post-resolution." },
                 { val: "<7", label: "Days", desc: "Time from raw feedback to board-ready strategy." }
               ].map((stat, i) => (
-                <div key={i} className="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-100">
-                  <div className="text-5xl font-black text-indigo-600 mb-4">{stat.val}</div>
+                <div key={i} className="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-slate-100">
+                  <div className="text-4xl md:text-5xl font-black text-indigo-600 mb-4">{stat.val}</div>
                   <div className="text-slate-900 font-black tracking-widest mb-3 uppercase text-[10px]">{stat.label}</div>
-                  <p className="text-slate-500 text-sm font-medium leading-relaxed">{stat.desc}</p>
+                  <p className="text-slate-500 text-sm font-medium">{stat.desc}</p>
                 </div>
               ))}
             </div>
@@ -548,33 +543,79 @@ export default function App() {
         </div>
       </section>
 
-      {/* Pilots CTA */}
-      <section id="pilots" className="py-40 px-6 text-center relative overflow-hidden bg-white">
-        <div className="max-w-4xl mx-auto relative z-10">
-          <h2 className="text-6xl md:text-[100px] font-black mb-12 tracking-tight leading-none text-slate-950">
-            Fix your churn problem.
-          </h2>
-          <p className="text-2xl text-slate-500 mb-12 font-medium max-w-2xl mx-auto leading-relaxed">
-            Bring your data or test our bot. Show your customers you're listening.
-          </p>
-          <div className="flex flex-col items-center gap-8">
-            <button className="bg-indigo-600 text-white px-16 py-8 rounded-[2rem] text-3xl font-black hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-indigo-200">
-              Book Pilot Call
-            </button>
-            <div className="flex items-center gap-6 text-slate-400 font-black text-[10px] uppercase tracking-[0.3em]">
-              <span className="flex items-center gap-2"><Shield size={14}/> GDPR COMPLIANT</span>
-              <span className="flex items-center gap-2"><Accessibility size={14}/> WCAG AA</span>
+      {/* FAQ Section */}
+      <section className="py-24 md:py-48 px-6 bg-white overflow-hidden border-t border-slate-100">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-20">
+            <div className="px-6 py-2 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-[0.5em] mb-8 inline-block border border-indigo-100">
+              Information
             </div>
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-none text-slate-950">
+              Questions & <br/>
+              <span className="text-indigo-600 italic">Answers.</span>
+            </h2>
+          </div>
+
+          <div className="divide-y divide-slate-200">
+            <FAQItem 
+              question="Is this another survey tool?"
+              answer="No — it's a completely new approach."
+              subAnswer="Traditional surveys have low response rates and shallow answers. QuickChat uses short, natural voice conversations to capture 10× richer feedback — with higher completion and real human truth."
+            />
+            <FAQItem 
+              question="How is it accessible and inclusive?"
+              answer="Designed for everyone from day one."
+              subAnswer="Voice removes typing barriers, it's multilingual, and fully WCAG-compliant — so older customers, neurodiverse users, and non-native speakers can respond easily and naturally."
+            />
+            <FAQItem 
+              question="Do I need to analyze the data myself?"
+              answer="No manual work needed."
+              subAnswer="Our AI automatically turns raw voice feedback into clear themes, root causes, and prioritized next steps — delivered in days."
+            />
+            <FAQItem 
+              question="What about privacy and compliance?"
+              answer="Built with trust in mind."
+              subAnswer="GDPR-compliant, NDA-protected for pilots, and we use anonymized data only. Your customers' privacy is never compromised."
+            />
+            <FAQItem 
+              question="Can I use my existing data?"
+              answer="Yes — many pilots start here."
+              subAnswer="Upload old surveys or feedback (anonymized CSV). We’ll show you the hidden insights already sitting in your files — low-risk way to test the value."
+            />
+            <FAQItem 
+              question="We're still early — is it ready for us?"
+              answer="We're in focused pilots and co-creating with partners like you."
+              subAnswer="Your feedback directly shapes the product. If you're open to testing and helping build something better, this is the perfect time to join."
+            />
           </div>
         </div>
       </section>
 
-      <footer className="py-12 border-t border-slate-100 bg-[#F8F9FF]">
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center opacity-40">
-           <div className="text-xs font-black tracking-widest uppercase text-slate-950">QuickChat © 2025</div>
-           <div className="text-[10px] font-black tracking-widest uppercase italic text-slate-950">Built for Inclusion</div>
+      {/* Footer / Pilots */}
+      <section id="pilots" className="py-32 md:py-48 px-6 text-center bg-white border-t border-slate-100">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-5xl md:text-8xl font-black mb-12 tracking-tight leading-none text-slate-950">
+            Fix your churn problem.
+          </h2>
+          <div className="flex flex-col items-center gap-12">
+            <button className="bg-indigo-600 text-white px-10 md:px-16 py-6 md:py-8 rounded-[2rem] text-2xl md:text-3xl font-black hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-indigo-200">
+              Book Pilot Call
+            </button>
+            <div className="flex flex-wrap justify-center items-center gap-8 text-slate-400 font-black text-[10px] uppercase tracking-[0.3em]">
+              <span className="flex items-center gap-2"><Shield size={14}/> GDPR COMPLIANT</span>
+              <span className="flex items-center gap-2"><Lock size={14}/> SOC2 TYPE II</span>
+              <span className="flex items-center gap-2"><Globe size={14}/> GLOBAL VOICE</span>
+            </div>
+          </div>
+          <div className="mt-24 pt-12 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="flex items-center gap-3">
+               <div className="w-8 h-8 bg-slate-950 rounded-lg flex items-center justify-center text-white font-bold text-sm">Q</div>
+               <span className="text-lg font-black tracking-tighter">QuickChat<span className="text-indigo-600">.</span></span>
+            </div>
+            <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">© 2026 QuickChat AI Inc. All rights reserved.</p>
+          </div>
         </div>
-      </footer>
+      </section>
     </div>
   );
 }

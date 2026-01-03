@@ -20,7 +20,8 @@ import {
   TrendingDown,
   Smile,
   X,
-  Info
+  Info,
+  ChevronRight
 } from 'lucide-react';
 
 const PhoneFrame = ({ children, bgColor = "bg-slate-950", className = "" }) => (
@@ -38,7 +39,7 @@ const Avatar = ({ char, color }) => (
   </div>
 );
 
-// Modular UI Components for Phone Frames (Extracted for reuse in Walkthrough)
+// Modular UI Components for Phone Frames
 const Step01Visual = () => (
   <div className="absolute inset-0 flex flex-col p-6 items-center justify-center">
     <div className="relative w-full aspect-square mb-8">
@@ -85,7 +86,7 @@ const Step02Visual = () => (
      <div className="w-24 h-24 rounded-full border-4 border-white/20 overflow-hidden mb-6 shadow-2xl relative bg-indigo-800">
         <img 
           src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=300&h=300&q=80" 
-          alt="Older Black woman"
+          alt="User Profile"
           className="w-full h-full object-cover"
           onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=User&background=6366f1&color=fff'; }}
         />
@@ -171,7 +172,6 @@ const Step04Visual = () => (
       </div>
     </div>
     <div className="mt-auto flex items-center justify-center gap-2 py-4">
-       <CheckCircle2 size={12} className="text-green-500" />
        <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Loyalty Secured</span>
     </div>
   </div>
@@ -179,7 +179,7 @@ const Step04Visual = () => (
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -193,6 +193,87 @@ export default function App() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const walkthroughData = [
+    {
+      id: "01",
+      visual: <Step01Visual />,
+      bgColor: "bg-slate-50",
+      mainTitle: "Launch our churn conversation",
+      mainHeadline: "We’re keeping it simple: a short 3–5 question conversation tuned to uncover why customers leave.",
+      mainDescription: "No complex setup — just share a link and let it run.",
+      headline: "Launch a short voice conversation",
+      body: (
+        <div className="space-y-4 text-slate-600 leading-relaxed">
+          <p>Traditional surveys are exhausting customers.</p>
+          <p>Response rates have fallen to single digits in many industries — people are tired of long forms, tick boxes, and questions that feel irrelevant.</p>
+          <p className="font-bold text-slate-900">We start simple: a short 3–5 question conversation, ready in minutes.</p>
+          <p>No complex setup. Just share a link with the customers you’re losing — or any segment you want to understand better.</p>
+          <p>It’s tuned to uncover churn drivers, but flexible enough for any feedback need.</p>
+        </div>
+      )
+    },
+    {
+      id: "02",
+      visual: <Step02Visual />,
+      bgColor: "bg-indigo-600",
+      mainTitle: "Designed for everyone",
+      mainHeadline: "This is at the heart of what we’re building.",
+      mainDescription: "Voice removes typing barriers, works in any language, and is fully accessible (WCAG-compliant). We want every customer to feel comfortable sharing — because that’s how we get the WHY!",
+      headline: "Accessibility from the ground up",
+      body: (
+        <div className="space-y-4 text-slate-600 leading-relaxed">
+          <p>Most surveys unintentionally exclude people.</p>
+          <p>Older adults, neurodiverse users, non-native speakers — they drop off because typing is hard, forms are long, or language feels off.</p>
+          <p className="font-bold text-slate-900">We remove those barriers from the ground up.</p>
+          <ul className="space-y-2 list-disc pl-5">
+            <li><span className="font-bold">Voice-first</span> — no typing required</li>
+            <li><span className="font-bold">Multilingual</span> — customers respond naturally in their own language</li>
+            <li><span className="font-bold">Fully accessible</span> — WCAG-compliant, works with screen readers and keyboards</li>
+          </ul>
+          <p>The result? Up to 10× higher completion and feedback that’s richer, more honest, and more representative.</p>
+          <p className="text-indigo-600 font-bold italic">Every voice gets heard. That’s how we get the WHY!</p>
+        </div>
+      )
+    },
+    {
+      id: "03",
+      visual: <Step03Visual />,
+      bgColor: "bg-slate-50",
+      mainTitle: "Action-ready reports",
+      mainHeadline: "No spreadsheets. No weeks of analysis.",
+      mainDescription: "Our AI handles the heavy lifting and gives you clear themes, root causes, and next steps you can act on right away.",
+      headline: "Actionable strategy, automatically",
+      body: (
+        <div className="space-y-4 text-slate-600 leading-relaxed">
+          <p>Even when companies do get survey data, it often sits unused.</p>
+          <p>Why? Because turning raw responses into strategy takes time most teams don’t have — manual tagging, spreadsheets, weeks of analysis, or expensive consultants.</p>
+          <p className="font-bold text-slate-900 underline decoration-indigo-200">We cut all that out.</p>
+          <p>No manual transcription. No data crunching. No training needed.</p>
+          <p>Our AI listens to the conversations, identifies recurring themes, pinpoints root causes, and delivers a clear report with prioritized next steps — usually in days.</p>
+          <p>You get insights you can act on immediately — not a data dump you have to figure out later.</p>
+        </div>
+      )
+    },
+    {
+      id: "04",
+      visual: <Step04Visual />,
+      bgColor: "bg-white",
+      mainTitle: "Drive results and build trust",
+      mainHeadline: "When you fix things fast and show customers you’ve listened, something powerful happens: trust grows.",
+      mainDescription: "That’s how feedback turns into loyalty — and churn turns into growth.",
+      headline: "Earn loyalty through action",
+      body: (
+        <div className="space-y-4 text-slate-600 leading-relaxed">
+          <p>The real power isn’t just knowing why customers leave — it’s doing something about it.</p>
+          <p>When you fix issues fast and show customers you’ve listened (“we heard you about checkout — here’s what we changed”), trust grows.</p>
+          <p>Research shows that customers who feel heard are far more likely to stay, spend more, and recommend you.</p>
+          <p className="font-bold text-slate-900">This isn’t one-off feedback. It’s a loop: listen → act → communicate → earn loyalty → grow.</p>
+          <p className="text-green-600 font-black">That’s how feedback becomes your biggest competitive advantage.</p>
+        </div>
+      )
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-[#F8F9FF] font-sans text-slate-950 antialiased selection:bg-indigo-100">
@@ -216,8 +297,19 @@ export default function App() {
           background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
           background-size: 32px 32px;
         }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #cbd5e1;
+          border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #94a3b8;
+        }
       `}</style>
 
       {/* Nav */}
@@ -273,156 +365,90 @@ export default function App() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-24">
-            
-            {/* Step 01 */}
-            <div className="flex flex-col gap-10 group">
-              <PhoneFrame bgColor="bg-slate-50">
-                <Step01Visual />
-              </PhoneFrame>
-              <div className="px-4">
-                <div className="w-12 h-12 bg-indigo-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-indigo-100 font-black">01</div>
-                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight uppercase leading-[0.9]">Launch our Churn chatbot</h3>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed">A short, friendly chat designed to engage — share the link with your customer segments via your usual channels.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12">
+            {walkthroughData.map((step) => (
+              <div key={step.id} className={`flex flex-col gap-10 group ${step.id === '02' || step.id === '04' ? 'lg:mt-16' : ''}`}>
+                <PhoneFrame bgColor={step.bgColor}>
+                  {step.visual}
+                </PhoneFrame>
+                <div className="px-4">
+                  <div className={`w-12 h-12 ${step.id === '01' ? 'bg-indigo-600' : step.id === '02' ? 'bg-blue-600' : step.id === '03' ? 'bg-violet-600' : 'bg-slate-800'} text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl font-black`}>
+                    {step.id}
+                  </div>
+                  <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight uppercase leading-[0.9]">
+                    {step.mainTitle}
+                  </h3>
+                  <p className="text-slate-900 font-bold mb-3">{step.mainHeadline}</p>
+                  <p className="text-slate-500 text-lg font-medium leading-relaxed">
+                    {step.mainDescription}
+                  </p>
+                </div>
               </div>
-            </div>
-
-            {/* Step 02 */}
-            <div className="flex flex-col gap-10 group lg:mt-12">
-              <PhoneFrame bgColor="bg-indigo-600">
-                <Step02Visual />
-              </PhoneFrame>
-              <div className="px-4">
-                <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-blue-100 font-black">02</div>
-                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight leading-none uppercase">Designed for everyone</h3>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed">Fully accessible and easy to use — customers respond naturally in their own language, giving you 10× richer feedback through simple conversation.</p>
-              </div>
-            </div>
-
-            {/* Step 03 */}
-            <div className="flex flex-col gap-10 group">
-              <PhoneFrame bgColor="bg-slate-50">
-                <Step03Visual />
-              </PhoneFrame>
-              <div className="px-4">
-                <div className="w-12 h-12 bg-violet-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-violet-100 font-black">03</div>
-                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight leading-none uppercase">Action-ready reports</h3>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed">No manual work needed — our AI turns the feedback into clear themes, root causes, and next steps you can act on right away.</p>
-              </div>
-            </div>
-
-            {/* Step 04 */}
-            <div className="flex flex-col gap-10 group lg:mt-12">
-              <PhoneFrame bgColor="bg-white">
-                <Step04Visual />
-              </PhoneFrame>
-              <div className="px-4">
-                <div className="w-12 h-12 bg-slate-800 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-slate-100 font-black">04</div>
-                <h3 className="text-3xl font-black text-slate-950 mb-4 tracking-tight leading-none uppercase">Drive results & build trust</h3>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed">Fix things quickly, show customers you’ve listened, and turn their input into stronger loyalty and growth.</p>
-              </div>
-            </div>
+            ))}
           </div>
 
-          <div className="flex justify-center pt-20 border-t border-slate-50">
-            <button 
-              onClick={() => setIsModalOpen(true)}
-              className="group flex items-center gap-4 px-10 py-6 bg-slate-50 hover:bg-indigo-50 text-slate-400 hover:text-indigo-600 rounded-3xl transition-all font-black uppercase tracking-[0.3em] text-xs border border-transparent hover:border-indigo-100"
-            >
-              Detailed Walkthrough <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-            </button>
+          <div className="mt-32 flex justify-center">
+             <button 
+               onClick={() => setShowModal(true)}
+               className="group flex items-center gap-4 bg-slate-950 text-white px-12 py-6 rounded-3xl font-black text-xl hover:bg-indigo-600 transition-all shadow-2xl hover:scale-105 active:scale-95"
+             >
+                Detailed Walkthrough <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
+             </button>
           </div>
         </div>
       </section>
 
-      {/* WALKTHROUGH MODAL */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-[100] bg-white overflow-y-auto hide-scrollbar animate-fadeIn">
-          <div className="max-w-6xl mx-auto px-6 py-20">
-            <div className="flex justify-between items-center mb-24">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold">Q</div>
-                <span className="text-sm font-black uppercase tracking-widest text-slate-400">Deep Dive Walkthrough</span>
-              </div>
-              <button 
-                onClick={() => setIsModalOpen(false)}
-                className="w-12 h-12 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center transition-colors text-slate-600"
-              >
-                <X size={24} />
-              </button>
+      {/* Detailed Walkthrough Modal */}
+      {showModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+          <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-md" onClick={() => setShowModal(false)}></div>
+          <div className="relative w-full max-w-6xl h-full max-h-[90vh] bg-white rounded-[3rem] shadow-2xl flex flex-col overflow-hidden animate-fadeIn">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-8 border-b border-slate-100 shrink-0">
+               <div>
+                 <h2 className="text-3xl font-black tracking-tight text-slate-950">Deep Dive: The QuickChat Process</h2>
+                 <p className="text-slate-500 font-medium">Understanding how we turn voice into actionable strategy.</p>
+               </div>
+               <button 
+                 onClick={() => setShowModal(false)}
+                 className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-950 hover:bg-red-50 hover:text-red-600 transition-colors"
+               >
+                 <X size={24} />
+               </button>
             </div>
 
-            <div className="space-y-48">
-              {/* Step 01 Detailed */}
-              <div className="grid lg:grid-cols-2 gap-24 items-center">
-                <PhoneFrame bgColor="bg-slate-50" className="scale-110">
-                  <Step01Visual />
-                </PhoneFrame>
-                <div>
-                  <div className="text-indigo-600 font-black text-xs uppercase tracking-[0.4em] mb-6">Step 01</div>
-                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-950 mb-8 leading-[0.9]">Launch our churn conversation</h2>
-                  <div className="space-y-6 text-xl md:text-2xl text-slate-500 font-medium leading-relaxed">
-                    <p>We’re keeping it simple: a short 3–5 question conversation tuned to uncover why customers leave.</p>
-                    <p className="text-slate-900 font-bold">No complex setup — just share a link and let it run.</p>
-                  </div>
-                </div>
-              </div>
+            {/* Modal Content - Scrollable */}
+            <div className="flex-1 overflow-y-auto p-8 md:p-12 custom-scrollbar">
+               <div className="space-y-32 mb-20">
+                 {walkthroughData.map((step) => (
+                   <div key={step.id} className={`flex flex-col ${parseInt(step.id) % 2 === 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-24 items-center`}>
+                      <div className="shrink-0 scale-90 lg:scale-100">
+                        <PhoneFrame bgColor={step.bgColor}>
+                          {step.visual}
+                        </PhoneFrame>
+                      </div>
+                      <div className="flex-1 space-y-6">
+                        <div className="flex items-center gap-4">
+                           <span className="text-6xl font-black text-indigo-600/20">{step.id}</span>
+                           <div className="h-px flex-1 bg-slate-100"></div>
+                        </div>
+                        <h3 className="text-2xl font-black text-slate-400 uppercase tracking-widest">{step.mainTitle}</h3>
+                        <h4 className="text-4xl md:text-5xl font-black text-slate-950 tracking-tighter leading-none">{step.headline}</h4>
+                        <div className="text-xl">
+                          {step.body}
+                        </div>
+                      </div>
+                   </div>
+                 ))}
+               </div>
 
-              {/* Step 02 Detailed */}
-              <div className="grid lg:grid-cols-2 gap-24 items-center">
-                <div className="order-2 lg:order-1">
-                  <div className="text-blue-600 font-black text-xs uppercase tracking-[0.4em] mb-6">Step 02</div>
-                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-950 mb-8 leading-[0.9]">Designed for everyone</h2>
-                  <div className="space-y-6 text-xl md:text-2xl text-slate-500 font-medium leading-relaxed">
-                    <p>This is at the heart of what we’re building.</p>
-                    <p>Voice removes typing barriers, works in any language, and is fully accessible (WCAG-compliant).</p>
-                    <p className="text-slate-900 font-bold">We want every customer to feel comfortable sharing — because that’s how we get the real truth.</p>
-                  </div>
-                </div>
-                <PhoneFrame bgColor="bg-indigo-600" className="order-1 lg:order-2 scale-110">
-                  <Step02Visual />
-                </PhoneFrame>
-              </div>
-
-              {/* Step 03 Detailed */}
-              <div className="grid lg:grid-cols-2 gap-24 items-center">
-                <PhoneFrame bgColor="bg-slate-50" className="scale-110">
-                  <Step03Visual />
-                </PhoneFrame>
-                <div>
-                  <div className="text-violet-600 font-black text-xs uppercase tracking-[0.4em] mb-6">Step 03</div>
-                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-950 mb-8 leading-[0.9]">Action-ready reports</h2>
-                  <div className="space-y-6 text-xl md:text-2xl text-slate-500 font-medium leading-relaxed">
-                    <p>No spreadsheets. No weeks of analysis.</p>
-                    <p className="text-slate-900 font-bold">Our AI handles the heavy lifting and gives you clear themes, root causes, and next steps you can act on right away.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 04 Detailed */}
-              <div className="grid lg:grid-cols-2 gap-24 items-center">
-                <div className="order-2 lg:order-1">
-                  <div className="text-slate-900 font-black text-xs uppercase tracking-[0.4em] mb-6">Step 04</div>
-                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-950 mb-8 leading-[0.9]">Drive results and build long-term trust</h2>
-                  <div className="space-y-6 text-xl md:text-2xl text-slate-500 font-medium leading-relaxed">
-                    <p>When you fix things fast and show customers you’ve listened, something powerful happens: trust grows.</p>
-                    <p className="text-slate-900 font-bold">That’s how feedback turns into loyalty — and churn turns into growth.</p>
-                  </div>
-                </div>
-                <PhoneFrame bgColor="bg-white" className="order-1 lg:order-2 scale-110">
-                  <Step04Visual />
-                </PhoneFrame>
-              </div>
-            </div>
-
-            <div className="mt-64 pt-20 border-t border-slate-100 text-center">
-              <p className="text-sm font-black text-slate-400 uppercase tracking-[0.2em] mb-12">We’re still early — your feedback helps us shape it.</p>
-              <button 
-                onClick={() => setIsModalOpen(false)}
-                className="bg-indigo-600 text-white px-12 py-6 rounded-3xl text-xl font-black hover:bg-indigo-700 transition-all hover:scale-105"
-              >
-                Back to main site
-              </button>
+               {/* Closing Note */}
+               <div className="mt-32 pt-12 border-t border-slate-100 text-center max-w-2xl mx-auto">
+                  <p className="text-slate-400 text-sm font-medium italic">
+                    We’re still early and learning with every pilot. Your experience and feedback directly shape what comes next. 
+                    <span className="block mt-2 font-bold text-slate-900 not-italic">Thank you for helping us build something better — together.</span>
+                  </p>
+               </div>
             </div>
           </div>
         </div>

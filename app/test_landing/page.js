@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { 
   AlertTriangle, 
@@ -348,7 +350,7 @@ const App = () => {
                     <UploadCloud size={48} className="text-white animate-bounce" />
                  </div>
                  <h4 className="text-2xl font-black mb-4 uppercase tracking-tighter">Drop your CSV</h4>
-                 <p className="text-indigo-100 text-sm mb-12 font-bold max-w-xs">Many pilot partners begin right here: a quick look at existing feedback that reveals hidden churn drivers they’d missed.</p>
+                 <p className="text-indigo-100 text-sm mb-12 font-bold max-w-xs">Many pilot partners begin right here: a quick, safe look at their existing feedback that reveals hidden churn drivers they’d missed.</p>
                  <div className="w-full h-2 bg-white/20 rounded-full overflow-hidden">
                     <div className="w-2/3 h-full bg-white animate-[pulse_2s_infinite]"></div>
                  </div>
@@ -395,46 +397,43 @@ const App = () => {
 
       {/* Final CTA Section */}
       <section id="pilot" className="py-24 md:py-48 px-6 bg-white relative overflow-hidden">
-        <div className="max-w-5xl mx-auto">
-          <div className="bg-indigo-600 rounded-[3rem] p-10 md:p-20 relative overflow-hidden text-center shadow-[0_40px_100px_rgba(79,70,229,0.2)]">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-indigo-600 rounded-[3rem] p-8 md:p-16 relative overflow-hidden text-center shadow-[0_40px_100px_rgba(79,70,229,0.2)]">
             <div className="relative z-10">
-              <h2 className="text-3xl md:text-6xl font-black text-white mb-8 leading-none uppercase tracking-tighter">
+              <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-none uppercase tracking-tighter">
                 Join our <span className="italic opacity-80">pilot program.</span>
               </h2>
-              <div className="max-w-3xl mx-auto space-y-6 text-indigo-50 font-bold text-lg mb-12 leading-relaxed">
+              <div className="max-w-2xl mx-auto space-y-4 text-indigo-50 font-bold text-base mb-10 leading-relaxed">
                 <p>We’re working closely with teams to test and shape VOXLOOP — turning real customer feedback into real churn reduction.</p>
+                
                 <div className="grid sm:grid-cols-2 gap-4 text-left">
-                  <div className="bg-white/10 p-4 rounded-2xl border border-white/10">
-                    <p className="text-white text-xs font-black uppercase tracking-widest mb-2 flex items-center gap-2"><Sparkles size={14} /> Why join now?</p>
-                    <p className="text-sm opacity-80">Get a free, full pilot — we analyze your data or run a live voice conversation. Your insights directly influence what we build next.</p>
+                  <div className="bg-white/10 p-4 rounded-xl border border-white/10">
+                    <p className="text-white text-[10px] font-black uppercase tracking-widest mb-1 flex items-center gap-2"><Sparkles size={12} /> Why join now?</p>
+                    <p className="text-xs opacity-80 leading-snug">Get a free, full pilot — we analyze your data or run a live voice conversation. Your insights directly influence what we build next.</p>
                   </div>
-                  <div className="bg-white/10 p-4 rounded-2xl border border-white/10">
-                    <p className="text-white text-xs font-black uppercase tracking-widest mb-2 flex items-center gap-2"><ShieldAlert size={14} /> Safe & Focused</p>
-                    <p className="text-sm opacity-80">NDA-protected, low-risk, and focused on your biggest churn challenges. We uncover hidden drivers in days.</p>
+                  <div className="bg-white/10 p-4 rounded-xl border border-white/10">
+                    <p className="text-white text-[10px] font-black uppercase tracking-widest mb-1 flex items-center gap-2"><ShieldAlert size={12} /> Safe & Focused</p>
+                    <p className="text-xs opacity-80 leading-snug">NDA-protected, low-risk, and focused on your biggest churn challenges. We uncover hidden drivers in days.</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl max-w-2xl mx-auto text-left">
-                <h3 className="text-2xl font-black text-slate-950 mb-2 uppercase tracking-tight">Fix your churn problem.</h3>
-                <p className="text-sm text-slate-500 mb-8 font-medium">Bring your data or test our bot. Show your customers you're listening.</p>
+              <div className="bg-white rounded-3xl p-6 md:p-10 shadow-2xl max-w-lg mx-auto text-left">
+                <h3 className="text-xl font-black text-slate-950 mb-1 uppercase tracking-tight">Ready to work together?</h3>
+                <p className="text-xs text-slate-500 mb-6 font-medium">Book a 15-minute call — let’s explore if this is the right fit for you.</p>
                 
-                <div className="space-y-4">
-                  <button className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-xl flex items-center justify-center gap-4 group">
-                    Book Pilot Call
-                    <ArrowRight size={22} className="group-hover:translate-x-2 transition-transform" />
+                <div className="space-y-3">
+                  <button className="w-full py-4 bg-indigo-600 text-white rounded-xl font-black text-base hover:bg-indigo-700 transition-all shadow-lg flex items-center justify-center gap-3 group">
+                    Schedule Your Call
+                    <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
                   </button>
-                  <p className="text-center text-[10px] text-slate-400 font-bold uppercase tracking-widest">
-                    Book a 15-minute call — let’s explore if this is the right fit for you.
-                  </p>
-                </div>
-
-                <div className="mt-8 pt-8 border-t border-slate-100 flex flex-wrap justify-center gap-8 opacity-40">
-                  <div className="flex items-center gap-2 text-slate-900 font-black text-[10px] uppercase tracking-widest">
-                    <Lock size={14} /> GDPR Compliant
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-900 font-black text-[10px] uppercase tracking-widest">
-                    <Accessibility size={14} /> WCAG AA
+                  <div className="flex items-center justify-center gap-4 pt-4 opacity-50">
+                    <div className="flex items-center gap-1.5 text-slate-900 font-black text-[9px] uppercase tracking-widest">
+                      <Lock size={12} /> Secure
+                    </div>
+                    <div className="flex items-center gap-1.5 text-slate-900 font-black text-[9px] uppercase tracking-widest">
+                      <ShieldCheck size={12} /> Confidential
+                    </div>
                   </div>
                 </div>
               </div>

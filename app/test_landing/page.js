@@ -1,8 +1,3 @@
-"use client";
-
-export default function TestLanding() {
-  return null;
-}
 import React, { useState } from 'react';
 import { 
   AlertTriangle, 

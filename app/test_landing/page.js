@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { 
   Mic, 
@@ -151,7 +153,7 @@ const App = () => {
               </p>
             </div>
 
-            {/* 02: STRATEGIC REPORT - UPDATED WHITE BG VISUAL */}
+            {/* 02: STRATEGIC REPORT */}
             <div className="group">
               <div className="relative mb-12 overflow-hidden rounded-[3rem] bg-slate-50 h-[450px] flex flex-col items-center justify-center shadow-sm p-8 border border-slate-100 transition-colors group-hover:bg-slate-100/50">
                 {/* Background Decor */}
@@ -239,7 +241,7 @@ const App = () => {
                   </div>
                 </div>
 
-                {/* Insight Card Overlap - WHITE VERSION */}
+                {/* Insight Card Overlap */}
                 <div className="absolute bottom-8 left-8 right-8 bg-white/80 backdrop-blur-md border border-slate-200 rounded-2xl p-4 shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-indigo-100">

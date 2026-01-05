@@ -90,9 +90,15 @@ const App = () => {
             The power of <span className="text-indigo-600 italic">voice.</span><br />
             The speed of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500 underline decoration-indigo-200 decoration-8 underline-offset-[-5px]">AI.</span>
           </h1>
-          <p className="max-w-3xl mx-auto text-xl lg:text-2xl text-slate-500 mb-16 leading-relaxed font-medium">
-            We are building a new kind of survey tool. Enabling you to understand customer churn, act fast, and increase revenue.
-          </p>
+          <div className="max-w-4xl mx-auto space-y-6 mb-16">
+            <p className="text-xl lg:text-3xl text-slate-900 font-black tracking-tight leading-tight">
+              We are building a new way to connect with customers.
+            </p>
+            <p className="text-lg lg:text-2xl text-slate-500 leading-relaxed font-medium">
+              One that lets them talk naturally — accessible to everyone, in any language — so you truly understand them. 
+              Act fast on what matters, build lasting trust, and turn every conversation into revenue.
+            </p>
+          </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <button className="w-full sm:w-auto px-12 py-7 bg-slate-900 hover:bg-slate-800 text-white rounded-[2.5rem] font-black text-xl transition-all flex items-center justify-center gap-3 group shadow-2xl shadow-slate-900/20 active:scale-95">
               Secure Your Slot <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
@@ -139,7 +145,7 @@ const App = () => {
               <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black mb-6 shadow-lg shadow-indigo-200">01</div>
               <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight leading-tight">Launch a short <br/>voice conversation</h3>
               <p className="text-slate-500 font-medium leading-relaxed">
-                Replace text-based fatigue with human voice. A short 3–5 question chat that removes friction and captures 10x richer emotional context.
+                Want to understand your customers? Replace text-based fatigue with human voice. A short bot chat removes friction — no forms, no typing — and is accessible to everyone, in any language. Just share a link. Customers talk naturally, revealing the real "why".
               </p>
             </div>
 
@@ -220,7 +226,7 @@ const App = () => {
               <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black mb-6 shadow-lg shadow-indigo-200">02</div>
               <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight leading-tight">Strategic <br/>Report</h3>
               <p className="text-slate-500 font-medium leading-relaxed">
-                We remove the burden of manual analysis. Our AI synthesizes every conversation instantly, delivering a high-level action plan ready for the boardroom.
+                We remove the burden of manual analysis. Our AI instantly synthesizes every conversation into a clear action plan: themes, root causes, prioritized fixes. The report gives you the true "why", data-led and actionable.
               </p>
             </div>
 
@@ -249,7 +255,7 @@ const App = () => {
               <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black mb-6 shadow-lg shadow-indigo-200">03</div>
               <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight leading-tight">Drive results and <br/>build long-term trust</h3>
               <p className="text-slate-500 font-medium leading-relaxed">
-                Close the feedback loop. Fix things fast, show customers you listened, and turn every piece of feedback into a growth opportunity.
+                Act fast on the insights. Fix issues, show customers you listened, and close the loop. Trust grows, loyalty strengthens, and feedback becomes your growth engine.
               </p>
             </div>
           </div>
@@ -328,7 +334,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* Analysis Engine Section - Mobile Optimized */}
+      {/* Analysis Engine Section */}
       <section id="analysis" className="py-24 lg:py-40 bg-slate-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="bg-slate-900 rounded-[3rem] lg:rounded-[4rem] p-8 lg:p-24 relative overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">

@@ -27,7 +27,7 @@ const App = () => {
       id: "01",
       phase: "Easy Onboarding",
       title: "Load Your Data",
-      desc: "Drop your CSV, survey export, support tickets — any format. Your customers' voice is here, stay in control.",
+      desc: "You've already collected all this customer data. Now let's actually understand it. Drop your CSV, survey export, support tickets — any format. Your customers' voice is here, stay in control.",
       icon: <Database className="w-6 h-6" />,
       tag: "YOUR DATA"
     },
@@ -35,7 +35,25 @@ const App = () => {
       id: "02",
       phase: "Clarity in Hours",
       title: "The Strategy",
-      desc: "We analyze your customers' voice and build a strategic roadmap: what to build next, why they're leaving, what to fix first.",
+      desc: (
+        <div className="space-y-4">
+          <p className="font-medium text-slate-700">We analyze your customers' voice and build a strategic roadmap:</p>
+          <ul className="space-y-3">
+            <li className="flex items-start gap-3">
+              <span className="text-indigo-600 font-black mt-0.5">•</span>
+              <span className="text-slate-600"><strong>What to build next</strong></span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-indigo-600 font-black mt-0.5">•</span>
+              <span className="text-slate-600"><strong>Why they're leaving</strong></span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-indigo-600 font-black mt-0.5">•</span>
+              <span className="text-slate-600"><strong>What to fix first</strong></span>
+            </li>
+          </ul>
+        </div>
+      ),
       icon: <Search className="w-6 h-6" />,
       tag: "OUR ANALYSIS"
     },
@@ -86,20 +104,23 @@ const App = () => {
               <Sparkles size={12} /> Strategic Insight Engine
             </div>
             
-            <h1 className="text-[55px] md:text-[90px] lg:text-[130px] font-black text-slate-900 mb-12 tracking-tighter leading-[0.9] lg:leading-[0.85]">
+            <h1 className="text-[55px] md:text-[90px] lg:text-[130px] font-black text-slate-900 mb-10 tracking-tighter leading-[0.9] lg:leading-[0.85]">
               Build strategy with your <br/>
               <span className="text-indigo-600">customers' voice.</span>
             </h1>
             
-            <div className="grid lg:grid-cols-2 gap-12 items-end">
-              <p className="text-xl lg:text-2xl text-slate-500 font-medium leading-[1.4] tracking-tight">
-                We're building an engine that turns customer data into action, trust, and revenue.
+            <div className="max-w-4xl space-y-8">
+              <p className="text-2xl lg:text-4xl text-slate-500 font-bold tracking-tight leading-tight">
+                We're building the answer to help you understand your customer data fast, so you can drive action, build trust, and grow revenue.
               </p>
               
-              <div className="flex flex-col sm:flex-row items-center gap-6">
+              <div className="flex flex-col sm:flex-row items-center gap-8 pt-4">
                 <button className="w-full sm:w-auto px-12 py-7 bg-indigo-600 text-white hover:bg-slate-900 rounded-full font-black text-lg transition-all flex items-center justify-center gap-4 shadow-2xl active:scale-95 group">
-                  Let's talk <ArrowUpRight size={22} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+                  Get in touch <ArrowUpRight size={22} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
                 </button>
+                <p className="text-slate-400 font-black uppercase tracking-widest text-xs border-l-2 border-slate-100 pl-8 h-full flex items-center">
+                  "If you'd like to be a pilot partner, get in touch."
+                </p>
               </div>
             </div>
           </div>
@@ -138,9 +159,9 @@ const App = () => {
                   <h3 className="text-4xl font-black tracking-tighter text-slate-900">
                     {step.title}
                   </h3>
-                  <p className={`text-lg font-medium leading-relaxed transition-colors duration-500 ${activeStep === idx ? 'text-slate-700' : 'text-slate-500'}`}>
+                  <div className={`text-lg font-medium leading-relaxed transition-colors duration-500 ${activeStep === idx ? 'text-slate-700' : 'text-slate-500'}`}>
                     {step.desc}
-                  </p>
+                  </div>
                 </div>
                 <div className={`mt-10 pt-10 border-t transition-colors duration-700 ${activeStep === idx ? 'border-indigo-200' : 'border-slate-50'} flex items-center justify-between`}>
                    <span className={`text-[10px] font-black uppercase tracking-widest ${activeStep === idx ? 'text-indigo-600' : 'text-slate-300'}`}>{step.tag}</span>
@@ -169,7 +190,7 @@ const App = () => {
               </div>
               
               <div className="relative pl-12">
-                <Quote className="absolute top-0 left-0 text-indigo-400/40 w-10 h-10" />
+                <span className="absolute top-0 left-0 text-indigo-400/40 text-7xl font-serif">“</span>
                 <p className="text-4xl lg:text-5xl font-black tracking-tighter leading-[1.1] mb-12">
                   "You've given me a step-by-step guide to reduce churn."
                 </p>

@@ -1,440 +1,409 @@
-"use client";
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-  AlertTriangle, 
-  CheckCircle2, 
+  Mic, 
   ArrowRight, 
+  FileUp, 
+  Lock, 
   ShieldCheck, 
+  BarChart3, 
   Zap,
-  Menu,
-  X,
-  Mic,
-  TrendingUp,
-  Heart,
-  UploadCloud,
-  FileSpreadsheet,
+  Repeat,
+  Activity,
+  ArrowUpRight,
+  CheckCircle2,
   Quote,
-  BrainCircuit,
-  Calendar,
-  Sparkles,
-  Smartphone,
-  Send,
   Globe,
-  Accessibility,
-  Lock,
   FileText,
-  ShieldAlert
+  Layers,
+  Sparkles,
+  TrendingDown,
+  ChevronRight,
+  PieChart,
+  Target,
+  Monitor
 } from 'lucide-react';
 
-// --- Supporting Components ---
-
-const PhoneFrame = ({ children }) => (
-  <div className="relative mx-auto border-slate-900 bg-slate-900 border-[14px] rounded-[3rem] h-[640px] w-[320px] shadow-[0_0_100px_rgba(0,0,0,0.1)] overflow-hidden">
-    <div className="w-[148px] h-[22px] bg-slate-900 top-0 left-1/2 -translate-x-1/2 absolute rounded-b-2xl z-20"></div>
-    <div className="h-full w-full relative flex flex-col overflow-hidden">
-      {children}
-    </div>
-  </div>
-);
-
-const VoiceWaveGraphic = () => (
-  <div className="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none overflow-hidden">
-    <svg viewBox="0 0 800 400" className="w-full max-w-5xl">
-      {[...Array(5)].map((_, i) => (
-        <path
-          key={i}
-          d={`M 0 ${200 + i * 15} Q 200 ${100 - i * 30}, 400 ${200} T 800 ${200 + i * 15}`}
-          fill="none"
-          stroke="url(#waveGradient)"
-          strokeWidth="1.5"
-          className="animate-pulse"
-          style={{
-            animationDelay: `${i * 0.3}s`,
-            animationDuration: `${4 + i}s`,
-            opacity: 1 - i * 0.2
-          }}
-        />
-      ))}
-      <defs>
-        <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#6366f1" stopOpacity="0" />
-          <stop offset="50%" stopColor="#6366f1" stopOpacity="1" />
-          <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>
-);
-
-// --- High Fidelity Step Visuals ---
-
-const Step01Visual = () => (
-  <div className="flex flex-col h-full bg-slate-50 relative p-6 font-sans">
-    <div className="mt-16 flex flex-col items-center">
-      <div className="relative mb-10">
-        <div className="w-32 h-32 bg-white rounded-[2.5rem] flex items-center justify-center shadow-2xl border border-indigo-100 overflow-hidden relative">
-           <img 
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&h=256&auto=format&fit=crop" 
-            alt="Customer Representative" 
-            className="w-full h-full object-cover"
-           />
-        </div>
-        <div className="absolute -bottom-3 -right-3 w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-xl animate-pulse">
-          <Mic size={24} />
-        </div>
-      </div>
-      <div className="bg-white rounded-3xl p-7 shadow-xl border border-indigo-50/50 relative z-10">
-        <p className="text-slate-900 font-bold text-lg leading-tight tracking-tight text-center">
-          "What’s the one thing we could improve?"
-        </p>
-      </div>
-      <div className="mt-12 w-full px-4 flex flex-col items-center gap-4">
-        <div className="flex gap-1.5 h-8 items-center">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="w-1.5 bg-indigo-600/40 rounded-full animate-waveform h-full" 
-                 style={{ height: `${30 + Math.random() * 70}%`, animationDelay: `${i * 0.1}s` }}></div>
-          ))}
-        </div>
-        <span className="text-indigo-600 text-[10px] font-black uppercase tracking-[0.3em]">Listening...</span>
-      </div>
-    </div>
-  </div>
-);
-
-const Step02Visual = () => (
-  <div className="flex flex-col h-full bg-indigo-600 p-8 text-white">
-    <div className="mt-12 flex justify-center">
-      <div className="bg-white/10 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-center">Natural Language Processing</div>
-    </div>
-    <div className="mt-12 text-center">
-      <div className="flex justify-center mb-6"><Globe size={48} className="text-indigo-200" /></div>
-      <p className="text-xl font-bold leading-tight mb-2 italic">"The setup was quite smooth..."</p>
-      <p className="text-indigo-200 text-sm">Translating Voice-to-Text</p>
-    </div>
-    <div className="flex-1 flex items-end justify-center gap-2 mb-12">
-      {[...Array(12)].map((_, i) => (
-        <div key={i} className="w-2 bg-white rounded-full" style={{ height: `${20 + Math.random() * 80}%`, opacity: 0.5 }}></div>
-      ))}
-    </div>
-    <div className="bg-white/10 p-4 rounded-2xl text-[10px] font-bold text-center border border-white/10 uppercase tracking-widest">
-      No Typing Required
-    </div>
-  </div>
-);
-
-const Step03Visual = () => (
-  <div className="flex flex-col h-full bg-slate-900 p-6 font-sans">
-    <div className="mt-10 mb-8"><span className="text-indigo-400 text-[10px] font-black uppercase tracking-[0.3em]">Strategy Report</span></div>
-    <div className="bg-white rounded-2xl p-5 shadow-2xl mb-4">
-      <div className="flex items-start justify-between mb-4">
-        <div className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-[10px] font-black uppercase">Root Cause</div>
-        <BrainCircuit size={18} className="text-indigo-600" />
-      </div>
-      <div className="text-slate-900 font-black text-base mb-1">Board-Ready Insight</div>
-      <div className="text-slate-500 text-xs mb-4">Automated Clustering</div>
-      <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 space-y-2">
-        <div className="flex justify-between text-[9px] font-black text-slate-400 uppercase"><span>Issue</span><span>Fix Now</span></div>
-        <div className="text-slate-900 text-[11px] font-bold flex justify-between"><span>App Latency</span><span className="text-indigo-600">AWS Edge Fix</span></div>
-      </div>
-    </div>
-    <div className="bg-slate-800/50 border border-white/10 rounded-2xl p-5">
-      <div className="text-white/60 text-[10px] font-black uppercase tracking-widest mb-4 italic">Sentiments</div>
-      <div className="grid grid-cols-7 gap-1.5 h-12 items-end">
-         {[40, 60, 90, 30, 70, 40, 20].map((v, i) => (
-           <div key={i} className="w-full bg-indigo-500 rounded-sm" style={{ height: `${v}%`, opacity: 0.6 }}></div>
-         ))}
-      </div>
-    </div>
-  </div>
-);
-
-const Step04Visual = () => (
-  <div className="flex flex-col h-full bg-white p-6 relative">
-    <div className="mt-14 mb-8">
-      <div className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] mb-2">Build Loyalty</div>
-      <h4 className="text-slate-900 text-2xl font-black tracking-tighter">Close the Loop</h4>
-    </div>
-    <div className="bg-slate-50 border border-slate-100 rounded-[2rem] p-6 shadow-sm mb-6">
-      <div className="flex items-center gap-3 mb-4">
-         <div className="w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center text-white"><Send size={20} /></div>
-         <div className="text-slate-900 text-xs font-black">Personalized Response</div>
-      </div>
-      <div className="bg-white p-4 rounded-xl border border-slate-100 text-slate-700 text-[11px] font-bold leading-relaxed italic">
-        "We heard you about checkout — here's what we changed."
-      </div>
-    </div>
-    <div className="bg-green-50 border-2 border-green-500 rounded-[2rem] p-6">
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white"><Heart size={24} fill="currentColor" /></div>
-        <div>
-           <div className="text-slate-900 font-black text-xl">42% Lift</div>
-           <div className="text-green-600 text-[10px] font-black uppercase">Trust Index</div>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-// --- Main App ---
-
 const App = () => {
-  const scrollTo = (id) => {
-    const element = document.getElementById(id);
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
-  };
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-indigo-100 selection:text-indigo-900">
-      <style>{`
-        @keyframes waveform {
-          0%, 100% { transform: scaleY(1); }
-          50% { transform: scaleY(0.4); }
-        }
-        .animate-waveform { animation: waveform 0.8s ease-in-out infinite; }
-      `}</style>
-
-      {/* Availability Banner */}
-      <div className="bg-indigo-600 px-4 py-3 text-center text-white text-[11px] font-black uppercase tracking-[0.2em] z-[60] relative">
-        Fix your churn problem. Bring your data or test our bot.
-      </div>
-
+    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-indigo-100 selection:text-indigo-900 overflow-x-hidden">
       {/* Navigation */}
-      <nav className="bg-white/80 backdrop-blur-xl border-b border-slate-100 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20">
-            <div className="flex items-center">
-              <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
-                <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center transform rotate-3 shadow-lg group-hover:rotate-0 transition-transform">
-                  <span className="text-white font-black text-xl">V</span>
-                </div>
-                <span className="font-black text-xl tracking-tighter">VOXLOOP</span>
-              </div>
+      <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/80 backdrop-blur-xl border-b border-slate-100 py-3' : 'bg-transparent py-6'}`}>
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          <div className="flex items-center gap-2 group cursor-pointer">
+            <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center shadow-lg shadow-slate-900/10 transition-transform group-hover:rotate-6">
+              <Mic className="text-white w-5 h-5" />
             </div>
-            <div className="hidden md:flex items-center space-x-10 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-              <button onClick={() => scrollTo('how-it-works')} className="hover:text-indigo-600 transition-colors">Journey</button>
-              <button onClick={() => scrollTo('byod')} className="hover:text-indigo-600 transition-colors">Existing Data</button>
-              <button onClick={() => scrollTo('success')} className="hover:text-indigo-600 transition-colors">Success</button>
-              <button onClick={() => scrollTo('pilot')} className="bg-slate-900 text-white px-6 py-3 rounded-xl hover:bg-indigo-600 transition-all text-[10px] font-black">
-                Book Pilot Call
-              </button>
-            </div>
+            <span className="text-xl font-black tracking-tighter text-slate-900 uppercase">VoxLoop</span>
+          </div>
+          
+          <div className="hidden md:flex items-center gap-8 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
+            <a href="#methodology" className="hover:text-slate-900 transition-colors">Methodology</a>
+            <a href="#case-study" className="hover:text-slate-900 transition-colors">Case Study</a>
+            <a href="#analysis" className="hover:text-slate-900 transition-colors">Analysis Engine</a>
+            <button className="bg-slate-900 text-white px-6 py-2.5 rounded-full hover:shadow-xl hover:shadow-indigo-500/20 transition-all">
+              Book Pilot Call
+            </button>
           </div>
         </div>
       </nav>
 
-      {/* Hero Content */}
-      <header className="relative py-24 md:py-48 px-6 bg-white overflow-hidden">
-        <VoiceWaveGraphic />
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <h1 className="text-5xl md:text-[7.5rem] font-black text-slate-950 mb-10 tracking-tighter leading-[0.9] uppercase">
-            The power of <span className="text-indigo-600">voice.</span><br/>
-            The speed of <span className="italic opacity-80 font-medium">AI.</span>
+      {/* HERO SECTION */}
+      <section className="relative pt-32 pb-24 lg:pt-56 lg:pb-64 flex flex-col items-center overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <svg className="w-full h-full opacity-60" viewBox="0 0 1440 800" fill="none">
+            <defs>
+              <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#6366f1" stopOpacity="0" />
+                <stop offset="50%" stopColor="#6366f1" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="#818cf8" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            {[...Array(8)].map((_, i) => (
+              <path
+                key={i}
+                d={`M -200 ${400 + i * 15} Q 360 ${200 - i * 30} 720 ${400 + i * 5} T 1640 ${400 - i * 15}`}
+                stroke="url(#waveGrad)"
+                strokeWidth="1.5"
+                fill="none"
+              >
+                <animate 
+                  attributeName="d" 
+                  dur={`${6 + i}s`} 
+                  repeatCount="indefinite"
+                  values={`
+                    M -200 ${400 + i * 15} Q 360 ${200 - i * 30} 720 ${400 + i * 5} T 1640 ${400 - i * 15};
+                    M -200 ${400 - i * 5} Q 360 ${600 + i * 20} 720 ${400 - i * 15} T 1640 ${400 + i * 30};
+                    M -200 ${400 + i * 15} Q 360 ${200 - i * 30} 720 ${400 + i * 5} T 1640 ${400 - i * 15}
+                  `}
+                />
+              </path>
+            ))}
+          </svg>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-white" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 border border-indigo-100 rounded-full text-indigo-600 text-[10px] font-black uppercase tracking-widest mb-10">
+            <Zap size={14} /> Intelligence for Retention
+          </div>
+          <h1 className="text-6xl lg:text-[110px] font-black text-slate-900 mb-10 tracking-tighter leading-[0.85]">
+            The power of <span className="text-indigo-600 italic">voice.</span><br />
+            The speed of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500 underline decoration-indigo-200 decoration-8 underline-offset-[-5px]">AI.</span>
           </h1>
-          <p className="text-lg md:text-2xl text-slate-500 max-w-2xl mx-auto mb-16 font-medium leading-relaxed">
+          <p className="max-w-3xl mx-auto text-xl lg:text-2xl text-slate-500 mb-16 leading-relaxed font-medium">
             We are building a new kind of survey tool. Enabling you to understand customer churn, act fast, and increase revenue.
           </p>
-          <div className="flex justify-center">
-            <button onClick={() => scrollTo('pilot')} className="px-12 py-6 bg-indigo-600 text-white rounded-2xl font-black text-lg shadow-xl hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95">
-              Secure Your Slot
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <button className="w-full sm:w-auto px-12 py-7 bg-slate-900 hover:bg-slate-800 text-white rounded-[2.5rem] font-black text-xl transition-all flex items-center justify-center gap-3 group shadow-2xl shadow-slate-900/20 active:scale-95">
+              Secure Your Slot <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>
-      </header>
+      </section>
 
-      {/* Journey Section */}
-      <section id="how-it-works" className="py-24 md:py-48 px-6 bg-white relative border-t border-slate-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-24 md:mb-40">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-950 uppercase tracking-tighter">How it works</h2>
-            <div className="w-20 h-2 bg-indigo-600 mt-6"></div>
+      {/* Methodology Section */}
+      <section id="methodology" className="pt-40 pb-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col items-center text-center mb-32">
+            <h2 className="text-xs font-black uppercase tracking-[0.5em] text-indigo-600 mb-6">The Methodology</h2>
+            <p className="text-4xl lg:text-6xl font-black text-slate-900 tracking-tight">How it works</p>
           </div>
 
-          <div className="space-y-48 md:space-y-64">
-            {/* Step 01 */}
-            <div className="grid md:grid-cols-2 gap-20 items-center">
-              <div className="order-2 md:order-1">
-                <div className="text-[100px] font-black text-indigo-600/5 absolute -translate-y-20 select-none">01</div>
-                <h3 className="text-4xl md:text-6xl font-black mb-8 leading-tight text-slate-950 uppercase tracking-tighter">Launch a short <br/>voice conversation</h3>
-                <p className="text-lg md:text-xl text-slate-600 mb-6 font-bold leading-relaxed">Traditional surveys are exhausting customers.</p>
-                <p className="text-md text-slate-500 mb-8 leading-relaxed font-medium">
-                  Response rates have fallen to single digits in many industries — people are tired of long forms, tick boxes, and questions that feel irrelevant. 
-                  <br/><br/>
-                  We start simple: a short 3–5 question conversation, ready in minutes. No complex setup. Just share a link with the customers you’re losing — or any segment you want to understand better.
-                </p>
-                <div className="bg-indigo-50 border-l-4 border-indigo-600 p-6 rounded-r-2xl">
-                  <p className="text-indigo-900 font-bold italic">It’s tuned to uncover churn drivers, but flexible enough for any feedback need.</p>
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* 01: CAPTURE */}
+            <div className="group">
+              <div className="relative mb-12 overflow-hidden rounded-[3rem] bg-slate-50 border border-slate-100 h-[450px] shadow-sm">
+                <div className="absolute inset-0 transition-transform duration-1000 group-hover:scale-105 opacity-60">
+                   <img 
+                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop" 
+                    alt="Customer Insight" 
+                    className="w-full h-full object-cover"
+                   />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                   <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-2xl mb-6 relative group-hover:scale-110 transition-all duration-500 border border-slate-100">
+                      <div className="absolute inset-0 rounded-full bg-indigo-100 animate-ping opacity-30" />
+                      <Mic className="text-indigo-600 w-10 h-10 relative z-10" />
+                   </div>
+                   <div className="bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-8 shadow-xl">
+                      Start Recording
+                   </div>
+                   <div className="px-8 text-center">
+                      <p className="text-slate-900 text-xl font-black italic leading-tight">
+                        'What's the one thing we can do to improve?'
+                      </p>
+                   </div>
                 </div>
               </div>
-              <div className="order-1 md:order-2 flex justify-center"><PhoneFrame><Step01Visual /></PhoneFrame></div>
+              <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black mb-6 shadow-lg shadow-indigo-200">01</div>
+              <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight leading-tight">Launch a short <br/>voice conversation</h3>
+              <p className="text-slate-500 font-medium leading-relaxed">
+                Replace text-based fatigue with human voice. A short 3–5 question chat that removes friction and captures 10x richer emotional context.
+              </p>
             </div>
 
-            {/* Step 02 */}
-            <div className="grid md:grid-cols-2 gap-20 items-center">
-              <div className="order-2">
-                <div className="text-[100px] font-black text-indigo-600/5 absolute -translate-y-20 select-none">02</div>
-                <h3 className="text-4xl md:text-6xl font-black mb-8 leading-tight text-slate-950 uppercase tracking-tighter">Designed for everyone</h3>
-                <p className="text-lg md:text-xl text-slate-600 mb-6 font-bold leading-relaxed italic">Accessibility from the ground up</p>
-                <p className="text-md text-slate-500 mb-8 leading-relaxed font-medium">Most surveys unintentionally exclude people. Older adults, neurodiverse users, non-native speakers — they drop off because typing is hard, forms are long, or language feels off.</p>
-                <div className="space-y-4 text-slate-700 font-bold text-sm">
-                  <div className="flex gap-3"><CheckCircle2 className="text-indigo-600 w-5 h-5" /> Voice-first — no typing required</div>
-                  <div className="flex gap-3"><CheckCircle2 className="text-indigo-600 w-5 h-5" /> Multilingual — respond naturally in your own language</div>
-                  <div className="flex gap-3"><CheckCircle2 className="text-indigo-600 w-5 h-5" /> Fully accessible — WCAG-compliant</div>
+            {/* 02: STRATEGIC REPORT - UPDATED WHITE BG VISUAL */}
+            <div className="group">
+              <div className="relative mb-12 overflow-hidden rounded-[3rem] bg-slate-50 h-[450px] flex flex-col items-center justify-center shadow-sm p-8 border border-slate-100 transition-colors group-hover:bg-slate-100/50">
+                {/* Background Decor */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-indigo-500/5 rounded-full blur-[80px]" />
+                
+                {/* 3D Angled Laptop Container */}
+                <div className="relative w-full max-w-[280px] perspective-[1200px] transform transition-all duration-1000 ease-out group-hover:rotate-x-2 group-hover:scale-105">
+                  
+                  {/* Laptop Screen */}
+                  <div className="relative bg-slate-200 rounded-xl p-1.5 shadow-xl border border-slate-300 transform-style-3d">
+                    <div className="bg-white rounded-lg aspect-[16/10] overflow-hidden p-3 relative flex flex-col border border-slate-100 shadow-inner">
+                      
+                      {/* Top Bar */}
+                      <div className="flex justify-between items-center mb-4 border-b border-slate-50 pb-2">
+                        <div className="flex gap-1">
+                          <div className="w-1.5 h-1.5 rounded-full bg-slate-200" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-slate-200" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-slate-200" />
+                        </div>
+                        <div className="px-2 py-0.5 bg-slate-50 rounded text-[6px] font-black text-slate-400 uppercase tracking-widest">
+                          VOX_GEN_REPORT
+                        </div>
+                      </div>
+
+                      {/* Main Data Visualization */}
+                      <div className="flex-1 space-y-3">
+                        {/* Line Chart */}
+                        <div className="h-16 bg-slate-50/50 rounded-lg p-2 relative overflow-hidden group/chart border border-slate-100">
+                          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 40" preserveAspectRatio="none">
+                            <defs>
+                              <linearGradient id="lineGradWhite" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="#6366f1" stopOpacity="0.1" />
+                                <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
+                              </linearGradient>
+                            </defs>
+                            <path 
+                              d="M0,35 C10,32 20,5 30,12 S45,35 60,15 S85,5 100,20 V40 H0 Z" 
+                              fill="url(#lineGradWhite)" 
+                            />
+                            <path 
+                              d="M0,35 C10,32 20,5 30,12 S45,35 60,15 S85,5 100,20" 
+                              fill="none" 
+                              stroke="#6366f1" 
+                              strokeWidth="1.5" 
+                              strokeLinecap="round"
+                              className="group-hover:stroke-indigo-400 transition-colors"
+                            />
+                            <circle cx="85" cy="5" r="1.5" fill="#6366f1" className="animate-pulse" />
+                          </svg>
+                          <div className="relative flex justify-between h-full items-end">
+                             <div className="text-[5px] font-black text-indigo-600/60 tracking-widest">RETENTION FORECAST</div>
+                          </div>
+                        </div>
+
+                        {/* Distribution Grid */}
+                        <div className="grid grid-cols-3 gap-2 flex-1">
+                          {[1,2,3].map(i => (
+                            <div key={i} className="bg-slate-50 rounded-lg p-2 flex flex-col justify-between border border-slate-100">
+                              <div className="w-3 h-1 bg-indigo-100 rounded-full" />
+                              <div className="flex items-end gap-0.5 h-5">
+                                {[1,2,3,4].map(j => (
+                                  <div 
+                                    key={j} 
+                                    className="flex-1 bg-indigo-500/10 rounded-t-[1px] group-hover:bg-indigo-500/20 transition-colors" 
+                                    style={{ height: `${20 + Math.random() * 80}%` }}
+                                  />
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  {/* Laptop Base */}
+                  <div className="relative w-[112%] -left-[6%] h-2.5 bg-slate-200 rounded-b-xl border-t border-slate-300 shadow-lg">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-slate-300 rounded-b-lg opacity-40" />
+                  </div>
+                  
+                  {/* Floating Action Badge */}
+                  <div className="absolute -right-8 top-1/3 bg-slate-900 text-white p-3 rounded-2xl shadow-xl transform rotate-12 group-hover:rotate-0 transition-all duration-500 scale-90">
+                    <Target size={18} strokeWidth={3} className="text-indigo-400" />
+                  </div>
                 </div>
-                <p className="mt-8 text-indigo-600 font-black italic">The result? Up to 10× higher completion and feedback that’s richer, more honest, and more representative.</p>
+
+                {/* Insight Card Overlap - WHITE VERSION */}
+                <div className="absolute bottom-8 left-8 right-8 bg-white/80 backdrop-blur-md border border-slate-200 rounded-2xl p-4 shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-indigo-100">
+                      <BarChart3 size={16} />
+                    </div>
+                    <div>
+                      <div className="text-[8px] font-black text-slate-400 uppercase tracking-[0.2em]">Priority Metric</div>
+                      <div className="text-xs font-bold text-slate-900 tracking-tight leading-none mt-1">Churn intent down <span className="text-emerald-500">14%</span></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="order-1 flex justify-center"><PhoneFrame><Step02Visual /></PhoneFrame></div>
+
+              <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black mb-6 shadow-lg shadow-indigo-200">02</div>
+              <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight leading-tight">Strategic <br/>Report</h3>
+              <p className="text-slate-500 font-medium leading-relaxed">
+                We remove the burden of manual analysis. Our AI synthesizes every conversation instantly, delivering a high-level action plan ready for the boardroom.
+              </p>
             </div>
 
-            {/* Step 03 */}
-            <div className="grid md:grid-cols-2 gap-20 items-center">
-              <div className="order-2 md:order-1">
-                <div className="text-[100px] font-black text-indigo-600/5 absolute -translate-y-20 select-none">03</div>
-                <h3 className="text-4xl md:text-6xl font-black mb-8 leading-tight text-slate-950 uppercase tracking-tighter">Action-ready reports</h3>
-                <p className="text-lg md:text-xl text-slate-600 mb-6 font-bold leading-relaxed italic">Actionable strategy, automatically</p>
-                <p className="text-md text-slate-500 mb-8 leading-relaxed font-medium">Even when companies do get survey data, it often sits unused. Because turning raw responses into strategy takes time — manual tagging, spreadsheets, or weeks of analysis.</p>
-                <div className="space-y-4 mb-8">
-                  <div className="flex gap-3 font-bold text-slate-800"><Zap className="text-amber-500 w-5 h-5" /> No manual transcription. No data crunching.</div>
-                  <p className="text-md text-slate-500 font-medium">Our AI listens, identifies recurring themes, pinpoints root causes, and delivers a prioritized report — usually in days.</p>
-                </div>
-                <p className="p-4 bg-indigo-50 border border-indigo-100 rounded-xl text-indigo-700 font-black uppercase text-[10px] tracking-widest inline-block">
-                  Insights you can act on immediately
-                </p>
+            {/* 03: TRUST LOOP */}
+            <div className="group">
+              <div className="relative mb-12 overflow-hidden rounded-[3rem] bg-slate-50 border border-slate-100 h-[450px] flex items-center justify-center shadow-sm">
+                 <div className="absolute w-[360px] h-[360px] border border-slate-100 rounded-full animate-[spin_60s_linear_infinite]" />
+                 <div className="absolute w-[280px] h-[280px] border border-slate-200 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
+                 
+                 <div className="relative z-10 flex flex-col items-center">
+                    <div className="w-20 h-20 bg-indigo-600 rounded-[2rem] flex items-center justify-center text-white shadow-xl shadow-indigo-100 mb-8 transform group-hover:rotate-12 transition-transform duration-500">
+                       <Repeat size={32} strokeWidth={2.5} />
+                    </div>
+                    <div className="text-center px-8">
+                       <p className="text-slate-900 font-black text-xl mb-4 tracking-tight uppercase">The Trust Loop</p>
+                       <div className="inline-flex flex-wrap justify-center gap-3">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Listen</span>
+                          <ArrowRight size={10} className="text-indigo-300 mt-1" />
+                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Fix</span>
+                          <ArrowRight size={10} className="text-indigo-300 mt-1" />
+                          <span className="text-[10px] font-black uppercase tracking-widest text-indigo-600">Grow</span>
+                       </div>
+                    </div>
+                 </div>
               </div>
-              <div className="order-1 md:order-2 flex justify-center"><PhoneFrame><Step03Visual /></PhoneFrame></div>
-            </div>
-
-            {/* Step 04 */}
-            <div className="grid md:grid-cols-2 gap-20 items-center">
-              <div className="order-2">
-                <div className="text-[100px] font-black text-indigo-600/5 absolute -translate-y-20 select-none">04</div>
-                <h3 className="text-4xl md:text-6xl font-black mb-8 leading-tight text-slate-950 uppercase tracking-tighter">Drive results <br/>and build trust</h3>
-                <p className="text-lg md:text-xl text-slate-600 mb-6 font-bold leading-relaxed italic">Earn loyalty through action</p>
-                <p className="text-md text-slate-500 mb-8 leading-relaxed font-medium">The real power isn’t just knowing why customers leave — it’s doing something about it. Research shows that customers who feel heard are far more likely to stay and spend more.</p>
-                <div className="flex flex-col gap-4">
-                  <div className="p-4 bg-slate-900 text-white rounded-2xl text-center font-black uppercase tracking-[0.2em] text-[10px]">listen → act → communicate → earn loyalty → grow</div>
-                  <p className="text-sm text-slate-400 font-bold text-center">That’s how feedback becomes your competitive advantage.</p>
-                </div>
-              </div>
-              <div className="order-1 flex justify-center"><PhoneFrame><Step04Visual /></PhoneFrame></div>
+              <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black mb-6 shadow-lg shadow-indigo-200">03</div>
+              <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight leading-tight">Drive results and <br/>build long-term trust</h3>
+              <p className="text-slate-500 font-medium leading-relaxed">
+                Close the feedback loop. Fix things fast, show customers you listened, and turn every piece of feedback into a growth opportunity.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* BYOD Section */}
-      <section id="byod" className="py-24 md:py-48 px-6 bg-slate-950 text-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-600/20 text-indigo-400 rounded-full text-[10px] font-black uppercase tracking-widest mb-8 border border-indigo-600/30">
-                <FileText size={14} /> Analysis Engine
-              </div>
-              <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight uppercase tracking-tighter">
-                Got old surveys or <br/>support tickets?
-              </h2>
-              <div className="space-y-6 text-slate-400 font-medium text-lg leading-relaxed">
-                <p>Upload an anonymized CSV (you pick what to share) and we’ll turn it into a clear, actionable report in days — no setup, no integration, no manual work.</p>
-                <p>You stay in control — choose columns and anonymize anything sensitive.</p>
-                <div className="flex items-center gap-3 text-white font-bold text-sm bg-white/5 p-4 rounded-xl border border-white/10">
-                  <ShieldCheck className="text-indigo-400" />
-                  Fully NDA-protected and GDPR-compliant
-                </div>
-                <p className="text-sm italic">Perfect low-risk start — test with old or anonymized data to see the insights without worry.</p>
-              </div>
-            </div>
-            <div className="bg-indigo-600 rounded-[3rem] p-12 relative overflow-hidden group shadow-2xl">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500 to-transparent opacity-50 group-hover:opacity-80 transition-opacity"></div>
-              <div className="relative z-10 flex flex-col items-center text-center">
-                 <div className="w-24 h-24 bg-white/10 rounded-[2rem] flex items-center justify-center mb-8 border border-white/20 shadow-inner">
-                    <UploadCloud size={48} className="text-white animate-bounce" />
-                 </div>
-                 <h4 className="text-2xl font-black mb-4 uppercase tracking-tighter">Drop your CSV</h4>
-                 <p className="text-indigo-100 text-sm mb-12 font-bold max-w-xs">Many pilot partners begin right here: a quick, safe look at their existing feedback that reveals hidden churn drivers they’d missed.</p>
-                 <div className="w-full h-2 bg-white/20 rounded-full overflow-hidden">
-                    <div className="w-2/3 h-full bg-white animate-[pulse_2s_infinite]"></div>
-                 </div>
-              </div>
-            </div>
+      {/* Case Study Section - Zeus Scooters */}
+      <section id="case-study" className="py-40 bg-white scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col items-center text-center mb-20">
+            <h2 className="text-xs font-black uppercase tracking-[0.5em] text-indigo-600 mb-6">Evidence</h2>
+            <p className="text-4xl lg:text-6xl font-black text-slate-900 tracking-tight">Case Study: Zeus Scooters</p>
           </div>
-        </div>
-      </section>
 
-      {/* Case Study Section */}
-      <section id="success" className="py-24 md:py-48 px-6 bg-slate-50 border-y border-slate-100">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-16 items-start">
-            <div className="lg:col-span-7">
-               <div className="inline-block px-4 py-1.5 bg-indigo-100 text-indigo-600 rounded-lg text-[10px] font-black uppercase tracking-widest mb-8">Case Study: QuickChat</div>
-               <blockquote className="text-3xl md:text-5xl font-black text-slate-950 tracking-tighter leading-tight mb-12 uppercase italic">
-                 "You've given me a step-by-step guide to <span className="text-indigo-600 underline">reduce churn.</span>"
-               </blockquote>
-               <div className="flex items-center gap-4">
-                 <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-lg">CK</div>
-                 <div>
-                   <h5 className="text-xl font-black text-slate-950 tracking-tight">Chris Kemp</h5>
-                   <p className="text-slate-400 font-black uppercase tracking-[0.2em] text-[10px]">Deputy CEO, Zeus Scooters</p>
-                 </div>
+          <div className="bg-slate-50 rounded-[4rem] p-8 lg:p-20 border border-slate-100 relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-12 hidden lg:block">
+               <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-indigo-600/40">
+                  <Globe size={14} /> Global Deployment
                </div>
             </div>
-            <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-              {[
-                { label: "Recovery", value: "€900K", desc: "Projected annual revenue saved." },
-                { label: "Target", value: "10K+", desc: "Win-back triggers automated." },
-                { label: "Loyalty", value: "42%", desc: "Increase in customer trust indices." },
-                { label: "Days", value: "<7", desc: "From raw feedback to strategy." }
-              ].map((stat, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
-                  <div className="text-2xl font-black text-indigo-600 mb-1">{stat.value}</div>
-                  <div className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-2">{stat.label}</div>
-                  <p className="text-[10px] text-slate-500 font-bold leading-tight">{stat.desc}</p>
-                </div>
-              ))}
+            
+            <div className="grid lg:grid-cols-12 gap-16 items-start">
+               {/* Left Column: Context & Solution */}
+               <div className="lg:col-span-7 space-y-12">
+                  <div className="flex items-center gap-5">
+                     <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-xl">
+                        CK
+                     </div>
+                     <div>
+                        <h4 className="font-black text-slate-900 text-xl tracking-tight leading-none">Chris Kemp</h4>
+                        <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mt-2">Deputy CEO, Zeus Scooters</p>
+                     </div>
+                  </div>
+
+                  <div className="relative">
+                     <Quote className="absolute -top-6 -left-8 text-indigo-100 w-16 h-16 -z-10" />
+                     <p className="text-3xl lg:text-4xl font-black text-slate-900 leading-[1.1] tracking-tighter">
+                        "You've given me a step-by-step guide to reduce churn."
+                     </p>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-8 pt-4">
+                    <div className="space-y-4">
+                      <div className="text-[10px] font-black text-indigo-600 uppercase tracking-widest">The Challenge</div>
+                      <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                        Zeus Scooters, an Irish mobility company, couldn't uncover why churn was climbing among their 150,000 users across 30 German cities—costing significant revenue. They needed high-engagement feedback in German.
+                      </p>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="text-[10px] font-black text-indigo-600 uppercase tracking-widest">The Solution</div>
+                      <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                        VOXLOOP deployed personalized voice campaigns in German via email, in-app, and social—achieving 3x participation and uncovering the retention drivers competitors missed.
+                      </p>
+                    </div>
+                  </div>
+               </div>
+
+               {/* Right Column: Key Metrics */}
+               <div className="lg:col-span-5 grid grid-cols-1 gap-6 h-full">
+                  <div className="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm flex flex-col justify-center transform hover:scale-[1.02] transition-transform">
+                     <div className="text-5xl font-black text-slate-900 mb-2 tracking-tighter">€900K</div>
+                     <div className="text-indigo-600 text-[10px] font-black uppercase tracking-widest mb-6">Recovery</div>
+                     <p className="text-slate-400 text-xs font-bold leading-relaxed uppercase">Projected annual revenue saved.</p>
+                  </div>
+                  <div className="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm flex flex-col justify-center transform hover:scale-[1.02] transition-transform">
+                     <div className="text-5xl font-black text-slate-900 mb-2 tracking-tighter">10K+</div>
+                     <div className="text-indigo-600 text-[10px] font-black uppercase tracking-widest mb-6">Target</div>
+                     <p className="text-slate-400 text-xs font-bold leading-relaxed uppercase">Win-back triggers automated.</p>
+                  </div>
+                  <div className="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm flex flex-col justify-center transform hover:scale-[1.02] transition-transform">
+                     <div className="text-5xl font-black text-slate-900 mb-2 tracking-tighter">&lt;7</div>
+                     <div className="text-indigo-600 text-[10px] font-black uppercase tracking-widest mb-6">Days</div>
+                     <p className="text-slate-400 text-xs font-bold leading-relaxed uppercase">From raw feedback to strategy.</p>
+                  </div>
+               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section id="pilot" className="py-24 md:py-48 px-6 bg-white relative overflow-hidden">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-indigo-600 rounded-[3rem] p-8 md:p-16 relative overflow-hidden text-center shadow-[0_40px_100px_rgba(79,70,229,0.2)]">
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-none uppercase tracking-tighter">
-                Join our <span className="italic opacity-80">pilot program.</span>
-              </h2>
-              <div className="max-w-2xl mx-auto space-y-4 text-indigo-50 font-bold text-base mb-10 leading-relaxed">
-                <p>We’re working closely with teams to test and shape VOXLOOP — turning real customer feedback into real churn reduction.</p>
-                
-                <div className="grid sm:grid-cols-2 gap-4 text-left">
-                  <div className="bg-white/10 p-4 rounded-xl border border-white/10">
-                    <p className="text-white text-[10px] font-black uppercase tracking-widest mb-1 flex items-center gap-2"><Sparkles size={12} /> Why join now?</p>
-                    <p className="text-xs opacity-80 leading-snug">Get a free, full pilot — we analyze your data or run a live voice conversation. Your insights directly influence what we build next.</p>
-                  </div>
-                  <div className="bg-white/10 p-4 rounded-xl border border-white/10">
-                    <p className="text-white text-[10px] font-black uppercase tracking-widest mb-1 flex items-center gap-2"><ShieldAlert size={12} /> Safe & Focused</p>
-                    <p className="text-xs opacity-80 leading-snug">NDA-protected, low-risk, and focused on your biggest churn challenges. We uncover hidden drivers in days.</p>
-                  </div>
+      {/* Analysis Engine Section */}
+      <section id="analysis" className="py-40 bg-slate-50 scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="bg-slate-900 rounded-[4rem] p-10 lg:p-24 relative overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+            
+            <div className="grid lg:grid-cols-2 gap-20 items-center relative z-10">
+              <div>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-400 text-[10px] font-black uppercase tracking-widest mb-8">
+                   <BarChart3 size={14} /> Intelligence Pipeline
+                </div>
+                <h2 className="text-4xl lg:text-7xl font-black text-white mb-8 tracking-tighter leading-tight">
+                  Try our analysis engine.
+                </h2>
+                <p className="text-slate-400 text-xl mb-12 leading-relaxed font-medium">
+                  Got old surveys or support tickets? Upload an anonymized CSV and we’ll turn it into a prioritized report in days. No integration needed.
+                </p>
+                <div className="flex gap-4">
+                   <div className="flex items-center gap-3 text-slate-500 text-[10px] font-black uppercase tracking-widest border border-white/10 px-5 py-3 rounded-2xl bg-white/5">
+                      <ShieldCheck size={16} className="text-indigo-500" /> GDPR Compliant
+                   </div>
+                   <div className="flex items-center gap-3 text-slate-500 text-[10px] font-black uppercase tracking-widest border border-white/10 px-5 py-3 rounded-2xl bg-white/5">
+                      <Lock size={16} className="text-indigo-500" /> NDA Guaranteed
+                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-3xl p-6 md:p-10 shadow-2xl max-w-lg mx-auto text-left">
-                <h3 className="text-xl font-black text-slate-950 mb-1 uppercase tracking-tight">Ready to work together?</h3>
-                <p className="text-xs text-slate-500 mb-6 font-medium">Book a 15-minute call — let’s explore if this is the right fit for you.</p>
-                
-                <div className="space-y-3">
-                  <button className="w-full py-4 bg-indigo-600 text-white rounded-xl font-black text-base hover:bg-indigo-700 transition-all shadow-lg flex items-center justify-center gap-3 group">
-                    Schedule Your Call
-                    <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
-                  </button>
-                  <div className="flex items-center justify-center gap-4 pt-4 opacity-50">
-                    <div className="flex items-center gap-1.5 text-slate-900 font-black text-[9px] uppercase tracking-widest">
-                      <Lock size={12} /> Secure
-                    </div>
-                    <div className="flex items-center gap-1.5 text-slate-900 font-black text-[9px] uppercase tracking-widest">
-                      <ShieldCheck size={12} /> Confidential
-                    </div>
-                  </div>
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-indigo-500/20 rounded-[4rem] blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
+                <div className="relative bg-slate-800 border border-white/10 rounded-[4rem] p-16 text-center flex flex-col items-center justify-center transition-all duration-500 hover:border-indigo-500/50 group cursor-pointer active:scale-95">
+                   <div className="w-24 h-24 bg-indigo-600 rounded-3xl flex items-center justify-center mb-8 shadow-2xl shadow-indigo-600/40">
+                      <FileUp className="text-white w-10 h-10" />
+                   </div>
+                   <h4 className="text-2xl font-black text-white mb-2 tracking-tight">Drop your CSV here</h4>
+                   <p className="text-slate-500 font-medium mb-10 text-sm">Automated analysis starts instantly</p>
+                   <div className="flex items-center gap-2 text-indigo-400 font-black text-xs uppercase tracking-widest">
+                      Select Files <ArrowUpRight size={14} />
+                   </div>
                 </div>
               </div>
             </div>
@@ -442,11 +411,46 @@ const App = () => {
         </div>
       </section>
 
-      <footer className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-6 text-center border-t border-slate-50 pt-12">
-          <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.3em]">© 2026 VoxLoop • Built for high-trust companies</p>
+      {/* Final CTA */}
+      <section className="py-48 bg-white text-center">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="text-6xl lg:text-[110px] font-black text-slate-900 mb-10 tracking-tighter leading-[0.85]">
+            Secure your <span className="text-indigo-600 italic">pilot call.</span>
+          </h2>
+          <p className="text-slate-500 text-2xl lg:text-3xl mb-16 leading-relaxed font-medium max-w-4xl mx-auto">
+            We’re working closely with teams to test and shape VOXLOOP — turning real customer feedback into real churn reduction.
+          </p>
+          <button className="px-20 py-10 bg-slate-900 hover:bg-slate-800 text-white rounded-[2.5rem] font-black text-3xl transition-all shadow-3xl hover:scale-105 active:scale-95">
+            Schedule My Call
+          </button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-20 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12">
+          <div className="flex items-center gap-3 font-black text-3xl tracking-tighter">
+            <div className="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center shadow-xl shadow-slate-900/10">
+              <Mic size={24} className="text-white" />
+            </div>
+            VOXLOOP
+          </div>
+          <div className="text-slate-400 text-[10px] font-black uppercase tracking-[0.5em]">
+            © 2026 VoxLoop • High Trust Infrastructure
+          </div>
+          <div className="flex gap-10 text-[10px] font-black text-slate-900 uppercase tracking-widest">
+            <a href="#" className="hover:text-indigo-600">Privacy</a>
+            <a href="#" className="hover:text-indigo-600">Terms</a>
+          </div>
         </div>
       </footer>
+
+      <style>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 };

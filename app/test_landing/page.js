@@ -50,11 +50,11 @@ const App = () => {
       {/* HERO SECTION */}
       <section className="relative pt-32 pb-24 lg:pt-56 lg:pb-64 flex flex-col items-center overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <svg className="w-full h-full opacity-60" viewBox="0 0 1440 800" fill="none">
+          <svg className="w-full h-full opacity-80 md:opacity-60" viewBox="0 0 1440 800" fill="none">
             <defs>
               <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#6366f1" stopOpacity="0" />
-                <stop offset="50%" stopColor="#6366f1" stopOpacity="0.4" />
+                <stop offset="50%" stopColor="#6366f1" stopOpacity="0.6" />
                 <stop offset="100%" stopColor="#818cf8" stopOpacity="0" />
               </linearGradient>
             </defs>
@@ -63,7 +63,7 @@ const App = () => {
                 key={i}
                 d={`M -200 ${400 + i * 15} Q 360 ${200 - i * 30} 720 ${400 + i * 5} T 1640 ${400 - i * 15}`}
                 stroke="url(#waveGrad)"
-                strokeWidth="1.5"
+                strokeWidth="2"
                 fill="none"
               >
                 <animate 
@@ -79,7 +79,7 @@ const App = () => {
               </path>
             ))}
           </svg>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/10 to-white" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
@@ -227,8 +227,8 @@ const App = () => {
             {/* 03: TRUST LOOP */}
             <div className="group">
               <div className="relative mb-12 overflow-hidden rounded-[3rem] bg-slate-50 border border-slate-100 h-[450px] flex items-center justify-center shadow-sm">
-                 <div className="absolute w-[360px] h-[360px] border border-slate-100 rounded-full animate-[spin_60s_linear_infinite]" />
-                 <div className="absolute w-[280px] h-[280px] border border-slate-200 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
+                 <div className="absolute w-[360px] h-[360px] border border-slate-200 md:border-slate-100 rounded-full animate-[spin_60s_linear_infinite]" />
+                 <div className="absolute w-[280px] h-[280px] border border-slate-300 md:border-slate-200 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
                  
                  <div className="relative z-10 flex flex-col items-center">
                     <div className="w-20 h-20 bg-indigo-600 rounded-[2rem] flex items-center justify-center text-white shadow-xl shadow-indigo-100 mb-8 transform group-hover:rotate-12 transition-transform duration-500">
@@ -237,10 +237,10 @@ const App = () => {
                     <div className="text-center px-8">
                        <p className="text-slate-900 font-black text-xl mb-4 tracking-tight uppercase">The Trust Loop</p>
                        <div className="inline-flex flex-wrap justify-center gap-3">
-                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Listen</span>
-                          <ArrowRight size={10} className="text-indigo-300 mt-1" />
-                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Fix</span>
-                          <ArrowRight size={10} className="text-indigo-300 mt-1" />
+                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 md:text-slate-400">Listen</span>
+                          <ArrowRight size={10} className="text-indigo-400 mt-1" />
+                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 md:text-slate-400">Fix</span>
+                          <ArrowRight size={10} className="text-indigo-400 mt-1" />
                           <span className="text-[10px] font-black uppercase tracking-widest text-indigo-600">Grow</span>
                        </div>
                     </div>

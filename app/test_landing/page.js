@@ -4,25 +4,15 @@ import React, { useState, useEffect } from 'react';
 import { 
   Mic, 
   ArrowRight, 
-  FileUp, 
   Lock, 
   ShieldCheck, 
   BarChart3, 
   Zap,
   Repeat,
-  Activity,
   ArrowUpRight,
-  CheckCircle2,
   Quote,
   Globe,
-  FileText,
-  Layers,
-  Sparkles,
-  TrendingDown,
-  ChevronRight,
-  PieChart,
-  Target,
-  Monitor
+  Target
 } from 'lucide-react';
 
 const App = () => {
@@ -156,17 +146,11 @@ const App = () => {
             {/* 02: STRATEGIC REPORT */}
             <div className="group">
               <div className="relative mb-12 overflow-hidden rounded-[3rem] bg-slate-50 h-[450px] flex flex-col items-center justify-center shadow-sm p-8 border border-slate-100 transition-colors group-hover:bg-slate-100/50">
-                {/* Background Decor */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-indigo-500/5 rounded-full blur-[80px]" />
                 
-                {/* 3D Angled Laptop Container */}
                 <div className="relative w-full max-w-[280px] perspective-[1200px] transform transition-all duration-1000 ease-out group-hover:rotate-x-2 group-hover:scale-105">
-                  
-                  {/* Laptop Screen */}
                   <div className="relative bg-slate-200 rounded-xl p-1.5 shadow-xl border border-slate-300 transform-style-3d">
                     <div className="bg-white rounded-lg aspect-[16/10] overflow-hidden p-3 relative flex flex-col border border-slate-100 shadow-inner">
-                      
-                      {/* Top Bar */}
                       <div className="flex justify-between items-center mb-4 border-b border-slate-50 pb-2">
                         <div className="flex gap-1">
                           <div className="w-1.5 h-1.5 rounded-full bg-slate-200" />
@@ -178,9 +162,7 @@ const App = () => {
                         </div>
                       </div>
 
-                      {/* Main Data Visualization */}
                       <div className="flex-1 space-y-3">
-                        {/* Line Chart */}
                         <div className="h-16 bg-slate-50/50 rounded-lg p-2 relative overflow-hidden group/chart border border-slate-100">
                           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 40" preserveAspectRatio="none">
                             <defs>
@@ -189,18 +171,8 @@ const App = () => {
                                 <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
                               </linearGradient>
                             </defs>
-                            <path 
-                              d="M0,35 C10,32 20,5 30,12 S45,35 60,15 S85,5 100,20 V40 H0 Z" 
-                              fill="url(#lineGradWhite)" 
-                            />
-                            <path 
-                              d="M0,35 C10,32 20,5 30,12 S45,35 60,15 S85,5 100,20" 
-                              fill="none" 
-                              stroke="#6366f1" 
-                              strokeWidth="1.5" 
-                              strokeLinecap="round"
-                              className="group-hover:stroke-indigo-400 transition-colors"
-                            />
+                            <path d="M0,35 C10,32 20,5 30,12 S45,35 60,15 S85,5 100,20 V40 H0 Z" fill="url(#lineGradWhite)" />
+                            <path d="M0,35 C10,32 20,5 30,12 S45,35 60,15 S85,5 100,20" fill="none" stroke="#6366f1" strokeWidth="1.5" strokeLinecap="round" className="group-hover:stroke-indigo-400 transition-colors" />
                             <circle cx="85" cy="5" r="1.5" fill="#6366f1" className="animate-pulse" />
                           </svg>
                           <div className="relative flex justify-between h-full items-end">
@@ -208,40 +180,30 @@ const App = () => {
                           </div>
                         </div>
 
-                        {/* Distribution Grid */}
                         <div className="grid grid-cols-3 gap-2 flex-1">
                           {[1,2,3].map(i => (
                             <div key={i} className="bg-slate-50 rounded-lg p-2 flex flex-col justify-between border border-slate-100">
                               <div className="w-3 h-1 bg-indigo-100 rounded-full" />
                               <div className="flex items-end gap-0.5 h-5">
                                 {[1,2,3,4].map(j => (
-                                  <div 
-                                    key={j} 
-                                    className="flex-1 bg-indigo-500/10 rounded-t-[1px] group-hover:bg-indigo-500/20 transition-colors" 
-                                    style={{ height: `${20 + Math.random() * 80}%` }}
-                                  />
+                                  <div key={j} className="flex-1 bg-indigo-500/10 rounded-t-[1px] group-hover:bg-indigo-500/20 transition-colors" style={{ height: `${20 + Math.random() * 80}%` }} />
                                 ))}
                               </div>
                             </div>
                           ))}
                         </div>
                       </div>
-
                     </div>
                   </div>
 
-                  {/* Laptop Base */}
                   <div className="relative w-[112%] -left-[6%] h-2.5 bg-slate-200 rounded-b-xl border-t border-slate-300 shadow-lg">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-slate-300 rounded-b-lg opacity-40" />
                   </div>
-                  
-                  {/* Floating Action Badge */}
                   <div className="absolute -right-8 top-1/3 bg-slate-900 text-white p-3 rounded-2xl shadow-xl transform rotate-12 group-hover:rotate-0 transition-all duration-500 scale-90">
                     <Target size={18} strokeWidth={3} className="text-indigo-400" />
                   </div>
                 </div>
 
-                {/* Insight Card Overlap */}
                 <div className="absolute bottom-8 left-8 right-8 bg-white/80 backdrop-blur-md border border-slate-200 rounded-2xl p-4 shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-indigo-100">
@@ -310,7 +272,6 @@ const App = () => {
             </div>
             
             <div className="grid lg:grid-cols-12 gap-16 items-start">
-               {/* Left Column: Context & Solution */}
                <div className="lg:col-span-7 space-y-12">
                   <div className="flex items-center gap-5">
                      <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-xl">
@@ -333,19 +294,18 @@ const App = () => {
                     <div className="space-y-4">
                       <div className="text-[10px] font-black text-indigo-600 uppercase tracking-widest">The Challenge</div>
                       <p className="text-slate-600 text-sm leading-relaxed font-medium">
-                        Zeus Scooters, an Irish mobility company, couldn't uncover why churn was climbing among their 150,000 users across 30 German cities—costing significant revenue. They needed high-engagement feedback in German.
+                        Zeus Scooters couldn't uncover why churn was climbing among their 150,000 users across 30 German cities—costing significant revenue.
                       </p>
                     </div>
                     <div className="space-y-4">
                       <div className="text-[10px] font-black text-indigo-600 uppercase tracking-widest">The Solution</div>
                       <p className="text-slate-600 text-sm leading-relaxed font-medium">
-                        VOXLOOP deployed personalized voice campaigns in German via email, in-app, and social—achieving 3x participation and uncovering the retention drivers competitors missed.
+                        VOXLOOP deployed personalized voice campaigns achieving 3x participation and uncovering the retention drivers competitors missed.
                       </p>
                     </div>
                   </div>
                </div>
 
-               {/* Right Column: Key Metrics */}
                <div className="lg:col-span-5 grid grid-cols-1 gap-6 h-full">
                   <div className="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm flex flex-col justify-center transform hover:scale-[1.02] transition-transform">
                      <div className="text-5xl font-black text-slate-900 mb-2 tracking-tighter">€900K</div>
@@ -368,45 +328,33 @@ const App = () => {
         </div>
       </section>
 
-      {/* Analysis Engine Section */}
-      <section id="analysis" className="py-40 bg-slate-50 scroll-mt-20">
+      {/* Analysis Engine Section - Mobile Optimized */}
+      <section id="analysis" className="py-24 lg:py-40 bg-slate-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="bg-slate-900 rounded-[4rem] p-10 lg:p-24 relative overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+          <div className="bg-slate-900 rounded-[3rem] lg:rounded-[4rem] p-8 lg:p-24 relative overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">
+            <div className="absolute top-0 right-0 w-[400px] lg:w-[600px] h-[400px] lg:h-[600px] bg-indigo-600/10 rounded-full blur-[80px] lg:blur-[120px] -translate-y-1/2 translate-x-1/2" />
             
-            <div className="grid lg:grid-cols-2 gap-20 items-center relative z-10">
-              <div>
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-400 text-[10px] font-black uppercase tracking-widest mb-8">
-                   <BarChart3 size={14} /> Intelligence Pipeline
-                </div>
-                <h2 className="text-4xl lg:text-7xl font-black text-white mb-8 tracking-tighter leading-tight">
-                  Try our analysis engine.
-                </h2>
-                <p className="text-slate-400 text-xl mb-12 leading-relaxed font-medium">
-                  Got old surveys or support tickets? Upload an anonymized CSV and we’ll turn it into a prioritized report in days. No integration needed.
-                </p>
-                <div className="flex gap-4">
-                   <div className="flex items-center gap-3 text-slate-500 text-[10px] font-black uppercase tracking-widest border border-white/10 px-5 py-3 rounded-2xl bg-white/5">
-                      <ShieldCheck size={16} className="text-indigo-500" /> GDPR Compliant
-                   </div>
-                   <div className="flex items-center gap-3 text-slate-500 text-[10px] font-black uppercase tracking-widest border border-white/10 px-5 py-3 rounded-2xl bg-white/5">
-                      <Lock size={16} className="text-indigo-500" /> NDA Guaranteed
-                   </div>
-                </div>
+            <div className="relative z-10 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-400 text-[10px] font-black uppercase tracking-widest mb-8">
+                 <BarChart3 size={14} /> Intelligence Pipeline
               </div>
-
-              <div className="relative group">
-                <div className="absolute -inset-4 bg-indigo-500/20 rounded-[4rem] blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-                <div className="relative bg-slate-800 border border-white/10 rounded-[4rem] p-16 text-center flex flex-col items-center justify-center transition-all duration-500 hover:border-indigo-500/50 group cursor-pointer active:scale-95">
-                   <div className="w-24 h-24 bg-indigo-600 rounded-3xl flex items-center justify-center mb-8 shadow-2xl shadow-indigo-600/40">
-                      <FileUp className="text-white w-10 h-10" />
-                   </div>
-                   <h4 className="text-2xl font-black text-white mb-2 tracking-tight">Drop your CSV here</h4>
-                   <p className="text-slate-500 font-medium mb-10 text-sm">Automated analysis starts instantly</p>
-                   <div className="flex items-center gap-2 text-indigo-400 font-black text-xs uppercase tracking-widest">
-                      Select Files <ArrowUpRight size={14} />
-                   </div>
-                </div>
+              <h2 className="text-4xl lg:text-7xl font-black text-white mb-8 tracking-tighter leading-tight max-w-2xl">
+                Try our analysis engine.
+              </h2>
+              <p className="text-slate-400 text-lg lg:text-xl mb-12 leading-relaxed font-medium max-w-2xl mx-auto lg:mx-0">
+                Got old surveys or support tickets? We turn your historical data into a prioritized report in hours. We identify the "High Churn Risks" so you can act to improve your customer churn.
+              </p>
+              
+              <div className="flex flex-col lg:flex-row gap-4 items-center justify-center lg:justify-start">
+                 <div className="flex items-center gap-3 text-slate-400 text-[9px] lg:text-[10px] font-black uppercase tracking-widest border border-white/10 px-6 py-4 rounded-2xl bg-white/5 w-full lg:w-auto justify-center lg:justify-start">
+                    <ShieldCheck size={16} className="text-indigo-500" /> GDPR Compliant
+                 </div>
+                 <div className="flex items-center gap-3 text-slate-400 text-[9px] lg:text-[10px] font-black uppercase tracking-widest border border-white/10 px-6 py-4 rounded-2xl bg-white/5 w-full lg:w-auto justify-center lg:justify-start">
+                    <Lock size={16} className="text-indigo-500" /> NDA Guaranteed
+                 </div>
+                 <button className="group flex items-center gap-3 text-white text-[9px] lg:text-[10px] font-black uppercase tracking-widest bg-indigo-600 px-8 py-4 rounded-2xl hover:bg-indigo-500 transition-all w-full lg:w-auto justify-center">
+                    Discuss Data Ingest <ArrowUpRight size={16} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+                 </button>
               </div>
             </div>
           </div>
@@ -414,15 +362,15 @@ const App = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-48 bg-white text-center">
+      <section className="py-32 lg:py-48 bg-white text-center">
         <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-6xl lg:text-[110px] font-black text-slate-900 mb-10 tracking-tighter leading-[0.85]">
+          <h2 className="text-5xl lg:text-[110px] font-black text-slate-900 mb-8 lg:mb-10 tracking-tighter leading-[0.85]">
             Secure your <span className="text-indigo-600 italic">pilot call.</span>
           </h2>
-          <p className="text-slate-500 text-2xl lg:text-3xl mb-16 leading-relaxed font-medium max-w-4xl mx-auto">
+          <p className="text-slate-500 text-xl lg:text-3xl mb-12 lg:text-16 leading-relaxed font-medium max-w-4xl mx-auto">
             We’re working closely with teams to test and shape VOXLOOP — turning real customer feedback into real churn reduction.
           </p>
-          <button className="px-20 py-10 bg-slate-900 hover:bg-slate-800 text-white rounded-[2.5rem] font-black text-3xl transition-all shadow-3xl hover:scale-105 active:scale-95">
+          <button className="w-full sm:w-auto px-12 lg:px-20 py-8 lg:py-10 bg-slate-900 hover:bg-slate-800 text-white rounded-[2rem] lg:rounded-[2.5rem] font-black text-xl lg:text-3xl transition-all shadow-3xl hover:scale-105 active:scale-95">
             Schedule My Call
           </button>
         </div>
@@ -430,19 +378,19 @@ const App = () => {
 
       {/* Footer */}
       <footer className="py-20 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center justify-between gap-12 lg:flex-row">
           <div className="flex items-center gap-3 font-black text-3xl tracking-tighter">
             <div className="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center shadow-xl shadow-slate-900/10">
               <Mic size={24} className="text-white" />
             </div>
             VOXLOOP
           </div>
-          <div className="text-slate-400 text-[10px] font-black uppercase tracking-[0.5em]">
+          <div className="text-slate-400 text-[10px] font-black uppercase tracking-[0.5em] text-center">
             © 2026 VoxLoop • High Trust Infrastructure
           </div>
           <div className="flex gap-10 text-[10px] font-black text-slate-900 uppercase tracking-widest">
-            <a href="#" className="hover:text-indigo-600">Privacy</a>
-            <a href="#" className="hover:text-indigo-600">Terms</a>
+            <a href="#" className="hover:text-indigo-600 transition-colors">Privacy</a>
+            <a href="#" className="hover:text-indigo-600 transition-colors">Terms</a>
           </div>
         </div>
       </footer>

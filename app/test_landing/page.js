@@ -98,10 +98,10 @@ const App = () => {
       {/* BACKGROUND LAYER */}
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0 opacity-60" />
 
-      {/* PRIORITY ACCESS TOP BAR */}
-      <div className="bg-violet-600 text-white py-3 px-6 text-center text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] relative z-[60]">
-        Priority Access: 2 Pilot Slots Remaining — 
-        <button className="underline ml-2 hover:text-violet-100 transition-colors">Let's Talk</button>
+      {/* TOP BAR - UPDATED TO COLLABORATIVE */}
+      <div className="bg-slate-900 text-white py-3 px-6 text-center text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] relative z-[60]">
+        Collaborate with us: We're building for your specific needs — 
+        <button className="underline ml-2 hover:text-violet-400 transition-colors font-black text-violet-300">Share your feedback</button>
       </div>
 
       {/* NAVIGATION */}
@@ -120,12 +120,12 @@ const App = () => {
              <a href="#process" className="hover:text-violet-600 transition-colors">The Process</a>
              <a href="#case-study" className="hover:text-violet-600 transition-colors">Case Study</a>
              <button className="px-6 py-2.5 bg-slate-900 text-white rounded-full hover:bg-violet-600 transition-all font-black">
-               Get in touch
+               Let's Talk
              </button>
           </div>
           
           <button className="md:hidden px-4 py-2 bg-slate-900 text-white rounded-full text-[10px] font-black uppercase tracking-widest">
-            Contact
+            Let's Talk
           </button>
         </div>
       </nav>
@@ -142,17 +142,29 @@ const App = () => {
             <span className="text-violet-600">from your <br className="md:hidden" />customers' data.</span>
           </h1>
           
-          <p className="text-base md:text-2xl text-slate-500 max-w-2xl font-medium leading-relaxed mb-10 md:mb-12">
-            We help you decode customer data fast—turning surveys, tickets, and CSVs into clear roadmaps to drive action, build trust, and grow revenue.
-          </p>
+          <div className="text-base md:text-2xl text-slate-500 max-w-3xl font-medium leading-relaxed mb-10 md:mb-12">
+            We are building a platform to help you decode customer data <span className="relative inline-block px-1 font-bold text-slate-900 whitespace-nowrap"><span className="absolute bottom-1 left-0 w-full h-3 bg-violet-100 -z-10 rounded-sm"></span>fast</span> — turning surveys, tickets, and CSVs into clear roadmaps to:
+            
+            <div className="flex flex-wrap gap-x-6 gap-y-3 mt-4">
+              <span className="flex items-center gap-2 text-violet-600 font-black text-sm md:text-xl italic tracking-tight">
+                <CheckCircle2 size={20} /> drive action
+              </span>
+              <span className="flex items-center gap-2 text-violet-600 font-black text-sm md:text-xl italic tracking-tight">
+                <CheckCircle2 size={20} /> build trust
+              </span>
+              <span className="flex items-center gap-2 text-violet-600 font-black text-sm md:text-xl italic tracking-tight">
+                <CheckCircle2 size={20} /> grow revenue
+              </span>
+            </div>
+          </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <button className="w-full sm:w-auto px-8 py-4 md:px-10 md:py-5 bg-violet-600 text-white hover:bg-slate-900 rounded-xl md:rounded-2xl font-black text-base md:text-lg transition-all shadow-xl shadow-violet-100 flex items-center justify-center gap-3 group">
-              Start your pilot
+              Let's Talk
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
             <p className="text-xs md:text-sm font-bold text-slate-400 italic">
-              "We're looking for 2 more pilot partners."
+              "Tell us about your data challenges."
             </p>
           </div>
         </div>
@@ -166,7 +178,7 @@ const App = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-12">
-          {/* Feature 1: The Foundation */}
+          {/* Feature 1 */}
           <div className="space-y-6 group bg-slate-50/50 p-6 md:p-0 rounded-3xl md:bg-transparent">
             <div className="w-14 h-14 bg-white md:bg-violet-50 rounded-2xl flex items-center justify-center group-hover:bg-violet-600 transition-colors duration-500 shadow-sm md:shadow-none">
               <Layers size={28} className="text-violet-600 group-hover:text-white transition-colors duration-500" />
@@ -178,17 +190,9 @@ const App = () => {
                 Drop your CSV, survey export, or support tickets. No reformatting needed—your customers' voice is already here.
               </p>
             </div>
-            <div className="space-y-3">
-              {["No reformatting needed", "Multi-language support", "Secure processing"].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-100 md:border-transparent md:bg-transparent md:p-0">
-                  <CheckCircle2 size={16} className="text-violet-600 flex-shrink-0" />
-                  <span className="text-xs md:text-sm font-bold text-slate-900">{item}</span>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Feature 2: The Brain */}
+          {/* Feature 2 */}
           <div className="space-y-6 group bg-slate-50/50 p-6 md:p-0 rounded-3xl md:bg-transparent">
             <div className="w-14 h-14 bg-white md:bg-violet-50 rounded-2xl flex items-center justify-center group-hover:bg-violet-600 transition-colors duration-500 shadow-sm md:shadow-none">
               <Zap size={28} className="text-violet-600 group-hover:text-white transition-colors duration-500" />
@@ -200,17 +204,9 @@ const App = () => {
                 We deliver a strategic roadmap with recommended actions. Get clarity in hours, not weeks of manual analysis.
               </p>
             </div>
-            <div className="space-y-3">
-              {["What to build next", "Churn drivers", "Priority fixes"].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-100 md:border-transparent md:bg-transparent md:p-0">
-                  <CheckCircle2 size={16} className="text-violet-600 flex-shrink-0" />
-                  <span className="text-xs md:text-sm font-bold text-slate-900">{item}</span>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Feature 3: Growth Execution */}
+          {/* Feature 3 */}
           <div className="space-y-6 group bg-slate-50/50 p-6 md:p-0 rounded-3xl md:bg-transparent">
             <div className="w-14 h-14 bg-white md:bg-violet-50 rounded-2xl flex items-center justify-center group-hover:bg-violet-600 transition-colors duration-500 shadow-sm md:shadow-none">
               <TrendingUp size={28} className="text-violet-600 group-hover:text-white transition-colors duration-500" />
@@ -222,14 +218,6 @@ const App = () => {
                 Execute with confidence. Your customers see the difference, trust builds, and revenue grows.
               </p>
             </div>
-            <div className="space-y-3">
-              {["Measurable results", "Built-in trust", "Revenue growth"].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-100 md:border-transparent md:bg-transparent md:p-0">
-                  <CheckCircle2 size={16} className="text-violet-600 flex-shrink-0" />
-                  <span className="text-xs md:text-sm font-bold text-slate-900">{item}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -238,8 +226,6 @@ const App = () => {
       <section id="case-study" className="py-12 md:py-24 relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="bg-slate-900 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row min-h-[600px] border border-slate-800">
-            
-            {/* Left: Branding & Metrics */}
             <div className="lg:w-1/2 p-8 md:p-16 bg-gradient-to-br from-slate-800 to-slate-950 flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-8 md:mb-12">
@@ -250,7 +236,6 @@ const App = () => {
                 <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-[1.1] mb-10 md:mb-12">
                   Reducing churn for 150k users.
                 </h2>
-                
                 <div className="flex flex-row md:grid md:grid-cols-2 gap-6 md:gap-8 pt-8 border-t border-slate-800">
                   <div className="flex-1">
                     <div className="text-3xl md:text-5xl font-black text-white">€900K</div>
@@ -263,14 +248,11 @@ const App = () => {
                 </div>
               </div>
             </div>
-
-            {/* Right: The Human Quote */}
             <div className="lg:w-1/2 p-8 md:p-16 bg-white flex flex-col justify-center">
               <Quote size={40} className="text-violet-100 mb-6 md:mb-8" />
               <blockquote className="text-2xl md:text-4xl font-bold tracking-tight text-slate-900 leading-tight mb-10 md:mb-12">
-                "You've given me a <span className="text-violet-600">step-by-step guide</span> to reduce churn. The clarity DataUnlock provided transformed how we prioritize our dev cycle."
+                "You've given me a <span className="text-violet-600">step-by-step guide</span> to reduce churn."
               </blockquote>
-
               <div className="flex items-center gap-4 md:gap-5">
                 <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-violet-600 flex items-center justify-center shadow-lg border-2 border-slate-50 text-white font-black text-xl">
                   CK
@@ -288,21 +270,21 @@ const App = () => {
         </div>
       </section>
 
-      {/* FINAL CTA */}
+      {/* FINAL CTA - UPDATED TO BE MORE COLLABORATIVE */}
       <footer className="py-24 md:py-32 bg-white text-center px-6 relative z-10">
         <div className="max-w-4xl mx-auto space-y-12">
           <h2 className="text-4xl md:text-8xl font-black tracking-tighter text-slate-900 leading-[1] md:leading-[0.9]">
             Unlock your data's <br /><span className="text-violet-600 italic">potential.</span>
           </h2>
           <p className="text-lg md:text-2xl text-slate-400 font-medium px-4">
-            We’re working closely with teams to test and shape DataUnlock.io.
+            We’re looking to partner with forward-thinking teams to help shape the future of DataUnlock.
           </p>
           <div className="flex flex-col items-center gap-8 md:gap-10">
             <button className="w-full sm:w-auto px-10 py-5 md:px-12 md:py-7 bg-violet-600 text-white rounded-2xl font-black text-xl md:text-2xl hover:bg-slate-900 transition-all shadow-2xl shadow-violet-200 active:scale-95">
-              Let’s talk.
+              Let's Talk
             </button>
-            <button className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] hover:text-violet-600 transition-colors">
-              Reserve Your Pilot Slot
+            <button className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] hover:text-violet-600 transition-colors max-w-xs md:max-w-none">
+              Let's talk about what would work for you
             </button>
           </div>
           

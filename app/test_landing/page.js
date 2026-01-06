@@ -9,7 +9,9 @@ import {
   Quote,
   ChevronRight,
   MoveUpRight,
-  CheckCircle2
+  CheckCircle2,
+  Circle,
+  ArrowUpRight
 } from 'lucide-react';
 
 const App = () => {
@@ -98,7 +100,7 @@ const App = () => {
       {/* BACKGROUND LAYER */}
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0 opacity-60" />
 
-      {/* TOP BAR - UPDATED TO COLLABORATIVE */}
+      {/* TOP BAR */}
       <div className="bg-slate-900 text-white py-3 px-6 text-center text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] relative z-[60]">
         Collaborate with us: We're building for your specific needs — 
         <button className="underline ml-2 hover:text-violet-400 transition-colors font-black text-violet-300">Share your feedback</button>
@@ -109,7 +111,7 @@ const App = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-violet-600 rounded-lg flex items-center justify-center">
-               <Zap size={16} className="text-white fill-current" />
+                <Zap size={16} className="text-white fill-current" />
             </div>
             <span className="text-lg md:text-xl font-black tracking-tighter uppercase">
               Data<span className="text-violet-600">Unlock</span>.io
@@ -117,11 +119,11 @@ const App = () => {
           </div>
           
           <div className="hidden md:flex items-center gap-10 text-[10px] font-black uppercase tracking-widest text-slate-400">
-             <a href="#process" className="hover:text-violet-600 transition-colors">The Process</a>
-             <a href="#case-study" className="hover:text-violet-600 transition-colors">Case Study</a>
-             <button className="px-6 py-2.5 bg-slate-900 text-white rounded-full hover:bg-violet-600 transition-all font-black">
-               Let's Talk
-             </button>
+              <a href="#process" className="hover:text-violet-600 transition-colors">The Process</a>
+              <a href="#case-study" className="hover:text-violet-600 transition-colors">Case Study</a>
+              <button className="px-6 py-2.5 bg-slate-900 text-white rounded-full hover:bg-violet-600 transition-all font-black">
+                Let's Talk
+              </button>
           </div>
           
           <button className="md:hidden px-4 py-2 bg-slate-900 text-white rounded-full text-[10px] font-black uppercase tracking-widest">
@@ -131,12 +133,8 @@ const App = () => {
       </nav>
 
       {/* HERO SECTION */}
-      <header className="relative pt-4 md:pt-20 pb-16 lg:pt-32 lg:pb-32 px-6 md:px-12 max-w-7xl mx-auto z-10">
+      <header className="relative pt-12 md:pt-20 pb-16 lg:pt-32 lg:pb-32 px-6 md:px-12 max-w-7xl mx-auto z-10">
         <div className="max-w-4xl">
-          <div className="inline-flex items-center gap-3 px-3 py-1 bg-violet-50 border border-violet-100 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] mb-4 md:mb-8 text-violet-600">
-            Strategic Insight Engine
-          </div>
-          
           <h1 className="text-[2.75rem] md:text-8xl lg:text-9xl font-black mb-6 md:mb-10 tracking-tighter leading-[0.95] md:leading-[0.9] text-slate-900">
             Unlock strategy <br />
             <span className="text-violet-600">from your <br className="md:hidden" />customers' data.</span>
@@ -160,12 +158,9 @@ const App = () => {
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <button className="w-full sm:w-auto px-8 py-4 md:px-10 md:py-5 bg-violet-600 text-white hover:bg-slate-900 rounded-xl md:rounded-2xl font-black text-base md:text-lg transition-all shadow-xl shadow-violet-100 flex items-center justify-center gap-3 group">
-              Let's Talk
+              Calling Pilot Partners — Let's Talk
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
-            <p className="text-xs md:text-sm font-bold text-slate-400 italic">
-              "Tell us about your data challenges."
-            </p>
           </div>
         </div>
       </header>
@@ -179,44 +174,53 @@ const App = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-12">
           {/* Feature 1 */}
-          <div className="space-y-6 group bg-slate-50/50 p-6 md:p-0 rounded-3xl md:bg-transparent">
+          <div className="space-y-6 group bg-slate-50/50 p-6 md:p-8 rounded-3xl md:bg-transparent">
             <div className="w-14 h-14 bg-white md:bg-violet-50 rounded-2xl flex items-center justify-center group-hover:bg-violet-600 transition-colors duration-500 shadow-sm md:shadow-none">
               <Layers size={28} className="text-violet-600 group-hover:text-white transition-colors duration-500" />
             </div>
             <div>
-              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 mb-2">The Foundation</div>
-              <h3 className="text-2xl md:text-3xl font-black tracking-tight text-slate-900 leading-tight mb-4">Load Your Data</h3>
-              <p className="text-sm md:text-base text-slate-600 leading-relaxed font-medium mb-6">
-                Drop your CSV, survey export, or support tickets. No reformatting needed—your customers' voice is already here.
+              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 mb-2">Step 01</div>
+              <h3 className="text-2xl md:text-3xl font-black tracking-tight text-slate-900 leading-tight mb-4">Load Raw Data</h3>
+              <p className="text-lg md:text-base text-slate-700 leading-relaxed font-bold md:font-medium mb-6">
+                Instantly process your CSVs, surveys, and support tickets. No cleanup, no reformatting—we extract the raw customer voice immediately.
               </p>
+              <button className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-900 group-hover:text-violet-600 transition-colors">
+                Contact us to pilot <ArrowUpRight size={14} />
+              </button>
             </div>
           </div>
 
           {/* Feature 2 */}
-          <div className="space-y-6 group bg-slate-50/50 p-6 md:p-0 rounded-3xl md:bg-transparent">
+          <div className="space-y-6 group bg-slate-50/50 p-6 md:p-8 rounded-3xl md:bg-transparent">
             <div className="w-14 h-14 bg-white md:bg-violet-50 rounded-2xl flex items-center justify-center group-hover:bg-violet-600 transition-colors duration-500 shadow-sm md:shadow-none">
               <Zap size={28} className="text-violet-600 group-hover:text-white transition-colors duration-500" />
             </div>
             <div>
-              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 mb-2">The Brain</div>
-              <h3 className="text-2xl md:text-3xl font-black tracking-tight text-slate-900 leading-tight mb-4">The Strategy</h3>
-              <p className="text-sm md:text-base text-slate-600 leading-relaxed font-medium mb-6">
-                We deliver a strategic roadmap with recommended actions. Get clarity in hours, not weeks of manual analysis.
+              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 mb-2">Step 02</div>
+              <h3 className="text-2xl md:text-3xl font-black tracking-tight text-slate-900 leading-tight mb-4">Strategic Mapping</h3>
+              <p className="text-lg md:text-base text-slate-700 leading-relaxed font-bold md:font-medium mb-6">
+                This is where we get to work unlocking the value in the data, creating a high-impact roadmap. We replace weeks of manual analysis with instant, data-backed strategic priorities.
               </p>
+              <button className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-900 group-hover:text-violet-600 transition-colors">
+                See our data governance policy <ArrowUpRight size={14} />
+              </button>
             </div>
           </div>
 
           {/* Feature 3 */}
-          <div className="space-y-6 group bg-slate-50/50 p-6 md:p-0 rounded-3xl md:bg-transparent">
+          <div className="space-y-6 group bg-slate-50/50 p-6 md:p-8 rounded-3xl md:bg-transparent">
             <div className="w-14 h-14 bg-white md:bg-violet-50 rounded-2xl flex items-center justify-center group-hover:bg-violet-600 transition-colors duration-500 shadow-sm md:shadow-none">
               <TrendingUp size={28} className="text-violet-600 group-hover:text-white transition-colors duration-500" />
             </div>
             <div>
-              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 mb-2">The Output</div>
-              <h3 className="text-2xl md:text-3xl font-black tracking-tight text-slate-900 leading-tight mb-4">Growth Execution</h3>
-              <p className="text-sm md:text-base text-slate-600 leading-relaxed font-medium mb-6">
-                Execute with confidence. Your customers see the difference, trust builds, and revenue grows.
+              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 mb-2">Step 03</div>
+              <h3 className="text-2xl md:text-3xl font-black tracking-tight text-slate-900 leading-tight mb-4">Direct Revenue Impact</h3>
+              <p className="text-lg md:text-base text-slate-700 leading-relaxed font-bold md:font-medium mb-6">
+                Execute with the confidence that comes from a data-led strategy. Turn customer feedback into tangible improvements that build trust and scale your revenue.
               </p>
+              <button className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-900 group-hover:text-violet-600 transition-colors">
+                See example report <ArrowUpRight size={14} />
+              </button>
             </div>
           </div>
         </div>
@@ -225,6 +229,11 @@ const App = () => {
       {/* CASE STUDY SECTION */}
       <section id="case-study" className="py-12 md:py-24 relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="mb-12 md:mb-20">
+            <p className="text-violet-600 font-black uppercase tracking-[0.4em] text-[10px] mb-3">Case Study</p>
+            <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-slate-900">Early Success.</h2>
+          </div>
+          
           <div className="bg-slate-900 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row min-h-[600px] border border-slate-800">
             <div className="lg:w-1/2 p-8 md:p-16 bg-gradient-to-br from-slate-800 to-slate-950 flex flex-col justify-between">
               <div>
@@ -232,7 +241,7 @@ const App = () => {
                    <div className="w-9 h-9 md:w-10 md:h-10 bg-white rounded-lg flex items-center justify-center font-black text-slate-900 text-lg">Z</div>
                    <span className="text-xl md:text-2xl font-black text-white tracking-tighter uppercase">Zeus Scooters</span>
                 </div>
-                <p className="text-violet-400 font-black uppercase tracking-[0.4em] text-[9px] mb-4">Micro-Mobility Case Study</p>
+                <p className="text-violet-400 font-black uppercase tracking-[0.4em] text-[9px] mb-4">Micro-Mobility Impact</p>
                 <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-[1.1] mb-10 md:mb-12">
                   Reducing churn for 150k users.
                 </h2>
@@ -270,7 +279,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* FINAL CTA - UPDATED TO BE MORE COLLABORATIVE */}
+      {/* FINAL CTA */}
       <footer className="py-24 md:py-32 bg-white text-center px-6 relative z-10">
         <div className="max-w-4xl mx-auto space-y-12">
           <h2 className="text-4xl md:text-8xl font-black tracking-tighter text-slate-900 leading-[1] md:leading-[0.9]">

@@ -102,8 +102,8 @@ const App = () => {
 
       {/* TOP BAR */}
       <div className="bg-slate-900 text-white py-3 px-6 text-center text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] relative z-[60]">
-        Collaborate with us: We're building for your specific needs — 
-        <button className="underline ml-2 hover:text-violet-400 transition-colors font-black text-violet-300">Share your feedback</button>
+        Collaborate with us: We’re looking to partner with forward-thinking teams — 
+        <button className="underline ml-2 hover:text-violet-400 transition-colors font-black text-violet-300">Let's talk</button>
       </div>
 
       {/* NAVIGATION */}
@@ -136,12 +136,12 @@ const App = () => {
       <header className="relative pt-12 md:pt-20 pb-16 lg:pt-32 lg:pb-32 px-6 md:px-12 max-w-7xl mx-auto z-10">
         <div className="max-w-4xl">
           <h1 className="text-[2.75rem] md:text-8xl lg:text-9xl font-black mb-6 md:mb-10 tracking-tighter leading-[0.95] md:leading-[0.9] text-slate-900">
-            Unlock strategy <br />
-            <span className="text-violet-600">from your <br className="md:hidden" />customers' data.</span>
+            Unlock Revenue <br />
+            <span className="text-violet-600">from Untapped Data.</span>
           </h1>
           
           <div className="text-base md:text-2xl text-slate-500 max-w-3xl font-medium leading-relaxed mb-10 md:mb-12">
-            We are building a platform to help you decode customer data <span className="text-slate-900 font-black tracking-tight animate-float inline-block">instantly</span> — turning surveys, tickets, and CSVs into clear roadmaps to <span className="text-slate-900 font-black tracking-tight animate-float-delay-1 inline-block">drive action</span>, <span className="text-slate-900 font-black tracking-tight animate-float-delay-2 inline-block">build trust</span>, and <span className="text-slate-900 font-black tracking-tight animate-float-delay-3 inline-block">grow revenue</span>.
+            We are building a platform to unlock revenue from your untapped customer data — turning surveys, tickets, and CSVs into clear strategy that <span className="text-slate-900 font-black tracking-tight inline-block">drives action</span>, <span className="text-slate-900 font-black tracking-tight inline-block">builds trust</span>, and <span className="text-slate-900 font-black tracking-tight inline-block">grows revenue</span>.
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
@@ -187,7 +187,7 @@ const App = () => {
               <div className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 mb-2">Step 02</div>
               <h3 className="text-2xl md:text-3xl font-black tracking-tight text-slate-900 leading-tight mb-4">Strategic Mapping</h3>
               <p className="text-lg md:text-base text-slate-700 leading-relaxed font-bold md:font-medium mb-6">
-                This is where we get to work unlocking the value in the data, creating a high-impact roadmap. We replace weeks of manual analysis with instant, data-backed strategic priorities.
+                This is where we unlock the revenue hidden in your data. We build a clear strategy showing exactly what moves the needle. We replace weeks of manual analysis with instant, revenue-focused priorities.
               </p>
               <button className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-900 group-hover:text-violet-600 transition-colors">
                 See example report <ArrowUpRight size={14} />
@@ -219,7 +219,7 @@ const App = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="mb-12 md:mb-20">
             <p className="text-violet-600 font-black uppercase tracking-[0.4em] text-[10px] mb-3">Case Study</p>
-            <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-slate-900">Early Success.</h2>
+            <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-slate-900">Zeus Scooters.</h2>
           </div>
           
           <div className="bg-slate-900 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row min-h-[600px] border border-slate-800">
@@ -271,16 +271,13 @@ const App = () => {
       <footer className="py-24 md:py-32 bg-white text-center px-6 relative z-10">
         <div className="max-w-4xl mx-auto space-y-12">
           <h2 className="text-4xl md:text-8xl font-black tracking-tighter text-slate-900 leading-[1] md:leading-[0.9]">
-            Unlock your data's <br /><span className="text-violet-600 italic">potential.</span>
+            Unlock the revenue <br /><span className="text-violet-600 italic">in your data.</span>
           </h2>
           <p className="text-lg md:text-2xl text-slate-400 font-medium px-4">
             We’re looking to partner with forward-thinking teams to help shape the future of DataUnlock.
           </p>
           <div className="flex flex-col items-center gap-8 md:gap-10">
             <button className="w-full sm:w-auto px-10 py-5 md:px-12 md:py-7 bg-violet-600 text-white rounded-2xl font-black text-xl md:text-2xl hover:bg-slate-900 transition-all shadow-2xl shadow-violet-200 active:scale-95">
-              Let's Talk
-            </button>
-            <button className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] hover:text-violet-600 transition-colors max-w-xs md:max-w-none">
               Let's talk about what would work for you
             </button>
           </div>
@@ -308,16 +305,6 @@ const App = () => {
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fff; -webkit-font-smoothing: antialiased; }
         html { scroll-behavior: smooth; }
-
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-3px); }
-        }
-
-        .animate-float { animation: float 3s ease-in-out infinite; }
-        .animate-float-delay-1 { animation: float 3s ease-in-out 0.5s infinite; }
-        .animate-float-delay-2 { animation: float 3s ease-in-out 1s infinite; }
-        .animate-float-delay-3 { animation: float 3s ease-in-out 1.5s infinite; }
       `}</style>
     </div>
   );

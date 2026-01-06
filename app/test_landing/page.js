@@ -135,8 +135,8 @@ const App = () => {
       <header className="relative pt-12 md:pt-20 pb-16 lg:pt-32 lg:pb-32 px-6 md:px-12 max-w-7xl mx-auto z-10">
         <div className="max-w-4xl">
           <h1 className="text-[2.75rem] md:text-8xl lg:text-9xl font-black mb-6 md:mb-10 tracking-tighter leading-[0.95] md:leading-[0.9] text-slate-900">
-            Unlock Revenue <br />
-            <span className="text-violet-600">from Untapped Data.</span>
+            Unlock the revenue <br />
+            <span className="text-violet-600 italic">in your data.</span>
           </h1>
           
           <div className="text-base md:text-2xl text-slate-500 max-w-3xl font-medium leading-relaxed mb-10 md:mb-12">

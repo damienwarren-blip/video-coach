@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   ArrowRight, 
@@ -157,7 +159,7 @@ const App = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12">
-          {/* Feature 1: The Foundation (UPDATED SECTION) */}
+          {/* Feature 1: The Foundation */}
           <div className="space-y-6 group">
             <div className="w-16 h-16 bg-violet-50 rounded-2xl flex items-center justify-center group-hover:bg-violet-600 transition-colors duration-500">
               <Layers size={32} className="text-violet-600 group-hover:text-white transition-colors duration-500" />

@@ -102,8 +102,7 @@ const App = () => {
 
       {/* TOP BAR */}
       <div className="bg-slate-900 text-white py-3 px-6 text-center text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] relative z-[60]">
-        Collaborate with us: We’re looking to partner with forward-thinking teams — 
-        <button className="underline ml-2 hover:text-violet-400 transition-colors font-black text-violet-300">Let's talk</button>
+        In beta. Early access for pilot partners
       </div>
 
       {/* NAVIGATION */}

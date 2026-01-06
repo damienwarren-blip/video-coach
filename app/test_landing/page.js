@@ -1,230 +1,279 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   ArrowRight, 
-  Sparkles,
+  Layers,
+  Zap,
+  TrendingUp,
   Quote,
-  Activity,
-  ArrowUpRight,
-  Database,
-  Search,
-  RefreshCw,
+  ChevronRight,
+  MoveUpRight
 } from 'lucide-react';
 
 const App = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [activeStep, setActiveStep] = useState(0);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let animationFrameId;
+    let particles = [];
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    };
+
+    const initParticles = () => {
+      particles = [];
+      const count = Math.min(Math.floor(window.innerWidth / 15), 80);
+      for(let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 1.5 + 0.5,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+        });
+      }
+    };
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    const render = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        let p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        for (let j = i + 1; j < particles.length; j++) {
+          let p2 = particles[j];
+          const dx = p.x - p2.x;
+          const dy = p.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(124, 58, 237, ${0.1 * (1 - dist / 150)})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(124, 58, 237, 0.15)`;
+        ctx.fill();
+      }
+      animationFrameId = requestAnimationFrame(render);
+    };
+    render();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', resize);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
-  const methodology = [
-    {
-      id: "01",
-      phase: "Easy Onboarding",
-      title: "Load Your Data",
-      desc: "You've already collected all this customer data. Now let's actually understand it. Drop your CSV, survey export, support tickets — any format. Your customers' voice is here, stay in control.",
-      icon: <Database className="w-6 h-6" />,
-      tag: "YOUR DATA"
-    },
-    {
-      id: "02",
-      phase: "Clarity in Hours",
-      title: "The Strategy",
-      desc: (
-        <div className="space-y-4">
-          <p className="font-medium text-slate-700">We analyze your customers' voice and build a strategic roadmap:</p>
-          <ul className="space-y-3">
-            <li className="flex items-start gap-3">
-              <span className="text-indigo-600 font-black mt-0.5">•</span>
-              <span className="text-slate-600"><strong>What to build next</strong></span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-indigo-600 font-black mt-0.5">•</span>
-              <span className="text-slate-600"><strong>Why they're leaving</strong></span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-indigo-600 font-black mt-0.5">•</span>
-              <span className="text-slate-600"><strong>What to fix first</strong></span>
-            </li>
-          </ul>
-        </div>
-      ),
-      icon: <Search className="w-6 h-6" />,
-      tag: "OUR ANALYSIS"
-    },
-    {
-      id: "03",
-      phase: "Measurable Success",
-      title: "The Results",
-      desc: "You execute. Your customers feel heard. Issues get fixed. Your churn drops. Your trust grows. Your revenue increases.",
-      icon: <RefreshCw className="w-6 h-6" />,
-      tag: "YOUR GROWTH"
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-[#FDFDFD] text-slate-900 font-sans selection:bg-indigo-100 selection:text-indigo-900 overflow-x-hidden">
+    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-violet-100 selection:text-violet-700 overflow-x-hidden">
       
-      {/* GLOBAL STATUS BAR */}
-      <div className="bg-indigo-600 text-white py-2.5 px-6 text-[9px] font-black uppercase tracking-[0.5em] text-center sticky top-0 z-[60]">
-        Priority Access: 2 Pilot Slots Remaining for Q1 2026
+      {/* BACKGROUND LAYER */}
+      <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0 opacity-60" />
+
+      {/* PRIORITY ACCESS TOP BAR */}
+      <div className="bg-violet-600 text-white py-3 px-6 text-center text-[11px] font-black uppercase tracking-[0.3em] relative z-[60]">
+        Priority Access: 2 Pilot Slots Remaining for Q1 2026 — 
+        <button className="underline ml-2 hover:text-violet-100 transition-colors">Let's Talk</button>
       </div>
 
       {/* NAVIGATION */}
-      <nav className={`fixed w-full z-50 transition-all duration-700 top-[34px] ${scrolled ? 'bg-white/80 backdrop-blur-xl py-4 border-b border-slate-100 shadow-sm' : 'bg-transparent py-8'}`}>
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex justify-between items-center">
-          <div className="flex items-center gap-3 cursor-pointer group">
-            <div className="w-9 h-9 bg-slate-950 rounded-lg flex items-center justify-center transition-all group-hover:bg-indigo-600 group-hover:rotate-6">
-               <Activity size={18} className="text-white" />
+      <nav className={`sticky top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/80 backdrop-blur-xl py-4 border-b border-slate-100' : 'bg-transparent py-8'}`}>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 bg-slate-900 rounded-xl flex items-center justify-center">
+               <Zap size={18} className="text-white fill-current" />
             </div>
-            <span className="text-xl font-black tracking-tighter uppercase">VoxLoop</span>
+            <span className="text-xl font-black tracking-tighter uppercase text-slate-900">DataUnlock.io</span>
           </div>
           
-          <div className="hidden lg:flex items-center gap-12 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
-             <a href="#process" className="hover:text-indigo-600 transition-colors">Process</a>
-             <a href="#case-study" className="hover:text-indigo-600 transition-colors">Case Study</a>
+          <div className="hidden md:flex items-center gap-10 text-[10px] font-black uppercase tracking-widest text-slate-400">
+             <a href="#process" className="hover:text-violet-600 transition-colors">The Process</a>
+             <a href="#case-study" className="hover:text-violet-600 transition-colors">Case Study</a>
+             <button className="px-6 py-2.5 border-2 border-slate-900 text-slate-900 rounded-full hover:bg-slate-900 hover:text-white transition-all font-black">
+               Get in touch
+             </button>
           </div>
-
-          <button className="bg-slate-950 text-white px-8 py-4 rounded-full text-[10px] font-black hover:bg-indigo-600 transition-all uppercase tracking-widest shadow-xl shadow-indigo-600/10 active:scale-95">
-            Let's Talk
-          </button>
         </div>
       </nav>
 
       {/* HERO SECTION */}
-      <header className="relative pt-48 pb-24 lg:pt-64 lg:pb-48 px-6 md:px-12 max-w-[1600px] mx-auto z-10">
-        <div className="grid lg:grid-cols-12 gap-16 items-center">
-          <div className="lg:col-span-11">
-            <div className="inline-flex items-center gap-3 px-4 py-2 bg-indigo-50 border border-indigo-100 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-10 text-indigo-600 animate-fade-in-up">
-              <Sparkles size={12} /> Strategic Insight Engine
-            </div>
-            
-            <h1 className="text-[55px] md:text-[90px] lg:text-[130px] font-black text-slate-900 mb-10 tracking-tighter leading-[0.9] lg:leading-[0.85]">
-              Build strategy with your <br/>
-              <span className="text-indigo-600">customers' voice.</span>
-            </h1>
-            
-            <div className="max-w-4xl space-y-8">
-              <p className="text-2xl lg:text-4xl text-slate-500 font-bold tracking-tight leading-tight">
-                We're building the answer to help you understand your customer data fast, so you can drive action, build trust, and grow revenue.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-center gap-8 pt-4">
-                <button className="w-full sm:w-auto px-12 py-7 bg-indigo-600 text-white hover:bg-slate-900 rounded-full font-black text-lg transition-all flex items-center justify-center gap-4 shadow-2xl active:scale-95 group">
-                  Get in touch <ArrowUpRight size={22} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <p className="text-slate-400 font-black uppercase tracking-widest text-xs border-l-2 border-slate-100 pl-8 h-full flex items-center">
-                  "If you'd like to be a pilot partner, get in touch."
-                </p>
-              </div>
-            </div>
+      <header className="relative pt-24 pb-20 lg:pt-32 lg:pb-32 px-6 md:px-12 max-w-7xl mx-auto z-10">
+        <div className="max-w-4xl">
+          <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-violet-50 border border-violet-100 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-8 text-violet-600">
+            Strategic Insight Engine
+          </div>
+          
+          <h1 className="text-5xl md:text-8xl lg:text-9xl font-black mb-8 tracking-tighter leading-[0.9] text-slate-900">
+            Unlock strategy from your <br />
+            <span className="text-violet-600">customers' voice.</span>
+          </h1>
+          
+          <p className="text-lg md:text-2xl text-slate-500 max-w-2xl font-medium leading-relaxed mb-12">
+            We help you decode customer data fast—turning surveys, tickets, and CSVs into clear roadmaps to drive action, build trust, and grow revenue.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center gap-6">
+            <button className="w-full sm:w-auto px-10 py-5 bg-violet-600 text-white hover:bg-slate-900 rounded-2xl font-black text-lg transition-all shadow-xl shadow-violet-100 flex items-center justify-center gap-4 group">
+              Get in touch
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+            <p className="text-sm font-bold text-slate-400 italic">
+              "If you'd like to be a pilot partner, get in touch."
+            </p>
           </div>
         </div>
       </header>
 
-      {/* THE PROCESS SECTION */}
-      <section id="process" className="py-32 lg:py-48 bg-white border-t border-slate-100">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12">
-          <div className="max-w-3xl mb-24">
-            <h2 className="text-xs font-black text-indigo-600 uppercase tracking-[0.5em] mb-6">The Process</h2>
-            <div className="text-5xl lg:text-8xl font-black tracking-tighter text-slate-900 leading-[0.9]">
-              How it works.
+      {/* PROCESS SECTION */}
+      <section id="process" className="py-24 px-6 md:px-12 max-w-7xl mx-auto relative z-10 border-t border-slate-50">
+        <div className="mb-20">
+          <p className="text-violet-600 font-black uppercase tracking-[0.4em] text-[10px] mb-4">The Process</p>
+          <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-900">How we unlock.</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12">
+          {/* Feature 1: The Foundation (UPDATED SECTION) */}
+          <div className="space-y-6 group">
+            <div className="w-16 h-16 bg-violet-50 rounded-2xl flex items-center justify-center group-hover:bg-violet-600 transition-colors duration-500">
+              <Layers size={32} className="text-violet-600 group-hover:text-white transition-colors duration-500" />
             </div>
+            <div className="text-xs font-black uppercase tracking-[0.3em] text-violet-600">The Foundation</div>
+            <h3 className="text-3xl font-black tracking-tight text-slate-900 leading-tight">Load Your Data</h3>
+            <p className="text-base text-slate-600 leading-relaxed font-medium">
+              You've already collected all this customer data. Now let's actually understand it. Drop your CSV, survey export, support tickets — any format. Your customers' voice is here.
+            </p>
+            <div className="h-px bg-slate-100"></div>
+            <ul className="space-y-3">
+              {["No reformatting needed", "Multi-language support", "Your data stays protected"].map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-violet-600 mt-2 flex-shrink-0"></span>
+                  <span className="text-sm font-bold text-slate-900">{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {methodology.map((step, idx) => (
-              <div 
-                key={idx}
-                onMouseEnter={() => setActiveStep(idx)}
-                className={`group p-10 lg:p-14 rounded-[3rem] transition-all duration-700 border-2 ${activeStep === idx ? 'bg-indigo-50/50 border-indigo-200 shadow-xl' : 'bg-white border-slate-100'}`}
-              >
-                <div className="flex justify-between items-start mb-16">
-                  <div className={`text-6xl font-black tracking-tighter ${activeStep === idx ? 'text-indigo-200' : 'text-slate-100 group-hover:text-indigo-100'}`}>
-                    {step.id}
-                  </div>
-                  <div className={`p-4 rounded-2xl transition-all duration-500 ${activeStep === idx ? 'bg-indigo-600 text-white scale-110 rotate-3' : 'bg-slate-50 text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600'}`}>
-                    {step.icon}
-                  </div>
-                </div>
-                <div className="space-y-6">
-                  <div className={`text-[10px] font-black uppercase tracking-[0.4em] transition-colors duration-500 ${activeStep === idx ? 'text-indigo-600' : 'text-slate-400'}`}>
-                    {step.phase}
-                  </div>
-                  <h3 className="text-4xl font-black tracking-tighter text-slate-900">
-                    {step.title}
-                  </h3>
-                  <div className={`text-lg font-medium leading-relaxed transition-colors duration-500 ${activeStep === idx ? 'text-slate-700' : 'text-slate-500'}`}>
-                    {step.desc}
-                  </div>
-                </div>
-                <div className={`mt-10 pt-10 border-t transition-colors duration-700 ${activeStep === idx ? 'border-indigo-200' : 'border-slate-50'} flex items-center justify-between`}>
-                   <span className={`text-[10px] font-black uppercase tracking-widest ${activeStep === idx ? 'text-indigo-600' : 'text-slate-300'}`}>{step.tag}</span>
-                   <ArrowRight size={18} className={activeStep === idx ? 'text-indigo-600' : 'text-slate-200'} />
-                </div>
-              </div>
-            ))}
+          {/* Feature 2: The Strategy */}
+          <div className="space-y-6 group">
+            <div className="w-16 h-16 bg-violet-50 rounded-2xl flex items-center justify-center group-hover:bg-violet-600 transition-colors duration-500">
+              <Zap size={32} className="text-violet-600 group-hover:text-white transition-colors duration-500" />
+            </div>
+            <div className="text-xs font-black uppercase tracking-[0.3em] text-violet-600">The Brain</div>
+            <h3 className="text-3xl font-black tracking-tight text-slate-900 leading-tight">The Strategy</h3>
+            <p className="text-base text-slate-600 leading-relaxed font-medium">
+              We analyse your customers' voice and deliver a strategic roadmap with recommended actions. Clarity in hours, not weeks.
+            </p>
+            <div className="h-px bg-slate-100"></div>
+            <ul className="space-y-3">
+              {["What to build next", "Why they're leaving", "What to fix first"].map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-violet-600 mt-2 flex-shrink-0"></span>
+                  <span className="text-sm font-bold text-slate-900">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Feature 3: Growth Execution */}
+          <div className="space-y-6 group">
+            <div className="w-16 h-16 bg-violet-50 rounded-2xl flex items-center justify-center group-hover:bg-violet-600 transition-colors duration-500">
+              <TrendingUp size={32} className="text-violet-600 group-hover:text-white transition-colors duration-500" />
+            </div>
+            <div className="text-xs font-black uppercase tracking-[0.3em] text-violet-600">The Output</div>
+            <h3 className="text-3xl font-black tracking-tight text-slate-900 leading-tight">Growth Execution</h3>
+            <p className="text-base text-slate-600 leading-relaxed font-medium">
+              Now you have what you need. You execute. Communicate with your customers, they see the difference.
+            </p>
+            <div className="h-px bg-slate-100"></div>
+            <ul className="space-y-3">
+              {["You get results", "Build trust", "Grow revenue"].map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-violet-600 mt-2 flex-shrink-0"></span>
+                  <span className="text-sm font-bold text-slate-900">{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
       {/* CASE STUDY SECTION */}
-      <section id="case-study" className="py-32 lg:py-48 bg-indigo-600 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-white/5 skew-x-12 translate-x-32"></div>
-
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-24 items-center">
-            <div className="lg:col-span-7 space-y-16">
-              <div className="space-y-6">
-                <div className="inline-block px-4 py-1.5 bg-indigo-500 rounded-full text-[10px] font-black uppercase tracking-widest">
-                  European Micro-Mobility Case
+      <section id="case-study" className="py-24 relative z-10 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="bg-slate-900 rounded-[3rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row min-h-[600px] border border-slate-800">
+            
+            {/* Left: Branding & Metrics */}
+            <div className="lg:w-1/2 p-12 md:p-16 bg-gradient-to-br from-slate-800 to-slate-950 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-3 mb-10">
+                   <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center font-black text-slate-900 text-lg">Z</div>
+                   <span className="text-2xl font-black text-white tracking-tighter uppercase">Zeus Scooters</span>
                 </div>
-                <h2 className="text-8xl lg:text-[120px] font-black tracking-tighter leading-[0.8]">
-                  ZEUS
+                <p className="text-violet-400 font-black uppercase tracking-[0.4em] text-[10px] mb-4">European Micro-Mobility Case</p>
+                <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none mb-10">
+                  Reducing churn for 150k users.
                 </h2>
-              </div>
-              
-              <div className="relative pl-12">
-                <span className="absolute top-0 left-0 text-indigo-400/40 text-7xl font-serif">“</span>
-                <p className="text-4xl lg:text-5xl font-black tracking-tighter leading-[1.1] mb-12">
-                  "You've given me a step-by-step guide to reduce churn."
-                </p>
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center font-black text-xl border border-white/20">CK</div>
+                
+                <div className="grid grid-cols-2 gap-8 pt-8 border-t border-slate-800">
                   <div>
-                    <div className="text-xl font-black">Chris Kemp</div>
-                    <div className="text-[10px] text-white/60 font-black uppercase tracking-widest">Deputy CEO, Zeus Scooters</div>
+                    <div className="text-4xl md:text-5xl font-black text-white">€900K</div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-slate-500 mt-2">Revenue Recovery</div>
+                  </div>
+                  <div>
+                    <div className="text-4xl md:text-5xl font-black text-white">&lt; 7 Days</div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-slate-500 mt-2">Execution Speed</div>
                   </div>
                 </div>
               </div>
-
-              <div className="grid sm:grid-cols-2 gap-12 pt-8 border-t border-white/10">
-                <div>
-                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-300 mb-2">The Challenge</h4>
-                  <p className="text-lg font-medium opacity-90">Zeus couldn't uncover why churn was climbing among 150,000 users—costing significant revenue.</p>
-                </div>
-                <div>
-                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-300 mb-2">The Solution</h4>
-                  <p className="text-lg font-medium opacity-90">VOXLOOP voice campaigns achieved 3x participation and uncovered hidden drivers.</p>
-                </div>
+              
+              <div className="mt-12 text-slate-400 text-sm font-medium leading-relaxed italic border-l-2 border-violet-500 pl-6">
+                Uncovered hidden drivers for churn using voice analysis, achieving 3x participation vs standard surveys.
               </div>
             </div>
 
-            <div className="lg:col-span-5 grid gap-6">
-              <div className="p-10 bg-white rounded-[2.5rem] shadow-2xl">
-                 <div className="text-[10px] font-black uppercase text-indigo-600 tracking-widest mb-4">Revenue Recovery</div>
-                 <div className="text-7xl font-black text-slate-900 tracking-tighter">€900K</div>
-                 <p className="text-slate-500 font-bold mt-2">Projected annual revenue saved.</p>
-              </div>
-              <div className="p-10 bg-slate-900 rounded-[2.5rem] shadow-2xl">
-                 <div className="text-[10px] font-black uppercase text-indigo-400 tracking-widest mb-4">Execution Speed</div>
-                 <div className="text-7xl font-black text-white tracking-tighter">&lt;7 Days</div>
-                 <p className="text-slate-400 font-bold mt-2">From data to action plan.</p>
+            {/* Right: The Human Quote */}
+            <div className="lg:w-1/2 p-12 md:p-16 bg-white flex flex-col justify-center">
+              <Quote size={48} className="text-violet-100 mb-8" />
+              <blockquote className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 leading-tight mb-12">
+                "You've given me a <span className="text-violet-600">step-by-step guide</span> to reduce churn. The clarity DataUnlock provided transformed how we prioritize our dev cycle."
+              </blockquote>
+
+              <div className="flex items-center gap-5">
+                <div className="w-16 h-16 rounded-2xl bg-slate-100 overflow-hidden shadow-inner border border-slate-100">
+                  <img src="https://i.pravatar.cc/150?u=kemp" alt="Chris Kemp" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                </div>
+                <div>
+                  <div className="text-xl font-black text-slate-900">Chris Kemp</div>
+                  <div className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2 mt-1">
+                    Deputy CEO, Zeus Scooters 
+                    <MoveUpRight size={14} className="text-violet-500" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -232,50 +281,44 @@ const App = () => {
       </section>
 
       {/* FINAL CTA */}
-      <footer className="py-32 lg:py-64 bg-white text-center px-6 overflow-hidden">
-        <div className="max-w-[1200px] mx-auto space-y-24">
-          <div className="space-y-10">
-            <h2 className="text-[50px] md:text-[100px] lg:text-[140px] font-black text-slate-950 tracking-tighter leading-[0.8]">
-              Let’s <span className="text-indigo-600 underline decoration-indigo-100 decoration-8 underline-offset-8">talk.</span>
-            </h2>
-            <div className="flex flex-col items-center gap-10">
-              <p className="text-xl lg:text-2xl text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed">
-                We’re working closely with teams to test and shape VOXLOOP.
-              </p>
-              <button className="px-16 py-10 bg-slate-950 text-white rounded-full font-black text-2xl hover:bg-indigo-600 transition-all shadow-2xl active:scale-95 group">
-                Reserve Your Slot
-              </button>
-            </div>
+      <footer className="py-32 bg-white text-center px-6 relative z-10">
+        <div className="max-w-4xl mx-auto space-y-12">
+          <h2 className="text-5xl md:text-8xl font-black tracking-tighter text-slate-900 leading-[0.9]">
+            Unlock your data's <br /><span className="text-violet-600 italic">potential.</span>
+          </h2>
+          <p className="text-xl md:text-2xl text-slate-400 font-medium">
+            We’re working closely with teams to test and shape DataUnlock.io.
+          </p>
+          <div className="flex flex-col items-center gap-10">
+            <button className="px-12 py-7 bg-violet-600 text-white rounded-2xl font-black text-2xl hover:bg-slate-900 transition-all shadow-2xl shadow-violet-200 active:scale-95">
+              Let’s talk.
+            </button>
+            <button className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] hover:text-violet-600 transition-colors">
+              Reserve Your Slot
+            </button>
           </div>
           
-          <div className="pt-32 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-12">
-             <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-slate-950 rounded flex items-center justify-center">
-                   <Activity size={14} className="text-white" />
-                </div>
-                <span className="text-slate-950 font-black uppercase tracking-tighter text-2xl">VoxLoop</span>
+          <div className="pt-32 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-slate-50">
+             <div className="flex items-center gap-2">
+                <Zap size={14} className="text-slate-900 fill-current" />
+                <span className="text-sm font-black uppercase tracking-tighter text-slate-900">DataUnlock.io</span>
              </div>
-             
-             <div className="flex gap-10 text-[10px] font-black uppercase tracking-widest text-slate-400">
-                <a href="#" className="hover:text-indigo-600">Privacy</a>
-                <a href="#" className="hover:text-indigo-600">Ethics</a>
+             <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest text-slate-300">
+                <a href="#">Privacy</a>
+                <span>|</span>
+                <a href="#">Ethics</a>
              </div>
-             
-             <p className="text-slate-300 text-[8px] font-black uppercase tracking-[0.5em]">
-               © 2026 VOXLOOP OPERATIONS.
+             <p className="text-slate-300 text-[9px] font-black uppercase tracking-widest">
+               © 2026 DataUnlock Operations.
              </p>
           </div>
         </div>
       </footer>
 
       <style>{`
-        @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up {
-          animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fff; }
+        html { scroll-behavior: smooth; }
       `}</style>
     </div>
   );

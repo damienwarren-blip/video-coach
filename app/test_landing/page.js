@@ -3,15 +3,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   ArrowRight, 
-  Layers,
-  Zap,
-  TrendingUp,
-  Quote,
-  ChevronRight,
-  MoveUpRight,
-  CheckCircle2,
-  Circle,
-  ArrowUpRight
+  Layers, 
+  Zap, 
+  TrendingUp, 
+  Quote, 
+  ChevronRight, 
+  MoveUpRight, 
+  CheckCircle2, 
+  Circle, 
+  ArrowUpRight 
 } from 'lucide-react';
 
 const App = () => {
@@ -141,24 +141,12 @@ const App = () => {
           </h1>
           
           <div className="text-base md:text-2xl text-slate-500 max-w-3xl font-medium leading-relaxed mb-10 md:mb-12">
-            We are building a platform to help you decode customer data <span className="relative inline-block px-1 font-bold text-slate-900 whitespace-nowrap"><span className="absolute bottom-1 left-0 w-full h-3 bg-violet-100 -z-10 rounded-sm"></span>fast</span> — turning surveys, tickets, and CSVs into clear roadmaps to:
-            
-            <div className="flex flex-wrap gap-x-6 gap-y-3 mt-4">
-              <span className="flex items-center gap-2 text-violet-600 font-black text-sm md:text-xl italic tracking-tight">
-                <CheckCircle2 size={20} /> drive action
-              </span>
-              <span className="flex items-center gap-2 text-violet-600 font-black text-sm md:text-xl italic tracking-tight">
-                <CheckCircle2 size={20} /> build trust
-              </span>
-              <span className="flex items-center gap-2 text-violet-600 font-black text-sm md:text-xl italic tracking-tight">
-                <CheckCircle2 size={20} /> grow revenue
-              </span>
-            </div>
+            We are building a platform to help you decode customer data <span className="text-slate-900 font-black tracking-tight animate-float inline-block">instantly</span> — turning surveys, tickets, and CSVs into clear roadmaps to <span className="text-slate-900 font-black tracking-tight animate-float-delay-1 inline-block">drive action</span>, <span className="text-slate-900 font-black tracking-tight animate-float-delay-2 inline-block">build trust</span>, and <span className="text-slate-900 font-black tracking-tight animate-float-delay-3 inline-block">grow revenue</span>.
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <button className="w-full sm:w-auto px-8 py-4 md:px-10 md:py-5 bg-violet-600 text-white hover:bg-slate-900 rounded-xl md:rounded-2xl font-black text-base md:text-lg transition-all shadow-xl shadow-violet-100 flex items-center justify-center gap-3 group">
-              Calling Pilot Partners — Let's Talk
+              Join as Pilot Partner
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -320,6 +308,16 @@ const App = () => {
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fff; -webkit-font-smoothing: antialiased; }
         html { scroll-behavior: smooth; }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-3px); }
+        }
+
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-float-delay-1 { animation: float 3s ease-in-out 0.5s infinite; }
+        .animate-float-delay-2 { animation: float 3s ease-in-out 1s infinite; }
+        .animate-float-delay-3 { animation: float 3s ease-in-out 1.5s infinite; }
       `}</style>
     </div>
   );

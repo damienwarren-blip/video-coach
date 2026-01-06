@@ -185,7 +185,7 @@ const App = () => {
                 Instantly process your CSVs, surveys, and support tickets. No cleanup, no reformatting—we extract the raw customer voice immediately.
               </p>
               <button className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-900 group-hover:text-violet-600 transition-colors">
-                Contact us to pilot <ArrowUpRight size={14} />
+                See our data governance policy <ArrowUpRight size={14} />
               </button>
             </div>
           </div>
@@ -202,7 +202,7 @@ const App = () => {
                 This is where we get to work unlocking the value in the data, creating a high-impact roadmap. We replace weeks of manual analysis with instant, data-backed strategic priorities.
               </p>
               <button className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-900 group-hover:text-violet-600 transition-colors">
-                See our data governance policy <ArrowUpRight size={14} />
+                See example report <ArrowUpRight size={14} />
               </button>
             </div>
           </div>
@@ -219,7 +219,7 @@ const App = () => {
                 Execute with the confidence that comes from a data-led strategy. Turn customer feedback into tangible improvements that build trust and scale your revenue.
               </p>
               <button className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-900 group-hover:text-violet-600 transition-colors">
-                See example report <ArrowUpRight size={14} />
+                See case study <ArrowUpRight size={14} />
               </button>
             </div>
           </div>

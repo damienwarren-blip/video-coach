@@ -85,8 +85,8 @@ const COMPLIANCE_ITEMS = [
 
 const HeroGraphic = () => {
     return (
-        <div className="relative w-full h-[550px] md:h-[700px] flex items-center justify-center">
-            <div className="relative z-20 w-[280px] sm:w-[300px] md:w-[340px] h-[580px] md:h-[680px] bg-black rounded-[3.5rem] md:rounded-[4.5rem] border-[10px] md:border-[16px] border-gray-900 shadow-[0_60px_120px_-20px_rgba(0,0,0,0.4)] overflow-hidden">
+        <div className="relative w-full h-[600px] sm:h-[650px] md:h-[700px] flex items-center justify-center scale-110 sm:scale-100 transition-transform duration-500">
+            <div className="relative z-20 w-[300px] sm:w-[320px] md:w-[340px] h-[620px] sm:h-[640px] md:h-[680px] bg-black rounded-[3.5rem] md:rounded-[4.5rem] border-[10px] md:border-[16px] border-gray-900 shadow-[0_60px_120px_-20px_rgba(0,0,0,0.4)] overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 md:w-40 h-7 md:h-9 bg-gray-900 rounded-b-[2rem] z-40 flex items-center justify-center">
                     <div className="w-12 md:w-16 h-1 bg-gray-800 rounded-full" />
                 </div>
@@ -191,20 +191,20 @@ export default function App() {
             </nav>
 
             {/* Hero */}
-            <section className="pt-28 md:pt-48 pb-12 md:pb-32 px-6 max-w-7xl mx-auto">
+            <section className="pt-28 sm:pt-36 md:pt-48 pb-16 md:pb-32 px-6 max-w-7xl mx-auto">
                 <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
                     <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-                        <div className="inline-block sm:hidden mb-4 text-[9px] font-black bg-pink-100 text-pink-600 px-3 py-1 rounded-full uppercase tracking-widest">Private Beta</div>
-                        <h1 className="text-4xl sm:text-6xl md:text-[8rem] font-black tracking-tighter leading-[0.9] md:leading-[0.85] mb-6 md:mb-10">
+                        <div className="inline-block mb-4 text-[10px] font-black bg-pink-100 text-pink-600 px-4 py-1.5 rounded-full uppercase tracking-widest">Private Beta</div>
+                        <h1 className="text-5xl sm:text-6xl md:text-[8rem] font-black tracking-tighter leading-[0.9] md:leading-[0.85] mb-6 md:mb-10">
                             Understand your customers.<br/>
                             <span className="text-pink-600">Act faster.</span>
                         </h1>
-                        <p className="text-lg md:text-2xl text-gray-500 font-medium max-w-xl mb-8 md:mb-12 leading-relaxed">
+                        <p className="text-xl md:text-2xl text-gray-500 font-medium max-w-xl mb-8 md:mb-12 leading-relaxed">
                             We capture real voice feedback and turn it into a high-impact strategy.
                         </p>
                         <button 
                             onClick={() => document.getElementById('final-cta')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 bg-black text-white rounded-2xl font-black text-lg md:text-xl hover:scale-105 transition-all shadow-xl md:shadow-2xl shadow-gray-200"
+                            className="w-full sm:w-auto px-8 md:px-10 py-5 md:py-6 bg-black text-white rounded-2xl font-black text-xl md:text-2xl hover:scale-105 transition-all shadow-2xl shadow-gray-200"
                         >
                             Reserve Q1 Slot
                         </button>
@@ -237,7 +237,7 @@ export default function App() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 md:gap-16">
                     {ROI_DATA.map((item, i) => (
                         <div key={i} className="text-center">
-                            <div className={`text-6xl md:text-[10rem] font-black mb-2 md:mb-4 tracking-tighter ${THEME[item.color]}`}>{item.metric}</div>
+                            <div className={`text-7xl md:text-[10rem] font-black mb-2 md:mb-4 tracking-tighter ${THEME[item.color]}`}>{item.metric}</div>
                             <h4 className="text-xl md:text-2xl font-black mb-1 md:mb-2">{item.title}</h4>
                             <p className="text-gray-500 font-medium text-base md:text-lg">{item.detail}</p>
                         </div>
@@ -254,13 +254,13 @@ export default function App() {
                                 <span className="text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] text-pink-500 bg-pink-500/10 px-3 md:px-4 py-2 rounded-full">Success Case</span>
                                 <span className="text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] text-gray-500">Zeus Scooters</span>
                             </div>
-                            <h2 className="text-4xl md:text-7xl font-black tracking-tighter mb-8 md:mb-10 leading-[1] md:leading-[0.9]">
+                            <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 md:mb-10 leading-[1] md:leading-[0.9]">
                                 Reducing <span className="text-pink-500">Churn</span> across Europe.
                             </h2>
                             
                             <div className="relative p-6 md:p-12 bg-white/5 border border-white/10 rounded-[2rem] md:rounded-[3rem] mb-8 md:mb-12">
                                 <Quote className="absolute top-4 md:top-6 right-6 md:right-8 w-8 h-8 md:w-12 md:h-12 text-pink-500/20" />
-                                <p className="text-xl md:text-3xl font-bold leading-tight mb-6 md:mb-8">
+                                <p className="text-2xl md:text-3xl font-bold leading-tight mb-6 md:mb-8">
                                     "You've given me a step-by-step guide to reduce churn."
                                 </p>
                                 <div className="flex items-center gap-3 md:gap-4">
@@ -339,12 +339,12 @@ export default function App() {
             {/* Final CTA */}
             <section id="final-cta" className="py-20 md:py-48 px-6 bg-white">
                 <div className="max-w-5xl mx-auto text-center">
-                    <h2 className="text-4xl sm:text-6xl md:text-[9rem] font-black mb-12 md:mb-16 tracking-tighter leading-[0.9] md:leading-[0.85]">
+                    <h2 className="text-5xl sm:text-6xl md:text-[9rem] font-black mb-12 md:mb-16 tracking-tighter leading-[0.9] md:leading-[0.85]">
                         Let's have a <br/><span className="text-pink-600">Quick Chat.</span>
                     </h2>
                     <a
                         href="mailto:damien@quickchat.space?subject=QuickChat Private Beta Inquiry"
-                        className="inline-flex items-center justify-center w-full max-w-2xl py-6 md:py-10 text-xl md:text-4xl font-black rounded-[2rem] md:rounded-[3rem] bg-black text-white hover:scale-[1.02] shadow-2xl transition-all"
+                        className="inline-flex items-center justify-center w-full max-w-2xl py-8 md:py-10 text-2xl md:text-4xl font-black rounded-[2rem] md:rounded-[3rem] bg-black text-white hover:scale-[1.02] shadow-2xl transition-all"
                     >
                         Contact Us <ChevronRight className="ml-2 md:ml-4 w-6 h-6 md:w-10 md:h-10" />
                     </a>

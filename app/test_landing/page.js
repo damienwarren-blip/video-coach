@@ -134,27 +134,25 @@ const App = () => {
       {/* HERO SECTION */}
       <header className="relative pt-12 md:pt-20 pb-16 lg:pt-32 lg:pb-32 px-6 md:px-12 max-w-7xl mx-auto z-10">
         
-        {/* MULTI-LAYERED WAVE GRAPHIC */}
-        <div className="absolute top-[35%] left-0 w-full h-[400px] pointer-events-none -z-10 overflow-visible">
-          <svg className="w-full h-full opacity-[0.12]" viewBox="0 0 1440 320" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="transparent" />
-                <stop offset="50%" stopColor="#7c3aed" />
-                <stop offset="100%" stopColor="transparent" />
-              </linearGradient>
-            </defs>
-            <path 
-              className="animate-wave-1"
-              fill="url(#wave-gradient)" 
-              d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,144C672,139,768,181,864,181.3C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            ></path>
-            <path 
-              className="animate-wave-2 opacity-50"
-              fill="url(#wave-gradient)" 
-              d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            ></path>
-          </svg>
+        {/* STATIC DATA STREAM / WAVE MESH GRAPHIC */}
+        <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden select-none">
+          {/* Main Wave Mask - Bolder visibility for modern feel */}
+          <div className="absolute top-[10%] left-0 w-full h-[700px] opacity-[0.22]">
+            <svg width="100%" height="100%" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <path d="M0 250C200 200 400 300 600 250C800 200 1000 300 1200 250C1400 200 1600 300 1800 250" stroke="#7c3aed" strokeWidth="2" strokeDasharray="6 8" />
+              <path d="M0 280C200 230 400 330 600 280C800 230 1000 330 1200 280C1400 230 1600 330 1800 280" stroke="#7c3aed" strokeWidth="1.2" />
+              <path d="M0 310C200 260 400 360 600 310C800 260 1000 360 1200 310C1400 260 1600 360 1800 310" stroke="#7c3aed" strokeWidth="2" strokeDasharray="2 10" />
+              <path d="M0 340C200 290 400 390 600 340C800 290 1000 390 1200 340C1400 290 1600 390 1800 340" stroke="#7c3aed" strokeWidth="1.2" />
+              <path d="M0 370C200 320 400 420 600 370C800 320 1000 420 1200 370C1400 320 1600 420 1800 370" stroke="#7c3aed" strokeWidth="2.5" />
+              <path d="M0 400C200 350 400 450 600 400C800 350 1000 450 1200 400C1400 350 1600 450 1800 400" stroke="#7c3aed" strokeWidth="1.2" strokeDasharray="15 15" />
+            </svg>
+          </div>
+          
+          {/* Enhanced Glow Behind Text */}
+          <div className="absolute top-[30%] left-[10%] w-[60%] h-[40%] bg-violet-100/50 blur-[130px] rounded-full"></div>
+          
+          {/* High-frequency data line - More presence */}
+          <div className="absolute top-[45%] left-0 w-full h-[2.5px] bg-gradient-to-r from-transparent via-violet-400/60 to-transparent"></div>
         </div>
 
         <div className="max-w-4xl relative">
@@ -329,20 +327,6 @@ const App = () => {
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fff; -webkit-font-smoothing: antialiased; }
         html { scroll-behavior: smooth; }
-        
-        @keyframes wave-animation {
-          0% { transform: translateX(0); }
-          50% { transform: translateX(-25%); }
-          100% { transform: translateX(0); }
-        }
-
-        .animate-wave-1 {
-          animation: wave-animation 20s ease-in-out infinite;
-        }
-
-        .animate-wave-2 {
-          animation: wave-animation 25s ease-in-out infinite reverse;
-        }
       `}</style>
     </div>
   );

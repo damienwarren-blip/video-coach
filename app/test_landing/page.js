@@ -140,7 +140,8 @@ const App = () => {
           </h1>
           
           <div className="text-base md:text-2xl text-slate-500 max-w-3xl font-medium leading-relaxed mb-10 md:mb-12">
-            We are building a platform to unlock revenue from your untapped customer data — turning surveys, tickets, and CSVs into clear strategy that <span className="text-slate-900 font-black tracking-tight inline-block">drives action</span>, <span className="text-slate-900 font-black tracking-tight inline-block">builds trust</span>, and <span className="text-slate-900 font-black tracking-tight inline-block">grows revenue</span>.
+            If you're collecting customer data — surveys, tickets, interviews — but lack the time or resources to truly understand it…<br /><br />
+            Then you need <span className="text-slate-900 font-black tracking-tight">DataUnlock.io</span>. Our process is simple: You load your data. We build a strategic roadmap. You execute — and see real results.
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
@@ -166,10 +167,10 @@ const App = () => {
               <Layers size={28} className="text-violet-600 group-hover:text-white transition-colors duration-500" />
             </div>
             <div>
-              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 mb-2">Step 01</div>
+              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 mb-2">01 Load</div>
               <h3 className="text-2xl md:text-3xl font-black tracking-tight text-slate-900 leading-tight mb-4">Load Raw Data</h3>
               <p className="text-lg md:text-base text-slate-700 leading-relaxed font-bold md:font-medium mb-6">
-                Instantly process your CSVs, surveys, and support tickets. No cleanup, no reformatting—we extract the raw customer voice immediately.
+                Instantly process your CSVs, surveys, and support tickets. No cleanup, no reformatting — we extract the raw customer voice immediately. <span className="text-slate-900">You stay in control.</span>
               </p>
               <button className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-900 group-hover:text-violet-600 transition-colors">
                 See our data governance policy <ArrowUpRight size={14} />
@@ -183,10 +184,10 @@ const App = () => {
               <Zap size={28} className="text-violet-600 group-hover:text-white transition-colors duration-500" />
             </div>
             <div>
-              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 mb-2">Step 02</div>
+              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 mb-2">02 Unlock</div>
               <h3 className="text-2xl md:text-3xl font-black tracking-tight text-slate-900 leading-tight mb-4">Strategic Mapping</h3>
               <p className="text-lg md:text-base text-slate-700 leading-relaxed font-bold md:font-medium mb-6">
-                This is where we unlock the revenue hidden in your data. We build a clear strategy showing exactly what moves the needle. We replace weeks of manual analysis with instant, revenue-focused priorities.
+                This is where we unlock the revenue hidden in your data. We build a clear strategy showing exactly what moves the needle — replacing weeks of manual analysis with instant, revenue-focused priorities.
               </p>
               <button className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-900 group-hover:text-violet-600 transition-colors">
                 See example report <ArrowUpRight size={14} />
@@ -200,7 +201,7 @@ const App = () => {
               <TrendingUp size={28} className="text-violet-600 group-hover:text-white transition-colors duration-500" />
             </div>
             <div>
-              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 mb-2">Step 03</div>
+              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 mb-2">03 Impact</div>
               <h3 className="text-2xl md:text-3xl font-black tracking-tight text-slate-900 leading-tight mb-4">Direct Revenue Impact</h3>
               <p className="text-lg md:text-base text-slate-700 leading-relaxed font-bold md:font-medium mb-6">
                 Execute with the confidence that comes from a data-led strategy. Turn customer feedback into tangible improvements that build trust and scale your revenue.

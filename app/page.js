@@ -1,383 +1,386 @@
-  'use client';
-  import { useRef, useState } from 'react';
-  import { useScroll, useTransform, motion } from 'framer-motion';
-  import {
-      ShieldCheckIcon, HeartIcon, SparklesIcon, VideoCameraIcon, PaperAirplaneIcon, ChatBubbleLeftRightIcon, LockClosedIcon,
-  } from '@heroicons/react/24/solid';
+import React, { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import {
+    Sparkles,
+    Video,
+    MessageSquare,
+    ChevronRight,
+    ArrowRight,
+    Send,
+    ClipboardList,
+    Zap,
+    FileText,
+    Users,
+    Mic,
+    TrendingUp,
+    Quote
+} from 'lucide-react';
 
-  // --- DATA STRUCTURES ---
+// --- THEME CONSTANTS ---
+const THEME = {
+    pink: "bg-pink-600",
+    pinkLight: "bg-pink-50",
+    pinkText: "text-pink-600",
+    purple: "bg-purple-500",
+    purpleLight: "bg-purple-50",
+    purpleText: "text-purple-600",
+    cyan: "bg-cyan-500",
+    cyanLight: "bg-cyan-50",
+    cyanText: "text-cyan-600",
+    rose: "bg-rose-500",
+    roseLight: "bg-rose-50",
+    roseText: "text-rose-600",
+    darkText: "text-gray-900"
+};
 
-  const HOW_IT_WORKS_DATA = [
-      { title: "1. Set your question.", detail: "We agree on clear questions to explore — onboarding, cancellations, trust, pricing, or product fit.", icon: "VideoCameraIcon", color: "pink" },
-      { title: "2. Deploy to key segments", detail: "You share one simple link with the customers you want to hear from — new, loyal, at-risk, or recently cancelled.", icon: "PaperAirplaneIcon", color: "purple" },
-      { title: "3. Hear the Real Experience", detail: "Customers respond via a short voice note or brief written message, in any language. This low-friction, voice-accessible approach ensures you capture what truly shaped their experience.", icon: "ChatBubbleLeftRightIcon", color: "rose" },
-      { title: "4. Instant Strategy Blueprint", detail: "We summarise the main patterns, concerns, and drivers — and return a clear, practical view of what to focus on next, usually within 48 hours.", icon: "SparklesIcon", color: "cyan" },
-  ];
+// --- DATA ---
 
-  const ROI_DATA = [
-      { metric: "3×", detail: "Higher participation than traditional surveys, because people find it easier to speak or write naturally.", color: "pink", title: "Higher Participation" },
-      { metric: "10×", detail: "Faster understanding of the reasons behind cancellations, hesitation, and long-term loyalty.", color: "purple", title: "Faster Insights" },
-      { metric: "<48h", detail: "From question to clear direction while there is still time to act.", color: "cyan", title: "Strategy Actionable" },
-  ];
+const HOW_IT_WORKS = [
+    {
+        step: "01",
+        title: "Set your question.",
+        detail: "We agree on clear questions to explore — onboarding, cancellations, trust, pricing, or product fit.",
+        icon: ClipboardList,
+        color: "pink"
+    },
+    {
+        step: "02",
+        title: "Deploy to key segments",
+        detail: "You share one simple link with the customers you want to hear from — new, loyal, at-risk, or recently cancelled.",
+        icon: Send,
+        color: "purple"
+    },
+    {
+        step: "03",
+        title: "Hear the Real Experience",
+        detail: "Customers respond via a short voice note or brief written message, in any language. This low-friction, voice-accessible approach ensures you capture what truly shaped their experience.",
+        icon: MessageSquare,
+        color: "rose"
+    },
+    {
+        step: "04",
+        title: "Instant Strategy Blueprint",
+        detail: "We summarise the main patterns, concerns, and drivers — and return a clear, practical view of what to focus on next, usually within 48 hours.",
+        icon: Zap,
+        color: "cyan"
+    }
+];
 
-  const TRUST_DATA = [
-      { title: "Safe, Secure & Compliant", detail: "✓ GDPR compliant • ✓ SOC2 aligned • ✓ Fully encrypted", icon: "ShieldCheckIcon", color: "pink" },
-      { title: "Made for Global Customers", detail: "Works across 120+ languages and on any modern device.", icon: "HeartIcon", color: "rose" },
-      { title: "Impartial Platform", detail: "Independent platform designed to encourage open, honest feedback.", icon: "LockClosedIcon", color: "cyan" },
-  ];
+const ROI_DATA = [
+    { 
+        metric: "3×", 
+        title: "Participation", 
+        detail: "Higher participation than traditional surveys.", 
+        color: "pinkText" 
+    },
+    { 
+        metric: "10×", 
+        title: "Insights", 
+        detail: "Better understanding of the 'Why'.", 
+        color: "darkText" 
+    },
+    { 
+        metric: "<48h", 
+        title: "Action", 
+        detail: "Rapid delivery of actionable strategy.", 
+        color: "pinkText" 
+    },
+];
 
-  // --- UTILITY/HELPER FUNCTIONS ---
+// --- HELPER COMPONENTS ---
 
-  const IconMap = { ShieldCheckIcon, HeartIcon, SparklesIcon, VideoCameraIcon, PaperAirplaneIcon, ChatBubbleLeftRightIcon, LockClosedIcon };
-  const getIconComponent = (iconName) => IconMap[iconName] || 'div';
+const HeroGraphic = () => {
+    return (
+        <div className="relative w-full h-[600px] flex items-center justify-center">
+            {/* Phone Frame */}
+            <div className="relative z-20 w-[320px] h-[640px] bg-black rounded-[4rem] border-[14px] border-gray-900 shadow-[0_60px_120px_-20px_rgba(0,0,0,0.4)] overflow-hidden">
+                {/* Dynamic Notch */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-8 bg-gray-900 rounded-b-[2rem] z-40 flex items-center justify-center">
+                    <div className="w-12 h-1 bg-gray-800 rounded-full" />
+                </div>
+                
+                <div className="w-full h-full relative bg-gray-50 flex flex-col items-center overflow-hidden">
+                    {/* Visualizing the Network to Report */}
+                    <div className="relative w-full h-full flex flex-col items-center pt-16 pb-20 px-4">
+                        
+                        {/* 3 Large, Overlapping Insight Cards */}
+                        <div className="w-full space-y-4 relative z-10">
+                            {[
+                                { emoji: "🧔🏿", text: "Pricing felt a bit high...", color: "border-pink-200", delay: 0 },
+                                { emoji: "👩🏼‍💼", text: "The onboarding was quick!", color: "border-purple-200", delay: 0.2 },
+                                { emoji: "👨🏽‍💻", text: "Loved the new API docs.", color: "border-cyan-200", delay: 0.4 }
+                            ].map((user, i) => (
+                                <motion.div 
+                                    key={i}
+                                    initial={{ y: 20, opacity: 0, scale: 0.9 }}
+                                    animate={{ y: 0, opacity: 1, scale: 1 }}
+                                    transition={{ delay: user.delay, duration: 0.5 }}
+                                    className={`flex items-center gap-3 p-4 rounded-3xl bg-white border ${user.color} shadow-xl shadow-gray-200/50`}
+                                >
+                                    <div className="w-12 h-12 flex-shrink-0 bg-gray-50 rounded-2xl flex items-center justify-center text-3xl">
+                                        {user.emoji}
+                                    </div>
+                                    <div className="flex-1 overflow-hidden">
+                                        <div className="flex items-center gap-1 mb-1">
+                                            <Mic className="w-3 h-3 text-pink-500" />
+                                            <div className="h-1.5 w-full bg-gray-100 rounded-full relative overflow-hidden">
+                                                <motion.div 
+                                                    animate={{ x: ["-100%", "100%"] }}
+                                                    transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                                                    className="absolute inset-0 bg-pink-500 w-1/2"
+                                                />
+                                            </div>
+                                        </div>
+                                        <p className="text-[11px] font-bold text-gray-800 truncate">{user.text}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
 
-  const colorGradient = (color) => {
-      switch (color) {
-          case 'pink': return 'bg-gradient-to-br from-pink-400 to-rose-400';
-          case 'purple': return 'bg-gradient-to-br from-purple-400 to-fuchsia-400';
-          case 'rose': return 'bg-gradient-to-br from-rose-400 to-pink-400';
-          case 'cyan': return 'bg-gradient-to-br from-cyan-400 to-teal-400';
-          default: return 'bg-gray-500';
-      }
-  };
+                        {/* Convergence Point */}
+                        <div className="flex-1 flex flex-col items-center justify-center relative w-full">
+                             {/* Floating Particle Lines */}
+                             <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
+                                <motion.path 
+                                    d="M 150 0 L 150 120" 
+                                    stroke="#ec4899" 
+                                    strokeWidth="2" 
+                                    strokeDasharray="4,8"
+                                    fill="none"
+                                    initial={{ pathLength: 0, opacity: 0 }}
+                                    animate={{ pathLength: 1, opacity: 0.3 }}
+                                    transition={{ duration: 2, repeat: Infinity }}
+                                />
+                            </svg>
 
-  const textColor = (color) => {
-      switch (color) {
-          case 'pink': return 'text-pink-600';
-          case 'purple': return 'text-purple-600';
-          case 'rose': return 'text-rose-600';
-          case 'cyan': return 'text-cyan-600';
-          default: return 'text-gray-900';
-      }
-  };
+                            {/* Central Strategy Icon */}
+                            <motion.div 
+                                animate={{ 
+                                    scale: [1, 1.05, 1],
+                                    rotate: [0, 2, -2, 0]
+                                }}
+                                transition={{ duration: 4, repeat: Infinity }}
+                                className="relative z-10 w-32 h-32 bg-pink-600 rounded-[3rem] shadow-[0_20px_50px_rgba(236,72,153,0.4)] flex flex-col items-center justify-center text-white p-4"
+                            >
+                                <div className="absolute inset-0 bg-white/20 blur-2xl rounded-full animate-pulse" />
+                                <FileText className="w-14 h-14 mb-2 relative z-10" />
+                                <span className="text-[12px] font-black uppercase tracking-[0.2em] relative z-10 text-center leading-none">STRATEGY</span>
+                            </motion.div>
+                        </div>
 
-  const metricColorGradient = (color) => {
-      switch (color) {
-          case 'pink': return 'bg-gradient-to-r from-pink-400 to-rose-400';
-          case 'purple': return 'bg-gradient-to-r from-purple-400 to-fuchsia-400';
-          case 'cyan': return 'bg-gradient-to-r from-cyan-400 to-teal-300';
-          default: return 'bg-gray-500';
-      }
-  };
+                        {/* Bottom Status Bar */}
+                        <div className="w-full mt-4 bg-gray-900 rounded-[2rem] p-5 shadow-2xl">
+                            <div className="flex items-center justify-between mb-3">
+                                <div className="flex items-center gap-2">
+                                    <Zap className="w-4 h-4 text-pink-400 fill-pink-400" />
+                                    <span className="text-[10px] font-black text-white uppercase tracking-widest">Active Analysis</span>
+                                </div>
+                                <span className="text-[10px] font-black text-pink-400 uppercase tracking-widest">48h Target</span>
+                            </div>
+                            <div className="grid grid-cols-4 gap-1">
+                                {[1, 2, 3, 4].map(i => (
+                                    <motion.div 
+                                        key={i}
+                                        animate={{ opacity: [0.3, 1, 0.3] }}
+                                        transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
+                                        className="h-1 bg-pink-500 rounded-full"
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  // --- INTERNAL COMPONENT FUNCTIONS ---
+            {/* Background Decorative Blurs */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-pink-400/10 rounded-full blur-[140px] -z-10" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-400/10 rounded-full blur-[140px] translate-x-24 -z-10" />
+        </div>
+    );
+};
 
-  function Hero({ y1, y2 }) {
-      return (
-          <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-20 md:pb-32">
-              {/* Parallax blobs */}
-              <motion.div style={{ y: y1 }} className="absolute inset-0 -z-10 pointer-events-none">
-                  <div className="absolute top-0 left-0 w-[1000px] h-[1000px] bg-gradient-to-br from-pink-400/40 via-rose-400/30 to-purple-500/40 rounded-full blur-3xl" />
-                  <div className="absolute top-40 -right-40 w-[800px] h-[800px] bg-gradient-to-bl from-fuchsia-400/30 to-violet-500/20 rounded-full blur-3xl" />
-              </motion.div>
-              <motion.div style={{ y: y2 }} className="absolute inset-0 -z-10 pointer-events-none">
-                  <div className="absolute bottom-0 right-0 w-[1200px] h-[1200px] bg-gradient-to-tl from-teal-400/30 via-cyan-400/30 to-sky-400/20 rounded-full blur-3xl" />
-              </motion.div>
+// --- MAIN APP ---
 
-              <div className="absolute inset-0 flex items-center justify-center z-0">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 lg:gap-12 opacity-70 scale-150 md:scale-125 pointer-events-none">
-                      {/* Image mockups remain */}
-                      <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl"><img src="/mockup-1.png" alt="" className="w-full h-full object-cover" /></div>
-                      <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl translate-y-8 md:translate-y-16"><img src="/mockup-2.png" alt="" className="w-full h-full object-cover" /></div>
-                      <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl"><img src="/mockup-3.png" alt="" className="w-full h-full object-cover" /></div>
-                      <div className="relative aspect-[9/16] w-40 md:w-64 rounded-3xl overflow-hidden border-4 border-white/5 shadow-xl translate-y-8 md:translate-y-16"><img src="/mockup-4.png" alt="" className="w-full h-full object-cover" /></div>
-                  </div>
-              </div>
+export default function App() {
+    return (
+        <div className="bg-[#FAFAFA] font-sans selection:bg-pink-100 selection:text-pink-900 text-gray-900">
+            {/* Nav */}
+            <nav className="fixed top-0 w-full z-50 p-6 flex justify-between items-center bg-white/80 backdrop-blur-xl border-b border-gray-100">
+                <div className="text-xl font-black tracking-tighter flex items-center gap-2">
+                    <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+                        <MessageSquare className="text-white w-4 h-4" />
+                    </div>
+                    QUICKCHAT
+                </div>
+                <div className="flex items-center gap-6">
+                    <span className="hidden md:block text-[10px] font-black uppercase tracking-widest text-pink-600 bg-pink-50 px-3 py-1 rounded-full">Private Beta</span>
+                    <button 
+                        onClick={() => document.getElementById('final-cta')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="bg-black text-white px-6 py-2.5 rounded-full text-sm font-bold hover:shadow-lg hover:bg-gray-800 transition-all flex items-center gap-2"
+                    >
+                        Contact Us <ArrowRight className="w-4 h-4" />
+                    </button>
+                </div>
+            </nav>
 
-              <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.4 }} className="text-center z-20 max-w-7xl px-6">
-                  <h1 className="text-8xl leading-none font-black tracking-tighter md:text-9xl lg:text-[200px] xl:text-[220px]">
-                      <span className="bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 bg-clip-text text-transparent">Quick</span>
-                      <br />
-                      <span className="bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 bg-clip-text text-transparent">Chat</span>
-                  </h1>
-                  {/* Hero strap line */}
-                  <p className="mt-8 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl mx-auto">
-                      <span className="bg-gradient-to-r from-cyan-600 to-teal-700 bg-clip-text text-transparent">
-                          START CREATING WHAT CUSTOMERS LOVE.
-                      </span>
-                  </p>
-              </motion.div>
-          </section>
-      );
-  }
+            {/* Hero */}
+            <section className="pt-32 pb-24 px-6 max-w-7xl mx-auto overflow-hidden">
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <h1 className="text-7xl md:text-[8.5rem] font-black tracking-tighter leading-[0.85] mb-8">
+                            Quick<span className="text-pink-600">Chat</span>
+                        </h1>
+                        <p className="text-4xl md:text-6xl font-black text-gray-900 leading-[1.05] mb-8">
+                            Hear from everyone. <br/>
+                            <span className="text-pink-600">Get Targeted Strategy.</span>
+                        </p>
+                    </motion.div>
+                    <HeroGraphic />
+                </div>
+            </section>
 
-  function VideoAskSection() {
-      // The URL for the VideoAsk demo
-      const demoVideoAskUrl = "https://www.videoask.com/f79eyujri";
-      
-      return (
-          <section className="pt-20 pb-24 md:pb-32 px-6 text-center">
-              
-              {/* Main Heading */}
-              <motion.h2 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                  className="text-5xl md:text-9xl font-extrabold bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 bg-clip-text text-transparent mb-12">
-                  Experience QuickChat Now
-              </motion.h2>
+            {/* How It Works Section */}
+            <section className="py-24 px-6 bg-white border-y border-gray-100">
+                <div className="max-w-7xl mx-auto">
+                    <div className="mb-16">
+                        <h2 className="text-4xl md:text-6xl font-black tracking-tighter">How it works</h2>
+                    </div>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {HOW_IT_WORKS.map((item, i) => (
+                            <div key={i} className="group relative">
+                                <div className="text-6xl font-black text-gray-100 mb-4 group-hover:text-pink-50 transition-colors">
+                                    {item.step}
+                                </div>
+                                <div className={`w-12 h-12 rounded-2xl ${THEME[item.color + 'Light'] || 'bg-gray-50'} flex items-center justify-center mb-6`}>
+                                    <item.icon className={`w-6 h-6 ${THEME[item.color + 'Text'] || 'text-gray-900'}`} />
+                                </div>
+                                <h3 className="text-xl font-black mb-4 tracking-tight">{item.title}</h3>
+                                <p className="text-gray-500 font-medium leading-relaxed">
+                                    {item.detail}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
-              {/* Embedded Video Demo (Framed like AI page) */}
-              <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-5xl mx-auto">
-                  <div className="bg-white p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-100">
-                      <div className="aspect-[9/16] md:aspect-video rounded-xl overflow-hidden relative">
-                          {/* Embedded Video Ask iframe */}
-                          <iframe 
-                              src={demoVideoAskUrl} 
-                              allow="camera; microphone; autoplay; display-capture" 
-                              className="absolute top-0 left-0 w-full h-full rounded-xl"
-                              style={{ border: 'none', minHeight: '500px' }}
-                              title="QuickChat Demo" 
-                              loading="eager"
-                          />
-                      </div>
-                  </div>
-              </motion.div>
-          </section>
-      );
-  }
+            {/* ROI Section (Key Benefits) */}
+            <section className="pt-24 pb-12 px-6 max-w-7xl mx-auto">
+                <div className="grid md:grid-cols-3 gap-12">
+                    {ROI_DATA.map((item, i) => (
+                        <div key={i} className="text-center group">
+                            <div className={`text-9xl font-black mb-4 tracking-tighter transition-transform group-hover:scale-110 duration-500 ${THEME[item.color]}`}>
+                                {item.metric}
+                            </div>
+                            <h4 className="text-2xl font-black mb-2">{item.title}</h4>
+                            <p className="text-gray-500 font-medium">{item.detail}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
 
-  function FeatureBlock({ title, data, type, gridColumns }) {
-      // Dynamically calculate grid class
-      const gridClass = `grid md:grid-cols-${gridColumns} gap-12 mt-20`;
+            {/* Case Study / Success Story Section */}
+            <section className="py-24 px-6 max-w-7xl mx-auto">
+                <div className="bg-black rounded-[3rem] p-12 md:p-20 relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-8">
+                        <TrendingUp className="text-pink-600 w-16 h-16 opacity-20 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    
+                    <div className="relative z-10">
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full bg-white/10 text-pink-500 text-xs font-black uppercase tracking-widest border border-white/10">
+                            <Sparkles className="w-3 h-3" />
+                            Early Success Story
+                        </div>
+                        
+                        <div className="grid lg:grid-cols-2 gap-16 items-start">
+                            <div className="space-y-12">
+                                <div>
+                                    <h3 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-4 uppercase leading-none">
+                                        Zeus Scooters <br/>
+                                        <span className="text-gray-600">• Customer Churn</span>
+                                    </h3>
+                                    <p className="text-xl md:text-2xl font-bold text-gray-500 leading-tight">
+                                        European customer base.
+                                    </p>
+                                </div>
 
-      return (
-          <section className="py-24 md:py-32 px-6">
-              <div className="max-w-7xl mx-auto">
-                  <motion.h2 className="text-center text-6xl md:text-8xl font-black bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 bg-clip-text text-transparent">
-                      {title}
-                  </motion.h2>
+                                {/* Testimonial Quote */}
+                                <div className="relative pl-10 border-l-2 border-pink-600">
+                                    <Quote className="absolute -left-2 -top-4 w-8 h-8 text-pink-600 opacity-30" />
+                                    <p className="text-2xl md:text-3xl font-black text-white leading-tight italic tracking-tight">
+                                        "You've given me a step-by-step guide to reduce churn."
+                                    </p>
+                                    <div className="mt-4">
+                                        <p className="text-sm font-black text-pink-600 uppercase tracking-widest">— Chris Kemp</p>
+                                        <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mt-1">Deputy CEO, Zeus Scooters</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-white/10 pt-12 lg:border-t-0 lg:pt-0 self-end">
+                                <div>
+                                    <div className="text-4xl font-black text-pink-600">€900K</div>
+                                    <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest mt-2 leading-tight">Annual Projected Revenue Recovery</div>
+                                </div>
+                                <div>
+                                    <div className="text-4xl font-black text-white">10K</div>
+                                    <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest mt-2 leading-tight">Customers Targeted for Win-Back Q1</div>
+                                </div>
+                                <div>
+                                    <div className="text-4xl font-black text-pink-600">{'<'}7</div>
+                                    <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest mt-2 leading-tight">Strategy Delivered in Days</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                  <div className={gridClass}>
-                      {data.map((item, index) => {
-                          const Icon = type === 'icon' ? getIconComponent(item.icon) : null;
-                          
-                          return (
-                              <motion.div
-                                  key={index}
-                                  initial={{ opacity: 0, y: 60 }}
-                                  whileInView={{ opacity: 1, y: 0 }}
-                                  viewport={{ once: true }}
-                                  transition={{ delay: 0.1 * index }}
-                                  className="text-center"
-                              >
-                                  {type === 'icon' && (
-                                      <div className={`w-28 h-28 mx-auto mb-8 rounded-full ${colorGradient(item.color)} p-2`}>
-                                      <div className="w-full h-full rounded-full bg-white flex items-center justify-center shadow-inner">
-                                          <Icon className={`h-16 w-16 ${textColor(item.color)}`} />
-                                      </div>
-                                      </div>
-                                  )}
-                                  
-                                  {type === 'metric' && (
-                                      <div className={`text-9xl md:text-[180px] font-black leading-none ${metricColorGradient(item.color)} bg-clip-text text-transparent`}>
-                                          {item.metric}
-                                      </div>
-                                  )}
+                    {/* Subtle glow background */}
+                    <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-pink-600/10 rounded-full blur-[100px]" />
+                </div>
+            </section>
 
-                                  <h3 className="text-2xl font-bold mb-3">{item.title || item.metric}</h3>
-                                  <p className="text-gray-700 font-medium">{item.detail}</p>
-                              </motion.div>
-                          );
-                      })}
-                  </div>
-              </div>
-          </section>
-      );
-  }
+            {/* Final CTA */}
+            <section id="final-cta" className="py-40 px-6 bg-white">
+                <div className="max-w-4xl mx-auto text-center">
+                    <div className="inline-block px-4 py-1.5 mb-8 rounded-full bg-pink-50 text-pink-600 text-xs font-black uppercase tracking-widest">
+                        Currently in Private Beta
+                    </div>
+                    <h2 className="text-6xl md:text-[8rem] font-black mb-12 tracking-tighter leading-none">
+                        Let's have a <br/><span className="text-pink-600">Quick Chat.</span>
+                    </h2>
+                    
+                    <a
+                        href="mailto:damien@quickchat.space?subject=QuickChat Private Beta Inquiry"
+                        className="inline-flex items-center justify-center w-full max-w-2xl py-8 text-3xl font-black rounded-[2.5rem] bg-black text-white hover:scale-105 shadow-2xl shadow-pink-200 transition-all"
+                    >
+                        Contact Us
+                        <ChevronRight className="ml-4 w-10 h-10" />
+                    </a>
+                    
+                    <p className="mt-8 text-sm font-bold text-gray-400 uppercase tracking-widest">
+                        Limited slots available for Q1 2026
+                    </p>
+                </div>
+            </section>
 
-  function FinalCTA({ strategyAgreed, setStrategyAgreed }) {
-      const finalCTALink = "mailto:damien@quickchat.space?subject=I want to run a QuickChat Discovery & Retention Pilot&body=Hey Damien – let's discuss running a pilot to inform our customer strategy for growth and retention. %0A%0ACompany Turnover: %0ACurrent Churn Rate: %0APrimary Goal (Discovery or Retention): ";
-
-      return (
-          <section id="final-cta" className="min-h-screen flex items-center justify-center px-6 bg-gradient-to-b from-transparent via-pink-900/10 to-transparent">
-              <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-center">
-                  <h2 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 bg-clip-text text-transparent leading-tight">
-                      Ready to Inform Your Next<br /><span className="bg-gradient-to-r from-cyan-600 to-teal-700 bg-clip-text text-transparent">Big Strategy</span>?
-                  </h2>
-                  <p className="mt-12 text-2xl md:text-3xl text-gray-700 max-w-2xl mx-auto">
-                      If you'd like a clearer picture of what your customers actually experience, a <span className="font-bold">short pilot</span> can give you that insight within days.
-                  </p>
-                  
-                  {/* Privacy Notice and Consent Checkbox for Strategy Call */}
-                  <div className="mt-16 mb-8 max-w-lg mx-auto p-4 rounded-xl bg-gray-100 shadow-inner shadow-pink-500/10 border border-pink-300/60">
-                      <label className="flex items-start cursor-pointer text-sm md:text-base text-gray-700">
-                          <input 
-                              type="checkbox" 
-                              checked={strategyAgreed} 
-                              onChange={() => setStrategyAgreed(!strategyAgreed)} 
-                              className="mt-1 mr-3 w-5 h-5 form-checkbox appearance-none bg-transparent border-2 border-pink-500 rounded-md checked:bg-pink-600 checked:border-transparent focus:ring-0 transition duration-150 ease-in-out"
-                          />
-                          <span className="text-left leading-snug font-light">
-                              By checking, you agree to the temporary use of your name and email address for <span className="font-bold">scheduling purposes only.</span>
-                          </span>
-                      </label>
-                  </div>
-                  
-                  <motion.a
-                      href={strategyAgreed ? finalCTALink : "#"} 
-                      whileHover={strategyAgreed ? { scale: 1.05 } : { scale: 1.0 }}
-                      whileTap={strategyAgreed ? { scale: 0.95 } : { scale: 1.0 }}
-                      className={`mt-8 inline-block px-32 py-16 text-3xl font-bold rounded-full shadow-2xl transition-all duration-300
-                          ${strategyAgreed 
-                              ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:shadow-pink-500/50 cursor-pointer"
-                              : "bg-gray-200 text-gray-500 cursor-not-allowed shadow-none"
-                          }`}
-                      onClick={(e) => { !strategyAgreed && e.preventDefault(); }} 
-                  >
-                      Book Your Strategy Call →
-                  </motion.a>
-              </motion.div>
-          </section>
-      );
-  }
-
-
-  // --- MAIN EXPORT COMPONENT ---
-
-  export default function Home() {
-      const container = useRef(null);
-      const { scrollYProgress } = useScroll({
-          target: container,
-          offset: ['start start', 'end end'],
-      });
-      const y1 = useTransform(scrollYProgress, [0, 1], [0, -900]);
-      const y2 = useTransform(scrollYProgress, [0, 1], [0, -700]);
-
-      const [strategyAgreed, setStrategyAgreed] = useState(false);
-
-      // --- Specific URL for the QuickChat Data Listening Page ---
-      const listeningPageLink = "/listening"; 
-
-      return (
-          <div ref={container} className="relative bg-white overflow-hidden text-gray-900">
-              {/* 1. HERO SECTION */}
-              <Hero y1={y1} y2={y2} />
-
-              <div className="border-y border-gray-300" />
-
-              {/* 2. VALUE PROPOSITION */}
-              <section className="py-24 md:py-32 px-6 text-center">
-                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-snug bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 bg-clip-text text-transparent max-w-5xl mx-auto">
-                      The Customer Dictates Success.
-                  </h2>
-                  <div className="mt-12 text-3xl md:text-4xl text-gray-900 font-medium max-w-4xl mx-auto">
-                      <ul className="list-none space-y-4 font-normal text-center mx-auto">
-                          <li className="text-rose-600">The value they prioritize.</li>
-                          <li className="text-rose-600">The experience that frustrates them.</li>
-                          <li className="text-rose-600">The moment they nearly decided to leave.</li>
-                      </ul>
-                  </div>
-                  
-                  <p className="mt-16 text-4xl md:text-5xl font-semibold max-w-5xl mx-auto leading-snug text-gray-800">
-                      QuickChat delivers video conversations @ scale, giving you the critical
-                      <span className="font-extrabold bg-gradient-to-r from-cyan-600 to-teal-700 bg-clip-text text-transparent">
-                          {' '}WHY{' '}
-                      </span> 
-                      and a clear strategic action plan in less than
-                      <span className="font-extrabold bg-gradient-to-r from-cyan-600 to-teal-700 bg-clip-text text-transparent">
-                          {' '}48 hours.
-                      </span> 
-                  </p>
-                  
-              </section>
-
-              <div className="border-y border-gray-300" />
-
-              {/* 3. VIDEO ASK SECTION (SIMPLE HEADING + VIDEO) */}
-              <VideoAskSection />
-
-              <div className="border-y border-gray-300" />
-
-              {/* 4. HOW IT WORKS SECTION */}
-              <FeatureBlock
-                  title="How it works"
-                  data={HOW_IT_WORKS_DATA}
-                  type="icon"
-                  gridColumns={4}
-              />
-              
-              <div className="border-y border-gray-300" />
-
-              {/* 5. KEY BENEFITS SECTION (Updated Title) */}
-              <FeatureBlock
-                  title="Key Benefits"
-                  data={ROI_DATA}
-                  type="metric"
-                  gridColumns={3}
-              />
-
-              <div className="border-y border-gray-300" />
-
-              {/* 6. CASE STUDY TEASER */}
-              <section className="py-24 md:py-32 px-6">
-                  <div className="max-w-5xl mx-auto text-center">
-                      <div className="relative">
-                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent opacity-60" />
-                          <p className="text-2xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-gray-800 leading-snug">
-                              See how we helped an Irish company use QuickChat to inform their
-                              {' '}
-                              <span className="font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
-                                  European market strategy
-                              </span>
-                              {' '}
-                              and started to fix
-                              {' '}
-                              <span className="font-bold bg-gradient-to-r from-cyan-600 to-teal-600 bg-clip-text text-transparent">
-                                  churn
-                              </span> 
-                              {' '}
-                              within one week.
-                          </p>
-                          <a
-                              href="/case-study"
-                              className="mt-12 inline-block px-10 py-4 text-lg font-medium text-black bg-white rounded-full shadow-xl hover:shadow-white/40 transition-all duration-300"
-                          >
-                              Read the Full Case Study →
-                          </a>
-                      </div>
-                  </div>
-              </section>
-
-              <div className="border-y border-gray-300" />
-
-              {/* 7. TRUST PARTNER SECTION */}
-              <FeatureBlock
-                  title="Your Trusted CX Partner"
-                  data={TRUST_DATA}
-                  type="icon"
-                  gridColumns={3}
-              />
-
-              <div className="border-y border-gray-300" />
-
-              {/* 8. OUR OWN DATA SECTION */}
-              <section className="py-24 md:py-32 px-6">
-                  <div className="max-w-4xl mx-auto text-center">
-                      <h2 className="text-center text-6xl md:text-8xl font-black bg-gradient-to-r from-cyan-600 via-teal-600 to-sky-600 bg-clip-text text-transparent">
-                          Our Own QuickChat Data
-                      </h2>
-                      <p className="mt-8 text-2xl md:text-3xl text-gray-700 font-light max-w-2xl mx-auto">
-                          Each quarter, we run QuickChat with our own customers and publish what we learn. It helps us improve the platform in practical, customer-led ways.
-                      </p>
-                      <a
-                          href={listeningPageLink}
-                          className="mt-12 inline-block px-10 py-4 text-lg font-medium text-black bg-cyan-400 rounded-full shadow-xl hover:shadow-cyan-400/40 transition-all duration-300"
-                      >
-                          Check out the latest!
-                      </a>
-                  </div>
-              </section>
-
-              <div className="border-y border-gray-300" />
-
-              {/* 9. FINAL CTA (Includes ID 'final-cta' for navigation) */}
-              <FinalCTA
-                  strategyAgreed={strategyAgreed}
-                  setStrategyAgreed={setStrategyAgreed}
-              />
-
-              {/* 10. SIMPLE FOOTER */}
-              <div className="py-8 px-6 text-center text-sm text-gray-500 bg-gray-100">
-                  © 2025 QuickChat. All rights reserved.
-              </div>
-          </div>
-      );
-  }
+            <footer className="py-20 bg-gray-50 px-8 text-center md:text-left rounded-t-[4rem]">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-sm font-bold text-gray-400 uppercase tracking-widest">
+                    <div className="flex items-center gap-2 text-black">
+                        <div className="w-6 h-6 bg-black rounded flex items-center justify-center">
+                            <MessageSquare className="text-white w-3 h-3" />
+                        </div>
+                        QUICKCHAT
+                    </div>
+                    <div className="flex gap-12">
+                        <span className="text-pink-600">Private Beta</span>
+                    </div>
+                    <div>© 2026 ALL RIGHTS RESERVED</div>
+                </div>
+            </footer>
+        </div>
+    );
+}

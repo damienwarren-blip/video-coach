@@ -133,15 +133,39 @@ const App = () => {
 
       {/* HERO SECTION */}
       <header className="relative pt-12 md:pt-20 pb-16 lg:pt-32 lg:pb-32 px-6 md:px-12 max-w-7xl mx-auto z-10">
-        <div className="max-w-4xl">
+        
+        {/* MULTI-LAYERED WAVE GRAPHIC */}
+        <div className="absolute top-[35%] left-0 w-full h-[400px] pointer-events-none -z-10 overflow-visible">
+          <svg className="w-full h-full opacity-[0.12]" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="transparent" />
+                <stop offset="50%" stopColor="#7c3aed" />
+                <stop offset="100%" stopColor="transparent" />
+              </linearGradient>
+            </defs>
+            <path 
+              className="animate-wave-1"
+              fill="url(#wave-gradient)" 
+              d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,144C672,139,768,181,864,181.3C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            ></path>
+            <path 
+              className="animate-wave-2 opacity-50"
+              fill="url(#wave-gradient)" 
+              d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            ></path>
+          </svg>
+        </div>
+
+        <div className="max-w-4xl relative">
           <h1 className="text-[2.75rem] md:text-8xl lg:text-9xl font-black mb-6 md:mb-10 tracking-tighter leading-[0.95] md:leading-[0.9] text-slate-900">
             Unlock the revenue <br />
             <span className="text-violet-600 italic">in your data.</span>
           </h1>
           
           <div className="text-base md:text-2xl text-slate-500 max-w-3xl font-medium leading-relaxed mb-10 md:mb-12">
-            If you're collecting customer data — surveys, tickets, interviews — but lack the time or resources to truly understand it…<br /><br />
-            Then you need <span className="text-slate-900 font-black tracking-tight">DataUnlock.io</span>. Our process is simple: You load your data. We build a strategic roadmap. You execute — and see real results.
+            You're collecting customer feedback — surveys, tickets, whatever — but lack the time or resources to turn it into action.<br /><br />
+            <span className="text-slate-900 font-black tracking-tight">DataUnlock</span> fixes that. You load it. We build the strategy. You execute — and see real results.
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
@@ -305,6 +329,20 @@ const App = () => {
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fff; -webkit-font-smoothing: antialiased; }
         html { scroll-behavior: smooth; }
+        
+        @keyframes wave-animation {
+          0% { transform: translateX(0); }
+          50% { transform: translateX(-25%); }
+          100% { transform: translateX(0); }
+        }
+
+        .animate-wave-1 {
+          animation: wave-animation 20s ease-in-out infinite;
+        }
+
+        .animate-wave-2 {
+          animation: wave-animation 25s ease-in-out infinite reverse;
+        }
       `}</style>
     </div>
   );

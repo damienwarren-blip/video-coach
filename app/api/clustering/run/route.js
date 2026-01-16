@@ -108,15 +108,19 @@ export async function POST(req) {
       [clusteringJobId, apiResponse]
     )
 
-    return new Response(
-      JSON.stringify({
-        success: true,
-        clustering_job_id: clusteringJobId,
-        job_id: jobId,
-      }),
-      { status: 200 }
+    // return new Response(
+    //   JSON.stringify({
+    //     success: true,
+    //     clustering_job_id: clusteringJobId,
+    //     job_id: jobId,
+    //     result_url: `/clustering/results/${clusteringJobId}`,
+    //   }),
+    //   { status: 200 }
+    // )
+    return Response.redirect(
+      new URL(`/clustering/results/${clusteringJobId}`, req.url),
+      303
     )
-
   } catch (err) {
     console.error('[CLUSTERING RUN ERROR]', err)
     return new Response(

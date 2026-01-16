@@ -1,5 +1,6 @@
 import db from '@/lib/db'
 import { runClusteringJob } from '@/services/ai-processing/clusteringClient'
+import { routeClusteringStrategy } from '@/services/ai-processing/columnRouter'
 import { writeFile } from 'fs/promises'
 import path from 'path'
 import { nanoid } from 'nanoid'
@@ -52,7 +53,7 @@ export async function POST(req) {
 
     const clusteringJobId = jobRes.rows[0].id
 
-        // --------------------------------------------------
+    // --------------------------------------------------
     // 3. PARSE COLUMN CONFIG (REQUIRED BY API)
     // --------------------------------------------------
     const columnConfigRaw = formData.get('column_config')
@@ -64,11 +65,11 @@ export async function POST(req) {
     }
 
     // --------------------------------------------------
-    // 4. CALL EXTERNAL CLUSTERING API
+    // 4. ROUTE BASED ON COLUMN TYPES (Clustering or Stats)
     // --------------------------------------------------
     let apiResponse
     try {
-      apiResponse = await runClusteringJob({
+      apiResponse = await routeClusteringStrategy({
         filePath,
         doGptSummary,
         doClustering,

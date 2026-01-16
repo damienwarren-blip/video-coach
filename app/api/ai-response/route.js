@@ -1,9 +1,30 @@
 // /app/api/ai-response/route.js
 
+import fs from 'fs'
+// import { parse } from 'csv-parse/sync'
+import { analyzeColumnType } from '@/services/ai-processing/columnAnalyzer'
+
 import db from '@/lib/db'
+
+async function checkDatabaseConnection() {
+  try {
+    await db.query('SELECT 1') // lightweight ping
+    return true
+  } catch (err) {
+    console.error('[DB CONNECTION ERROR]', err)
+    return false
+  }
+}
 
 export async function POST(req) {
   try {
+    const dbOk = await checkDatabaseConnection()
+    if (!dbOk) {
+      return new Response(
+        JSON.stringify({ error: 'Database not reachable' }),
+        { status: 503, headers: { 'Content-Type': 'application/json' } }
+      )
+    }
     const body = await req.json()
     const {
       executiveSummary,
@@ -13,6 +34,26 @@ export async function POST(req) {
       strategicSummary,
       strategicSubtext,
     } = body
+    
+    // --------------------------------------------------
+    // [OPTIONAL] ANALYZE COLUMN TYPES (if answers exist)
+    // --------------------------------------------------
+    if (body.answers && Array.isArray(body.answers)) {
+      const groupedAnswers = {}
+
+      for (const { question_id, answer_text } of body.answers) {
+        if (!groupedAnswers[question_id]) groupedAnswers[question_id] = []
+        groupedAnswers[question_id].push(answer_text)
+      }
+
+      const questionTypeMap = {}
+
+      for (const [questionId, values] of Object.entries(groupedAnswers)) {
+        questionTypeMap[questionId] = analyzeColumnType(values)
+      }
+
+      console.log('[INFO] Detected column types:', questionTypeMap)
+    }
 
     // --------------------------------------------------
     // 1. CREATE REPORT

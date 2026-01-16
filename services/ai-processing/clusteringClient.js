@@ -7,7 +7,7 @@ export async function runClusteringJob({
   filePath,
   doGptSummary = true,
   doClustering = true,
-  columnConfig, // ✅ NEW PARAM
+  columnConfig,
   authToken,
 }) {
   const dbUrl = process.env.DATABASE_URL

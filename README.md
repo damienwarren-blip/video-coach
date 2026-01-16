@@ -1,36 +1,137 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
+# 📊 Survey Grouper — Web UI (Next.js)
+
+This is the **frontend UI** for uploading survey CSVs and running clustering/summarization analysis using the backend API.
+
+Built with [Next.js](https://nextjs.org), it provides a simple interface for:
+
+- Uploading a CSV file
+- Selecting columns to analyze
+- Toggling options like GPT summaries or clustering
+- Sending everything to the FastAPI backend
+
+---
+
+## 🚀 Getting Started
+
+First, install dependencies:
+
+```bash
+npm install
+# or yarn
+````
+
+Then run the dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the interface.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧠 Features
 
-## Learn More
+### ✅ CSV Upload
 
-To learn more about Next.js, take a look at the following resources:
+* Upload `.csv` file containing survey data
+* Supports “wide” (pivoted) format — one row per user
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### ✅ Dynamic Column Selection
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Select the **Respondent ID** column
+* Dynamically add one or more **question columns**
+* Dropdowns auto-populate from CSV headers
+* Prevents selecting the same column more than once
+* Automatically adds a new dropdown when a column is chosen
+* Removes extra dropdowns if columns are deselected
 
-## Deploy on Vercel
+### ✅ Optional Toggles
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* 🧠 GPT Summary (`do_gpt_summary`)
+* 🧮 Clustering (`do_clustering`)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+These are passed as form fields in the API request.
+
+---
+
+## 🧾 Form Submission
+
+On submit, the frontend sends a `POST` request to:
+
+```
+POST /api/clustering/run
+```
+
+With form data:
+
+* `file`: the CSV file
+* `do_gpt_summary`: true/false (from checkbox)
+* `do_clustering`: true/false (from checkbox)
+* `format_version`: currently hardcoded to `"pivoted"`
+* `column_config`: JSON string like:
+
+```json
+{
+  "respondent_id": "user_id",
+  "question_columns": ["Q1", "Q2", "Q3"]
+}
+```
+
+---
+
+## 📁 File Overview
+
+```bash
+app/
+│
+├── page.js           # Main UI — Upload form and logic
+├── styles.css        # (If used) Basic styling
+└── api/              # Optional frontend API routes (unused, backend is external)
+```
+
+---
+
+## ⚠️ Note on Backend
+
+The actual analysis logic lives in the **FastAPI Python backend**.
+
+Make sure the backend is:
+
+* Running at the expected base URL (e.g. `localhost:8000`)
+* CORS is enabled (done already)
+* Endpoint `/api/clustering/run` is available
+
+If using **Vercel**, set up a proxy or middleware to forward `/api/clustering/run` to the backend server.
+
+---
+
+## 🌐 Deployment
+
+Deploy with [Vercel](https://vercel.com/) or similar platforms.
+
+To deploy:
+
+1. Push your repo to GitHub
+2. Connect it to Vercel
+3. Configure any environment variables if needed (e.g., API base URL)
+
+---
+
+## 🛠️ Future Improvements
+
+* [ ] Support long-format CSVs
+* [ ] Upload history or result preview
+* [ ] Progress bar or async polling
+* [ ] Field validation
+* [ ] Dark mode 🌒
+
+---
+
+## 👥 Credits
+
+Frontend built by **Viorel Mirea**
+Connects to backend powered by FastAPI + clustering + GPT summarization logic.
+

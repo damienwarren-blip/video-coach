@@ -117,9 +117,21 @@ export async function POST(req) {
     //   }),
     //   { status: 200 }
     // )
-    return Response.redirect(
-      new URL(`/clustering/results/${clusteringJobId}`, req.url),
-      303
+    // return Response.redirect( //This fails on Vercel Edge Functions
+    //   new URL(`/clustering/results/${clusteringJobId}`, req.url),
+    //   303
+    // )
+    return new Response(
+      JSON.stringify({
+        success: true,
+        clustering_job_id: clusteringJobId,
+        job_id: jobId,
+        result_url: `/clustering/results/${clusteringJobId}`
+      }),
+      {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      }
     )
   } catch (err) {
     console.error('[CLUSTERING RUN ERROR]', err)

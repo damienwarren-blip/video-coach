@@ -121,16 +121,35 @@ export async function POST(req) {
     //   new URL(`/clustering/results/${clusteringJobId}`, req.url),
     //   303
     // )
+    // return new Response(
+    //   JSON.stringify({
+    //     success: true,
+    //     clustering_job_id: clusteringJobId,
+    //     job_id: jobId,
+    //     result_url: `/clustering/results/${clusteringJobId}`
+    //   }),
+    //   {
+    //     status: 200,
+    //     headers: { 'Content-Type': 'application/json' }
+    //   }
+    // )
     return new Response(
-      JSON.stringify({
-        success: true,
-        clustering_job_id: clusteringJobId,
-        job_id: jobId,
-        result_url: `/clustering/results/${clusteringJobId}`
-      }),
+      `
+        <html>
+          <head><title>Clustering Job Started</title></head>
+          <body style="font-family: sans-serif; padding: 2rem;">
+            <h2>✅ Clustering Job Created</h2>
+            <p><strong>Job ID:</strong> ${jobId}</p>
+            <p><strong>Clustering Job ID:</strong> ${clusteringJobId}</p>
+            <p><a href="/clustering/results/${clusteringJobId}">👉 View Clustering Results</a></p>
+          </body>
+        </html>
+      `,
       {
         status: 200,
-        headers: { 'Content-Type': 'application/json' }
+        headers: {
+          'Content-Type': 'text/html'
+        }
       }
     )
   } catch (err) {

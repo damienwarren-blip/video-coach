@@ -117,10 +117,10 @@ export async function POST(req) {
     //   }),
     //   { status: 200 }
     // )
-    // return Response.redirect( //This fails on Vercel Edge Functions
-    //   new URL(`/clustering/results/${clusteringJobId}`, req.url),
-    //   303
-    // )
+    return Response.redirect( //This fails on Vercel Edge Functions
+      new URL(`/clustering/results/${clusteringJobId}`, req.url),
+      303
+    )
     // return new Response(
     //   JSON.stringify({
     //     success: true,
@@ -133,28 +133,28 @@ export async function POST(req) {
     //     headers: { 'Content-Type': 'application/json' }
     //   }
     // )
-    return new Response(
-      `
-        <html>
-          <head>
-            <meta charset="UTF-8" />
-            <title>Clustering Job Started</title>
-          </head>
-          <body style="font-family: sans-serif; padding: 2rem;">
-            <h2>✅ Clustering Job Created</h2>
-            <p><strong>Job ID:</strong> ${jobId}</p>
-            <p><strong>Clustering Job ID:</strong> ${clusteringJobId}</p>
-            <p><a href="/clustering/results/${clusteringJobId}">👉 View Clustering Results</a></p>
-          </body>
-        </html>
-      `,
-      {
-        status: 200,
-        headers: {
-          'Content-Type': 'text/html; charset=UTF-8'
-        }
-      }
-    )
+    // return new Response(
+    //   `
+    //     <html>
+    //       <head>
+    //         <meta charset="UTF-8" />
+    //         <title>Clustering Job Started</title>
+    //       </head>
+    //       <body style="font-family: sans-serif; padding: 2rem;">
+    //         <h2>✅ Clustering Job Created</h2>
+    //         <p><strong>Job ID:</strong> ${jobId}</p>
+    //         <p><strong>Clustering Job ID:</strong> ${clusteringJobId}</p>
+    //         <p><a href="/clustering/results/${clusteringJobId}">👉 View Clustering Results</a></p>
+    //       </body>
+    //     </html>
+    //   `,
+    //   {
+    //     status: 200,
+    //     headers: {
+    //       'Content-Type': 'text/html; charset=UTF-8'
+    //     }
+    //   }
+    // )
   } catch (err) {
     console.error('[CLUSTERING RUN ERROR]', err)
     return new Response(

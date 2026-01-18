@@ -3,14 +3,19 @@
 import React from 'react'
 
 async function fetchJobData(id) {
-  // const res = await fetch(`http://localhost:3000/api/clustering/job/${id}`)
-  // const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/clustering/job/${id}`, {
-  //   cache: 'no-store',
-  // })
-  const res = await fetch(`/api/clustering/job/${id}`, {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}` ||
+    'http://localhost:3000'
+
+  const res = await fetch(`${baseUrl}/api/clustering/job/${id}`, {
     cache: 'no-store',
   })
-  if (!res.ok) throw new Error('Failed to fetch clustering job')
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch clustering job')
+  }
+
   return res.json()
 }
 

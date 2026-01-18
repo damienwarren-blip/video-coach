@@ -5,18 +5,22 @@ import React from 'react'
 async function fetchJobData(id) {
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL ||
-    process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}` ||
-    'http://localhost:3000'
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
 
-  const res = await fetch(`${baseUrl}/api/clustering/job/${id}`, {
-    cache: 'no-store',
-  })
+  try {
+    const res = await fetch(`${baseUrl}/api/clustering/job/${id}`, {
+      cache: 'no-store',
+    })
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch clustering job')
+    if (!res.ok) {
+      throw new Error(`Fetch failed with status ${res.status}`)
+    }
+
+    return await res.json()
+  } catch (err) {
+    console.error('[FetchJobData Error]', err)
+    throw new Error(`Failed to load job ${id}: ${err.message}`)
   }
-
-  return res.json()
 }
 
 function renderSection(key, value) {
@@ -31,7 +35,6 @@ function renderSection(key, value) {
         <p>Median: {value.median}</p>
         <p>Min: {value.min}</p>
         <p>Max: {value.max}</p>
-        <p>Distribution:</p>
         <pre className="bg-white p-2 rounded text-sm">{JSON.stringify(value.distribution, null, 2)}</pre>
       </div>
     )
@@ -43,7 +46,6 @@ function renderSection(key, value) {
         <h3 className="font-semibold">{key} (Date/Time)</h3>
         <p>Oldest: {value.distribution?.oldest}</p>
         <p>Newest: {value.distribution?.newest}</p>
-        <p>Distribution by Hour:</p>
         <pre className="bg-white p-2 rounded text-sm">{JSON.stringify(value.distribution?.byHour, null, 2)}</pre>
       </div>
     )
@@ -54,7 +56,6 @@ function renderSection(key, value) {
       <div key={key} className="border p-4 rounded bg-green-50 mb-4">
         <h3 className="font-semibold">{key} (Categorical)</h3>
         <p>Count: {value.count}</p>
-        <p>Values:</p>
         <pre className="bg-white p-2 rounded text-sm">{JSON.stringify(value.values || value.distribution, null, 2)}</pre>
       </div>
     )
@@ -80,27 +81,36 @@ function renderSection(key, value) {
 }
 
 export default async function ClusteringResultsPage({ params }) {
-//   const job = await fetchJobData(params.id)
-  const { id } = await params
-  const job = await fetchJobData(id)
-  const responseJson = job.response_json || {}
+  const { id } = params
 
-  return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Clustering Job #{params.id}</h1>
+  try {
+    const job = await fetchJobData(id)
+    const responseJson = job.response_json || {}
 
-      <div className="bg-white shadow p-4 rounded mb-6">
-        <p><strong>Status:</strong> {job.status}</p>
-        <p><strong>Filename:</strong> {job.original_filename}</p>
-        <p><strong>Uploaded At:</strong> {new Date(job.created_at).toLocaleString()}</p>
-        <p><strong>Completed At:</strong> {new Date(job.completed_at).toLocaleString()}</p>
-        <p><strong>do_gpt_summary:</strong> {String(job.do_gpt_summary)}</p>
-        <p><strong>do_clustering:</strong> {String(job.do_clustering)}</p>
+    return (
+      <div className="p-8">
+        <h1 className="text-2xl font-bold mb-4">Clustering Job #{id}</h1>
+
+        <div className="bg-white shadow p-4 rounded mb-6">
+          <p><strong>Status:</strong> {job.status}</p>
+          <p><strong>Filename:</strong> {job.original_filename}</p>
+          <p><strong>Uploaded At:</strong> {new Date(job.created_at).toLocaleString()}</p>
+          <p><strong>Completed At:</strong> {job.completed_at ? new Date(job.completed_at).toLocaleString() : '—'}</p>
+          <p><strong>do_gpt_summary:</strong> {String(job.do_gpt_summary)}</p>
+          <p><strong>do_clustering:</strong> {String(job.do_clustering)}</p>
+        </div>
+
+        <div className="grid gap-6">
+          {Object.entries(responseJson).map(([key, value]) => renderSection(key, value))}
+        </div>
       </div>
-
-      <div className="grid gap-6">
-        {Object.entries(responseJson).map(([key, value]) => renderSection(key, value))}
+    )
+  } catch (err) {
+    return (
+      <div className="p-8 text-red-600">
+        <h1 className="text-2xl font-bold mb-4">Error loading clustering job</h1>
+        <pre className="bg-red-100 p-4 rounded">{err.message}</pre>
       </div>
-    </div>
-  )
+    )
+  }
 }

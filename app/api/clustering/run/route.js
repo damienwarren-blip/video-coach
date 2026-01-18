@@ -136,7 +136,10 @@ export async function POST(req) {
     return new Response(
       `
         <html>
-          <head><title>Clustering Job Started</title></head>
+          <head>
+            <meta charset="UTF-8" />
+            <title>Clustering Job Started</title>
+          </head>
           <body style="font-family: sans-serif; padding: 2rem;">
             <h2>✅ Clustering Job Created</h2>
             <p><strong>Job ID:</strong> ${jobId}</p>
@@ -148,7 +151,7 @@ export async function POST(req) {
       {
         status: 200,
         headers: {
-          'Content-Type': 'text/html'
+          'Content-Type': 'text/html; charset=UTF-8'
         }
       }
     )

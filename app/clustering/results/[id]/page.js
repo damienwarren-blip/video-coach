@@ -3,7 +3,13 @@
 import React from 'react'
 
 async function fetchJobData(id) {
-  const res = await fetch(`http://localhost:3000/api/clustering/job/${id}`)
+  // const res = await fetch(`http://localhost:3000/api/clustering/job/${id}`)
+  // const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/clustering/job/${id}`, {
+  //   cache: 'no-store',
+  // })
+  const res = await fetch(`/api/clustering/job/${id}`, {
+    cache: 'no-store',
+  })
   if (!res.ok) throw new Error('Failed to fetch clustering job')
   return res.json()
 }
@@ -69,7 +75,9 @@ function renderSection(key, value) {
 }
 
 export default async function ClusteringResultsPage({ params }) {
-  const job = await fetchJobData(params.id)
+//   const job = await fetchJobData(params.id)
+  const { id } = await params
+  const job = await fetchJobData(id)
   const responseJson = job.response_json || {}
 
   return (

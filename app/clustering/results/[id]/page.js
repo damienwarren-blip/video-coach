@@ -100,7 +100,9 @@ export default async function ClusteringResultsPage({ params }) {
         <div className="bg-white shadow p-4 rounded mb-6">
           <p><strong>Status:</strong> {job.status}</p>
           <p><strong>Filename:</strong> {job.original_filename}</p>
-          <p><strong>Uploaded At:</strong> {new Date(job.created_at).toLocaleString()}</p>
+          <p><strong>Uploaded At:</strong> 
+            {job.created_at ? new Date(job.created_at).toLocaleString() : '—'}
+          </p>
           <p><strong>Completed At:</strong> {job.completed_at ? new Date(job.completed_at).toLocaleString() : '—'}</p>
           <p><strong>do_gpt_summary:</strong> {String(job.do_gpt_summary)}</p>
           <p><strong>do_clustering:</strong> {String(job.do_clustering)}</p>
